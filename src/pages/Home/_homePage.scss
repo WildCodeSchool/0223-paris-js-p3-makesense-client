@@ -1,0 +1,25 @@
+@use "../../sass/global" as *;
+
+#home {
+    // height: 95vh;
+  background-color: $primary-color;
+  clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
+  h1{
+    font-size: $h1-mobile;
+    margin-bottom: 1rem;
+  }
+  p{
+    font-size: $p-mobile;
+  }
+
+  .homeInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 926px) {
+}
