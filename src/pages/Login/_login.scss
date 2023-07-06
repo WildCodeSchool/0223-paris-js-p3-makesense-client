@@ -1,0 +1,36 @@
+@use "../../sass//global" as *;
+
+
+p {
+font-size: $p-size;
+color: $primary-color;
+top: 7.5rem;
+left:3.875rem;
+
+}
+
+h1{
+    font-size : $h1-size;
+    color: $color-accent-lightOrange;
+    top:8.813rem;
+    left:3.875rem;
+
+}
+
+.containers{
+margin-top:10%;
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+flex-direction: column;
+
+}
+
+input{
+    box-sizing: border-box;
+    width: 100%;
+    border: solid black 1px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+   
+}
