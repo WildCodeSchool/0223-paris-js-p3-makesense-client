@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   BrowserRouter as Router,
   Route,
@@ -28,8 +29,16 @@ const App = () => {
       console.error(error);
     }
   };
+=======
+// import { BrowserRouter as Router, Routes } from "react-router-dom";
+import "./sass/style.scss";
+// import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import CreationGuide from "./pages/CreationGuide/CreationGuide";
+>>>>>>> 34ddfb375467a49a0ff7b35a9f44b6612ae0cb6b
 
   return (
+<<<<<<< HEAD
     <Router>
       <div>
         <Routes>
@@ -54,6 +63,17 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+=======
+    <>
+      {/*  <Router>
+       <Routes> */}
+      {/* <Navbar /> */}
+      <Home />
+      <CreationGuide />
+      {/* </Routes>
+    </Router> */}
+    </>
+>>>>>>> 34ddfb375467a49a0ff7b35a9f44b6612ae0cb6b
   );
 };
 
