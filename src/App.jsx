@@ -2,6 +2,7 @@
 import "./sass/style.scss";
 // import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import CreationGuide from "./pages/CreationGuide/CreationGuide";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
        <Routes> */}
       {/* <Navbar /> */}
       <Home />
+      <CreationGuide />
       {/* </Routes>
     </Router> */}
     </>

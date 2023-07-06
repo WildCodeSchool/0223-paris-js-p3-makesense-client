@@ -3,7 +3,7 @@ import pills from "../../assets/pills/Pills_mobile_home.png";
 
 export default function Home() {
   const clickMe = () => {
-    console.log("sac à foutre :)");
+    console.log("JE SUIS UN GENTIL BOUTON :)");
   };
   return (
     <section
