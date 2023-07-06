@@ -1,0 +1,24 @@
+@use "../../sass/global" as *;
+
+article {
+  width: 100vw;
+  text-align: center;
+  hr{
+    margin: 1.5rem 0;
+    width: 100vw;
+    color: $primary-color;
+    border-bottom: 2px solid $primary-color;
+  }
+  .articleText {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+      margin: 2rem 0;
+    }
+    p {
+      width: 22rem;
+    }
+  }
+}

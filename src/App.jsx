@@ -1,13 +1,19 @@
-// import { Route, Routes } from "react-router-dom";
+// import { BrowserRouter as Router, Routes } from "react-router-dom";
 import "./sass/style.scss";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import CreationGuide from "./pages/CreationGuide/CreationGuide";
 
 function App() {
   return (
     <>
-      <Navbar />
-      {/* <Routes>
-    </Routes> */}
+      {/*  <Router>
+       <Routes> */}
+      {/* <Navbar /> */}
+      <Home />
+      <CreationGuide />
+      {/* </Routes>
+    </Router> */}
     </>
   );
 }
