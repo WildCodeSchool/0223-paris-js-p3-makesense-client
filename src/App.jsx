@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   BrowserRouter as Router,
   Route,
@@ -17,10 +16,6 @@ import { signin } from "./store/auth";
 const App = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    reloadStore();
-  }, []);
-
   const reloadStore = async () => {
     try {
       const result = await getCurrentUser();
@@ -29,16 +24,12 @@ const App = () => {
       console.error(error);
     }
   };
-=======
-// import { BrowserRouter as Router, Routes } from "react-router-dom";
-import "./sass/style.scss";
-// import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/Home";
-import CreationGuide from "./pages/CreationGuide/CreationGuide";
->>>>>>> 34ddfb375467a49a0ff7b35a9f44b6612ae0cb6b
+
+  useEffect(() => {
+    reloadStore();
+  }, []);
 
   return (
-<<<<<<< HEAD
     <Router>
       <div>
         <Routes>
@@ -63,17 +54,6 @@ import CreationGuide from "./pages/CreationGuide/CreationGuide";
         </Routes>
       </div>
     </Router>
-=======
-    <>
-      {/*  <Router>
-       <Routes> */}
-      {/* <Navbar /> */}
-      <Home />
-      <CreationGuide />
-      {/* </Routes>
-    </Router> */}
-    </>
->>>>>>> 34ddfb375467a49a0ff7b35a9f44b6612ae0cb6b
   );
 };
 
@@ -83,7 +63,6 @@ const admins = [
 ];
 
 const PrivateRoute = ({ children, admin = 0 }) => {
-  //0 = bolean donc un user
   const auth = useSelector((state) => state.auth);
   if (auth.isLogged) {
     console.log("auth.user", auth.user);
@@ -91,7 +70,6 @@ const PrivateRoute = ({ children, admin = 0 }) => {
       auth.user?.admin == admin ||
       admins.indexOf(auth.user?.admin) >= admins.indexOf(admin)
     ) {
-      console.log("toto");
       return children;
     } else return <Navigate to="/" />;
   } else return <Navigate to="/login" />;

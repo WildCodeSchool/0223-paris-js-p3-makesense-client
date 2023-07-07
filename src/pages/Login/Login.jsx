@@ -32,7 +32,7 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="color_back">
       {error && <p>{error}</p>}
       <div className="containers">
         <p>Pour acceder au site</p>
@@ -47,8 +47,9 @@ function Login() {
               value={login.email}
               onChange={(e) => setLogin({ ...login, email: e.target.value })}
             />
-          </div>
-
+            </div>
+          
+          <div className="button_password">
           <input
             type="password"
             name="password"
@@ -57,15 +58,20 @@ function Login() {
             value={login.password}
             onChange={(e) => setLogin({ ...login, password: e.target.value })}
           />
-          <div>
+          </div>
+          
+          <div className="checkbox">
             <input type="checkbox" id="scales" name="scales" />
             <label for="scales">Se souvenir de moi</label>
           </div>
 
-          <button type="submit">Login</button>
+          <div className="button_connexion">
+          <button type="submit" className="connexion">se connecter</button>
+          </div>
+
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
