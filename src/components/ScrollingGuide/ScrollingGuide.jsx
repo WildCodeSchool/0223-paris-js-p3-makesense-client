@@ -1,9 +1,13 @@
+import DropdownCreator from "./DropdownCreator";
+import DropdownQA from "./DropdownQA";
+import DropdownRules from "./DropdownRules";
+
 export default function ScrollingGuide() {
   return (
     <>
-      <h3 className="c-blue">Manuel du créateur</h3>
-      <h3 className="c-blue">Nos règles</h3>
-      <h3 className="c-blue">F.A.Q</h3>
+      <DropdownCreator />
+      <DropdownRules />
+      <DropdownQA />
     </>
   );
 }
