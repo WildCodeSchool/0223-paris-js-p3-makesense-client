@@ -1,0 +1,94 @@
+@use "../../sass//global" as *;
+
+
+p {
+font-size: $p-mobile;
+color: $primary-color;
+width: 73%;
+
+}
+h1{
+    font-size : $h1-mobile;
+    color: $color-accent-lightOrange;
+    width: 73%;
+
+}
+.containers{
+margin-top:10%;
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+flex-direction: column;
+width: 100%;
+
+
+}
+input{
+
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    color: $text-white;
+    border-color: black;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+    border:2px solid #C6C6C6;
+    background-image: url(./src/assets/Letter.png);
+    background-repeat: no-repeat;
+}
+.connexion{
+    text-align: center;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    color: $text-white;
+    background-color: $color-accent-lightOrange;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+  &:hover {
+    background-color: $color-accent-orange;
+  }
+
+}
+.button_connexion{
+    text-align: center;
+}
+form{
+    width: 75%;
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+
+}
+
+
+.button_courriel{
+text-align: center;
+margin-top: 2rem;
+}
+
+.button_password{
+text-align: center;
+margin-top: 0.7rem;
+margin-bottom: 1rem;
+}
+
+.button_connexion{
+    text-align: center;
+    margin-top:2rem;
+}
+
+input[type=checkbox] {
+    -border-radius: 4px;
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-right: 0.7rem;
+    margin-left: 0.2rem;
+}
+
+
+
+
