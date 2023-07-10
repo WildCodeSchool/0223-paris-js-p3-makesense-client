@@ -4,9 +4,16 @@ export default function DropdownCreator() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <button type="button" onClick={() => setOpen(!open)}>
-        <h3 className="c-blue">Manuel du créateur</h3>
+    <section>
+      <button type="button" onClick={() => setOpen(!open)} className="dropdownButtonGuide">
+        <button
+          type="button"
+          className={open ? "arrow-icon open" : "arrow-icon"}
+        >
+          <span className="left-bar" />
+          <span className="right-bar" />
+        </button>
+        <h3 className={open ? "open" : "c-blue "}>Manuel du créateur</h3>
       </button>
       <li style={{ display: open ? "block" : "none" }}>
         <h4 className="c-blue">Lorem ipsum dolor </h4>
@@ -16,6 +23,6 @@ export default function DropdownCreator() {
           conubia nostra, per inceptos himenaeos.{" "}
         </p>
       </li>
-    </>
+    </section>
   );
 }
