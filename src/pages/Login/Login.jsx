@@ -39,7 +39,7 @@ function Login() {
         <h1>Connectez-vous</h1>
         <form onSubmit={handleSubmit}>
           <div className="button_courriel">
-            <input
+            <input className="courriel_icon"
               type="email"
               name="email"
               id="email"
@@ -50,8 +50,7 @@ function Login() {
             </div>
           
           <div className="button_password">
-          <input
-            type="password"
+          <input className="password_icon password_eye"            type="password"
             name="password"
             id="password"
             placeholder="Mot de passe"

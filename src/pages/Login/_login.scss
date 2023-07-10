@@ -33,9 +33,27 @@ input{
     font-size: $p-mobile;
     transition: 300ms;
     border:2px solid #C6C6C6;
+}
+
+.courriel_icon{
     background-image: url(./src/assets/Letter.png);
     background-repeat: no-repeat;
+    background-position: left center;
+    color :black;
+    background-position-x: 0.2rem;
+    
+
 }
+
+.password_icon{
+    background-image: url(./src/assets/Lock.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    color :black;
+    background-position-x: 0.2rem;
+}
+
+
 .connexion{
     text-align: center;
     width: 100%;
@@ -66,6 +84,7 @@ form{
 .button_courriel{
 text-align: center;
 margin-top: 2rem;
+
 }
 
 .button_password{
