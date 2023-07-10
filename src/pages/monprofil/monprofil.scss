@@ -1,0 +1,151 @@
+@use "../../sass//global" as *;
+
+body {
+    background-color: $bg-gray;
+}
+h1 {
+    text-align: center;
+    padding-top: 60px;
+    size: $h1-size;
+    color: $primary-color;
+    font-family: $titles-font;
+}
+
+img:nth-child(1) {
+    width: 30%;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 6px solid $color-accent-cian;
+    border-radius: 50%;
+}
+img:nth-child(2) {
+    background-color: $color-accent-cian ;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    position: absolute;
+    left: 55%;
+    top: 24%;
+    cursor: pointer;
+}
+label {
+    font-weight: bold;
+}
+.formProfile {
+    text-align: left;
+    width: 60%;
+    margin: 50px auto 0;
+    color: $primary-color;
+}
+.profile-input {
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    margin: 10px 0;
+    font-family: $titles-font;
+    text-indent: 10px;
+}
+.profile-input[readonly] {
+    cursor: not-allowed;
+}
+
+button {
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.boutonAS {
+    display: flex;
+    justify-content: space-between;
+}
+.annuler {
+    padding: 10px;
+    background-color: $bg-gray;
+    color: $color-accent-lightOrange;
+    border: 1px solid $color-accent-lightOrange;
+    font-family: $titles-font;
+    
+}
+.sauvegarder {
+    padding: 10px;
+    background-color: $color-accent-lightOrange;
+    font-family: $titles-font;
+}
+
+.editer {
+    padding: 10px;
+    margin-left: 180px;
+    background-color: $color-accent-lightOrange;
+    font-family: $titles-font;
+}
+
+.notifcourriel {
+    width: 60%;
+    margin: 25px auto 0;
+    color: $primary-color;
+    font-size: 1.1rem;
+}
+
+
+
+.toggle-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 20%;
+    margin-top: 20px;
+}
+  
+.toggle-checkbox {
+    display: none;
+}
+  
+.toggle-label {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    position: relative;
+    transition: background-color 0.3s ease;
+  
+}  
+.toggle-inner {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.3s ease;
+}
+
+
+.toggle-switch {
+    display: block;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 5px;
+    transition: left 0.3s ease;
+}
+  
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #4CAF50;
+}
+  
+.toggle-checkbox:checked + .toggle-label .toggle-inner {
+    left: 50%;
+}
+  
+.toggle-checkbox:checked + .toggle-label .toggle-switch {
+    left: calc(100% - 5px);
+}
+  
