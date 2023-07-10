@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
+import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +50,24 @@ const App = () => {
             element={
               <PublicRoute>
                 <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/forgotPassword"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/resetPassword"
+            element={
+              <PublicRoute>
+                <ResetPassword />
               </PublicRoute>
             }
           />

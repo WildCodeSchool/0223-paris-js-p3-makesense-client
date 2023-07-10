@@ -1,18 +1,18 @@
 @use "../../sass//global" as *;
 
 
-p {
+.title1_login {
 font-size: $p-mobile;
 color: $primary-color;
 width: 73%;
-
 }
-h1{
+
+.title2_login{
     font-size : $h1-mobile;
     color: $color-accent-lightOrange;
     width: 73%;
-
 }
+
 .containers{
 margin-top:10%;
 display: flex;
@@ -20,19 +20,6 @@ align-items: center;
 flex-wrap: wrap;
 flex-direction: column;
 width: 100%;
-
-
-}
-input{
-
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    color: $text-white;
-    border-color: black;
-    border-radius: 5px;
-    font-size: $p-mobile;
-    transition: 300ms;
-    border:2px solid #C6C6C6;
 }
 
 .courriel_icon{
@@ -41,24 +28,35 @@ input{
     background-position: left center;
     color :black;
     background-position-x: 0.2rem;
-    
-
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border-color: black;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+    border:2px solid #C6C6C6;
 }
 
 .password_icon{
     background-image: url(./src/assets/Lock.png);
     background-repeat: no-repeat;
     background-position: left center;
-    color :black;
     background-position-x: 0.2rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    color: black;
+    border-color: black;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+    border:2px solid #C6C6C6;
 }
-
 
 .connexion{
     text-align: center;
     width: 100%;
     padding: 0.75rem 1.25rem;
-    color: $text-white;
+    color: black;
     background-color: $color-accent-lightOrange;
     border-radius: 5px;
     font-size: $p-mobile;
@@ -68,23 +66,30 @@ input{
   }
 
 }
+
 .button_connexion{
     text-align: center;
+    color: black;
 }
+
+.forgot_password{
+    padding-top: 0.5rem;
+    text-align: right;
+    width: 100%;
+}
+
 form{
     width: 75%;
 }
+
 .checkbox {
     display: flex;
     align-items: center;
-
 }
-
 
 .button_courriel{
 text-align: center;
 margin-top: 2rem;
-
 }
 
 .button_password{
