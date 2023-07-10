@@ -12,8 +12,6 @@ function App() {
       {/*  <Router>
        <Routes> */}
       <Navbar/>
-      <Home />
-      <CreationGuide />
       <Footer/>
       {/* </Routes>
     </Router> */}
