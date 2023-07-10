@@ -1,1 +1,108 @@
 @use "../../sass/global" as *;
+
+#guide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    section{
+      padding: 0;
+      width: 85vw;
+    }
+    h3{
+        transition: all 500ms;
+    }
+    .dropdownButtonGuide{
+        width: 100%;
+        display: flex;
+        align-items: center;    
+        padding: 0.5rem;
+        gap: 0.5em;
+}
+  li {
+    width: 100%;
+    background-color: $bg-grey;
+    padding: 1rem 1rem 1rem 1.5rem ;
+    p{
+      padding: 0.5rem;
+    }
+  }
+  
+}
+// dropdown menu arrow
+.arrow-icon {
+    display:inline-block;
+    padding: 0.45em;
+    position: relative;
+    border-radius: 2px;
+    margin: 0.5rem;  
+  }
+  
+  .left-bar {
+    position: absolute;
+    background-color: transparent;
+    width: 7px;
+    height: 2px;
+    left:0;
+    display: block;
+    transform: rotate(35deg);
+    float: right;
+    &:after {
+      content:"";
+      background-color: $primary-color;
+      width: 8px;
+      height: 2px;
+      display: block;
+      float: right;
+      border-radius: 6px 10px 10px 6px;
+      transition: all 500ms;
+    }
+  }
+  
+  .right-bar {
+    position: absolute;
+    background-color: transparent;
+    width: 8px;
+    height: 2px;
+    right: 0;
+    display: block;
+    transform: rotate(-35deg);
+    float: right;
+    &:after {
+      content:"";
+      background-color: $primary-color;
+      width: 8px;
+      height: 2px;
+      display: block;
+      float: right;
+      border-radius: 10px 6px 6px 10px;
+      transition: all 500ms;
+    }
+  }
+  
+  .open {
+    color: $color-accent-purple;
+      .left-bar:after {
+        background-color: $color-accent-purple;
+      transform-origin: center center;
+      transform: rotate(-70deg);
+    }
+    .right-bar:after {
+        background-color: $color-accent-purple;
+      transform-origin: center center;
+      transform: rotate(70deg);
+    }
+  
+  }
+
+
+
+@media screen and (min-width: 926px) {
+#guide{
+  li{
+    padding: 0 4rem 2em 4rem ;
+    p{
+      padding: 1rem;
+    }
+  }
+}
+}

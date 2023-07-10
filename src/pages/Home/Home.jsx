@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import pills from "../../assets/pills/Pills_mobile_home.png";
 // import Input from "../../components/Input";
 
@@ -5,6 +6,12 @@ export default function Home() {
   const clickMe = () => {
     console.log("JE SUIS UN GENTIL BOUTON :)");
   };
+
+  const navigate = useNavigate();
+
+  function handleClickGuide() {
+    navigate("/Guide");
+  }
   return (
     <section
       id="home"
@@ -30,7 +37,7 @@ export default function Home() {
         <button type="button" onClick={clickMe} className="button-bg-a0">
           lancer mon projet
         </button>
-        <button type="button" onClick={clickMe} className="button-bg-a0">
+        <button type="button" onClick={handleClickGuide} className="button-bg-a0">
           comment se lancer ?
         </button>
       </div>

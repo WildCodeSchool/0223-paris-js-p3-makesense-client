@@ -5,11 +5,7 @@
   background-color: $primary-color;
   clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
   h1{
-    font-size: $h1-mobile;
     margin-bottom: 1rem;
-  }
-  p{
-    font-size: $p-mobile;
   }
 
   .homeInputs{
@@ -27,11 +23,7 @@
     .homeInputs{
         flex-direction: row;
       }
-      h1{
-        font-size: $h1-desktop;
-      }
       p{
-        font-size: $p-desktop;
         width: 60%;
       }
     }
