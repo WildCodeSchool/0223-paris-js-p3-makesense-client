@@ -7,14 +7,18 @@ import {
 } from "react-router-dom";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import CreationGuide from "./pages/CreationGuide/CreationGuide";
 import Login from "./pages/login/Login";
-import Home from "./pages/home";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
+import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const reloadStore = async () => {
@@ -36,6 +40,7 @@ const App = () => {
   return visible ? (
     <Router>
       <div>
+        <Navbar />
         <Routes>
           <Route
             exact
@@ -48,6 +53,15 @@ const App = () => {
           />
           <Route
             exact
+            path="/Guide"
+            element={
+              <PrivateRoute>
+                <CreationGuide />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
             path="/login"
             element={
               <PublicRoute>
@@ -55,13 +69,32 @@ const App = () => {
               </PublicRoute>
             }
           />
+          <Route
+            exact
+            path="/forgotPassword"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/resetPassword"
+            element={
+              <PublicRoute>
+                <ResetPassword />
+              </PublicRoute>
+            }
+          />
         </Routes>
       </div>
+      <Footer />
     </Router>
   ) : (
     ""
   );
-};
+}
 
 const admins = [
   0, //  => User
@@ -75,21 +108,23 @@ const PrivateRoute = ({ children, admin = 1 }) => {
   console.log(auth);
   console.log("auth.isLogged", auth.isLogged);
   if (auth.isLogged) {
-    console.log("auth.user new", auth);
     if (
-      auth.user?.admin == admin ||
+      auth.user?.admin === admin ||
       admins.indexOf(auth.user?.admin) >= admins.indexOf(admin)
     ) {
       return children;
-    } else return <Navigate to="/" />;
-  } else return <Navigate to="/login" />;
+    }
+    <Navigate to="/" />;
+  }
+  <Navigate to="/login" />;
 };
 
 const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.auth);
   if (!auth.isLogged) {
     return children;
-  } else return <Navigate to="/" />;
+  }
+  <Navigate to="/" />;
 };
 
 export default App;

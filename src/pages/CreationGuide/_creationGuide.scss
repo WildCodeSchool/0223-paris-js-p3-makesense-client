@@ -3,8 +3,8 @@
 article {
   width: 100vw;
   text-align: center;
-  hr{
-    margin: 1.5rem 0;
+  hr {
+    margin-top: 2rem;
     width: 100vw;
     color: $primary-color;
     border-bottom: 2px solid $primary-color;
@@ -18,7 +18,17 @@ article {
       margin: 2rem 0;
     }
     p {
-      width: 22rem;
+      width: 18rem;
+    }
+  }
+}
+
+@media screen and (min-width: 926px) {
+  article {
+    .articleText {
+      p {
+        width: 22rem;
+      }
     }
   }
 }
