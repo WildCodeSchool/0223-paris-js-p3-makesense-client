@@ -10,6 +10,12 @@ function Login(props) {
     password: "",
   });
 
+  const [password, setPassword] = useState(false);
+
+  const showpassword = () => {
+    setPassword(!password);
+  };
+
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -52,12 +58,17 @@ function Login(props) {
           <div className="button_password">
             <input
               className="password_icon password_eye"
-              type="password"
+              type={password ? "text" : "password"}
               name="password"
               id="password"
               placeholder="Mot de passe"
               value={login.password}
               onChange={(e) => setLogin({ ...login, password: e.target.value })}
+            />
+            <img
+              onClick={showpassword}
+              className="oeil"
+              src="src/assets/Oeil.png"
             />
           </div>
 
@@ -70,7 +81,9 @@ function Login(props) {
             <button type="submit" className="connexion">
               se connecter
             </button>
-            <p className ="forgot_password"><a  href="https://example.com">Mot de passe oublié</a></p>
+            <p className="forgot_password">
+              <a href="https://example.com">Mot de passe oublié</a>
+            </p>
           </div>
         </form>
       </div>

@@ -13,7 +13,7 @@ import Login from "./pages/login/Login";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { getCurrentUser } from "./services/users";
-import { signin } from "./store/auth";e
+import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 

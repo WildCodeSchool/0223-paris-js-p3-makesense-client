@@ -1,31 +1,31 @@
 function Footer() {
     return (
         <footer>
-            <div class="contenu-footer">
-                <div class= "bloc footer">
+            <div className="contenu-footer">
+                <div className= "bloc footer">
                     <h1>Liens utiles</h1>
-                    <ul class="useful links">
+                    <ul className="useful links">
                         <li><a href="#">Rapport d'activité</a></li>
                         <li><a href="#">Mentions légales</a></li>
                     </ul>
                 </div>
 
-                <div class= "bloc footer">
+                <div className= "bloc footer">
                     <h1>Contact</h1>
-                    <ul class="contact">
+                    <ul className="contact">
                         <li><a href="#">Makesense dans le monde</a></li>
                     </ul>
                 </div>
 
-                <div class= "bloc footer">
-                    <ul class="iconesfooter">
+                <div className= "bloc footer">
+                    <ul className="iconesfooter">
                     <li><a href="#"><img src="../src/assets/facebook.png" alt="icone facebook"/></a></li>
                         <li><a href="#"><img src="../src/assets/instagram.png" alt="icone instagram"/></a></li>
                     </ul>
                 </div>
 
             </div>
-            <img class="logofooter" src="../src/assets/makesense_logo_white.png" alt="makesense logo"/>
+            <img className="logofooter" src="../src/assets/makesense_logo_white.png" alt="makesense logo"/>
         </footer>
     );
 }
