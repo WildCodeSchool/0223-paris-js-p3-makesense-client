@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useRef } from "react";
+import Navbar from "../../components/Navbar/Navbar";
 
-function Monprofil() {
+const Monprofil = () => {
   const [profileImage, setProfileImage] = useState(
     "../../src/assets/default_user.png"
   );
@@ -40,34 +41,44 @@ function Monprofil() {
     setIsEditMode(false);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     setIsEditMode(false);
 
-    axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/:id`, {
-        firstname,
-        lastname,
-        email,
-        tel,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Modifications enregistrées avec succès.");
-        } else {
-          console.error("Erreur lors de la sauvegarde des modifications.");
-        }
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la communication avec le serveur.",
-          error
-        );
-      });
+    // try {
+    //   const result = await authService.editUser(login.email, login.password);
+    //   dispatch(signin(result.data));
+
+    //   navigate("/");
+    // } catch (err) {
+    //   if (err.response?.status === 400) {
+    //     setError("email ou mot de passe incorrect");
+    //   }
+    // }
+    // axios
+    //   .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/:id`, {
+    //     firstname,
+    //     lastname,
+    //     email,
+    //     tel,
+    //   })
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       console.log("Modifications enregistrées avec succès.");
+    //     } else {
+    //       console.error("Erreur lors de la sauvegarde des modifications.");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(
+    //       "Erreur lors de la communication avec le serveur.",
+    //       error
+    //     );
+    //   });
   };
 
   return (
     <>
-      <h1>Mon Profil</h1>
+      <h1 className="titreprofil">Mon Profil</h1>
       <div>
         <img src={profileImage} alt="userprofile" className="profile-image" />
         <img
@@ -205,6 +216,6 @@ function Monprofil() {
       </div>
     </>
   );
-}
+};
 
 export default Monprofil;

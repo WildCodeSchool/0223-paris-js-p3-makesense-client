@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Monprofil from "./pages/monprofil/monprofil";
 // import Navbar from "./components/Navbar/Navbar";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
-import Login from "./pages/login/Login";
+import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
@@ -56,11 +56,11 @@ const App = () => {
           />
           <Route
             exact
-            path="/MonProfile"
+            path="/monprofil"
             element={
-              <PublicRoute>
+              <PrivateRoute>
                 <Monprofil />
-              </PublicRoute>
+              </PrivateRoute>
             }
           />
         </Routes>
@@ -76,15 +76,22 @@ const admins = [
 
 const PrivateRoute = ({ children, admin = 0 }) => {
   const auth = useSelector((state) => state.auth);
+  console.log("auth", auth);
   if (auth.isLogged) {
     console.log("auth.user", auth.user);
-    if (
-      auth.user?.admin == admin ||
-      admins.indexOf(auth.user?.admin) >= admins.indexOf(admin)
-    ) {
+    console.log("kader noob");
+    if (auth.user?.admin == admin || auth.user?.admin === 1) {
+      console.log("toto");
+      console.log("children", children);
       return children;
-    } else return <Navigate to="/" />;
-  } else return <Navigate to="/login" />;
+    } else {
+      console.log("toto");
+      return <Navigate to="/" />;
+    }
+  } else {
+    console.log("tata", children);
+    return <Navigate to="/login" />;
+  }
 };
 
 const PublicRoute = ({ children }) => {

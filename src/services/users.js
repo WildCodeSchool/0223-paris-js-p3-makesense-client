@@ -6,7 +6,10 @@ const getAllUsers = () => {
 
 const getCurrentUser = () => {
     return api.get("/api/users/me");
+} 
+
+const editUser = () => {
+    return api.put("/api/users/:id")
 }
 
-
-export {getAllUsers, getCurrentUser};
+export {getAllUsers, getCurrentUser, editUser};
