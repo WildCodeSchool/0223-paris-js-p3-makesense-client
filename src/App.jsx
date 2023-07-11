@@ -17,6 +17,7 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -85,6 +86,15 @@ function App() {
               <PublicRoute>
                 <ResetPassword />
               </PublicRoute>
+            }
+          />
+            <Route
+            exact
+            path="/titleproject"
+            element={
+              <PrivateRoute>
+                <TitleProject />
+              </PrivateRoute>
             }
           />
         </Routes>
