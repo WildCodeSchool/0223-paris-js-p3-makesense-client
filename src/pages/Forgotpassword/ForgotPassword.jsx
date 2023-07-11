@@ -31,11 +31,11 @@ function ForgotPassword() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-      <div>
+    
         <button type="submit" className="forgot_password_request">
         Envoyer votre demande !
         </button>
-      </div>
+      
       </div>
       </div>
     </>
