@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 import authService from "../../services/auth";
-import Input from "../../components/Input";
 
 function Login(props) {
   const [login, setLogin] = useState({
