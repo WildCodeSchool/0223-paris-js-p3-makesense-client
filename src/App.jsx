@@ -6,8 +6,11 @@ import {
 } from "react-router-dom";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+// import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
+import CreationGuide from "./pages/CreationGuide/CreationGuide";
 import Login from "./pages/login/Login";
-import Home from "./pages/home";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import { getCurrentUser } from "./services/users";
@@ -32,8 +35,10 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <>
+      <Router>
       <div>
+      <Navbar/>
         <Routes>
           <Route
             exact
@@ -74,6 +79,8 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+    <Footer/>
+    </>
   );
 };
 
