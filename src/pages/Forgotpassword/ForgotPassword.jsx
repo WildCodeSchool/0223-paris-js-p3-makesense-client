@@ -35,7 +35,6 @@ function ForgotPassword() {
         <button type="submit" className="forgot_password_request">
         Envoyer votre demande !
         </button>
-      
       </div>
       </div>
     </>

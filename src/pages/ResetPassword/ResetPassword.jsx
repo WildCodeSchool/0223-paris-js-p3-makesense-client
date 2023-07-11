@@ -26,7 +26,8 @@ function ResetPassword() {
 
     return (
         <>
-        <div>
+        <div className="box">
+      <div className="containers">
         <h3 className="title_new_password">Votre nouveau mot de passe</h3>
           <input className="new_password"
             type="Password"
@@ -36,11 +37,10 @@ function ResetPassword() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div>
-          <button type="submit" className="forgot_password_request">
+          <button type="submit" className="button_forgot_password">
           Je valide 
           </button>
+        </div>
         </div>
       </>
     );
