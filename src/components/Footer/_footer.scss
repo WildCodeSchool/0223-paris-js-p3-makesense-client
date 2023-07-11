@@ -1,22 +1,19 @@
 @use "../../sass//global" as *;
 
 footer{
-    flex-shrink: 0;
-    border-top: 1px dashed black;
-    width:100%;
+    width:100vw;
     height:25%;
     background:$color-accent-cian;
     color:$text-white;
-    position:fixed;
-    bottom:0px;
+    bottom:0;
 }
 
-h1{
+.contenu-footer h1{
     font-weight:700px;
     font-size:20px;
 }
 
-ul li a{
+.bloc-footer ul li a{
     color:$text-white;
     font-size:14px;
     font-weight:400px;
@@ -30,8 +27,8 @@ ul li a{
 
 
 }
-ul li {
-    padding: 5% 0 0 0;
+.bloc-footer ul li {
+    padding: 5% 0 0 0
 }
 
 

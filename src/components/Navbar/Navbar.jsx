@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <nav class={`navbar ${showLinks ?  "show-nav" : "hide-nav"} `} > 
     <div class="transparent"></div>
-      <img class="logo" src="../src/assets/makesense_logo_bleu.png" alt="makesense logo"/>
+      <img class="nav_logo" src="../src/assets/makesense_logo_bleu.png" alt="makesense logo"/>
       <div class="nav-linksDesktop">
         <ul>
           <li><a href="#">Découvrir les projets</a></li>
@@ -19,10 +19,10 @@ function Navbar() {
           <li><a href="#">Comment se lancer</a></li>
         </ul>
       </div>
-      <img class="bell" src="../src/assets/bell.png" alt="bell"/>
+      <img class="nav_bell" src="../src/assets/bell.png" alt="bell"/>
       <div class="burgerAvatar">
       <img class="menu" src="../src/assets/menu.png" alt="menu" onClick={handleShowLinks}/>
-      <img class="avatar_default" src="../src/assets/default_user.png" alt="default avatar" onClick={handleShowDropdown}/>
+      <img class="nav_avatar_default" src="../src/assets/default_user.png" alt="default avatar" onClick={handleShowDropdown}/>
       </div>
       {showDropdown ?
       <div class="dropdown">
@@ -38,7 +38,7 @@ function Navbar() {
       ""}
       <img class="cross" src="../src/assets/Cross.png" alt="cross" onClick={handleShowLinks}/>
       <div class="nav-links">
-      <img class="avatar_big" src="../src/assets/default_user.png" alt="big avatar"/>
+      <img class="nav_avatar_big" src="../src/assets/default_user.png" alt="big avatar"/>
         <ul>
           <li><a href="#">Mon profil</a></li>
           <li><a href="#">Suivi de Projets</a></li>
