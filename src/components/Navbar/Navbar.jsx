@@ -35,10 +35,6 @@ function Navbar() {
     setShowDropdown(!showDropdown);
   };
   return (
-    <nav className={`navbar ${showLinks ?  "show-nav" : "hide-nav"} `} > 
-    <div className="transparent"></div>
-      <img className="nav_logo" src="../src/assets/makesense_logo_bleu.png" alt="makesense logo"/>
-      <div className="nav-linksDesktop">
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
       <img
@@ -59,23 +55,23 @@ function Navbar() {
           </li>
         </ul>
       </div>
-      <img classNameName="nav_bell" src="../src/assets/bell.png" alt="bell" />
-      <div classNameName="burgerAvatar">
+      <img className="nav_bell" src="../src/assets/bell.png" alt="bell" />
+      <div className="burgerAvatar">
         <img
-          classNameName="menu"
+          className="menu"
           src="../src/assets/menu.png"
           alt="menu"
           onClick={handleShowLinks}
         />
         <img
-          classNameName="nav_avatar_default"
+          className="nav_avatar_default"
           src="../src/assets/default_user.png"
           alt="default avatar"
           onClick={handleShowDropdown}
         />
       </div>
       {showDropdown ? (
-        <div classNameName="dropdown">
+        <div className="dropdown">
           <h3>Mon profil</h3>
           <ul>
             <li>
@@ -98,14 +94,14 @@ function Navbar() {
         ""
       )}
       <img
-        classNameName="cross"
+        className="cross"
         src="../src/assets/Cross.png"
         alt="cross"
         onClick={handleShowLinks}
       />
-      <div classNameName="nav-links">
+      <div className="nav-links">
         <img
-          classNameName="nav_avatar_big"
+          className="nav_avatar_big"
           src="../src/assets/default_user.png"
           alt="big avatar"
         />
