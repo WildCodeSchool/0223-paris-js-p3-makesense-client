@@ -5,7 +5,7 @@ import { signin } from "../../store/auth";
 import authService from "../../services/auth";
 import Input from "../../components/Input";
 
-function Login() {
+function Login(props) {
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -32,7 +32,7 @@ function Login() {
   };
 
   return (
-    <div className="color_back">
+    <div className="box">
       {error && <p>{error}</p>}
       <div className="containers">
         <p className="title1_login">Pour acceder au site</p>

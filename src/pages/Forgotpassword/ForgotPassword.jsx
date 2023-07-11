@@ -20,7 +20,8 @@ function ForgotPassword() {
 
   return (
     <>
-      <div>
+      <div className="box">
+      <div className="containers">
       <h3 className="title_password_request">Réinitialisation de votre mot de passe</h3>
         <input className="email_forgot_password"
           type="email"
@@ -30,11 +31,12 @@ function ForgotPassword() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
       <div>
         <button type="submit" className="forgot_password_request">
         Envoyer votre demande !
         </button>
+      </div>
+      </div>
       </div>
     </>
   );

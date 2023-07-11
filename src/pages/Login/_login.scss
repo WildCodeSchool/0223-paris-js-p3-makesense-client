@@ -14,12 +14,11 @@ width: 73%;
 }
 
 .containers{
-margin-top:10%;
 display: flex;
 align-items: center;
 flex-wrap: wrap;
 flex-direction: column;
-width: 100%;
+padding: 1.5rem;
 }
 
 .courriel_icon{
@@ -115,4 +114,18 @@ input[type=checkbox] {
 
 
 
+@media screen and (min-width: 926px) {
 
+
+    .containers{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+        top:10rem;         
+    }
+
+    .box{
+        background-image: url(./src/assets/pills/Pills_desktop_login.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
