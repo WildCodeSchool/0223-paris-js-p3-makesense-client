@@ -18,6 +18,7 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import Monprofil from "./pages/monprofil/monprofil";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
   return visible ? (
     <Router>
       <div>
-        <Navbar /> 
+        <Navbar />
         <Routes>
           <Route
             exact
@@ -97,7 +98,7 @@ function App() {
               </PublicRoute>
             }
           />
-            <Route
+          <Route
             exact
             path="/titleproject"
             element={
