@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
-// import FetchPosts from "./FetchPosts";
 
 export default function PaginatedItems(props) {
   const { data, setCurrentItems } = props;
@@ -31,3 +30,18 @@ export default function PaginatedItems(props) {
     />
   );
 }
+
+PaginatedItems.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+      firstname: PropTypes.string.isRequired,
+      lastname: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setCurrentItems: PropTypes.func.isRequired,
+};
