@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 const Disconnect = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth, "logged out");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {

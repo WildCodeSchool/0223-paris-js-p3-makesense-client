@@ -1,0 +1,65 @@
+@use "../../sass//global" as *;
+
+footer{
+    width:100vw;
+    height:25%;
+    background:$color-accent-cian;
+    color:$text-white;
+    bottom:0;
+    position: fixed;
+}
+
+.contenu-footer h1{
+    font-weight:700px;
+    font-size:20px;
+}
+
+.bloc-footer ul li a{
+    color:$text-white;
+    font-size:14px;
+    font-weight:400px;
+}
+
+.contenu-footer{
+    display:flex;
+    justify-content:space-around;
+    height:85%;
+    padding-top:10%;
+
+
+}
+.bloc-footer ul li {
+    padding: 5% 0 0 0
+}
+
+
+.bloc-footer img{
+    display:none;
+}
+
+.iconesfooter{
+    display:flex;
+    flex-direction:column;
+}
+
+.logofooter{
+    margin-left: 32%;
+}
+
+
+@media screen and (min-width: 926px){
+    .contenu-footer{
+        padding-top:2%;
+        width:30%;
+        margin-left:35%;
+    }
+
+    .logofooter{
+        text-align: center;
+        margin-left:46%;
+    }
+
+    .iconesfooter{
+        flex-direction: column;
+    }
+}
