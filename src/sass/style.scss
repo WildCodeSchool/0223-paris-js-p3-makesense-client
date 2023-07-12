@@ -1,7 +1,10 @@
 @forward "./global/";
 @forward "../components/Navbar/index";
 @forward "../components/ProjectCard/index";
+@forward "../components/Footer/index";
 @forward "../pages/Login/index";
 @forward "../components/ScrollingGuide/index";
 @forward "../pages/Home/index";
 @forward "../pages/CreationGuide/index";
+@forward "../pages/ForgotPassword/index";
+@forward "../pages/ResetPassword/index";

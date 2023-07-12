@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import ProjectViewHome from "../../components/ProjectViewHome/ProjectViewHome";
 
 export default function Home() {
-  const clickMe = () => {
-    console.log("JE SUIS UN GENTIL BOUTON :)");
-  };
+  const clickMe = () => {};
 
   const navigate = useNavigate();
 
@@ -38,7 +36,7 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <ProjectCard />
+      <ProjectViewHome />
     </>
   );
 }

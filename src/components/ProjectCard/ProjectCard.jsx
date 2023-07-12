@@ -1,15 +1,20 @@
+import PropTypes from "prop-types";
 import Avatar from "../../assets/default_user.png";
 import Background from "../../assets/default_background_project.jpg";
 
-export default function ProjectCard() {
+export default function ProjectCard({ post }) {
   return (
     <figure>
-      <img src={Background} className="backgroundProject" alt="projet" />
+      <img
+        src={post.image ? post.image : Background}
+        className="backgroundProject"
+        alt="projet"
+      />
       <figcaption>
-        <h3 className="c-blue ">Mon super Titre</h3>
+        <h3 className="c-blue ">{post.title}</h3>
         <div className="tagsProject">
-          <p className="tag-blue">tag n°1</p>
-          <p className="tag-red">tag n°2</p>
+          <p className="tag-blue">{post.status}</p>
+          <p className="tag-red">{post.location}</p>
         </div>
         <div className="userInfosDate">
           <div className="userProjectInfos">
@@ -19,11 +24,14 @@ export default function ProjectCard() {
               className="avatarProject"
             />
             <p className="c-blue ">
-              par<span className="c-blue "> Prénom Nom</span>
+              par
+              <span className="c-blue ">
+                {" "}
+                {post.firstname} {post.lastname}
+              </span>
             </p>
           </div>
           <div className="calendar">
-            {/* <div className="calendarColor" /> */}
             <strong>7</strong>
           </div>
         </div>
@@ -31,3 +39,14 @@ export default function ProjectCard() {
     </figure>
   );
 }
+
+ProjectCard.propTypes = {
+  post: PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    status: PropTypes.string,
+    location: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+  }).isRequired,
+};
