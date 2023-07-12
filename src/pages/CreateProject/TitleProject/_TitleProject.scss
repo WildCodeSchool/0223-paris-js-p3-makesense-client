@@ -1,8 +1,19 @@
 @use "../../../sass/global" as *;
 
 .toto{
+    margin-top:4rem;
 background-color:orange;
 }
 .title_select_country{
     background-color: blue;
+}
+
+.title_project{
+    text-align: center;
+}
+
+.input_title_project{
+    
+    height: 2.875rem;
+    width: 14.875rem;
 }

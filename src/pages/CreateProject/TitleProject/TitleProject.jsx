@@ -13,7 +13,10 @@ function TitleProject() {
   return (
     <>
     <div className="toto">
-      <h1 className="title_project">Connectez-vous</h1>
+      <h1 className="title_project">Titre du projet</h1>
+      <input className="input_title_project" type="text" id="name" name="name" required
+       minlength="4" maxlength="128"/>
+  
       <p className="title_select_country">
         Mon pays de residence
       </p>
