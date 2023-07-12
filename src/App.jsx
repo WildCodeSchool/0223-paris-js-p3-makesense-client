@@ -25,7 +25,6 @@ function App() {
   const reloadStore = async () => {
     try {
       const result = await getCurrentUser();
-      console.log("result", result);
       dispatch(signin(result.data, { isLogged: true }));
       setVisible(true);
     } catch (error) {
@@ -41,7 +40,7 @@ function App() {
   return visible ? (
     <Router>
       <div>
-      <Navbar/>
+        <Navbar />
         <Routes>
           <Route
             exact
@@ -122,10 +121,10 @@ const PrivateRoute = ({ children, admin = 1 }) => {
 
 const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.auth);
-  if (!auth.isLogged) {
+  if (!auth.isLogged || auth === undefined) {
     return children;
   }
-  <Navigate to="/" />;
+  return <Navigate to="/" />;
 };
 
 export default App;

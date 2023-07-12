@@ -70,7 +70,9 @@ function Login(props) {
             <button type="submit" className="connexion">
               se connecter
             </button>
-            <p className ="forgot_password"><a  href="https://example.com">Mot de passe oublié</a></p>
+            <p className="forgot_password">
+              <a href="https://example.com">Mot de passe oublié</a>
+            </p>
           </div>
         </form>
       </div>

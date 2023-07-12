@@ -5,7 +5,7 @@ const getAllUsers = () => {
 }
 
 const getCurrentUser = () => {
-    return api.get("/api/users/me");
+    return api.get("/api/users/me").then(data => {console.log("Mes data de getCurrentUser ", data)});
 }
 
 
