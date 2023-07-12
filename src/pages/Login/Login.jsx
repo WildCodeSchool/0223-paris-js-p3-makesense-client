@@ -5,7 +5,7 @@ import { signin } from "../../store/auth";
 import authService from "../../services/auth";
 import { Link } from "react-router-dom";
 
-function Login(props) {
+function Login() {
   const [login, setLogin] = useState({
     email: "",
     password: "",

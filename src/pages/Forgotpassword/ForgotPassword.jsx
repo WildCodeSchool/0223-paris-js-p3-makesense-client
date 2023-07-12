@@ -13,14 +13,14 @@ function ForgotPassword() {
     try {
       await sendResetPassword(email);
       setMessage(
-        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 minutes."
+        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 secondes."
       );
       setTimeout(() => {
         navigate("/login");
       }, 5000);
     } catch (error) {
       setMessage(
-        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 minutes."
+        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 secondes."
       );
       setTimeout(() => {
         navigate("/login");
