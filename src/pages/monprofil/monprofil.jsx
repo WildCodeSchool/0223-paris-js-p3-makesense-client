@@ -1,6 +1,10 @@
 import React from "react";
 import { useState, useRef } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import { useEffect } from "react";
+import { editUser, getCurrentUser } from "../../services/users";
+import { useSelector, useDispatch } from "react-redux";
+import { signin } from "../../store/auth";
 
 const Monprofil = () => {
   const [profileImage, setProfileImage] = useState(
@@ -8,12 +12,23 @@ const Monprofil = () => {
   );
   const fileInputRef = useRef(null);
 
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
   const [isEditMode, setIsEditMode] = useState(false);
-  const [firstName, setFirstName] = useState("Marc");
-  const [name, setName] = useState("Lagarde");
-  const [email, setEmail] = useState("marclagarde@makesense.org");
-  const [phone, setPhone] = useState("1234567890");
+  const [firstname, setFirstName] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("France");
+
+  useEffect(() => {
+    console.log(auth);
+    setFirstName(auth?.user?.firstname);
+    setName(auth?.user?.lastname);
+    setEmail(auth?.user?.email);
+    setPhone(auth?.user?.tel);
+  }, []);
 
   const handleEditProfile = () => {
     fileInputRef.current.click();
@@ -38,181 +53,185 @@ const Monprofil = () => {
   };
 
   const handleCancelClick = () => {
+    console.log(auth);
+    setFirstName(auth?.user?.firstname);
+    setName(auth?.user?.lastname);
+    setEmail(auth?.user?.email);
+    setPhone(auth?.user?.tel);
     setIsEditMode(false);
   };
 
   const handleSaveClick = async () => {
+    try {
+      const result = await editUser({
+        firstname,
+        lastname: name,
+        email,
+        tel: phone,
+      });
+      dispatch(signin(result.data));
+    } catch (error) {
+      console.error(error);
+    }
     setIsEditMode(false);
-
-    // try {
-    //   const result = await authService.editUser(login.email, login.password);
-    //   dispatch(signin(result.data));
-
-    //   navigate("/");
-    // } catch (err) {
-    //   if (err.response?.status === 400) {
-    //     setError("email ou mot de passe incorrect");
-    //   }
-    // }
-    // axios
-    //   .put(`${import.meta.env.VITE_BACKEND_URL}/api/users/:id`, {
-    //     firstname,
-    //     lastname,
-    //     email,
-    //     tel,
-    //   })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       console.log("Modifications enregistrées avec succès.");
-    //     } else {
-    //       console.error("Erreur lors de la sauvegarde des modifications.");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(
-    //       "Erreur lors de la communication avec le serveur.",
-    //       error
-    //     );
-    //   });
   };
 
   return (
     <>
       <h1 className="titreprofil">Mon Profil</h1>
-      <div>
-        <img src={profileImage} alt="userprofile" className="profile-image" />
-        <img
-          src="../../src/assets/crayon.png"
-          alt="editprofile"
-          onClick={handleEditProfile}
-        />
-        <input
-          type="file"
-          accept="image/*"
-          style={{ display: "none" }}
-          ref={fileInputRef}
-          onChange={handleFileChange}
-        />
-      </div>
+      <div className="profile-form">
+        <div className="profile-file">
+          <img src={profileImage} alt="userprofile" className="profile-image" />
+          <img
+            src="../../src/assets/crayon.png"
+            alt="editprofile"
+            onClick={handleEditProfile}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            ref={fileInputRef}
+            onChange={handleFileChange}
+          />
+        </div>
 
-      <form className="formProfile">
-        <label htmlFor="">Prénom</label>
-        {isEditMode ? (
-          <input
-            className="profile-input"
-            placeholder="Marc"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        ) : (
-          <input
-            className="profile-input"
-            type="text"
-            value={firstName}
-            readOnly
-          />
-        )}
-
-        <label htmlFor="">Nom</label>
-        {isEditMode ? (
-          <input
-            className="profile-input"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        ) : (
-          <input className="profile-input" type="text" value={name} readOnly />
-        )}
-
-        <label htmlFor="">Courriel</label>
-        {isEditMode ? (
-          <input
-            className="profile-input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        ) : (
-          <input
-            className="profile-input"
-            type="email"
-            value={email}
-            readOnly
-          />
-        )}
-        <label htmlFor="">Téléphone</label>
-        {isEditMode ? (
-          <input
-            className="profile-input"
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        ) : (
-          <input className="profile-input" type="tel" value={phone} readOnly />
-        )}
-
-        <label htmlFor="">Pays</label>
-        {isEditMode ? (
-          <input
-            className="profile-input"
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        ) : (
-          <input
-            className="profile-input"
-            type="text"
-            value={country}
-            readOnly
-          />
-        )}
-
-        {isEditMode ? (
-          <div className="boutonAS">
-            <button
-              className="annuler"
-              id="cancel-button"
-              onClick={handleCancelClick}
-            >
-              Annuler
-            </button>
-            <button
-              className="sauvegarder"
-              id="save-button"
-              onClick={handleSaveClick}
-            >
-              Sauvegarder
-            </button>
+        <form className="formProfile">
+          <div className="label-input">
+            <label htmlFor="">Prénom</label>
+            {isEditMode ? (
+              <input
+                className="profile-input"
+                placeholder="Marc"
+                type="text"
+                value={firstname}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            ) : (
+              <input
+                className="profile-input"
+                type="text"
+                value={firstname}
+                readOnly
+              />
+            )}
           </div>
-        ) : (
-          <button className="editer" id="edit-button" onClick={handleEditClick}>
-            Éditer
+          <div className="label-input">
+            <label htmlFor="">Nom</label>
+            {isEditMode ? (
+              <input
+                className="profile-input"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            ) : (
+              <input
+                className="profile-input"
+                type="text"
+                value={name}
+                readOnly
+              />
+            )}
+          </div>
+          <div className="label-input">
+            <label htmlFor="">Courriel</label>
+            {isEditMode ? (
+              <input
+                className="profile-input"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            ) : (
+              <input
+                className="profile-input"
+                type="email"
+                value={email}
+                readOnly
+              />
+            )}
+          </div>
+          <div className="label-input">
+            <label htmlFor="">Téléphone</label>
+            {isEditMode ? (
+              <input
+                className="profile-input"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+            ) : (
+              <input
+                className="profile-input"
+                type="tel"
+                value={phone}
+                readOnly
+              />
+            )}
+          </div>
+          <div className="label-input">
+            <label htmlFor="">Pays</label>
+            {isEditMode ? (
+              <input
+                className="profile-input"
+                type="text"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                required
+              />
+            ) : (
+              <input
+                className="profile-input"
+                type="text"
+                value={country}
+                readOnly
+              />
+            )}
+          </div>
+        </form>
+      </div>
+      {isEditMode ? (
+        <div className="boutonAS">
+          <button
+            className="annuler"
+            id="cancel-button"
+            onClick={handleCancelClick}
+          >
+            Annuler
           </button>
-        )}
-      </form>
+          <button
+            className="sauvegarder"
+            id="save-button"
+            onClick={handleSaveClick}
+          >
+            Sauvegarder
+          </button>
+        </div>
+      ) : (
+        <button className="editer" id="edit-button" onClick={handleEditClick}>
+          Éditer
+        </button>
+      )}
+      <div className="notifs">
+        <p className="notifcourriel">Notifications par courriel</p>
 
-      <p className="notifcourriel">Notifications par courriel</p>
+        <div className="toggle-container">
+          <input
+            type="checkbox"
+            id="notification-toggle"
+            className="toggle-checkbox"
+          />
+          <label for="notification-toggle" className="toggle-label">
+            <span className="toggle-inner"></span>
 
-      <div className="toggle-container">
-        <input
-          type="checkbox"
-          id="notification-toggle"
-          className="toggle-checkbox"
-        />
-        <label for="notification-toggle" className="toggle-label">
-          <span className="toggle-inner"></span>
-
-          <span className="toggle-switch"></span>
-        </label>
+            <span className="toggle-switch"></span>
+          </label>
+        </div>
       </div>
     </>
   );
