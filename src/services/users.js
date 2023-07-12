@@ -1,12 +1,11 @@
 import api from "./api";
 
 const getAllUsers = () => {
-    return api.get("/api/users");
-}
+  api.get("/api/users");
+};
 
 const getCurrentUser = () => {
-    return api.get("/api/users/me");
-}
+  api.get("/api/users/me");
+};
 
-
-export {getAllUsers, getCurrentUser};
+export { getAllUsers, getCurrentUser };
