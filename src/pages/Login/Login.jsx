@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 import authService from "../../services/auth";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   const [login, setLogin] = useState({
@@ -11,12 +12,11 @@ function Login(props) {
   });
 
   const [password, setPassword] = useState(false);
+  const [error, setError] = useState(null);
 
   const showpassword = () => {
     setPassword(!password);
   };
-
-  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -32,16 +32,20 @@ function Login(props) {
     } catch (err) {
       if (err.response?.status === 400) {
         setError("email ou mot de passe incorrect");
+      } else {
+        setError(
+          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        );
       }
     }
   };
 
   return (
     <div className="box">
-      {error && <p>{error}</p>}
       <div className="containers">
         <p className="title1_login">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
+        {error && <p className="p_error_login">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="button_courriel">
             <input
@@ -82,7 +86,7 @@ function Login(props) {
               se connecter
             </button>
             <p className="forgot_password">
-              <a href="https://example.com">Mot de passe oublié</a>
+              <Link to="/forgotpassword">Mot de passe oublié</Link>
             </p>
           </div>
         </form>
