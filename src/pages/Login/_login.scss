@@ -1,6 +1,13 @@
 @use "../../sass/global" as *;
 
+.oeil{
+    position: absolute;
+    top:14.5rem;
+    left:20rem;
 
+
+
+}
 
 .title1_login {
 font-size: $p-mobile;
@@ -52,6 +59,7 @@ top:5rem;
     font-size: $p-mobile;
     transition: 300ms;
     border:2px solid #C6C6C6;
+    position: relative;
 }
 
 .connexion{

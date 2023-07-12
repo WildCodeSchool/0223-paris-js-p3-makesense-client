@@ -27,12 +27,12 @@ function Footer() {
           <ul className="iconesfooter">
             <li>
               <a href="#">
-                <img src="../src/assets/facebook.png" class= "iconefacebook" alt="icone facebook" />
+                <img src="../src/assets/facebook.png" className= "iconefacebook" alt="icone facebook" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../src/assets/instagram.png" class= "iconeinsta" alt="icone instagram" />
+                <img src="../src/assets/instagram.png" className= "iconeinsta" alt="icone instagram" />
               </a>
             </li>
           </ul>

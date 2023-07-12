@@ -20,6 +20,7 @@ function ForgotPassword() {
 
   return (
     <>
+    <form onSubmit={handleSubmit}>
       <div className="box">
       <div className="containers">
       <h3 className="title_password_request">Réinitialisation de votre mot de passe</h3>
@@ -37,6 +38,7 @@ function ForgotPassword() {
         </button>
       </div>
       </div>
+      </form>
     </>
   );
 }
