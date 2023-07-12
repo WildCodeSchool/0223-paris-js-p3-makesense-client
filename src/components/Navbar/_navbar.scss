@@ -10,6 +10,7 @@ nav{
     padding: 0.5rem;
     top:0;
     border-bottom:2px solid $primary-color;
+    z-index:2;
 }
 
 .nav-links{
@@ -25,7 +26,7 @@ nav{
     transition: all 0.5s ease;
 }
 
-.show-nav .bell{
+.show-nav .nav_bell{
     display:none;
 }
 
@@ -36,6 +37,7 @@ nav{
 .show-nav .nav-links {
      right:0;
      width:80vw;
+
 }
 
 .nav-links ul{
@@ -104,7 +106,7 @@ padding-left:30%;
     display:none;
 }
 
-.show-nav .avatar_big{
+.show-nav .nav_avatar_big{
     display:block;
     z-index: 2; 
     width:25%;
@@ -135,8 +137,8 @@ padding-left:30%;
 
 .dropdown{
     position:fixed;
-    top:8%;
-    right:2.5%;
+    top:3.5rem;
+    right:2rem;
     border-radius: 15px;
     border: 2px solid $primary-color;
     transition:0.5s;
@@ -158,6 +160,10 @@ padding-left:30%;
 
 .dropdown ul li:hover a{
     color: $color-accent-cian;
+}
+
+.nav2{
+    background-color: $primary-color;
 }
 
 @media screen and (min-width: 926px) {

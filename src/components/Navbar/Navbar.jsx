@@ -34,7 +34,19 @@ function Navbar() {
   const handleShowDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-  return (
+
+  return !auth.user ?
+  (
+    <nav className="nav2">
+      <img
+        className="nav_logo"
+        src="../src/assets/makesense_logo_white.png"
+        alt="makesense logo"
+      />
+    </nav>
+  )
+  :
+  (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
       <img
@@ -127,7 +139,7 @@ function Navbar() {
         </ul>
       </div>
     </nav>
-  );
+    )
 }
 
 export default Navbar;

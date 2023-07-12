@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
+
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
@@ -41,7 +42,7 @@ function App() {
   return visible ? (
     <Router>
       <div>
-        <Navbar />
+      <Navbar/>
         <Routes>
           <Route
             exact
