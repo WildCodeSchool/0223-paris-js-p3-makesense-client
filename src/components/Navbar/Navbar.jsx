@@ -12,12 +12,6 @@ function Navbar() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
-    }
-  }, []);
-
   const handleSubmit = async (event) => {
     try {
       await authService.logout();
@@ -34,7 +28,16 @@ function Navbar() {
   const handleShowDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-  return (
+
+  return !auth.user ? (
+    <nav className="nav2">
+      <img
+        className="nav_logo"
+        src="../src/assets/makesense_logo_white.png"
+        alt="makesense logo"
+      />
+    </nav>
+  ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
       <img

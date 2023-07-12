@@ -2,7 +2,7 @@ function Footer() {
   return (
     <footer>
       <div className="contenu-footer">
-        <div className="bloc footer">
+        <div className="bloc-footer">
           <h1>Liens utiles</h1>
           <ul className="useful links">
             <li>
@@ -14,7 +14,7 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="bloc footer">
+        <div className="bloc-footer">
           <h1>Contact</h1>
           <ul className="contact">
             <li>
@@ -23,16 +23,16 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="bloc footer">
+        <div className="bloc-footer">
           <ul className="iconesfooter">
             <li>
               <a href="#">
-                <img src="../src/assets/facebook.png" alt="icone facebook" />
+                <img src="../src/assets/facebook.png" className= "iconefacebook" alt="icone facebook" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../src/assets/instagram.png" alt="icone instagram" />
+                <img src="../src/assets/instagram.png" className= "iconeinsta" alt="icone instagram" />
               </a>
             </li>
           </ul>

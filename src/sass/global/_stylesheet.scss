@@ -11,14 +11,30 @@
   color: $text-white;
 }
 
+.tag-blue{
+  color: $color-accent-cian;
+  border: 1px solid $color-accent-cian;
+  background-color: #196c8528;
+  border-radius: 30px;
+  padding: 0 0.5rem;
+}
+.tag-red{
+  color: $color-accent-purple;
+  border: 1px solid $color-accent-purple;
+  background-color: #89085e2f;
+  border-radius: 30px;
+  padding: 0 0.5rem;
+}
+
 .button-bg-orange {
     width: 12rem;
     padding: 0.75rem 1.25rem;
+    font-size: $p-mobile;
     color: $text-white;
     background-color: $color-accent-lightOrange;
     border-radius: 5px;
-    font-size: $p-mobile;
     transition: 300ms;
+    cursor: pointer;
   &:hover {
     background-color: $color-accent-orange;
   }
@@ -33,6 +49,7 @@
   color: $color-accent-lightOrange;
   font-size: $p-mobile;
   transition: 300ms;
+  cursor: pointer;
   &:hover {
     background-color: $color-accent-lightOrange;
     color: $text-white;
