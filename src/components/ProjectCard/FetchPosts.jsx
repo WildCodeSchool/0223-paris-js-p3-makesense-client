@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import ProjectCard from "./ProjectCard";
+import Pagination from "./Pagination";
 
 export default function FetchPosts() {
   const [posts, setPosts] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
     api
@@ -16,10 +18,13 @@ export default function FetchPosts() {
       });
   }, []);
   return (
-    <ul>
-      {posts.slice(0, 3).map((data) => (
-        <ProjectCard post={data} key={data.id} />
-      ))}
-    </ul>
+    <>
+      <ul>
+        {currentItems.map((data) => (
+          <ProjectCard post={data} key={data.id} />
+        ))}
+      </ul>
+      <Pagination data={posts} setCurrentItems={setCurrentItems} />
+    </>
   );
 }
