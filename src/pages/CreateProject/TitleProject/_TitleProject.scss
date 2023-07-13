@@ -1,11 +1,27 @@
 @use "../../../sass/global" as *;
 
-.toto{
-    margin-top:4rem;
-background-color:orange;
+.background-project{
+    background-color: $color-accent-carmin;
+    padding-top:10rem;
+    height:100vh;
+    border-radius: 5px 5px 0px 0px
+
+    
+}
+
+
+.launch_project_containers{
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(./src/assets/pills/Pills_mobile_project_creation.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .title_select_country{
-    background-color: blue;
+    margin-top :2rem;
+    font-size: $p-mobile;
 }
 
 .title_project{
@@ -13,7 +29,52 @@ background-color:orange;
 }
 
 .input_title_project{
-    
+    background-color:rgba(217, 217, 217, 0.2);
+    border-bottom: 2px solid rgba(255, 243, 13, 1);
+    position:relative;
+    margin-top:3rem;
+    display: flex;
+    align-items: center;
     height: 2.875rem;
     width: 14.875rem;
 }
+
+.icons_size{
+    width: 5px;
+    position: absolute; 
+
+}
+.custom-icon{
+    width: 20px;
+    height: 20px;
+
+}
+
+
+
+
+// .list {
+//     width: 100%;
+//     border-radius: 6px;
+//     overflow: hidden;
+// }
+
+// .options{
+//     width: 100%;
+//     padding: 15px;
+//     list-style: none;
+//     cursor: pointer;
+//     box-sizing: border-box;
+// }
+
+// .options img {
+//     width: 25px;
+//     position: absolute; 
+// }
+
+// .options:hover {
+//     background: rgba(255,255,255,0.7);
+// }
+
+
+
