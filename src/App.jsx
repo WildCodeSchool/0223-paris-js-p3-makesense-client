@@ -19,6 +19,7 @@ import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import Register from "./pages/Admin/Register/Register";
 
 function App() {
   const dispatch = useDispatch();
@@ -88,13 +89,22 @@ function App() {
               </PublicRoute>
             }
           />
-            <Route
+          <Route
             exact
             path="/titleproject"
             element={
               <PrivateRoute>
                 <TitleProject />
               </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PrivateRouteAdmin>
+                <Register />
+              </PrivateRouteAdmin>
             }
           />
         </Routes>
@@ -111,12 +121,9 @@ const admins = [
   1, //  => Admin
 ];
 
-const PrivateRoute = ({ children, admin = 1 }) => {
+const PrivateRoute = ({ children, admin = 0 }) => {
   const auth = useSelector((state) => state.auth);
-  const location = useLocation();
-  console.log("location", location.pathname);
-  console.log(auth);
-  console.log("auth.isLogged", auth.isLogged);
+  console.log("auth PrivateRoute", auth);
   if (auth.isLogged) {
     if (
       auth.user?.admin === admin ||
@@ -124,13 +131,26 @@ const PrivateRoute = ({ children, admin = 1 }) => {
     ) {
       return children;
     }
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
-  <Navigate to="/login" />;
+  return <Navigate to="/login" />;
+};
+
+const PrivateRouteAdmin = ({ children, admin = 1 }) => {
+  const auth = useSelector((state) => state.auth);
+  console.log("auth PrivateRouteAdmin", auth);
+  if (auth.isLogged) {
+    if (auth.user?.admin === admin) {
+      return children;
+    }
+    return <Navigate to="/" />;
+  }
+  return <Navigate to="/login" />;
 };
 
 const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.auth);
+  console.log("auth PublicRoute", auth);
   if (!auth.isLogged || auth === undefined) {
     return children;
   }
