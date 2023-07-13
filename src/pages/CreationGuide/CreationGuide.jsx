@@ -1,6 +1,17 @@
 import ScrollingGuide from "../../components/ScrollingGuide/ScrollingGuide";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import { useSelector } from "react-redux";
 
 export default function CreationGuide() {
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    }
+  }, []);
   return (
     <>
       <article>

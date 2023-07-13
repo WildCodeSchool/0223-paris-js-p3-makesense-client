@@ -3,10 +3,10 @@ import {
   Route,
   Routes,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
+
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
@@ -17,6 +17,9 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import Register from "./pages/Admin/Register/Register";
+import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,9 +89,36 @@ function App() {
               </PublicRoute>
             }
           />
+          <Route
+            exact
+            path="/titleproject"
+            element={
+              <PrivateRoute>
+                <TitleProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PrivateRouteAdmin>
+                <Register />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/descriptionproject"
+            element={
+              <PrivateRoute>
+                <DescriptionProject />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   ) : (
     ""
@@ -100,12 +130,8 @@ const admins = [
   1, //  => Admin
 ];
 
-const PrivateRoute = ({ children, admin = 1 }) => {
+const PrivateRoute = ({ children, admin = 0 }) => {
   const auth = useSelector((state) => state.auth);
-  const location = useLocation();
-  console.log("location", location.pathname);
-  console.log(auth);
-  console.log("auth.isLogged", auth.isLogged);
   if (auth.isLogged) {
     if (
       auth.user?.admin === admin ||
@@ -113,17 +139,28 @@ const PrivateRoute = ({ children, admin = 1 }) => {
     ) {
       return children;
     }
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
-  <Navigate to="/login" />;
+  return <Navigate to="/login" />;
+};
+
+const PrivateRouteAdmin = ({ children, admin = 1 }) => {
+  const auth = useSelector((state) => state.auth);
+  if (auth.isLogged) {
+    if (auth.user?.admin === admin) {
+      return children;
+    }
+    return <Navigate to="/" />;
+  }
+  return <Navigate to="/login" />;
 };
 
 const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.auth);
-  if (!auth.isLogged) {
+  if (!auth.isLogged || auth === undefined) {
     return children;
   }
-  <Navigate to="/" />;
+  return <Navigate to="/" />;
 };
 
 export default App;

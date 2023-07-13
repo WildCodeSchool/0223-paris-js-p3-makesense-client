@@ -5,11 +5,11 @@ const login = async (email, password) => api.post("api/users/login", { email, pa
 const logout = async () => api.get("api/users/logout");
 
 const sendResetPassword = async (email) => {
-    return api.post("/users/sendResetPassword", {email});
+    return api.post("api/users/sendResetPassword", {email});
 }
 
 const resetPassword = async (password, token) => {
-    return api.post("/users/resetPassword", {password, token});
+    return api.post("api/users/resetPassword", {password, token});
 }
 
 export { login, logout, sendResetPassword, resetPassword };

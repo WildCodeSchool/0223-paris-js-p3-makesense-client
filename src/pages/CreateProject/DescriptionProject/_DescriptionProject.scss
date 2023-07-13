@@ -1,0 +1,57 @@
+@use "../../../sass/global" as *;
+
+.header{
+    background-image: url(./src/assets/pills/Pills_mobile_project_guide.png);
+    background-color: $color-accent-carmin;
+    background-size: auto;
+    background-position: right;
+    background-repeat: no-repeat;
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
+    height:50vw;
+}
+
+.header ul {
+    display:flex;
+    justify-content: space-evenly;
+    padding:2rem;
+}
+
+.notCurrentLi{
+    font-size:14px;
+    border:1px solid white;
+    border-radius: 100px;
+    padding:0.2rem 0.5rem;
+    background-color: white;
+    font-weight: 700;
+}
+
+.header h1{
+    text-align: center;
+    padding:1.5rem;
+    color:$color-accent-yellow;
+}
+
+.header img{
+    height:10px;
+    width:8px;
+    margin-top:7px;
+    
+}
+
+.currentLi{
+    background-color: $color-accent-yellow;
+    font-size:14px;
+    border:1px solid $color-accent-yellow;
+    border-radius: 100px;
+    padding:0.2rem 0.5rem;
+    font-weight: 700;
+}
+
+.bloc-image{
+    text-align: center;
+    padding:1rem;
+}
+
+.bloc-image p{
+    padding:0.5rem;
+}

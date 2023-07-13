@@ -1,0 +1,149 @@
+@use "../../../sass//global" as *;
+
+.oeil{
+    position: absolute;
+    top:14.5rem;
+    left:20rem;
+}
+
+.title1_register {
+font-size: $p-mobile;
+color: $primary-color;
+width: 73%;
+}
+
+.title2_register {
+    font-size : $h1-mobile;
+    color: $color-accent-lightOrange;
+    width: 73%;
+}
+
+.containers{
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+flex-direction: column;
+padding: 1.5rem;
+position: relative;
+top:5rem;
+}
+
+.courriel_icon{
+    background-image: url(./src/assets/Letter.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    color :black;
+    background-position-x: 0.2rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border-color: black;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+    border:2px solid #C6C6C6;
+}
+
+.password_icon{
+    background-image: url(./src/assets/Lock.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-position-x: 0.2rem;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    color: black;
+    border-color: black;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+    border:2px solid #C6C6C6;
+    position: relative;
+}
+
+.connexion{
+    text-align: center;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    color: black;
+    background-color: $color-accent-lightOrange;
+    border-radius: 5px;
+    font-size: $p-mobile;
+    transition: 300ms;
+  &:hover {
+    background-color: $color-accent-orange;
+  }
+
+}
+
+.button_connexion{
+    text-align: center;
+    color: black;
+}
+
+.forgot_password{
+    padding-top: 0.5rem;
+    text-align: right;
+    width: 100%;
+}
+
+form{
+    width: 75%;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.button_courriel{
+text-align: center;
+margin-top: 2rem;
+}
+
+.button_password{
+text-align: center;
+margin-top: 0.7rem;
+margin-bottom: 1rem;
+}
+
+.button_connexion{
+    text-align: center;
+    margin-top:2rem;
+}
+
+input[type=checkbox] {
+    -border-radius: 4px;
+    height: 15px;
+    width: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin-right: 0.7rem;
+    margin-left: 0.2rem;
+}
+
+.p_error_register {
+    color: red;
+    font-size : $p-mobile;
+    width: 73%;
+    margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 926px) {
+
+
+    .containers{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+        top:10rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 1.5rem;      
+    }
+
+    .box{
+        background-image: url(./src/assets/pills/Pills_desktop_login.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
