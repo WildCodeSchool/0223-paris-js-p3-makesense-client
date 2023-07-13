@@ -29,13 +29,14 @@ function ForgotPassword() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    
       <div className="box">
         <div className="containers">
           <h3 className="title_password_request">
             Réinitialisation de votre mot de passe
           </h3>
           {message && <p className="p_error_forgetPassword">{message}</p>}
+          <form onSubmit={handleSubmit}>
           <input
             className="email_forgot_password"
             type="email"
@@ -49,9 +50,10 @@ function ForgotPassword() {
           <button type="submit" className="forgot_password_request">
             Envoyer votre demande !
           </button>
+          </form>
         </div>
       </div>
-    </form>
+    
   );
 }
 

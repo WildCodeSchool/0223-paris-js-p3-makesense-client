@@ -16,26 +16,14 @@ function TitleProject() {
 
   const options = [
     {
-      value: "france",
-      label: "France",
-      icon: (
-        <img
-          src="../../src/assets/france.png"
-          alt="France"
-          className="custom-icon"
-        />
-      ),
+      value: "FRANCE",
+      label: "FRANCE",
+      icon: <img src="../../src/assets/france.png" alt="France" className="custom-icon" />,
     },
     {
-      value: "espagne",
-      label: "Espagne",
-      icon: (
-        <img
-          src="../../src/assets/espagne.png"
-          alt="Espagne"
-          className="custom-icon"
-        />
-      ),
+      value: "ESPAGNE",
+      label: "ESPAGNE",
+      icon: <img src="../../src/assets/espagne.png" alt="Espagne" className="custom-icon" />,
     },
   ];
 
@@ -54,9 +42,15 @@ function TitleProject() {
       ...provided,
       display: "flex",
       alignItems: "center",
+      backgroundColor: "rgba(217, 217, 217, 0.2)",
     }),
   };
 
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  //   function handleClicktitleproject() {
+  //     navigate("/titleproject");
+  //   }
   return (
     <>
       <div className="background-project">
@@ -75,13 +69,17 @@ function TitleProject() {
             <Select
               options={options}
               styles={customStyles}
+              value={selectedOption}
+              components={{
+                IndicatorSeparator: () => null,}}
+
               getOptionLabel={(option) => (
-                <div>
+                <div className="icons">
                   {option.icon}
                   <span>{option.label}</span>
                 </div>
               )}
-              getOptionValue={(option) => option.value}
+              onChange={(option) => setSelectedOption(option)}
             />
           </div>
         </div>

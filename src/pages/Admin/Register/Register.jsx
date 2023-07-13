@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../../store/auth";
@@ -21,6 +21,12 @@ function Register() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
