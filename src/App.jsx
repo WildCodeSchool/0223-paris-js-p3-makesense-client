@@ -19,6 +19,7 @@ import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -94,6 +95,15 @@ function App() {
             element={
               <PrivateRoute>
                 <TitleProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/descriptionproject"
+            element={
+              <PrivateRoute>
+                <DescriptionProject />
               </PrivateRoute>
             }
           />
