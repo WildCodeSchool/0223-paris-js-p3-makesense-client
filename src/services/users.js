@@ -8,4 +8,8 @@ const getCurrentUser = () => {
   return api.get("/api/users/me");
 };
 
-export { getAllUsers, getCurrentUser };
+const createAccount = (data) => {
+  return api.get("/api/users/register", data);
+}
+
+export { getAllUsers, getCurrentUser, createAccount};

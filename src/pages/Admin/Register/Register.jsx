@@ -2,36 +2,65 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { signin } from "../../../store/auth";
-import authService from "../../../services/auth";
-import { Link } from "react-router-dom";
+import { getAllJobs } from "../../../services/jobs";
+import { getAllRoles } from "../../../services/roles";
+import { createAccount } from "../../../services/users";
 
 function Register() {
-  const [register, setRegister] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [password, setPassword] = useState(false);
-  const [error, setError] = useState(null);
-
-  const showpassword = () => {
-    setPassword(!password);
-  };
-
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!auth.user) {
-      navigate("/login");
+  const [register, setRegister] = useState({
+    email: "",
+    firstname: "",
+    lastname: "",
+    role_id: "",
+    job_id: "",
+  });
+  const [error, setError] = useState(null);
+  const [roles, setRoles] = useState([]);
+  const [jobs, setJobs] = useState([]);
+
+  const searchData = async () => {
+    try {
+      const rolesData = await getAllRoles();
+      const jobsData = await getAllJobs();
+      setRoles(rolesData.data);
+      setJobs(jobsData.data);
+    } catch (err) {
+      console.log("err", err);
+      setError(
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+      );
     }
+  };
+
+  useEffect(() => {
+    if (!auth.user) return navigate("/login");
+    searchData();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("register --->", register);
+    const { email, firstname, lastname, role_id, job_id } = register;
+    if (
+      email === "" ||
+      firstname === "" ||
+      lastname === "" ||
+      role_id === "" ||
+      job_id === ""
+    ) {
+      return setError("Veuillez remplir tous les champs !");
+    } else {
+      try {
+        const registerBDD = await createAccount(register);
+        console.log("registerBDD", registerBDD);
+      } catch (err) {
+        console.log("err", err);
+      }
+    }
   };
 
   return (
@@ -42,9 +71,9 @@ function Register() {
         </h1>
         {error && <p className="p_error_register">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="button_courriel">
+          <div className="button_admin">
             <input
-              className="courriel_icon"
+              className="input_admin"
               type="email"
               name="email"
               id="email"
@@ -56,18 +85,70 @@ function Register() {
             />
           </div>
 
-          <div>
-
+          <div className="button_admin">
+            <input
+              className="input_admin"
+              type="text"
+              name="firstname"
+              id="firstname"
+              placeholder="Nom"
+              value={register.firstname}
+              onChange={(e) =>
+                setRegister({ ...register, firstname: e.target.value })
+              }
+            />
           </div>
 
-          <div className="checkbox">
-            <input type="checkbox" id="scales" name="scales" />
-            <label for="scales">Se souvenir de moi</label>
+          <div className="button_admin">
+            <input
+              className="input_admin"
+              type="text"
+              name="lastname"
+              id="lastname"
+              placeholder="Prénom"
+              value={register.lastname}
+              onChange={(e) =>
+                setRegister({ ...register, lastname: e.target.value })
+              }
+            />
           </div>
-
-          <div className="button_connexion">
+          <div style={{ color: "orange" }}>
+            <select
+              id="cupcake-select"
+              value={register.role_id}
+              onChange={(e) =>
+                setRegister({ ...register, role_id: e.target.value })
+              }
+            >
+              <option value="null">---</option>
+              {roles.map((role) => {
+                return (
+                  <option key={role.id} value={role.id}>
+                    {role.name}
+                  </option>
+                );
+              })}
+            </select>
+            <select
+              id="cupcake-select"
+              value={register.job_id}
+              onChange={(e) =>
+                setRegister({ ...register, job_id: e.target.value })
+              }
+            >
+              <option value="null">---</option>
+              {jobs.map((job) => {
+                return (
+                  <option key={job.id} value={job.id}>
+                    {job.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="button_admin">
             <button type="submit" className="connexion">
-              se connecter
+              Créer le compte
             </button>
           </div>
         </form>
