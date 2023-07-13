@@ -4,7 +4,7 @@ const auth = createSlice({
   name: "auth",
   initialState: { user: null, isLogged: false },
   reducers: {
-    signin: (state, action) => (console.log("action.payload.isLogged",action.payload.isLogged), {
+    signin: (state, action) => ({
       ...state,
       user: action.payload,
       isLogged: true,

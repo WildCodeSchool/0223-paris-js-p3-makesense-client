@@ -3,7 +3,6 @@ import {
   Route,
   Routes,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
@@ -123,7 +122,6 @@ const admins = [
 
 const PrivateRoute = ({ children, admin = 0 }) => {
   const auth = useSelector((state) => state.auth);
-  console.log("auth PrivateRoute", auth);
   if (auth.isLogged) {
     if (
       auth.user?.admin === admin ||
@@ -138,7 +136,6 @@ const PrivateRoute = ({ children, admin = 0 }) => {
 
 const PrivateRouteAdmin = ({ children, admin = 1 }) => {
   const auth = useSelector((state) => state.auth);
-  console.log("auth PrivateRouteAdmin", auth);
   if (auth.isLogged) {
     if (auth.user?.admin === admin) {
       return children;
@@ -150,7 +147,6 @@ const PrivateRouteAdmin = ({ children, admin = 1 }) => {
 
 const PublicRoute = ({ children }) => {
   const auth = useSelector((state) => state.auth);
-  console.log("auth PublicRoute", auth);
   if (!auth.isLogged || auth === undefined) {
     return children;
   }

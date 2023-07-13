@@ -18,7 +18,7 @@ function Navbar() {
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   };
 

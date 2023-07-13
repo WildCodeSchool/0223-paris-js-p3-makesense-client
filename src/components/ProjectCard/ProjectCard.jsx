@@ -11,7 +11,6 @@ export default function ProjectCard() {
     axios
       .get("http://localhost:8000/")
       .then((res) => {
-        console.log(res);
         setPosts(res.data);
       })
       .catch((err) => {
@@ -20,11 +19,6 @@ export default function ProjectCard() {
   }, []);
   return (
     <>
-      {/* <ul>
-        {posts.map((data) => (
-          <li key={data.id}>{data.title}</li>
-        ))}
-      </ul> */}
       <figure>
         <img src={Background} className="backgroundProject" alt="projet" />
         <figcaption>
