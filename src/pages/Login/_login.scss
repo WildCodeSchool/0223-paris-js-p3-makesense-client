@@ -4,9 +4,6 @@
     position: absolute;
     top:14.5rem;
     left:20rem;
-
-
-
 }
 
 .title1_login {
@@ -123,7 +120,12 @@ input[type=checkbox] {
     margin-left: 0.2rem;
 }
 
-
+.p_error_login {
+    color: red;
+    font-size : $p-mobile;
+    width: 73%;
+    margin-top: 0.5rem;
+}
 
 @media screen and (min-width: 926px) {
 
