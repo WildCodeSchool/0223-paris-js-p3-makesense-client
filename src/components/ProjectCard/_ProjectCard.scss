@@ -1,6 +1,7 @@
 @use "../../sass/global" as *;
 
 figure {
+  cursor: pointer;
   width: 20rem;
   display: flex;
   flex-flow: column;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
-// import ArrowPrev from "../../assets/pagination_arrow_prev.png";
-// import ArrowNext from "../../assets/pagination_arrow_next.png";
+import ArrowPrev from "../../assets/pagination_arrow_prev.svg";
+import ArrowNext from "../../assets/pagination_arrow_next.svg";
 
 export default function PaginatedItems(props) {
   const { data, setCurrentItems } = props;
@@ -27,8 +27,8 @@ export default function PaginatedItems(props) {
       pageCount={pageCount}
       pageRangeDisplayed={3}
       renderOnZeroPageCount={null}
-      previousLabel="←"
-      nextLabel="→"
+      previousLabel={<img alt="arrow" src={ArrowPrev} />}
+      nextLabel={<img alt="arrow" src={ArrowNext} />}
       breakLabel="..."
       containerClassName="pagination c-blue"
       activeClassName="item active"

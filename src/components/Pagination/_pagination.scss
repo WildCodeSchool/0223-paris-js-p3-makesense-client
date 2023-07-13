@@ -20,20 +20,22 @@
         width: 2rem;
         height: 2rem;
         a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-weight: bold;
             font-size: $h3-mobile;
         }
         &:hover{
-            background-color: $bg-white;
+            filter: brightness(90%);
         }
-    }
-    .previous{
-        background-image: url(../../assets/default_background_project.jpg);
-        background-repeat: no-repeat;
-    }
-    .next{
-        background-image: url(../../assets/default_background_project.jpg);
-        background-repeat: no-repeat;
     }
 
 }
+
+@media screen and (min-width: 926px) {
+.item{
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+}
+  }
