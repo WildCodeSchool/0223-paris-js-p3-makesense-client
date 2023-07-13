@@ -16,13 +16,13 @@ function TitleProject() {
 
   const options = [
     {
-      value: "france",
-      label: "France",
+      value: "FRANCE",
+      label: "FRANCE",
       icon: <img src="../../src/assets/france.png" alt="France" className="custom-icon" />,
     },
     {
-      value: "espagne",
-      label: "Espagne",
+      value: "ESPAGNE",
+      label: "ESPAGNE",
       icon: <img src="../../src/assets/espagne.png" alt="Espagne" className="custom-icon" />,
     },
   ];
@@ -42,8 +42,11 @@ function TitleProject() {
       ...provided,
       display: "flex",
       alignItems: "center",
+      backgroundColor: "rgba(217, 217, 217, 0.2)",
     }),
   };
+
+  const [selectedOption, setSelectedOption] = useState(options[0]);
 
   //   function handleClicktitleproject() {
   //     navigate("/titleproject");
@@ -66,13 +69,17 @@ function TitleProject() {
             <Select
               options={options}
               styles={customStyles}
+              value={selectedOption}
+              components={{
+                IndicatorSeparator: () => null,}}
+
               getOptionLabel={(option) => (
-                <div>
+                <div className="icons">
                   {option.icon}
                   <span>{option.label}</span>
                 </div>
               )}
-              getOptionValue={(option) => option.value}
+              onChange={(option) => setSelectedOption(option)}
             />
           </div>
         </div>
