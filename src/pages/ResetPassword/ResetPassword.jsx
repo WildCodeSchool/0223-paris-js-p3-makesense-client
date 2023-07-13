@@ -12,11 +12,11 @@ function ResetPassword() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/login")
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigate("/login")
+  //   }
+  // }, []);
 
   const showpassword = () => {
     setVisiblePassword(!visiblePassword);
