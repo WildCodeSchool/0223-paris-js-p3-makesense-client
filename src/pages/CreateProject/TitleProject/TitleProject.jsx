@@ -18,12 +18,24 @@ function TitleProject() {
     {
       value: "FRANCE",
       label: "FRANCE",
-      icon: <img src="../../src/assets/france.png" alt="France" className="custom-icon" />,
+      icon: (
+        <img
+          src="../../src/assets/france.png"
+          alt="France"
+          className="custom-icon"
+        />
+      ),
     },
     {
       value: "ESPAGNE",
       label: "ESPAGNE",
-      icon: <img src="../../src/assets/espagne.png" alt="Espagne" className="custom-icon" />,
+      icon: (
+        <img
+          src="../../src/assets/espagne.png"
+          alt="Espagne"
+          className="custom-icon"
+        />
+      ),
     },
   ];
 
@@ -46,8 +58,6 @@ function TitleProject() {
     }),
   };
 
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
   //   function handleClicktitleproject() {
   //     navigate("/titleproject");
   //   }
@@ -65,28 +75,32 @@ function TitleProject() {
             minlength="4"
             maxlength="128"
           />
-          <div>
-            <Select
-              options={options}
-              styles={customStyles}
-              value={selectedOption}
-              components={{
-                IndicatorSeparator: () => null,}}
+      
+            <div className="country_title_choise">
+              <p className="title_css">Mon pays de résidence :</p>
+            </div>
+            <div className="selector">
+              <Select
+                options={options}
+                styles={customStyles}
+                components={{
+                  IndicatorSeparator: () => null,
+                }}
+                getOptionLabel={(option) => (
+                  <div className="icons">
+                    {option.icon}
+                    <span>{option.label}</span>
+                  </div>
+                )}
+                getOptionValue={(option) => option.value}
+              />
+            </div>
 
-              getOptionLabel={(option) => (
-                <div className="icons">
-                  {option.icon}
-                  <span>{option.label}</span>
-                </div>
-              )}
-              onChange={(option) => setSelectedOption(option)}
-            />
-          </div>
-        </div>
-        <div className="button">
-          <button type="button" onClick={clickMe} className="launch_button">
-            DEMARRER
-          </button>
+            <div className="button">
+              <button type="button" onClick={clickMe} className="launch_button">
+                DEMARRER
+              </button>
+            </div>
         </div>
       </div>
     </>
