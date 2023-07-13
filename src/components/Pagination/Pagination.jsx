@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ReactPaginate from "react-paginate";
+// import ArrowPrev from "../../assets/pagination_arrow_prev.png";
+// import ArrowNext from "../../assets/pagination_arrow_next.png";
 
 export default function PaginatedItems(props) {
   const { data, setCurrentItems } = props;
   const [pageCount, setPageCOunt] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 3;
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -20,13 +22,20 @@ export default function PaginatedItems(props) {
 
   return (
     <ReactPaginate
-      breakLabel="..."
-      nextLabel="next >"
+      marginPagesDisplayed={1}
       onPageChange={handlePageClick}
-      pageRangeDisplayed={3}
       pageCount={pageCount}
-      previousLabel="< previous"
+      pageRangeDisplayed={3}
       renderOnZeroPageCount={null}
+      previousLabel="←"
+      nextLabel="→"
+      breakLabel="..."
+      containerClassName="pagination c-blue"
+      activeClassName="item active"
+      breakClassName="item"
+      pageClassName="item"
+      previousClassName="item previous"
+      nextClassName="item next "
     />
   );
 }

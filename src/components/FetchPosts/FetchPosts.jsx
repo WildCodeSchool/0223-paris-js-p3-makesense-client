@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import ProjectCard from "./ProjectCard";
-import Pagination from "./Pagination";
+import ProjectCard from "../ProjectCard/ProjectCard";
+import Pagination from "../Pagination/Pagination";
 
 export default function FetchPosts() {
   const [posts, setPosts] = useState([]);
@@ -19,7 +19,7 @@ export default function FetchPosts() {
   }, []);
   return (
     <>
-      <ul>
+      <ul className="fetchPosts">
         {currentItems.map((data) => (
           <ProjectCard post={data} key={data.id} />
         ))}

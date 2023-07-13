@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ProjectViewHome from "../../components/ProjectViewHome/ProjectViewHome";
+import ProjectViewHome from "../../components/ProjectViewHome";
 
 export default function Home() {
   const clickMe = () => {};

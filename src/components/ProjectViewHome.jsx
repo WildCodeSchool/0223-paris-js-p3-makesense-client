@@ -1,13 +1,13 @@
-import Fetch from "../ProjectCard/FetchPosts";
+import FetchPosts from "./FetchPosts/FetchPosts";
 
 export default function ProjectViewHome() {
   return (
-    <>
-      <p className="">
+    <section id="projectView">
+      <p className="c-blue">
         <strong>Projet en cours </strong>
         trier par: <strong> A la une</strong>
       </p>
-      <Fetch />;
-    </>
+      <FetchPosts />;
+    </section>
   );
 }
