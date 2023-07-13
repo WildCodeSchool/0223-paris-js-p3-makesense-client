@@ -24,7 +24,6 @@ function App() {
   const reloadStore = async () => {
     try {
       const result = await getCurrentUser();
-      console.log("result", result);
       dispatch(signin(result.data, { isLogged: true }));
       setVisible(true);
     } catch (error) {
@@ -89,7 +88,7 @@ function App() {
           />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   ) : (
     ""

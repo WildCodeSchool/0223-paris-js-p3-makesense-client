@@ -4,11 +4,14 @@ const auth = createSlice({
   name: "auth",
   initialState: { user: null, isLogged: false },
   reducers: {
-    signin: (state, action) => (console.log("action.payload.isLogged",action.payload.isLogged), {
-      ...state,
-      user: action.payload,
-      isLogged: true,
-    }),
+    signin: (state, action) => (
+      console.log("action.payload.isLogged", action.payload.isLogged),
+      {
+        ...state,
+        user: action.payload,
+        isLogged: true,
+      }
+    ),
     logout: (state) => ({ ...state, user: null, isLogged: false }),
   },
 });
