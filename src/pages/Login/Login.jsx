@@ -47,7 +47,7 @@ function Login() {
         <h1 className="title2_login">Connectez-vous</h1>
         {error && <p className="p_error_login">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="button_courriel">
+          <div className="input_courriel">
             <input
               className="courriel_icon"
               type="email"
@@ -59,7 +59,7 @@ function Login() {
             />
           </div>
 
-          <div className="button_password">
+          <div className="input_password">
             <input
               className="password_icon password_eye"
               type={password ? "text" : "password"}

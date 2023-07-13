@@ -12,11 +12,11 @@ function ResetPassword() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/login")
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigate("/login")
+  //   }
+  // }, []);
 
   const showpassword = () => {
     setVisiblePassword(!visiblePassword);
@@ -46,11 +46,11 @@ function ResetPassword() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="box">
-        <div className="containers">
-          <h3 className="title_new_password">Votre nouveau mot de passe</h3>
-          {error && <p className="p_error_resetpassword">{error}</p>}
+    <div className="box">
+      <div className="containers">
+        <h3 className="title_new_password">Votre nouveau mot de passe</h3>
+        {error && <p className="p_error_resetpassword">{error}</p>}
+        <form onSubmit={handleSubmit}>
           <input
             className="new_password password_icon"
             type={visiblePassword ? "text" : "password"}
@@ -65,7 +65,7 @@ function ResetPassword() {
             type={visiblePassword ? "text" : "password"}
             name="Password"
             id="Password"
-            placeholder="Confirmez le nouveau mot de passe"
+            placeholder="Confirmez le mot de passe"
             value={checkPassword}
             onChange={(e) => setCheckPassword(e.target.value)}
           />
@@ -75,14 +75,14 @@ function ResetPassword() {
             src="src/assets/Oeil.png"
           />
           <p className="p_visiblePassword_resetpassword" onClick={showpassword}>
-            Voir le mot de passe.
+            {visiblePassword ? "Cacher le mot de passe" : "Voir le mot de passe."}
           </p>
           <button type="submit" className="button_forgot_password">
             Je valide
           </button>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 }
 
