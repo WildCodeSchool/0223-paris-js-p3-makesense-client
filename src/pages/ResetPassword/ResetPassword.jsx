@@ -14,7 +14,7 @@ function ResetPassword() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/login")
+      navigate("/login");
     }
   }, []);
 
