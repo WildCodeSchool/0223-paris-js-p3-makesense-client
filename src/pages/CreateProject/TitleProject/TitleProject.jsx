@@ -18,12 +18,24 @@ function TitleProject() {
     {
       value: "france",
       label: "France",
-      icon: <img src="../../src/assets/france.png" alt="France" className="custom-icon" />,
+      icon: (
+        <img
+          src="../../src/assets/france.png"
+          alt="France"
+          className="custom-icon"
+        />
+      ),
     },
     {
       value: "espagne",
       label: "Espagne",
-      icon: <img src="../../src/assets/espagne.png" alt="Espagne" className="custom-icon" />,
+      icon: (
+        <img
+          src="../../src/assets/espagne.png"
+          alt="Espagne"
+          className="custom-icon"
+        />
+      ),
     },
   ];
 
@@ -45,9 +57,6 @@ function TitleProject() {
     }),
   };
 
-  //   function handleClicktitleproject() {
-  //     navigate("/titleproject");
-  //   }
   return (
     <>
       <div className="background-project">
