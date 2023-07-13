@@ -19,6 +19,7 @@ import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 import Register from "./pages/Admin/Register/Register";
+import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -106,9 +107,18 @@ function App() {
               </PrivateRouteAdmin>
             }
           />
+          <Route
+            exact
+            path="/descriptionproject"
+            element={
+              <PrivateRoute>
+                <DescriptionProject />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   ) : (
     ""

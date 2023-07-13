@@ -31,20 +31,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const result = await authService.login(login.email, login.password);
-    //   dispatch(signin(result.data));
 
-    //   navigate("/");
-    // } catch (err) {
-    //   if (err.response?.status === 400) {
-    //     setError("email ou mot de passe incorrect");
-    //   } else {
-    //     setError(
-    //       "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
-    //     );
-    //   }
-    // }
   };
 
   return (
@@ -69,23 +56,8 @@ function Register() {
             />
           </div>
 
-          <div className="button_password">
-            <input
-              className="password_icon password_eye"
-              type={password ? "text" : "password"}
-              name="password"
-              id="password"
-              placeholder="Mot de passe"
-              value={register.password}
-              onChange={(e) =>
-                setRegister({ ...register, password: e.target.value })
-              }
-            />
-            <img
-              onClick={showpassword}
-              className="oeil"
-              src="src/assets/Oeil.png"
-            />
+          <div>
+
           </div>
 
           <div className="checkbox">

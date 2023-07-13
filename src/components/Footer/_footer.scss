@@ -6,10 +6,10 @@ footer{
     background:$color-accent-cian;
     color:$text-white;
     bottom:0;
-    position: fixed;
     display:flex;
     flex-direction: column;
     align-items: center;
+    margin-top:1%;
 }
 
 .contenu-footer h1{
