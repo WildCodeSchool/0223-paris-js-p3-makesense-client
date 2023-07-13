@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { signin } from "../../../store/auth";
 import authService from "../../../services/auth";
 import { Link } from "react-router-dom";
@@ -19,7 +20,7 @@ function Register() {
   };
 
   const navigate = useNavigate();
-
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +63,9 @@ function Register() {
               id="email"
               placeholder="Courriel"
               value={register.email}
-              onChange={(e) => setLogin({ ...register, email: e.target.value })}
+              onChange={(e) =>
+                setRegister({ ...register, email: e.target.value })
+              }
             />
           </div>
 
@@ -75,7 +78,7 @@ function Register() {
               placeholder="Mot de passe"
               value={register.password}
               onChange={(e) =>
-                setLogin({ ...register, password: e.target.value })
+                setRegister({ ...register, password: e.target.value })
               }
             />
             <img
