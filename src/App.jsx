@@ -118,7 +118,7 @@ function App() {
           />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   ) : (
     ""

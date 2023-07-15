@@ -55,6 +55,7 @@ function TitleProject() {
       display: "flex",
       alignItems: "center",
       backgroundColor: "rgba(217, 217, 217, 0.2)",
+      fontFamily : "raleway",
     }),
   };
 
@@ -68,6 +69,8 @@ function TitleProject() {
           <h1 className="title_project">Titre du projet</h1>
           <input
             className="input_title_project"
+            placeholder="Exemple : Du café gratuit pour tous !"
+            color ="white"
             type="text"
             id="name"
             name="name"
