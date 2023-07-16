@@ -1,7 +1,11 @@
 import api from "./api";
 
-const getAllPosts = async (req, res) => {
-  return api.get("/api/posts")
-}
+const getAllPost = () => {
+  return api.get("/api/posts");
+};
 
-export { getAllPosts };
+const getCurrentPost = (id) => {
+  return api.get(`/api/posts/${id}`);
+};
+
+export { getAllPost, getCurrentPost };
