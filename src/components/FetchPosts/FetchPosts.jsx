@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import api from "../../services/api";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import Pagination from "../Pagination/Pagination";
 import { getAllPost } from "../../services/post";

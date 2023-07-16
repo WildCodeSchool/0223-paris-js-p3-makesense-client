@@ -3,13 +3,11 @@
 .background-project{
     background-color: $color-accent-carmin;
     padding-top:10rem;
-    height:100vh;
     border-radius: 5px 5px 0px 0px
 }
 
 .title_project {
-    margin-top: -15%;
-    color: yellow !important;
+    color:$color-accent-yellow;
     font-size: 40px ;
 }
 
@@ -30,6 +28,7 @@
 .input_title_project{
     background-color:rgba(217, 217, 217, 0.2);
     border-bottom: 2px solid rgba(255, 243, 13, 1);
+    color: white;
     position:relative;
     margin-top:3rem;
     margin-bottom: 4rem;
@@ -37,8 +36,13 @@
     align-items: center;
     height: 2.875rem;
     width: 14.875rem;
+    text-align: center;
 }
 
+.input_title_project::placeholder {
+    color : rgba(198, 198, 198, 1);
+    
+}
 .custom-icon{
     background-color:rgba(217, 217, 217, 0.2);
     width: 2rem;
@@ -65,7 +69,14 @@ margin-bottom: 1rem;
 .title_css{
     font-size: $h4-mobile;
     color: white;
+    margin-top: -2rem;
 
+}
+
+.custom-icon{
+    width: 1.5rem;
+    height: 1rem;
+    margin-right: 0.5rem;
 }
 
 
