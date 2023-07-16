@@ -12,8 +12,13 @@ footer {
   }
 
 .fixed-bottom {
+    // position: fixed;
+    // bottom: 0;
     position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
 }
 .contenu-footer h1{
     font-weight:700px;

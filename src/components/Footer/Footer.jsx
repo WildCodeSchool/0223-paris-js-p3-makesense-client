@@ -2,23 +2,54 @@ import React, { useEffect, useState } from "react";
 
 function Footer() {
   const [isFixed, setIsFixed] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const contentHeight = document.documentElement.scrollHeight;
-      const viewportHeight = window.innerHeight;
-      if (contentHeight <= viewportHeight) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
+      const isScrollable = document.body.scrollHeight > window.innerHeight;
+      setIsFixed(!isScrollable);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [refresh]);
+
+  useEffect(() => {
+    const handlePageChange = () => {
+      const isScrollable =
+        document.documentElement.scrollHeight > window.innerHeight ||
+        window.pageYOffset > 0;
+      setIsFixed(!isScrollable);
+    };
+
+    const handleResize = () => {
+      handlePageChange();
+    };
+
+    window.addEventListener("pageshow", handlePageChange);
+    window.addEventListener("resize", handleResize);
+
+    handlePageChange();
+
+    return () => {
+      window.removeEventListener("pageshow", handlePageChange);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [refresh]);
+
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      setRefresh(!refresh);
+    }, 500);
+
+    return () => {
+      clearInterval(refreshInterval);
+    };
+  }, [refresh]);
 
   return (
     <footer className={isFixed ? "fixed-bottom" : ""}>
