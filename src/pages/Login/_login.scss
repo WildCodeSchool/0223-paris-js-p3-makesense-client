@@ -1,7 +1,7 @@
 @use "../../sass/global" as *;
 
 .oeil{
-    margin-left: 4%;
+    left: -8%;
 }
 
 .title1_login {
@@ -147,5 +147,9 @@ input[type=checkbox] {
         background-image: url(./src/assets/pills/Pills_desktop_login.png);
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .oeil{
+        margin-left: 4%;
     }
 }
