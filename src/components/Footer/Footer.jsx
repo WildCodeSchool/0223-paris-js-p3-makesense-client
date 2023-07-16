@@ -1,6 +1,27 @@
+import React, { useEffect, useState } from "react";
+
 function Footer() {
+  const [isFixed, setIsFixed] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const contentHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      if (contentHeight <= viewportHeight) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <footer>
+    <footer className={isFixed ? "fixed-bottom" : ""}>
       <div className="contenu-footer">
         <div className="bloc-footer">
           <h1>Liens utiles</h1>
@@ -27,12 +48,20 @@ function Footer() {
           <ul className="iconesfooter">
             <li>
               <a href="#">
-                <img src="../src/assets/facebook.png" className= "iconefacebook" alt="icone facebook" />
+                <img
+                  src="../src/assets/facebook.png"
+                  className="iconefacebook"
+                  alt="icone facebook"
+                />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../src/assets/instagram.png" className= "iconeinsta" alt="icone instagram" />
+                <img
+                  src="../src/assets/instagram.png"
+                  className="iconeinsta"
+                  alt="icone instagram"
+                />
               </a>
             </li>
           </ul>
