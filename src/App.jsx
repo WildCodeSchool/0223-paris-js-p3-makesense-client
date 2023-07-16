@@ -20,6 +20,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 import Register from "./pages/Admin/Register/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -100,7 +101,16 @@ function App() {
           />
           <Route
             exact
-            path="/register"
+            path="/admin"
+            element={
+              <PrivateRouteAdmin>
+                <Dashboard />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/register"
             element={
               <PrivateRouteAdmin>
                 <Register />
