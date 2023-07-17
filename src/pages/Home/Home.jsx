@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import { useSelector } from "react-redux";
 import ProjectViewHome from "../../components/ProjectViewHome";
 
 export default function Home() {
+  const auth = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const clickMe = () => {};
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (!auth.user) {
+      navigate("/login");
+    }
+  }, []);
 
   function handleClickGuide() {
     navigate("/Guide");
   }
+
   return (
     <>
       <section id="home">

@@ -3,14 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 import authService from "../../services/auth";
+import { Link } from "react-router-dom";
 
-function Login(props) {
+function Login() {
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
+  const [password, setPassword] = useState(false);
   const [error, setError] = useState(null);
+
+  const showpassword = () => {
+    setPassword(!password);
+  };
 
   const navigate = useNavigate();
 
@@ -26,18 +32,22 @@ function Login(props) {
     } catch (err) {
       if (err.response?.status === 400) {
         setError("email ou mot de passe incorrect");
+      } else {
+        setError(
+          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        );
       }
     }
   };
 
   return (
     <div className="box">
-      {error && <p>{error}</p>}
       <div className="containers">
         <p className="title1_login">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
+        {error && <p className="p_error_login">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="button_courriel">
+          <div className="input_courriel">
             <input
               className="courriel_icon"
               type="email"
@@ -49,15 +59,20 @@ function Login(props) {
             />
           </div>
 
-          <div className="button_password">
+          <div className="input_password">
             <input
               className="password_icon password_eye"
-              type="password"
+              type={password ? "text" : "password"}
               name="password"
               id="password"
               placeholder="Mot de passe"
               value={login.password}
               onChange={(e) => setLogin({ ...login, password: e.target.value })}
+            />
+            <img
+              onClick={showpassword}
+              className="oeil"
+              src="src/assets/Oeil.png"
             />
           </div>
 
@@ -70,7 +85,9 @@ function Login(props) {
             <button type="submit" className="connexion">
               se connecter
             </button>
-            <p className ="forgot_password"><a  href="https://example.com">Mot de passe oublié</a></p>
+            <p className="forgot_password">
+              <Link to="/forgotpassword">Mot de passe oublié</Link>
+            </p>
           </div>
         </form>
       </div>

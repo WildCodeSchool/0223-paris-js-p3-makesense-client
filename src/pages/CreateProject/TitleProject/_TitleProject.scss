@@ -1,0 +1,83 @@
+@use "../../../sass/global" as *;
+
+.background-project{
+    background-color: $color-accent-carmin;
+    padding-top:10rem;
+    border-radius: 5px 5px 0px 0px
+}
+
+.title_project {
+    color:$color-accent-yellow;
+    font-size: 40px ;
+}
+
+
+.launch_project_containers{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(./src/assets/pills/Pills_mobile_project_creation.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title_select_country{
+    margin-top :2rem;
+    font-size: $p-mobile;
+}
+
+.input_title_project{
+    background-color:rgba(217, 217, 217, 0.2);
+    border-bottom: 2px solid rgba(255, 243, 13, 1);
+    color: white;
+    position:relative;
+    margin-top:3rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    height: 2.875rem;
+    width: 14.875rem;
+    text-align: center;
+}
+
+.input_title_project::placeholder {
+    color : rgba(198, 198, 198, 1);
+    
+}
+.custom-icon{
+    background-color:rgba(217, 217, 217, 0.2);
+    width: 2rem;
+    height: 1.5rem;
+}
+
+.launch_button{
+    margin-top: 3rem;
+    background-color:rgba(12, 57, 68, 1) ;
+    font-family: $titles-font;
+    color: white;
+    font-size: $h4-mobile;
+    width: 155px;
+    height: 34px; 
+    border-radius:5px;
+}
+
+.selector{
+    width: 10rem;
+}
+.country_title_choise{
+margin-bottom: 1rem;    
+}
+.title_css{
+    font-size: $h4-mobile;
+    color: white;
+    margin-top: -2rem;
+
+}
+
+.custom-icon{
+    width: 1.5rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+
+
