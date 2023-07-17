@@ -18,6 +18,7 @@ import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import SettingsProject from "./pages/CreateProject/SettingsProject/SettingsProject";
 import Register from "./pages/Admin/UserRegister/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
@@ -143,6 +144,15 @@ function App() {
             element={
               <PrivateRoute>
                 <DescriptionProject />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            exact
+            path="/settingsproject"
+            element={
+              <PrivateRoute>
+                <SettingsProject />
               </PrivateRoute>
             }
           />
