@@ -2,8 +2,9 @@
 
 .background-project{
     background-color: $color-accent-carmin;
-    padding-top:10rem;
-    border-radius: 5px 5px 0px 0px
+    padding-top:10%;
+    border-radius: 5px 5px 0px 0px;
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
 }
 
 .title_project {
@@ -19,6 +20,8 @@
     background-image: url(./src/assets/pills/Pills_mobile_project_creation.png);
     background-repeat: no-repeat;
     background-size: cover;
+
+
 }
 .title_select_country{
     margin-top :2rem;
@@ -58,6 +61,7 @@
     width: 155px;
     height: 34px; 
     border-radius:5px;
+    margin-bottom: 3rem;
 }
 
 .selector{

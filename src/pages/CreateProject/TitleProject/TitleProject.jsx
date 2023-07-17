@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Select from "react-select";
+import CreationGuide from "../../CreationGuide/CreationGuide";
+
 
 function TitleProject() {
   const auth = useSelector((state) => state.auth);
@@ -106,6 +108,7 @@ function TitleProject() {
             </div>
         </div>
       </div>
+      <CreationGuide />
     </>
   );
 }
