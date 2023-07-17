@@ -11,8 +11,12 @@
 @forward "../pages/ForgotPassword/index";
 @forward "../pages/ResetPassword/index";
 @forward "../pages/CreateProject/TitleProject/index";
-@forward "../pages/Admin/Register/index";
 @forward "../pages/CreateProject/DescriptionProject/index";
 @forward "../components/ImageUpload/index";
 @forward "../components/FormPost/index";
-
+@forward "../pages/Admin/Dashboard/index";
+@forward "../pages/Admin/UserRegister/index";
+@forward "../pages/Admin/UserManage/index";
+@forward "../pages/Admin/UserModify/index";
+@forward "../components/UserCard/index";
+@forward "../components/SearchBarAdmin/index";

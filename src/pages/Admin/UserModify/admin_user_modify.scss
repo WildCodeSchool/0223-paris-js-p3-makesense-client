@@ -28,8 +28,7 @@ position: relative;
 top:5rem;
 }
 
-.courriel_icon{
-    background-image: url(./src/assets/Letter.png);
+.input_admin{
     background-repeat: no-repeat;
     background-position: left center;
     color :black;
@@ -94,10 +93,11 @@ form{
     align-items: center;
 }
 
-.button_courriel{
+.button_admin{
 text-align: center;
 margin-top: 2rem;
 }
+
 
 .button_password{
 text-align: center;

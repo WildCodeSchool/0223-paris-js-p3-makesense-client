@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import authService from "../../services/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -58,6 +58,7 @@ function Navbar() {
           </li>
         </ul>
       </div>
+      <div></div>
       <img className="nav_bell" src="../src/assets/bell.png" alt="bell" />
       <div className="burgerAvatar">
         <img
@@ -85,6 +86,9 @@ function Navbar() {
             </li>
             <li>
               <a href="#">Aide</a>
+            </li>
+            <li>
+              <Link to="/admin">Adminstration</Link>
             </li>
             <li>
               <a href="#" onClick={handleSubmit}>
@@ -119,13 +123,12 @@ function Navbar() {
             <a href="#">Gérer les projets</a>
           </li>
           <li>
+            <Link to="/admin">Adminstration</Link>
+          </li>
+          <li>
             <a href="#" onClick={handleSubmit}>
               Déconnexion
             </a>
-            {/* <a href="#">Déconnexion</a> */}
-            {/* <form onSubmit={handleSubmit}>
-              <input type="submit" value="Disconnect" />
-            </form> */}
           </li>
         </ul>
       </div>

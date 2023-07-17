@@ -6,36 +6,24 @@ function Footer() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrollable = document.body.scrollHeight > window.innerHeight;
-      setIsFixed(!isScrollable);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [refresh]);
-
-  useEffect(() => {
-    const handlePageChange = () => {
       const isScrollable =
         document.documentElement.scrollHeight > window.innerHeight ||
         window.pageYOffset > 0;
       setIsFixed(!isScrollable);
     };
 
-    const handleResize = () => {
-      handlePageChange();
-    };
+    const handlePageChange = handleScroll;
 
+    const handleResize = handlePageChange;
+
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("pageshow", handlePageChange);
     window.addEventListener("resize", handleResize);
 
-    handlePageChange();
+    handleScroll();
 
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("pageshow", handlePageChange);
       window.removeEventListener("resize", handleResize);
     };
@@ -43,13 +31,13 @@ function Footer() {
 
   useEffect(() => {
     const refreshInterval = setInterval(() => {
-      setRefresh(!refresh);
+      setRefresh((prevRefresh) => !prevRefresh);
     }, 500);
 
     return () => {
       clearInterval(refreshInterval);
     };
-  }, [refresh]);
+  }, []);
 
   return (
     <footer className={isFixed ? "fixed-bottom" : ""}>
