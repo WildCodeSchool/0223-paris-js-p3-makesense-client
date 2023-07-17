@@ -17,8 +17,10 @@ function Register() {
     lastname: "",
     role_id: "",
     job_id: "",
+    admin: "",
   });
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
   const [roles, setRoles] = useState([]);
   const [jobs, setJobs] = useState([]);
 
@@ -28,6 +30,7 @@ function Register() {
       const jobsData = await getAllJobs();
       setRoles(rolesData.data);
       setJobs(jobsData.data);
+      setError(null);
     } catch (err) {
       console.log("err", err);
       setError(
@@ -44,21 +47,56 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("register --->", register);
-    const { email, firstname, lastname, role_id, job_id } = register;
+    const { email, firstname, lastname, role_id, job_id, admin } = register;
     if (
       email === "" ||
       firstname === "" ||
       lastname === "" ||
       role_id === "" ||
-      job_id === ""
+      job_id === "" ||
+      admin === "" ||
+      role_id === "null" ||
+      job_id === "null" ||
+      admin === "null"
     ) {
-      return setError("Veuillez remplir tous les champs !");
+      return setError("Veuillez remplir tous les champs !"), setMessage(null);
     } else {
       try {
-        const registerBDD = await createAccount(register);
-        console.log("registerBDD", registerBDD);
+        await createAccount(register);
+        setError(null);
+        setMessage("Création du compte réussi !");
       } catch (err) {
-        console.log("err", err);
+        if (err.response.status === 400) {
+          setMessage(null);
+          setError(
+            "L'adresse e-mail est déjà utilisée par un autre utilisateur."
+          );
+        } else if (err.response.status === 403) {
+          setMessage(null);
+          setError("Impossible d'upload cette image sur notre serveur ! ");
+        } else if (err.response.status === 422) {
+          const validationErrors = err.response.data.validationErrors;
+          let errorMessage = "Vérifiez les champs suivants : ";
+          const fieldTranslations = {
+            email: "Adresse e-mail",
+            firstname: "Prénom",
+            lastname: "Nom de famille",
+          };
+          validationErrors.forEach((error) => {
+            console.log("error", error);
+            const translatedField =
+              fieldTranslations[error.field] || error.field;
+            errorMessage += `${translatedField}, `;
+          });
+          errorMessage = errorMessage.slice(0, -2);
+          setMessage(null);
+          setError(errorMessage);
+        } else {
+          setMessage(null);
+          setError(
+            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+          );
+        }
       }
     }
   };
@@ -70,6 +108,7 @@ function Register() {
           Enregistrez un nouveau utilisateur !
         </h1>
         {error && <p className="p_error_register">{error}</p>}
+        {message && <p>{message}</p>}
         <form onSubmit={handleSubmit}>
           <div className="button_admin">
             <input
@@ -114,7 +153,7 @@ function Register() {
           </div>
           <div style={{ color: "orange" }}>
             <select
-              id="cupcake-select"
+              id="select"
               value={register.role_id}
               onChange={(e) =>
                 setRegister({ ...register, role_id: e.target.value })
@@ -130,7 +169,7 @@ function Register() {
               })}
             </select>
             <select
-              id="cupcake-select"
+              id="select"
               value={register.job_id}
               onChange={(e) =>
                 setRegister({ ...register, job_id: e.target.value })
@@ -144,6 +183,21 @@ function Register() {
                   </option>
                 );
               })}
+            </select>
+            <select
+              id="select"
+              value={register.admin}
+              onChange={(e) =>
+                setRegister({ ...register, admin: e.target.value })
+              }
+            >
+              <option value="null">---</option>
+              <option key="0" value="0">
+                No Admin
+              </option>
+              <option key="1" value="1">
+                Admin
+              </option>
             </select>
           </div>
           <div className="button_admin">

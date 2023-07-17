@@ -9,7 +9,19 @@ const getCurrentUser = () => {
 };
 
 const createAccount = (data) => {
-  return api.get("/api/users/register", data);
+  return api.post("/api/users/register", data);
 }
 
-export { getAllUsers, getCurrentUser, createAccount};
+const deleteUtilisateur = (id) => {
+  return api.delete(`/api/users/${id}`)
+}
+
+const getUser = (id)  => {
+  return api.get(`/api/users/${id}`)
+}
+
+const modifyAccount = (data, id) => {
+  return api.put(`/api/users/${id}`, data)
+}
+
+export { getAllUsers, getCurrentUser, createAccount, deleteUtilisateur, getUser, modifyAccount};

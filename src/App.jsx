@@ -18,9 +18,11 @@ import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
-import Register from "./pages/Admin/Register/Register";
+import Register from "./pages/Admin/UserRegister/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import UserManage from "./pages/Admin/UserManage/UserManage";
+import UserModify from "./pages/Admin/UserModify/UserModify";
 
 function App() {
   const dispatch = useDispatch();
@@ -110,7 +112,25 @@ function App() {
           />
           <Route
             exact
-            path="/admin/register"
+            path="/admin/users"
+            element={
+              <PrivateRouteAdmin>
+                <UserManage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users/:id"
+            element={
+              <PrivateRouteAdmin>
+                <UserModify />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users/register"
             element={
               <PrivateRouteAdmin>
                 <Register />
