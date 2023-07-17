@@ -114,17 +114,15 @@ function UserManage() {
     }
   };
 
-  const handleClickAddUser = () => {
-    navigate("/admin/users/register");
-  };
-
   return (
     <div className="box">
       <div className="container_admin_usermanage">
         <SearchBarAdmin
           searchTerm={searchTerm}
           handleSearch={handleSearch}
-          handleClickAddUser={handleClickAddUser}
+          activedButton
+          redirection="/admin/users/register"
+          textButton="Ajouter un utilisateur"
         />
         <div className="filter_options">
           <label htmlFor="adminFilterCheckbox">

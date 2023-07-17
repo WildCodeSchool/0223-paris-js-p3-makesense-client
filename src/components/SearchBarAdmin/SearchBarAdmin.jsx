@@ -1,4 +1,16 @@
-function SearchBarAdmin({ searchTerm, handleSearch, handleClickAddUser }) {
+import { useNavigate } from "react-router-dom";
+
+function SearchBarAdmin({
+  searchTerm,
+  handleSearch,
+  activedButton,
+  redirection,
+  textButton,
+}) {
+  const navigate = useNavigate();
+  const handleClickAdd = () => {
+    navigate(redirection);
+  };
   return (
     <div className="search_bar_admin">
       <input
@@ -8,9 +20,13 @@ function SearchBarAdmin({ searchTerm, handleSearch, handleClickAddUser }) {
         value={searchTerm}
         onChange={handleSearch}
       />
-      <button className="btn_add_admin" onClick={handleClickAddUser}>
-        Ajouter un utilisateur
-      </button>
+      {activedButton ? (
+        <button className="btn_add_admin" onClick={handleClickAdd}>
+          {textButton}
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
