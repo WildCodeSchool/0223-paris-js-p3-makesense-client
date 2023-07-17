@@ -21,7 +21,7 @@ body {
     font-family: $titles-font;
 }
 
-img:nth-child(1) {
+.profile-image {
     width: 130px;
     height: 130px;
     display: flex;
@@ -30,7 +30,7 @@ img:nth-child(1) {
     border: 6px solid $color-accent-cian;
     border-radius: 50%;
 }
-img:nth-child(2) {
+.crayonimg {
     background-color: $color-accent-cian ;
     border-radius: 50%;
     width: 35px;
@@ -38,7 +38,7 @@ img:nth-child(2) {
     padding: 5px;
     position: absolute;
     left: 55%;
-    top: 26%;
+    top: 22%;
     cursor: pointer;
 }
 label {
@@ -103,20 +103,15 @@ button {
     color: $primary-color;
     font-size: 1.1rem;
 }
-
-
-
 .toggle-container {
     position: relative;
     display: inline-block;
     margin-left: 20%;
     margin-top: 20px;
 }
-  
 .toggle-checkbox {
     display: none;
 }
-  
 .toggle-label {
     display: inline-block;
     cursor: pointer;
@@ -199,13 +194,13 @@ button {
         padding-top: 50px;
         width: 40%;  
     }
-    img:nth-child(1) {
+    .profile-image {
         width: 200px;
         height: 200px;
     }
-    img:nth-child(2) {
+    .crayonimg {
         left: 23%;
-        top: 60%;
+        top: 47%;
     }
     .editer {
         display: flex;

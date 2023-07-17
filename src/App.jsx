@@ -18,8 +18,9 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
-import Monprofil from "./pages/monprofil/monprofil";
+import MonProfil from "./pages/MonProfil/MonProfil";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +50,16 @@ function App() {
             path="/monprofil"
             element={
               <PrivateRoute>
-                <Monprofil />
+                <MonProfil />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/suiviprojet"
+            element={
+              <PrivateRoute>
+                <SuiviProjet />
               </PrivateRoute>
             }
           />
@@ -109,7 +119,7 @@ function App() {
           />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   ) : (
     ""

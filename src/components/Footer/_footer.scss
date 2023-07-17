@@ -6,7 +6,6 @@ footer{
     background:$color-accent-cian;
     color:$text-white;
     bottom:0;
-    position: fixed;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -63,14 +62,10 @@ footer{
         padding-top:0.5%;
         width:30%;
     }
-
-
     .iconesfooter{
         flex-direction: column;
     }
-
     .contenu-footer{
         justify-content: space-evenly;
     }
-
 }
