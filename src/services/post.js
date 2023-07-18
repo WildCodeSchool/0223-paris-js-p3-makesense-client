@@ -1,11 +1,21 @@
 import api from "./api";
 
 const getAllPost = () => {
-  api.get("/api/posts");
+  return api.get("/api/posts");
 };
 const getCurrentPost = (id) => {
-  api.get(`/api/posts/${id}`);
+  return api.get(`/api/posts/${id}`);
 };
-export { getAllPost, getCurrentPost };
+
+const getPostFromUser = () => {
+  return api.get(`/api/posts/me`)
+};
+
+const getVoteFromUser = (id) => {
+  return api.get(`api/posts/votes/fromuser`)
+};
+
+
+export { getAllPost, getCurrentPost, getPostFromUser, getVoteFromUser };
 
 

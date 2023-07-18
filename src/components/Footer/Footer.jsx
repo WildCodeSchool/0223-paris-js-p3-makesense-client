@@ -1,6 +1,46 @@
+import React, { useEffect, useState } from "react";
+
 function Footer() {
+  const [isFixed, setIsFixed] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrollable =
+        document.documentElement.scrollHeight > window.innerHeight ||
+        window.pageYOffset > 0;
+      setIsFixed(!isScrollable);
+    };
+
+    const handlePageChange = handleScroll;
+
+    const handleResize = handlePageChange;
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("pageshow", handlePageChange);
+    window.addEventListener("resize", handleResize);
+
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("pageshow", handlePageChange);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [refresh]);
+
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      setRefresh((prevRefresh) => !prevRefresh);
+    }, 500);
+
+    return () => {
+      clearInterval(refreshInterval);
+    };
+  }, []);
+
   return (
-    <footer>
+    <footer className={isFixed ? "fixed-bottom" : ""}>
       <div className="contenu-footer">
         <div className="bloc-footer">
           <h1>Liens utiles</h1>
@@ -27,12 +67,20 @@ function Footer() {
           <ul className="iconesfooter">
             <li>
               <a href="#">
-                <img src="../src/assets/facebook.png" className= "iconefacebook" alt="icone facebook" />
+                <img
+                  src="../src/assets/facebook.png"
+                  className="iconefacebook"
+                  alt="icone facebook"
+                />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../src/assets/instagram.png" className= "iconeinsta" alt="icone instagram" />
+                <img
+                  src="../src/assets/instagram.png"
+                  className="iconeinsta"
+                  alt="icone instagram"
+                />
               </a>
             </li>
           </ul>

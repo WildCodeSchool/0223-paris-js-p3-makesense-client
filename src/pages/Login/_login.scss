@@ -1,12 +1,7 @@
 @use "../../sass/global" as *;
 
 .oeil{
-    position: absolute;
-    top:14.5rem;
-    left:20rem;
-
-
-
+    left: -8%;
 }
 
 .title1_login {
@@ -38,7 +33,7 @@ top:5rem;
     background-position: left center;
     color :black;
     background-position-x: 0.2rem;
-    width: 100%;
+    width: 90%;
     padding: 0.75rem 1.25rem;
     border-color: black;
     border-radius: 5px;
@@ -52,7 +47,7 @@ top:5rem;
     background-repeat: no-repeat;
     background-position: left center;
     background-position-x: 0.2rem;
-    width: 100%;
+    width: 90%;
     padding: 0.75rem 1.25rem;
     color: black;
     border-color: black;
@@ -65,7 +60,7 @@ top:5rem;
 
 .connexion{
     text-align: center;
-    width: 100%;
+    width: 90%;
     padding: 0.75rem 1.25rem;
     color: black;
     background-color: $color-accent-lightOrange;
@@ -81,6 +76,7 @@ top:5rem;
 .button_connexion{
     text-align: center;
     color: black;
+    margin-right: 4%;
 }
 
 .forgot_password{
@@ -96,17 +92,20 @@ form{
 .checkbox {
     display: flex;
     align-items: center;
+    margin-left: 4%;
 }
 
-.button_courriel{
+.input_courriel{
 text-align: center;
 margin-top: 2rem;
+margin-right: 4%;
 }
 
-.button_password{
+.input_password{
 text-align: center;
 margin-top: 0.7rem;
 margin-bottom: 1rem;
+margin-right: 4%;
 }
 
 .button_connexion{
@@ -124,7 +123,12 @@ input[type=checkbox] {
     margin-left: 0.2rem;
 }
 
-
+.p_error_login {
+    color: red;
+    font-size : $p-mobile;
+    width: 73%;
+    margin-top: 0.5rem;
+}
 
 @media screen and (min-width: 926px) {
 
@@ -144,5 +148,9 @@ input[type=checkbox] {
         background-image: url(./src/assets/pills/Pills_desktop_login.png);
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    .oeil{
+        margin-left: 4%;
     }
 }

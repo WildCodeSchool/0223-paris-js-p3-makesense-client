@@ -1,44 +1,33 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { getVoteFromUser, getPostFromUser } from "../../services/post";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
+
 
 function SuiviProjet() {
-    const [actif, setActif] = useState("projets");
-    const [userPosts, setUserPosts] = useState([]);
-    const [userId, setUserId] = useState(null);
-
-    useEffect(() => {
-      const authenticatedUserId = async () => {
-        try {
-          const response = await axios.get('/api/user/:id');
-          setUserId(response.data.id);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      authenticatedUserId();
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      const fetchUserPosts = async () => {
-        try {
-          const response = await axios.get(`/api/posts?userId=${userId}`);
-          setUserPosts(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      fetchUserPosts();
-    }
-  }, [userId]);
+  const [actif, setActif] = useState("projets");
+  const [userPosts, setUserPosts] = useState([]);
+  const [userVotes, setUserVotes] = useState([]);
 
   const toggleActif = (onglet) => {
     if (onglet !== actif) {
       setActif(onglet);
     }
   };
+  const dataUser = async () => {
+    try {
+      const userPost = await getPostFromUser();
+      const userVote = await getVoteFromUser();
+      setUserPosts(userPost.data);
+      setUserVotes(userVote?.data);
+      console.log(userVote.data, "FREFD");
+    } catch (error) {
+      console.log("err", err);
+    }
+  };
+
+  useEffect(() => {
+    dataUser();
+  }, []);
 
   return (
     <div id="container">
@@ -66,14 +55,11 @@ function SuiviProjet() {
           dignissimos recusandae molestias delectus saepe exercitationem
           similique minima eius repudiandae nulla modi?
         </p>
-        {userPosts.map((post) => (
-        <div key={post?.id}>
-          <h2>{post?.title}</h2>
-          <p>{post?.description}</p>
-          <img src={post?.user_id} alt="Avatar de l'utilisateur" />
-          <p>{post?.user_id}</p>
-        </div>
-      ))}
+        <ul className="fetchPosts">
+        {userPosts.map((data) => (
+          <ProjectCard post={data} key={data.id} />
+        ))}
+      </ul>
       </div>
       <div
         className={`contenu ${actif === "votes" ? "actif" : ""}`}
@@ -85,9 +71,14 @@ function SuiviProjet() {
           distinctio provident? Natus beatae libero dolores assumenda aliquam
           dignissimos animi similique, incidunt corporis.
         </p>
+        <ul className="fetchPosts">
+        {userVotes.map((post) => (
+          <ProjectCard post={post} key={post.id} />
+        ))}
+      </ul>
       </div>
     </div>
   );
-};
+}
 
 export default SuiviProjet;
