@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import logoWhite from "../../assets/makesense_logo_white.svg";
 
 function Footer() {
   const [isFixed, setIsFixed] = useState(false);
@@ -88,7 +89,7 @@ function Footer() {
       </div>
       <img
         className="logofooter"
-        src="../src/assets/makesense_logo_white.png"
+        src={logoWhite}
         alt="makesense logo"
       />
     </footer>

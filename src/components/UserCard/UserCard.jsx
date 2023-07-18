@@ -25,7 +25,7 @@ function UserCard({ user, edit }) {
     } catch (err) {
       console.log("err", err);
       setErrMessage(
-        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !",
       );
     }
   };
