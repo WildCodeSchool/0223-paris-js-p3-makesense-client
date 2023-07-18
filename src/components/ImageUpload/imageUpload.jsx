@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormPost from "../FormPost/FormPost";
 
-const ImageUpload = () => {
+const ImageUpload = ({onChange}) => {
   const hiddenFileInput = React.useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
@@ -12,6 +12,7 @@ const ImageUpload = () => {
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
+    onChange(e)
 
     if (imageFile) {
       setSelectedImage(imageFile);
@@ -29,7 +30,7 @@ const ImageUpload = () => {
       {!previewImage ? (
         <img
           src="src/assets/inputImage.png"
-          class="clickUpload"
+          className="clickUpload"
           alt="click upload image"
           onClick={handleClick}
         ></img>

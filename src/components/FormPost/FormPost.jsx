@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-function FormPost() {
-  const [value, setValue] = useState("");
+function FormPost({value, onChange}) {
+  console.log("value", value)
+  const handleChange = (e) => {
+    onChange(e)
+  }
   var toolbarOptions = [
     ["bold", "italic", "underline"],
     ["image"],
@@ -13,13 +16,12 @@ function FormPost() {
     toolbar: toolbarOptions,
   };
   return (
-    <div class="formpost">
+    <div className="formpost">
       <ReactQuill
-        className="quill"
         modules={module}
         theme="snow"
         value={value}
-        onChange={setValue}
+        onChange={e => handleChange(e)}
       />
     </div>
   );

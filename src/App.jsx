@@ -24,6 +24,7 @@ import DescriptionProject from "./pages/CreateProject/DescriptionProject/Descrip
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
+import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -153,6 +154,16 @@ function App() {
             element={
               <PrivateRoute>
                 <SettingsProject />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/impactproject"
+            element={
+              <PrivateRoute>
+                <ImpactProject />
               </PrivateRoute>
             }
           />
