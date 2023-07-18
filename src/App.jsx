@@ -147,7 +147,7 @@ function App() {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             exact
             path="/settingsproject"
             element={

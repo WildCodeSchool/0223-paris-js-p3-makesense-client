@@ -1,6 +1,6 @@
 @use "../../../sass/global" as *;
 
-.background-project{
+.background_title_project{
     background-color: $color-accent-carmin;
     padding-top:10%;
     border-radius: 5px 5px 0px 0px;
@@ -46,7 +46,7 @@
     color : rgba(198, 198, 198, 1);
     
 }
-.custom-icon{
+.custom_flag{
     background-color:rgba(217, 217, 217, 0.2);
     width: 2rem;
     height: 1.5rem;
@@ -64,7 +64,7 @@
     margin-bottom: 3rem;
 }
 
-.selector{
+.selector_country{
     width: 10rem;
 }
 .country_title_choise{
@@ -77,7 +77,7 @@ margin-bottom: 1rem;
 
 }
 
-.custom-icon{
+.custom-icons{
     width: 1.5rem;
     height: 1rem;
     margin-right: 0.5rem;

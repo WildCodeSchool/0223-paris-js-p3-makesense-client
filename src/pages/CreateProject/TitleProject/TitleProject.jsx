@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 import Select from "react-select";
 import CreationGuide from "../../CreationGuide/CreationGuide";
 
-
 function TitleProject() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const clickMe = () => {};
+  const clickMe = () => {
+    navigate("/descriptionproject");
+  };
 
   useEffect(() => {
     if (!auth.user) {
@@ -24,7 +25,7 @@ function TitleProject() {
         <img
           src="../../src/assets/france.png"
           alt="France"
-          className="custom-icon"
+          className="custom_flag"
         />
       ),
     },
@@ -35,7 +36,7 @@ function TitleProject() {
         <img
           src="../../src/assets/espagne.png"
           alt="Espagne"
-          className="custom-icon"
+          className="custom_flag"
         />
       ),
     },
@@ -57,7 +58,7 @@ function TitleProject() {
       display: "flex",
       alignItems: "center",
       backgroundColor: "rgba(217, 217, 217, 0.2)",
-      fontFamily : "raleway",
+      fontFamily: "raleway",
     }),
   };
 
@@ -66,13 +67,13 @@ function TitleProject() {
   //   }
   return (
     <>
-      <div className="background-project">
+      <div className="background_title_project">
         <div className="launch_project_containers">
           <h1 className="title_project">Titre du projet</h1>
           <input
             className="input_title_project"
             placeholder="Exemple : Du café gratuit pour tous !"
-            color ="white"
+            color="white"
             type="text"
             id="name"
             name="name"
@@ -80,32 +81,32 @@ function TitleProject() {
             minlength="4"
             maxlength="128"
           />
-      
-            <div className="country_title_choise">
-              <p className="title_css">Mon pays de résidence :</p>
-            </div>
-            <div className="selector">
-              <Select
-                options={options}
-                styles={customStyles}
-                components={{
-                  IndicatorSeparator: () => null,
-                }}
-                getOptionLabel={(option) => (
-                  <div className="icons">
-                    {option.icon}
-                    <span>{option.label}</span>
-                  </div>
-                )}
-                getOptionValue={(option) => option.value}
-              />
-            </div>
 
-            <div className="button">
-              <button type="button" onClick={clickMe} className="launch_button">
-                DEMARRER
-              </button>
-            </div>
+          <div className="country_title_choise">
+            <p className="title_css">Mon pays de résidence :</p>
+          </div>
+          <div className="selector_country">
+            <Select
+              options={options}
+              styles={customStyles}
+              components={{
+                IndicatorSeparator: () => null,
+              }}
+              getOptionLabel={(option) => (
+                <div className="icons_title">
+                  {option.icon}
+                  <span>{option.label}</span>
+                </div>
+              )}
+              getOptionValue={(option) => option.value}
+            />
+          </div>
+
+          <div className="button_launch_project">
+            <button type="button" onClick={clickMe} className="launch_button">
+              DEMARRER
+            </button>
+          </div>
         </div>
       </div>
       <CreationGuide />

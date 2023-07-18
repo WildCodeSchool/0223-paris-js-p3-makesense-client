@@ -50,7 +50,7 @@ function SettingsProject() {
           </ul>
         </div>
 
-        <div className="column">
+        <div className="column_input">
           <h2 className="decision_timing_title">Le conflit *</h2>
           <ul className="decision">
             {DecisionTiming.map(({ number }, index) => {
@@ -95,7 +95,7 @@ function SettingsProject() {
             })}
           </ul>
         </div>
-        <div className="button">
+        <div className="button_settings_project">
               <button type="button" className="launch_button next_button" >
                 PRECEDENT
               </button>

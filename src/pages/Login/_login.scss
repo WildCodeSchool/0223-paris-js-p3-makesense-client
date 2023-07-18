@@ -1,22 +1,24 @@
 @use "../../sass/global" as *;
 
-.oeil{
-    left: -8%;
+
+.oeil_login{
+    margin-left: 2%;
 }
 
 .title1_login {
 font-size: $p-mobile;
 color: $primary-color;
-width: 73%;
+width: 80%;
 }
 
 .title2_login{
     font-size : $h1-mobile;
     color: $color-accent-lightOrange;
-    width: 73%;
+    width: 80%;
+    margin-top: 4%;
 }
 
-.containers{
+.containers_login{
 display: flex;
 align-items: center;
 flex-wrap: wrap;
@@ -26,7 +28,7 @@ position: relative;
 top:5rem;
 }
 
-.courriel_icon{
+.courriel_icon_login{
     background-image: url(./src/assets/Letter.png);
     background-repeat: no-repeat;
     background-position: left center;
@@ -41,7 +43,7 @@ top:5rem;
     border:2px solid #C6C6C6;
 }
 
-.password_icon{
+.password_icon_login{
     background-image: url(./src/assets/Lock.png);
     background-repeat: no-repeat;
     background-position: left center;
@@ -57,7 +59,7 @@ top:5rem;
     position: relative;
 }
 
-.connexion{
+.connexion_login{
     text-align: center;
     width: 90%;
     padding: 0.75rem 1.25rem;
@@ -72,13 +74,13 @@ top:5rem;
 
 }
 
-.button_connexion{
+.button_connexion_login{
     text-align: center;
     color: black;
     margin-right: 4%;
 }
 
-.forgot_password{
+.forgot_password_login{
     padding-top: 0.5rem;
     text-align: right;
     width: 100%;
@@ -88,26 +90,26 @@ form{
     width: 75%;
 }
 
-.checkbox {
+.checkbox_login {
     display: flex;
     align-items: center;
     margin-left: 4%;
 }
 
-.input_courriel{
+.input_courriel_login{
 text-align: center;
 margin-top: 2rem;
 margin-right: 4%;
 }
 
-.input_password{
+.input_password_login{
 text-align: center;
 margin-top: 0.7rem;
 margin-bottom: 1rem;
-margin-right: 4%;
+margin-left: 4%;
 }
 
-.button_connexion{
+.button_connexion_login{
     text-align: center;
     margin-top:2rem;
 }
@@ -132,7 +134,7 @@ input[type=checkbox] {
 @media screen and (min-width: 926px) {
 
 
-    .containers{
+    .containers_login{
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         position: relative;
         top:10rem;
@@ -143,13 +145,9 @@ input[type=checkbox] {
         padding: 1.5rem;      
     }
 
-    .box{
+    .box_login{
         background-image: url(./src/assets/pills/Pills_desktop_login.png);
         background-repeat: no-repeat;
         background-size: cover;
-    }
-
-    .oeil{
-        margin-left: 4%;
     }
 }
