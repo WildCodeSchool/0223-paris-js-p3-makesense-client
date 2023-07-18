@@ -1,5 +1,7 @@
 @forward "./global/";
 @forward "../components/Navbar/index";
+@forward "../pages/MonProfil/MonProfil";
+@forward "../components/Footer/index";
 @forward "../components/ProjectCard/index";
 @forward "../components/Footer/index";
 @forward "../components/Pagination/index";
@@ -12,6 +14,7 @@
 @forward "../pages/ForgotPassword/index";
 @forward "../pages/ResetPassword/index";
 @forward "../pages/CreateProject/TitleProject/index";
+@forward "../pages/SuiviProjet/index";
 @forward "../pages/CreateProject/DescriptionProject/index";
 @forward "../components/ImageUpload/index";
 @forward "../components/FormPost/index";

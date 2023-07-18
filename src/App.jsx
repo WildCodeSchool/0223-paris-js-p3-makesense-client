@@ -4,6 +4,10 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { getCurrentUser } from "./services/users";
+import { signin } from "./store/auth";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -11,10 +15,6 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
 import Login from "./pages/login/Login";
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
-import { getCurrentUser } from "./services/users";
-import { signin } from "./store/auth";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
@@ -24,6 +24,8 @@ import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
+import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
+import MonProfil from "./pages/monprofil/monprofil";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +101,24 @@ function App() {
             element={
               <PrivateRoute>
                 <TitleProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/monprofil"
+            element={
+              <PrivateRoute>
+                <MonProfil />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/suiviprojet"
+            element={
+              <PrivateRoute>
+                <SuiviProjet />
               </PrivateRoute>
             }
           />

@@ -1,0 +1,39 @@
+@use "../../sass//global" as *;
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.onglets {
+    display: flex;
+    width: 100%;
+}
+.onglet {
+    flex: 1;
+    padding: 10px 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.onglet.actif {
+    border-bottom: 2px solid black; 
+  }
+.contenu {
+    display: none;
+    padding: 20px;
+    border: 1px solid lightgray;
+}
+.contenu.actif {
+    display: block;
+}
+.containprojet {
+    width: 80%;
+    margin: 20px auto;
+}
+
+@media screen and (min-width: 926px) {
+    .containprojet {
+        width: 70%;
+        margin: 20px auto;
+    }
+}

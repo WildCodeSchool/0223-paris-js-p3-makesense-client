@@ -7,7 +7,7 @@ export default function ProjectViewHome() {
         <strong>Projet en cours </strong>
         trier par: <strong> A la une</strong>
       </p>
-      <FetchPosts />;
+      <FetchPosts />
     </section>
   );
 }

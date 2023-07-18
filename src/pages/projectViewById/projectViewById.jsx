@@ -13,7 +13,6 @@ export default function ProjectViewById() {
       const votesData = await getPostVote(id);
       setPost(postsData?.data[0]);
       setVotes(votesData?.data);
-      console.log(votesData.data, " VOTE");
     } catch (err) {
       console.error("err", err);
     }

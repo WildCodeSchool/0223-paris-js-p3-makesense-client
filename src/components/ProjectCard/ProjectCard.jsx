@@ -9,11 +9,7 @@ export default function ProjectCard({ post }) {
   };
   return (
     <figure onClick={handleClickShow}>
-      <img
-        src={post.avatar}
-        className="backgroundProject"
-        alt="projet"
-      />
+      <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
         <h3 className="c-blue ">{post.title}</h3>
         <div className="tagsProject">
