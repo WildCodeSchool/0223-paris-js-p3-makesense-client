@@ -1,0 +1,23 @@
+@use "../../../sass/global" as *;
+
+.selector{
+    margin:5% auto 5% auto;
+    width:60vw;
+}
+
+.selector p{
+    padding:0.5rem;
+    text-align: center;
+}
+
+.nextPreviousButtons{
+    display:flex;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.selectorImg{
+    height:1.2rem;
+    width:1.2rem;
+    margin-right:0.3rem;
+}

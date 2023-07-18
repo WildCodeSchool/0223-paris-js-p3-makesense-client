@@ -1,8 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import ImageUpload from "../../../components/ImageUpload/imageUpload"
 import FormPost from "../../../components/FormPost/FormPost"
 
+
 function DescriptionProject() {
+  const [data, setData] = useState({avatar: "", description:"", impact:"", profit:"", risk:""})
+  const handleInputChange = (filename, value) => {
+    setData(prevState => ({
+      ...prevState, 
+      [filename]:value
+    }))
+  }
+  const [isMissing, setIsMissing] = useState(false)
+  // const [projectImage, setProjectImage] = useState(null);
+  // const [projectDescription, setProjectDescription] = useState('');
+  // const [projectBenefits, setProjectBenefits] = useState('');
+  // const [projectRisks, setProjectRisks] = useState('');
+  // const [missingFields, setMissingFields] = useState(false)
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    if ( data.description, data.profit, data.risk, data.avatar === "") {
+      setIsMissing(true)
+    } else {
+      navigate("/impactproject");
+    }
+  };
+
     return (
         <>
         <div className="header">
@@ -28,11 +53,26 @@ function DescriptionProject() {
       </article>
       <div className="bloc-image">
       <p className="c-blue">Commençons par une image</p>
-      <ImageUpload/>
+       <ImageUpload onChange={value => handleInputChange("avatar", value)} />
       </div>
       <div className="editor-container">
+      <p className="c-blue">Description du projet</p>
+      <FormPost value={data.description} onChange={value => handleInputChange("description", value)}/>
       </div>
-      <FormPost/>
+
+      <div className="editor-container">
+      <p className="c-blue">Les bénéfices</p>
+      <FormPost value={data.profit} onChange={value => handleInputChange("profit", value)}/>
+      </div>
+      <div className="editor-container">
+      <p className="c-blue">Les risques</p>
+      <FormPost value={data.risk} onChange={value => handleInputChange("risk", value)}/>
+      </div>
+      {isMissing ?
+      <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
+      <div></div>
+    }
+      <button className="blueButton" onClick={handleNextClick}>SUIVANT</button>
         </>
     );
 }
