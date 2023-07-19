@@ -4,10 +4,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $bg-lightGrey;
 }
 .onglets {
     display: flex;
     width: 100%;
+    border-bottom: 1px solid $primary-color;
+    background-color: $bg-lightGrey;
+    margin-top: 2rem;
+    position: sticky;
+    top: 2.9rem;
 }
 .onglet {
     flex: 1;
@@ -16,12 +22,12 @@
     cursor: pointer;
 }
 .onglet.actif {
-    border-bottom: 2px solid black; 
+    border-bottom: 2px solid $primary-color; 
   }
 .contenu {
     display: none;
     padding: 20px;
-    border: 1px solid lightgray;
+
 }
 .contenu.actif {
     display: block;

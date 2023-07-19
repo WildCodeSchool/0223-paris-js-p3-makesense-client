@@ -69,11 +69,11 @@ function SuiviProjet() {
           distinctio provident? Natus beatae libero dolores assumenda aliquam
           dignissimos animi similique, incidunt corporis.
         </p>
-        <ul className="fetchPosts">
+        {/* <ul className="fetchPosts">
           {userVotes.map((post) => (
             <ProjectCard post={post} key={post.id} />
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );
