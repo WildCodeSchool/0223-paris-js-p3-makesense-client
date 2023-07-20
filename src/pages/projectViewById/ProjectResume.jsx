@@ -22,6 +22,7 @@ export default function ProjectResume() {
     searchData();
   }, []);
 
+  console.log(post);
   return (
     <section id="projectResume">
       <div className="globalContainer">
@@ -38,7 +39,7 @@ export default function ProjectResume() {
             <p className="tag-blue">{post.status}</p>
             <p className="tag-red">{post.location}</p>
           </div>
-          <div className="userInfosVote">
+          <div className="userInfos">
             <div className="userProjectInfos">
               <img
                 src={post.photo}

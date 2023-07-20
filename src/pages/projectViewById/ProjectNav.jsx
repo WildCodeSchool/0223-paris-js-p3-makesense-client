@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import ProjectDescription from "./ProjectDescription";
 import ProjectInfluences from "./ProjectInfluences";
 import ProjectAvis from "./ProjectAvis";
-// import { getVoteFromUser, getPostFromUser } from "../../services/post";
+import { getAllAvis } from "../../services/avis";
+
 export default function ProjectNav({ post }) {
   const [actif, setActif] = useState("projets");
-  const [userPosts, setUserPosts] = useState([]);
-  const [userVotes, setUserVotes] = useState([]);
+  const [postAvis, setPostAvis] = useState([]);
+  const { id } = useParams();
 
   const toggleActif = (onglet) => {
     if (onglet !== actif) {
@@ -16,12 +18,10 @@ export default function ProjectNav({ post }) {
   };
   const dataUser = async () => {
     try {
-      //   const userPost = await getPostFromUser();
-      //   const userVote = await getVoteFromUser();
-      //   setUserPosts(userPost.data);
-      //   setUserVotes(userVote?.data);
+      const getpostAvis = await getAllAvis(id);
+      setPostAvis(getpostAvis?.data);
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
     }
   };
 
@@ -48,7 +48,7 @@ export default function ProjectNav({ post }) {
           className={`onglet ${actif === "avis" ? "actif" : ""}`}
           onClick={() => toggleActif("avis")}
         >
-          Avis(4)
+          Avis({postAvis?.length})
         </li>
       </ul>
       <div
@@ -61,13 +61,13 @@ export default function ProjectNav({ post }) {
         className={`contenu ${actif === "influences" ? "actif" : ""}`}
         onClick={() => toggleActif("influences")}
       >
-        <ProjectInfluences />
+        <ProjectInfluences post={post} />
       </div>
       <div
         className={`contenu ${actif === "avis" ? "actif" : ""}`}
         onClick={() => toggleActif("avis")}
       >
-        <ProjectAvis />
+        <ProjectAvis avis={postAvis} />
       </div>
     </div>
   );

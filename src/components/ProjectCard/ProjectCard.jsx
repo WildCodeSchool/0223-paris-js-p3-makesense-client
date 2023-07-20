@@ -16,7 +16,7 @@ export default function ProjectCard({ post }) {
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
         </div>
-        <div className="userInfosDate">
+        <div className="userInfos">
           <div className="userProjectInfos">
             <img
               src={post.photo}

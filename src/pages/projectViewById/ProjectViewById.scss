@@ -1,5 +1,11 @@
 @use "../../sass/global" as *;
 
+#projectView{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #projectViewById{
   background-color: $primary-color;
   padding: 0;
@@ -30,70 +36,54 @@
         justify-content: space-between;
       }
 
-      .calendar {
-        width: 25px;
-        height: 25px;
-        border-radius: 5px;
-        background-color: $bg-white;
-        border-top: 7px solid $color-accent-green;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        rotate: 343deg;
-        box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.25);
-        strong {
-          position: absolute;
-          bottom: 10%;
-        }
-      }
-
-      .userInfosVote {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .userProjectInfos {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-
-          .avatarProject {
-            width: 35px;
-          }
-
-          span {
-            font-weight: bold;
-          }
-
-        }
-        .voteInfos {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.5rem;
-          position: relative;
-          p{
-            font-size: $a-mobile;
-            position: absolute;
-            bottom: -50%;
-        }
-          button{
-            padding: 0.5rem 0.75rem;
-            font-weight: bold;
-            color: $text-white;
-            background-color: $primary-color;
-            border-radius: 5px;
-          }
-        }
-        
-      }
     }
   }
 }
+.userInfos {
+  .voteInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    p{
+      font-size: $a-mobile;
+      position: absolute;
+      bottom: -50%;
+  }
+    button{
+      padding: 0.5rem 0.75rem;
+      font-weight: bold;
+      color: $text-white;
+      background-color: $primary-color;
+      border-radius: 5px;
+    }
+  }
+}
+.avisContainer{
+  background-color: $bg-darkGrey;
+  border-radius: 5px;
+  padding: 0.5rem;
+  
 
+  .avisByUser{
+    background-color: $bg-white;
+    border-radius: 5px;
+    margin: 1.25rem 0.5rem;
+    padding: 0.5rem;
+  }
+  .avisByUserText{
+    margin: 1rem 0;
+  }
+}
 @media screen and (min-width: 926px) {
   #projectResume {
 padding: 0 8rem;
+  }
+  .avisContainer{
+    padding: 1rem 2rem;
+    .avisByUser{
+      padding: 1.5rem;
+    }
   }
 }
