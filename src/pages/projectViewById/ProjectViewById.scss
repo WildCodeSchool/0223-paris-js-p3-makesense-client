@@ -1,0 +1,166 @@
+@use "../../sass/global" as *;
+
+#projectView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#projectViewById {
+  background-color: $primary-color;
+  padding: 0;
+}
+#projectResume {
+  padding: 0;
+
+  .globalContainer {
+    background-color: $bg-lightGrey;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .projectInfo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 2rem 0.75rem 1rem;
+      gap: 1rem;
+
+      .tagsProject {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .titleCalendar {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+.userInfos {
+  .voteInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    p {
+      font-size: $a-mobile;
+      position: absolute;
+      bottom: -50%;
+    }
+    .voteButton {
+      padding: 0.5rem 0.75rem;
+      font-weight: bold;
+      color: $text-white;
+      background-color: $primary-color;
+      border-radius: 5px;
+cursor: pointer;
+      &:hover{
+        background-color: $color-accent-yellow;
+        color: $primary-color;
+      }
+
+    }
+    .vote{
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      &:hover{
+        filter: brightness(80%);
+      }
+      img{
+        filter:contrast(10);
+        opacity: 50%;
+      }
+    }
+    .yes{
+      background-color: $color-accent-green;
+    }
+    .no{
+      background-color: $color-accent-red;
+    }
+
+  }
+}
+.avisContainer {
+  background-color: $bg-darkGrey;
+  border-radius: 5px;
+  padding: 0.5rem;
+
+  .avisByUser {
+    background-color: $bg-white;
+    border-radius: 5px;
+    margin: 1.25rem 0.5rem;
+    padding: 0.5rem;
+  }
+  .avisByUserText {
+    margin: 1rem 0;
+  }
+}
+
+.participantsAvatar{
+  display: flex;
+  flex-direction: row;
+  img{
+    width: 30px;
+    margin-right: -8px;
+  }
+}
+@media screen and (min-width: 926px) {
+  #projectResume {
+    padding: 0 8rem;
+
+
+  }
+  .avisContainer {
+    padding: 1rem 2rem;
+    .avisByUser {
+      padding: 1.5rem;
+    }
+  }
+}
+
+// .globalContainer {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   grid-template-rows: repeat(5, 1fr);
+
+//   grid-template-areas:
+//     "a a a ."
+//     "b b b c"
+//     "b b b d"
+//     "b b b e"
+//     "b b b f";
+// }
+
+// h3 {
+//   grid-area: a;
+//   // grid-area: 1 / 1 / 2 / 4;
+// }
+
+// .projectPhoto {
+//   grid-area: b;
+//   // grid-area: 2 / 1 / 6 / 4;
+//   width: 30rem;
+// }
+
+// .userProjectInfos {
+//   grid-area: c;
+//   // grid-area: 2 / 4 / 3 / 5;
+// }
+
+// .calendar {
+//   grid-area: d;
+//   // grid-area: 3 / 4 / 4 / 5;
+// }
+
+// .tagsProject {
+//   grid-area: e;
+//   // grid-area: 4 / 4 / 5 / 5;
+//   justify-content: space-between;
+// }
+
+// .voteInfos {
+//   grid-area: f;
+//   // grid-area: 5 / 4 / 6 / 5;
+// }
