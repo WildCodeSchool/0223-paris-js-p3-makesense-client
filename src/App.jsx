@@ -10,7 +10,6 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
-
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";

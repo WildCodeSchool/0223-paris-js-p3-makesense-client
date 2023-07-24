@@ -33,6 +33,14 @@ flex-direction: column;
   }
 }
 
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
 
 @media screen and (min-width: 926px) {
   .contenu-footer {
