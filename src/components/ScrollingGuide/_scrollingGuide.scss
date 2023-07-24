@@ -18,6 +18,9 @@
         padding: 0.5rem;
         gap: 0.5em;
 }
+button{
+  cursor: pointer;
+}
   li {
     width: 100%;
     background-color: $bg-grey;

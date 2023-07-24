@@ -12,7 +12,7 @@ export default function FetchPosts() {
       const postsData = await getAllPost();
       setPosts(postsData.data);
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
     }
   };
 

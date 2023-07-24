@@ -1,25 +1,25 @@
 import PropTypes from "prop-types";
-import Avatar from "../../assets/default_user.png";
-import Background from "../../assets/default_background_project.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectCard({ post }) {
+  const navigate = useNavigate();
+
+  const handleClickShow = () => {
+    navigate(`/projectview/${post.id}`);
+  };
   return (
-    <figure>
-      <img
-        src={post.image ? post.image : Background}
-        className="backgroundProject"
-        alt="projet"
-      />
+    <figure onClick={handleClickShow}>
+      <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
         <h3 className="c-blue ">{post.title}</h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
         </div>
-        <div className="userInfosDate">
+        <div className="userInfos">
           <div className="userProjectInfos">
             <img
-              src={Avatar}
+              src={post.photo}
               alt="profil utilisateur"
               className="avatarProject"
             />
@@ -42,7 +42,9 @@ export default function ProjectCard({ post }) {
 
 ProjectCard.propTypes = {
   post: PropTypes.shape({
-    image: PropTypes.string,
+    id: PropTypes.number,
+    avatar: PropTypes.string,
+    photo: PropTypes.string,
     title: PropTypes.string,
     status: PropTypes.string,
     location: PropTypes.string,
