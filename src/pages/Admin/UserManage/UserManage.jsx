@@ -17,11 +17,13 @@ function UserManage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [adminFilter, setAdminFilter] = useState(false);
   const [nonAdminFilter, setNonAdminFilter] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const searchData = async () => {
     try {
       const usersData = await getAllUsers();
       dispatch(sendUserData(usersData.data));
+      setVisible(true);
     } catch (err) {
       console.log("err", err);
     }
@@ -145,8 +147,8 @@ function UserManage() {
     }
   };
 
-  return (
-    <div className="box">
+  return visible ? (
+    <div>
       <div className="container_admin_usermanage">
         <SearchBarAdmin
           searchTerm={searchTerm}
@@ -189,6 +191,8 @@ function UserManage() {
         )}
       </div>
     </div>
+  ) : (
+    ""
   );
 }
 
