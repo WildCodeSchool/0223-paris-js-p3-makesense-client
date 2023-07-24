@@ -20,7 +20,7 @@ import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 import Register from "./pages/Admin/UserRegister/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
-import UserManage from "./pages/Admin/UserManage/UserManage";
+import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
@@ -142,7 +142,7 @@ function App() {
             path="/admin/users"
             element={
               <PrivateRouteAdmin>
-                <UserManage />
+                <UserManager />
               </PrivateRouteAdmin>
             }
           />
