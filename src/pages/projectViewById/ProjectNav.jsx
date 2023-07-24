@@ -7,7 +7,7 @@ import ProjectAvis from "./ProjectAvis";
 import { getAllAvis } from "../../services/avis";
 
 export default function ProjectNav({ post }) {
-  const [actif, setActif] = useState("projets");
+  const [actif, setActif] = useState("description");
   const [postAvis, setPostAvis] = useState([]);
   const { id } = useParams();
 
@@ -74,5 +74,14 @@ export default function ProjectNav({ post }) {
 }
 
 ProjectNav.propTypes = {
-  post: PropTypes.shape({}).isRequired,
+  post: PropTypes.shape({
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    photo: PropTypes.string,
+    text: PropTypes.string,
+    map: PropTypes.func,
+    description: PropTypes.string,
+    profit: PropTypes.string,
+    risk: PropTypes.string,
+  }).isRequired,
 };

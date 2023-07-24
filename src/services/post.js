@@ -14,7 +14,9 @@ const getImpactedFromPost = (id) => api.get(`/api/posts/impacted/${id}`);
 
 const getExpertFromPost = (id) => api.get(`/api/posts/expert/${id}`);
 
-const addVote = () => api.get(`/api/posts/votes`);
+const addVote = (data) => api.post(`/api/posts/votes`, data);
+
+const deleteVote = () => api.delete(`/api/posts/votes`);
 
 export {
   getAllPost,
@@ -25,4 +27,5 @@ export {
   getExpertFromPost,
   getImpactedFromPost,
   addVote,
+  deleteVote,
 };

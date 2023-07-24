@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { addAvis } from "../../services/avis";
 
 export default function ProjectAvis({ avis }) {
   return (
