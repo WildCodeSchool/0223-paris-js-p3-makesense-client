@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 
 export default function ProjectAvis({ avis }) {
-  console.log(avis);
   return (
     <div id="container">
       <div className="avisContainer">
         {avis.map((data) => (
-          <div className="avisByUser">
-            <div className="userInfos" key={data.date}>
+          <div className="avisByUser" key={data.date}>
+            <div className="userInfos">
               <div className="userProjectInfos">
                 <img
                   src={data.photo}

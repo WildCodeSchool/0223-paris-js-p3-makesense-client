@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCurrentPost, getPostVote } from "../../services/post";
+import { getCurrentPost, getPostVote, addVote } from "../../services/post";
 import ProjectNav from "./ProjectNav";
+import thumbUp from "../../assets/thumbUp.svg";
 
 export default function ProjectResume() {
   const [post, setPost] = useState([]);
@@ -22,11 +23,14 @@ export default function ProjectResume() {
     searchData();
   }, []);
 
-  console.log(post);
   return (
     <section id="projectResume">
       <div className="globalContainer">
-        <img src={post.avatar} alt="makesense logo" />
+        <img
+          src={post.avatar}
+          alt="post illustration"
+          className="projectPhoto"
+        />
         <div className="projectInfo">
           <div className="titleCalendar">
             <h3 className="c-blue"> {post.title}</h3>
@@ -55,7 +59,16 @@ export default function ProjectResume() {
               </p>
             </div>
             <div className="voteInfos">
-              <button type="button">VOTER</button>
+              <button type="button" className="voteButton">
+                VOTER
+              </button>
+              {/* <button type="button" className="vote yes">
+                <img src={thumbUp} alt="pouce en l'air" />
+              </button>
+              <button type="button" className="vote no">
+                <img src={thumbUp} alt="pouce en bas" />
+              </button> */}
+
               <p className="c-blue">{votes?.length} votants</p>
             </div>
           </div>
