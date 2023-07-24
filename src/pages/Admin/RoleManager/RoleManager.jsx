@@ -61,7 +61,11 @@ function RoleManager() {
   }, [roles, searchTerm]);
 
   useEffect(() => {
-    setCurrentPageRoles(filteredRoles);
+    if (searchTerm === "") {
+      setCurrentPageRoles(filteredRoles.slice(currentPageRoles, 9));
+    } else {
+      setCurrentPageRoles(filteredRoles);
+    }
   }, [filteredRoles]);
 
   return visible ? (

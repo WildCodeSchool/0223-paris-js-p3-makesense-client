@@ -22,10 +22,10 @@ import DescriptionProject from "./pages/CreateProject/DescriptionProject/Descrip
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
-import JobManager from "./pages/Admin/JobManager/JobManger";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
 import MonProfil from "./pages/monprofil/monprofil";
+import JobManager from "./pages/Admin/JobManager/JobManger";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
 import JobModify from "./pages/Admin/JobModify/JobModify";
 import RoleManager from "./pages/Admin/RoleManager/RoleManager";

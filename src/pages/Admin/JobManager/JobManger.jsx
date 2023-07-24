@@ -61,7 +61,11 @@ function JobManager() {
   }, [jobs, searchTerm]);
 
   useEffect(() => {
-    setCurrentPageJobs(filteredJobs);
+    if (searchTerm === "") {
+      setCurrentPageJobs(filteredJobs.slice(currentPageJobs, 9));
+    } else {
+      setCurrentPageJobs(filteredJobs);
+    }
   }, [filteredJobs]);
 
   return visible ? (

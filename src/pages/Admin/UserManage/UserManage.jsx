@@ -127,7 +127,11 @@ function UserManage() {
   }, [users, searchTerm, adminFilter, nonAdminFilter]);
 
   useEffect(() => {
-    setCurrentPageUsers(filteredUsers);
+    if (searchTerm === "") {
+      setCurrentPageUsers(filteredUsers.slice(currentPageUsers, 9));
+    } else {
+      setCurrentPageUsers(filteredUsers);
+    }
   }, [filteredUsers]);
 
   const setItems = (users) => {
