@@ -33,7 +33,7 @@ const ImageUpload = ({onChange}) => {
           className="clickUpload"
           alt="click upload image"
           onClick={handleClick}
-        ></img>
+        />
       ) : (
         <div className="image-preview-container">
           <img
@@ -41,7 +41,7 @@ const ImageUpload = ({onChange}) => {
             className="preview-image"
             alt="click upload image"
             onClick={handleClick}
-          ></img>
+          />
         </div>
       )}
       <input

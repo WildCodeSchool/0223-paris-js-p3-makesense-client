@@ -3,6 +3,8 @@ import authService from "../../services/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
+import logoWhite from "../../assets/makesense_logo_white.svg";
+import logoBlue from "../../assets/makesense_logo_blue.svg";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -33,7 +35,7 @@ function Navbar() {
     <nav className="nav2">
       <img
         className="nav_logo"
-        src="../src/assets/makesense_logo_white.png"
+        src={logoWhite}
         alt="makesense logo"
       />
     </nav>
@@ -42,7 +44,7 @@ function Navbar() {
       <div className="transparent"></div>
       <img
         className="nav_logo"
-        src="../src/assets/makesense_logo_bleu.png"
+        src={logoBlue}
         alt="makesense logo"
       />
       <div className="nav-linksDesktop">
@@ -59,7 +61,7 @@ function Navbar() {
         </ul>
       </div>
       <div></div>
-      <img className="nav_bell" src="../src/assets/bell.png" alt="bell" />
+      <img className="nav_bell" src="../src/assets/bell.svg" alt="bell" />
       <div className="burgerAvatar">
         <img
           className="menu"
