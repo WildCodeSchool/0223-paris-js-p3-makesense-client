@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeJob } from "../../store/jobs";
 import { deleteJob } from "../../services/jobs";
+import { removeRole } from "../../store/roles";
+import { deleteRole } from "../../services/roles";
 import { Link } from "react-router-dom";
 
-function JobsRolesCard({ JobRole, edit }) {
+function JobsRolesCard({ JobRole, edit, role }) {
   const dispatch = useDispatch();
   const [visibleModal, setvisibleModal] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -17,7 +19,25 @@ function JobsRolesCard({ JobRole, edit }) {
     setvisibleModal(!visibleModal);
   };
 
-  const handleClickFetch = async () => {
+  const handleClickFetchRole = async () => {
+    try {
+      await deleteRole(JobRole.id);
+      dispatch(removeRole(JobRole.id));
+      setvisibleModal(!visibleModal);
+    } catch (err) {
+      if (err.response.status === 401) {
+        setErrMessage(
+          "Impossible de supprimer ce rôle. Des utilisateurs sont encore liés à ce rôle."
+        );
+      } else {
+        setErrMessage(
+          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        );
+      }
+    }
+  };
+
+  const handleClickFetchJob = async () => {
     try {
       await deleteJob(JobRole.id);
       dispatch(removeJob(JobRole.id));
@@ -40,11 +60,19 @@ function JobsRolesCard({ JobRole, edit }) {
       <h3>{JobRole?.name}</h3>
       {edit ? (
         <div className="card_actions_admin_job">
-          <Link to={`/admin/jobs/${JobRole.id}`}>
-            <span className="action_edit_admin_job" title="Modifier">
-              &#x270E;
-            </span>
-          </Link>
+          {role ? (
+            <Link to={`/admin/roles/${JobRole.id}`}>
+              <span className="action_edit_admin_job" title="Modifier">
+                &#x270E;
+              </span>
+            </Link>
+          ) : (
+            <Link to={`/admin/jobs/${JobRole.id}`}>
+              <span className="action_edit_admin_job" title="Modifier">
+                &#x270E;
+              </span>
+            </Link>
+          )}
           <span
             className="action_delete_admin_job"
             title="Supprimer"
@@ -66,9 +94,15 @@ function JobsRolesCard({ JobRole, edit }) {
               <button id="btn_cancel" onClick={handleClickCancel}>
                 Annuler
               </button>
-              <button id="btn_confirm" onClick={handleClickFetch}>
-                Confirmer
-              </button>
+              {role ? (
+                <button id="btn_confirm" onClick={handleClickFetchRole}>
+                  Confirmer
+                </button>
+              ) : (
+                <button id="btn_confirm" onClick={handleClickFetchJob}>
+                  Confirmer
+                </button>
+              )}
             </div>
           </div>
         </div>

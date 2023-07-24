@@ -22,12 +22,15 @@ import DescriptionProject from "./pages/CreateProject/DescriptionProject/Descrip
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
-import JobManage from "./pages/Admin/JobManager/JobManger";
+import JobManager from "./pages/Admin/JobManager/JobManger";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
 import MonProfil from "./pages/monprofil/monprofil";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
 import JobModify from "./pages/Admin/JobModify/JobModify";
+import RoleManager from "./pages/Admin/RoleManager/RoleManager";
+import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
+import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 
 function App() {
   const dispatch = useDispatch();
@@ -148,7 +151,16 @@ function App() {
             path="/admin/jobs"
             element={
               <PrivateRouteAdmin>
-                <JobManage />
+                <JobManager />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/roles"
+            element={
+              <PrivateRouteAdmin>
+                <RoleManager />
               </PrivateRouteAdmin>
             }
           />
@@ -163,15 +175,6 @@ function App() {
           />
           <Route
             exact
-            path="/admin/users/register"
-            element={
-              <PrivateRouteAdmin>
-                <Register />
-              </PrivateRouteAdmin>
-            }
-          />
-          <Route
-            exact
             path="/admin/jobs/:id"
             element={
               <PrivateRouteAdmin>
@@ -181,10 +184,37 @@ function App() {
           />
           <Route
             exact
+            path="/admin/roles/:id"
+            element={
+              <PrivateRouteAdmin>
+                <RoleModify />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users/register"
+            element={
+              <PrivateRouteAdmin>
+                <Register />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
             path="/admin/jobs/register"
             element={
               <PrivateRouteAdmin>
                 <JobRegister />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/roles/register"
+            element={
+              <PrivateRouteAdmin>
+                <RoleRegister />
               </PrivateRouteAdmin>
             }
           />
