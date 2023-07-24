@@ -56,30 +56,61 @@ function UserManage() {
         admin,
         affiliated_site,
       } = user;
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+
+      const lowerCaseSearchTerm = searchTerm.toLowerCase().trim();
 
       const emailMatch =
         email && email.toLowerCase().includes(lowerCaseSearchTerm);
+
       const roleMatch =
-        role && role.toLowerCase().includes(lowerCaseSearchTerm);
-      const jobMatch = job && job.toLowerCase().includes(lowerCaseSearchTerm);
+        (role && role.toLowerCase().includes(lowerCaseSearchTerm)) ||
+        (role &&
+          role
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(lowerCaseSearchTerm));
+
+      const jobMatch =
+        (job && job.toLowerCase().includes(lowerCaseSearchTerm)) ||
+        (job &&
+          job
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(lowerCaseSearchTerm));
+
       const telMatch = tel && tel.toLowerCase().includes(lowerCaseSearchTerm);
-      const firstnameMatch =
-        firstname && firstname.toLowerCase().includes(lowerCaseSearchTerm);
-      const lastnameMatch =
-        lastname && lastname.toLowerCase().includes(lowerCaseSearchTerm);
+
       const affiliated_siteMatch =
-        affiliated_site &&
-        affiliated_site.toLowerCase().includes(lowerCaseSearchTerm);
+        (affiliated_site &&
+          affiliated_site.toLowerCase().includes(lowerCaseSearchTerm)) ||
+        (affiliated_site &&
+          affiliated_site
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(lowerCaseSearchTerm));
+
+      const firstnameLastnameMatch =
+        (`${firstname} ${lastname}` &&
+          `${firstname} ${lastname}`
+            .toLowerCase()
+            .includes(lowerCaseSearchTerm)) ||
+        (`${lastname} ${firstname}` &&
+          `${lastname} ${firstname}`
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(lowerCaseSearchTerm));
 
       const isMatch =
         emailMatch ||
         roleMatch ||
         jobMatch ||
         telMatch ||
-        firstnameMatch ||
         affiliated_siteMatch ||
-        lastnameMatch;
+        firstnameLastnameMatch;
 
       if (adminFilter && nonAdminFilter) {
         return isMatch;
@@ -129,6 +160,7 @@ function UserManage() {
             <input
               type="checkbox"
               id="adminFilterCheckbox"
+              className="filter_admin_user"
               checked={adminFilter}
               onChange={handleAdminFilter}
             />
@@ -138,10 +170,11 @@ function UserManage() {
             <input
               type="checkbox"
               id="nonAdminFilterCheckbox"
+              className="filter_admin_user"
               checked={nonAdminFilter}
               onChange={handleNonAdminFilter}
             />
-            Afficher les non-administrateurs
+            Afficher les utilisateurs
           </label>
         </div>
         <div className="card_container_admin_user">

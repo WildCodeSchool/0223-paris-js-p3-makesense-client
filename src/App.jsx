@@ -23,6 +23,7 @@ import DescriptionProject from "./pages/CreateProject/DescriptionProject/Descrip
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
+import JobManage from "./pages/Admin/JobMange/JobMange";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             exact
             path="/admin"
@@ -116,6 +118,15 @@ function App() {
             element={
               <PrivateRouteAdmin>
                 <UserManage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/jobs"
+            element={
+              <PrivateRouteAdmin>
+                <JobManage />
               </PrivateRouteAdmin>
             }
           />

@@ -1,0 +1,69 @@
+@use "../../../sass//global" as *;
+
+.card_container_admin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_admin {
+  width: 20rem;
+  background-color: $bg-grey;
+  padding: 1.25rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: $primary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow : $primary-color;
+}
+
+
+.card_admin h3 {
+  font-size: $h3-mobile;
+  background-color: $color-accent-orange;
+  color: $bg-white;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-top-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.9rem;
+}
+
+.card_actions_admin {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.1rem;
+}
+
+.action_edit_admin {
+  font-size: 1rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+
+.action_delete_admin {
+  font-size: 0.5rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+
+.action_edit_admin:hover {
+  color: $color-accent-green;
+}
+
+.action_edit_admin:hover {
+  color: $color-accent-red;
+}
+
+@media screen and (min-width: 926px) {
+  .card_admin {
+      width: 25rem;
+    }
+
+  .card_admin h3 {
+      font-size: $h3-desktop;
+  }
+}
