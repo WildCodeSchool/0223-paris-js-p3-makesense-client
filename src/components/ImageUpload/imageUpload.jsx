@@ -1,22 +1,84 @@
+// import React, { useState } from "react";
+// import FormPost from "../FormPost/FormPost";
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setImage} from '../../store/projectSlice';
+
+// const ImageUpload = () => {
+//   const dispatch = useDispatch();
+//   const { image } = useSelector((state) => state.project);
+
+
+//   const hiddenFileInput = React.useRef(null);
+//   const [selectedImage, setSelectedImage] = useState(null);
+//   const [previewImage, setPreviewImage] = useState(null);
+
+//   const handleClick = (event) => {
+//     hiddenFileInput.current.click();
+//   };
+
+//   const handleImageChange = (e) => {
+//     const imageFile = e.target.files[0];
+//     dispatch(setImage(e.target.value));
+
+
+//     if (imageFile) {
+//       setSelectedImage(imageFile);
+
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         setPreviewImage(reader.result);
+//       };
+//       reader.readAsDataURL(imageFile);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       {!previewImage ? (
+//         <img
+//           src="src/assets/inputImage.png"
+//           className="clickUpload"
+//           alt="click upload image"
+//           onClick={handleClick}
+//         />
+//       ) : (
+//         <div className="image-preview-container">
+//           <img
+//             src={previewImage}
+//             className="preview-image"
+//             alt="click upload image"
+//             onClick={handleClick}
+//           />
+//         </div>
+//       )}
+//       <input
+//         type="file"
+//         accept="image/*"
+//         ref={hiddenFileInput}
+//         value={image}
+//         onChange={handleImageChange}
+//         style={{ display: "none" }}
+//       />
+//     </div>
+//   );
+// };
+
+// export default ImageUpload;
+
 import React, { useState } from "react";
 import FormPost from "../FormPost/FormPost";
-
 const ImageUpload = ({onChange}) => {
   const hiddenFileInput = React.useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
-
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
-    onChange(e)
-
+    onChange(imageFile)
     if (imageFile) {
       setSelectedImage(imageFile);
-
       const reader = new FileReader();
       reader.onload = () => {
         setPreviewImage(reader.result);
@@ -24,7 +86,6 @@ const ImageUpload = ({onChange}) => {
       reader.readAsDataURL(imageFile);
     }
   };
-
   return (
     <div>
       {!previewImage ? (
@@ -54,5 +115,4 @@ const ImageUpload = ({onChange}) => {
     </div>
   );
 };
-
 export default ImageUpload;

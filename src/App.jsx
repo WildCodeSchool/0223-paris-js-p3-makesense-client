@@ -169,6 +169,25 @@ function App() {
               </PrivateRoute>
             }
           />
+           <Route
+            exact
+            path="/settingsproject"
+            element={
+              <PrivateRoute>
+                <SettingsProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/impactproject"
+            element={
+              <PrivateRoute>
+                <ImpactProject />
+              </PrivateRoute>
+            }
+          />
+          
         </Routes>
       </div>
       <Footer />

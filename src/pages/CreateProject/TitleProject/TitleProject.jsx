@@ -1,14 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Select from "react-select";
 import CreationGuide from "../../CreationGuide/CreationGuide";
+import { useDispatch, useSelector } from 'react-redux';
+import { setTitle } from '../../../store/projectSlice';
 
 function TitleProject() {
+  const dispatch = useDispatch();
+  const [newTitle, setNewTitle]= useState("")
+  const [isMissing, setIsMissing] = useState(false)
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const clickMe = () => {
-    navigate("/descriptionproject");
+    if (newTitle === "") {
+      setIsMissing(true)
+    } else {
+      setIsMissing(false)
+      dispatch(setTitle(newTitle));
+      navigate("/descriptionproject");
+    }
   };
 
   useEffect(() => {
@@ -80,6 +90,7 @@ function TitleProject() {
             required
             minlength="4"
             maxlength="128"
+            onChange={(e) => setNewTitle(e.target.value)}
           />
 
           <div className="country_title_choise">
@@ -101,7 +112,10 @@ function TitleProject() {
               getOptionValue={(option) => option.value}
             />
           </div>
-
+          {isMissing ?
+      <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
+      <div></div>
+    }
           <div className="button_launch_project">
             <button type="button" onClick={clickMe} className="launch_button">
               DEMARRER
