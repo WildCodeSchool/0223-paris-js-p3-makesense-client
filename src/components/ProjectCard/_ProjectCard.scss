@@ -2,6 +2,7 @@
 
 figure {
   cursor: pointer;
+  position: relative;
   width: 20rem;
   display: flex;
   flex-flow: column;
@@ -66,7 +67,7 @@ figure {
 }
 
 .card_actions_admin_post {
-  position : relative;
+  position : absolute;
   top: 0.2rem;
   right: 0.2rem;
 }

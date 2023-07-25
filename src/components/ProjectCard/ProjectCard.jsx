@@ -31,11 +31,27 @@ export default function ProjectCard({ post, edit }) {
       );
     }
   };
+
   const handleClickShow = () => {
     navigate(`/projectview/${post.id}`);
   };
+
   return edit ? (
     <figure>
+      <div className="card_actions_admin_post">
+        <Link to={`/admin/posts/${post.id}`}>
+          <span className="action_edit_admin_post" title="Modifier">
+            &#x270E;
+          </span>
+        </Link>
+        <span
+          className="action_delete_admin_post"
+          title="Supprimer"
+          onClick={(e) => handleClickDelete()}
+        >
+          &#x2716;
+        </span>
+      </div>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
         <h3 className="c-blue ">{post.title}</h3>
@@ -60,20 +76,6 @@ export default function ProjectCard({ post, edit }) {
           </div>
           <div className="calendar">
             <strong>7</strong>
-          </div>
-          <div className="card_actions_admin_post">
-            <Link to={`/admin/users/${post.id}`}>
-              <span className="action_edit_admin_post" title="Modifier">
-                &#x270E;
-              </span>
-            </Link>
-            <span
-              className="action_delete_admin_post"
-              title="Supprimer"
-              onClick={(e) => handleClickDelete()}
-            >
-              &#x2716;
-            </span>
           </div>
           {visibleModal ? (
             <div id="modal_delete" class="modal">

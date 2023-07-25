@@ -43,7 +43,6 @@ function UserModify() {
       ) {
         navigate("/admin/users");
       } else {
-        console.log("err", err);
         setError(
           "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
         );
@@ -76,7 +75,6 @@ function UserModify() {
         await modifyAccount(modify, id);
         navigate("/admin/users");
       } catch (err) {
-        console.log("err.reponse", err.reponse);
         if (err.response.status === 400) {
           setError(
             "L'adresse e-mail est déjà utilisée par un autre utilisateur."
@@ -92,7 +90,6 @@ function UserModify() {
             lastname: "Nom de famille",
           };
           validationErrors.forEach((error) => {
-            console.log("error", error);
             const translatedField =
               fieldTranslations[error.field] || error.field;
             errorMessage += `${translatedField}, `;

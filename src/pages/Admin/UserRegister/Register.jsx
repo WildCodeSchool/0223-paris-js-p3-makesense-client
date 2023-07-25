@@ -46,7 +46,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("register --->", register);
     const { email, firstname, lastname, role_id, job_id, admin } = register;
     if (
       email === "" ||
