@@ -1,0 +1,50 @@
+@use "../../sass//global" as *;
+
+#container {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    background-color: $bg-lightGrey;
+    gap: 0.5rem;
+}
+.onglets {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid $primary-color;
+    background-color: $bg-lightGrey;
+    margin-top: 2rem;
+    position: sticky;
+    top: 2.8rem;
+}
+.onglet {
+    flex: 1;
+    padding: 10px 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.onglet.actif {
+    border-bottom: 2px solid $primary-color; 
+  }
+.contenu {
+    display: none;
+    padding: 2rem;
+
+}
+.contenu.actif {
+    display: block;
+}
+.containprojet {
+    width: 90%;
+    margin: 10px 0 10px 20px ;
+}
+
+@media screen and (min-width: 926px) {
+    .containprojet {
+        width: 70%;
+        margin: 20px auto;
+    }
+    .contenu {
+        padding: 2rem 6rem;
+    
+    }
+}

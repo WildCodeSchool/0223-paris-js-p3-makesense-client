@@ -3,23 +3,29 @@ import {
   Route,
   Routes,
   Navigate,
-  useLocation,
 } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { getCurrentUser } from "./services/users";
+import { signin } from "./store/auth";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
 
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
-import Login from "./pages/Login/Login";
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
-import { getCurrentUser } from "./services/users";
-import { signin } from "./store/auth";
+import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
-import Monprofil from "./pages/monprofil/monprofil";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import Register from "./pages/Admin/UserRegister/Register";
+import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import UserManage from "./pages/Admin/UserManage/UserManage";
+import UserModify from "./pages/Admin/UserModify/UserModify";
+import ProjectViewById from "./pages/projectViewById/projectViewById";
+import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
+import MonProfil from "./pages/monprofil/monprofil";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,15 +50,6 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route
-            exact
-            path="/monprofil"
-            element={
-              <PrivateRoute>
-                <Monprofil />
-              </PrivateRoute>
-            }
-          />
           <Route
             exact
             path="/"
@@ -107,9 +104,81 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            exact
+            path="/monprofil"
+            element={
+              <PrivateRoute>
+                <MonProfil />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/suiviprojet"
+            element={
+              <PrivateRoute>
+                <SuiviProjet />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/admin"
+            element={
+              <PrivateRouteAdmin>
+                <Dashboard />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users"
+            element={
+              <PrivateRouteAdmin>
+                <UserManage />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users/:id"
+            element={
+              <PrivateRouteAdmin>
+                <UserModify />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/users/register"
+            element={
+              <PrivateRouteAdmin>
+                <Register />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/descriptionproject"
+            element={
+              <PrivateRoute>
+                <DescriptionProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/projectview/:id"
+            element={
+              <PrivateRoute>
+                <ProjectViewById />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   ) : (
     ""
@@ -121,28 +190,8 @@ const admins = [
   1, //  => Admin
 ];
 
-const PrivateRoute = ({ children, admin = 1 }) => {
+const PrivateRoute = ({ children, admin = 0 }) => {
   const auth = useSelector((state) => state.auth);
-  console.log("auth", auth);
-  if (auth.isLogged) {
-    console.log("auth.user", auth.user);
-    console.log("kader noob");
-    if (auth.user?.admin == admin || auth.user?.admin === 1) {
-      console.log("toto");
-      console.log("children", children);
-      return children;
-    } else {
-      console.log("toto");
-      return <Navigate to="/" />;
-    }
-  } else {
-    console.log("tata", children);
-    return <Navigate to="/login" />;
-  }
-  const location = useLocation();
-  console.log("location", location.pathname);
-  console.log(auth);
-  console.log("auth.isLogged", auth.isLogged);
   if (auth.isLogged) {
     if (
       auth.user?.admin === admin ||
@@ -150,9 +199,20 @@ const PrivateRoute = ({ children, admin = 1 }) => {
     ) {
       return children;
     }
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
-  <Navigate to="/login" />;
+  return <Navigate to="/login" />;
+};
+
+const PrivateRouteAdmin = ({ children, admin = 1 }) => {
+  const auth = useSelector((state) => state.auth);
+  if (auth.isLogged) {
+    if (auth.user?.admin === admin) {
+      return children;
+    }
+    return <Navigate to="/" />;
+  }
+  return <Navigate to="/login" />;
 };
 
 const PublicRoute = ({ children }) => {

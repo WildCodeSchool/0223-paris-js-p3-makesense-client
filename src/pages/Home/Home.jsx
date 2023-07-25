@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import { useSelector } from "react-redux";
+import ProjectViewHome from "../../components/ProjectViewHome";
+
 export default function Home() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -29,9 +30,9 @@ export default function Home() {
           accompagne dans vos projets.
         </p>
         <div className="homeInputs">
-          <button type="button" onClick={clickMe} className="button-bg-orange">
+          <a href="#projectView" onClick={clickMe} className="button-bg-orange">
             décourvrir les projets
-          </button>
+          </a>
           <button type="button" onClick={clickMe} className="button-bg-a0">
             lancer mon projet
           </button>
@@ -44,7 +45,7 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <ProjectCard />
+      <ProjectViewHome />
     </>
   );
 }

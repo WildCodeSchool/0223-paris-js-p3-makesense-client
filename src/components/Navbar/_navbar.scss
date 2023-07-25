@@ -2,8 +2,8 @@
 
 nav{
     width: 100vw;
-    background-color: white;
-    position: fixed;
+    background-color: $bg-white;
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,7 +14,7 @@ nav{
 }
 
 .nav-links{
-    background-color: white;
+    background-color: $bg-white;
     position:fixed;
     top:0;
     width:100%;
@@ -50,7 +50,6 @@ nav{
 
 .nav-links ul li a {
     color:$primary-color;
-    font-family: $titles-font;
     font-weight:700;
 }
 .nav_avatar_default{

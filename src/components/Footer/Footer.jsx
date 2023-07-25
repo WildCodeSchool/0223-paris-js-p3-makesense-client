@@ -1,9 +1,12 @@
+import React from "react";
+import logoWhite from "../../assets/makesense_logo_white.svg";
+
 function Footer() {
   return (
     <footer>
       <div className="contenu-footer">
-        <div className="bloc-footer">
-          <h1>Liens utiles</h1>
+        <div className="blocFooter">
+          <h4>Liens utiles</h4>
           <ul className="useful links">
             <li>
               <a href="#">Rapport d'activité</a>
@@ -14,8 +17,8 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="bloc-footer">
-          <h1>Contact</h1>
+        <div className="blocFooter">
+          <h4>Contact</h4>
           <ul className="contact">
             <li>
               <a href="#">Makesense dans le monde</a>
@@ -23,26 +26,28 @@ function Footer() {
           </ul>
         </div>
 
-        <div className="bloc-footer">
-          <ul className="iconesfooter">
+        <div className="blocFooter">
+          <ul className="iconesFooter">
             <li>
               <a href="#">
-                <img src="../src/assets/facebook.png" className= "iconefacebook" alt="icone facebook" />
+                <img
+                  src="../src/assets/facebook.png"
+                  alt="icone facebook"
+                />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../src/assets/instagram.png" className= "iconeinsta" alt="icone instagram" />
+                <img
+                  src="../src/assets/instagram.png"
+                  alt="icone instagram"
+                />
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <img
-        className="logofooter"
-        src="../src/assets/makesense_logo_white.png"
-        alt="makesense logo"
-      />
+      <img className="logofooter" src={logoWhite} alt="makesense logo" />
     </footer>
   );
 }

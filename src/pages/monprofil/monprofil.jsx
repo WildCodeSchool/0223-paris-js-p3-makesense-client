@@ -6,7 +6,7 @@ import { editUser, getCurrentUser } from "../../services/users";
 import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 
-const Monprofil = () => {
+const MonProfil = () => {
   const [profileImage, setProfileImage] = useState(
     "../../src/assets/default_user.png"
   );
@@ -83,6 +83,7 @@ const Monprofil = () => {
         <div className="profile-file">
           <img src={profileImage} alt="userprofile" className="profile-image" />
           <img
+          className="crayonimg"
             src="../../src/assets/crayon.png"
             alt="editprofile"
             onClick={handleEditProfile}
@@ -237,4 +238,4 @@ const Monprofil = () => {
   );
 };
 
-export default Monprofil;
+export default MonProfil;

@@ -1,15 +1,25 @@
 import api from "./api";
 
-const getAllUsers = () => {
-    return api.get("/api/users");
-}
+const getAllUsers = () => api.get("/api/users");
 
-const getCurrentUser = () => {
-    return api.get("/api/users/me");
-} 
+const getCurrentUser = () => api.get("/api/users/me");
 
-const editUser = (data) => {
-    return api.put("/api/users/", data);
-}
+const editUser = (data) => api.put("/api/users/", data);
 
-export {getAllUsers, getCurrentUser, editUser};
+const createAccount = (data) => api.post("/api/users/register", data);
+
+const deleteUtilisateur = (id) => api.delete(`/api/users/${id}`);
+
+const getUser = (id) => api.get(`/api/users/${id}`);
+
+const modifyAccount = (data, id) => api.put(`/api/users/${id}`, data);
+
+export {
+  getAllUsers,
+  getCurrentUser,
+  createAccount,
+  editUser,
+  deleteUtilisateur,
+  getUser,
+  modifyAccount,
+};

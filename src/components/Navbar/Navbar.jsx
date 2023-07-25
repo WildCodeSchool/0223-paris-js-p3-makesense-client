@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import authService from "../../services/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
+import logoWhite from "../../assets/makesense_logo_white.svg";
+import logoBlue from "../../assets/makesense_logo_blue.svg";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -18,7 +20,7 @@ function Navbar() {
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   };
 
@@ -33,7 +35,7 @@ function Navbar() {
     <nav className="nav2">
       <img
         className="nav_logo"
-        src="../src/assets/makesense_logo_white.png"
+        src={logoWhite}
         alt="makesense logo"
       />
     </nav>
@@ -42,7 +44,7 @@ function Navbar() {
       <div className="transparent"></div>
       <img
         className="nav_logo"
-        src="../src/assets/makesense_logo_bleu.png"
+        src={logoBlue}
         alt="makesense logo"
       />
       <div className="nav-linksDesktop">
@@ -58,7 +60,8 @@ function Navbar() {
           </li>
         </ul>
       </div>
-      <img className="nav_bell" src="../src/assets/bell.png" alt="bell" />
+      <div></div>
+      <img className="nav_bell" src="../src/assets/bell.svg" alt="bell" />
       <div className="burgerAvatar">
         <img
           className="menu"
@@ -85,6 +88,9 @@ function Navbar() {
             </li>
             <li>
               <a href="#">Aide</a>
+            </li>
+            <li>
+              <Link to="/admin">Adminstration</Link>
             </li>
             <li>
               <a href="#" onClick={handleSubmit}>
@@ -119,13 +125,12 @@ function Navbar() {
             <a href="#">Gérer les projets</a>
           </li>
           <li>
+            <Link to="/admin">Adminstration</Link>
+          </li>
+          <li>
             <a href="#" onClick={handleSubmit}>
               Déconnexion
             </a>
-            {/* <a href="#">Déconnexion</a> */}
-            {/* <form onSubmit={handleSubmit}>
-              <input type="submit" value="Disconnect" />
-            </form> */}
           </li>
         </ul>
       </div>
