@@ -169,6 +169,15 @@ function App() {
               </PrivateRoute>
             }
           />
+           <Route
+            exact
+            path="/settingsproject"
+            element={
+              <PrivateRouteAdmin>
+                <SettingsProject />
+              </PrivateRouteAdmin>
+            }
+          />
         </Routes>
       </div>
       <Footer />
