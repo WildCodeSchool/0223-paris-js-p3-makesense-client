@@ -16,6 +16,10 @@ const getExpertFromPost = (id) => api.get(`/api/posts/expert/${id}`);
 
 const addVote = () => api.get(`/api/posts/votes`);
 
+const deletePost = (id) => {
+  return api.delete(`/api/posts/${id}`)
+}
+
 export {
   getAllPost,
   getCurrentPost,
@@ -25,4 +29,5 @@ export {
   getExpertFromPost,
   getImpactedFromPost,
   addVote,
+  deletePost,
 };

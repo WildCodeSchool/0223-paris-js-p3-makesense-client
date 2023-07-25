@@ -65,6 +65,29 @@ figure {
   }
 }
 
+.card_actions_admin_post {
+  position : relative;
+  top: 0.2rem;
+  right: 0.2rem;
+}
+
+.action_edit_admin_post,
+.action_delete_admin_post {
+  font-size: 1.2rem;
+  color: $primary-color;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+
+.action_edit_admin_post:hover {
+  color: $color-accent-green;
+}
+
+.action_delete_admin_post:hover {
+  color: $color-accent-red;
+}
+
+
 @media screen and (min-width: 926px) {
   figure {
     width: 23rem;

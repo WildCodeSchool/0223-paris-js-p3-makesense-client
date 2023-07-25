@@ -52,11 +52,7 @@ function RoleManager() {
 
       const isMatch = nameMatch;
 
-      if (nameMatch) {
-        return isMatch;
-      } else {
-        return isMatch;
-      }
+      return isMatch;
     });
   }, [roles, searchTerm]);
 

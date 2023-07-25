@@ -3,7 +3,8 @@ import auth from "./auth";
 import users from "./users";
 import jobs from "./jobs";
 import roles from "./roles";
+import posts from "./posts";
 
 export default configureStore({
-  reducer: { auth, users, jobs, roles },
+  reducer: { auth, users, jobs, roles, posts },
 });

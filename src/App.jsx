@@ -31,6 +31,7 @@ import JobModify from "./pages/Admin/JobModify/JobModify";
 import RoleManager from "./pages/Admin/RoleManager/RoleManager";
 import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
+import PostsManager from "./pages/Admin/PostsManager/PostsManager";
 
 function App() {
   const dispatch = useDispatch();
@@ -161,6 +162,15 @@ function App() {
             element={
               <PrivateRouteAdmin>
                 <RoleManager />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/posts"
+            element={
+              <PrivateRouteAdmin>
+                <PostsManager />
               </PrivateRouteAdmin>
             }
           />

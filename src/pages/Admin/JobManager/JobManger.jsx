@@ -52,11 +52,7 @@ function JobManager() {
 
       const isMatch = nameMatch;
 
-      if (nameMatch) {
-        return isMatch;
-      } else {
-        return isMatch;
-      }
+      return isMatch;
     });
   }, [jobs, searchTerm]);
 
