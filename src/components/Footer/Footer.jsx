@@ -28,7 +28,12 @@ function Footer() {
       window.removeEventListener("pageshow", handlePageChange);
       window.removeEventListener("resize", handleResize);
     };
-  }, [refresh]);
+  }, [
+    refresh,
+    document.documentElement.scrollHeight,
+    window.innerHeight,
+    window.pageYOffset,
+  ]);
 
   useEffect(() => {
     const refreshInterval = setInterval(() => {
