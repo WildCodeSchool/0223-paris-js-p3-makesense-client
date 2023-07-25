@@ -29,6 +29,7 @@ body {
     margin-top: 20px;
     border: 6px solid $color-accent-cian;
     border-radius: 50%;
+    position: relative;
 }
 .crayonimg {
     background-color: $color-accent-cian ;
@@ -38,7 +39,7 @@ body {
     padding: 5px;
     position: absolute;
     left: 55%;
-    top: 22%;
+    top: 25%;
     cursor: pointer;
 }
 label {
@@ -62,6 +63,11 @@ label {
 }
 .profile-input[readonly] {
     cursor: not-allowed;
+}
+.error-message {
+    color: red; 
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 button {

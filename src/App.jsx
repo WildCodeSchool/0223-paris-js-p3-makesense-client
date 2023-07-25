@@ -25,7 +25,7 @@ import UserManage from "./pages/Admin/UserManage/UserManage";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
-import MonProfil from "./pages/monprofil/monprofil";
+import MonProfil from "./pages/MonProfil/MonProfil";
 
 function App() {
   const dispatch = useDispatch();
