@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import CreationGuide from "../../CreationGuide/CreationGuide";
 import { useDispatch, useSelector } from 'react-redux';
-import { setTitle } from '../../../store/projectSlice';
+import { setTitle, setCountry } from '../../../store/projectSlice';
 
 function TitleProject() {
   const dispatch = useDispatch();
   const [newTitle, setNewTitle]= useState("")
+  const [location, setLocation] = useState("")
   const [isMissing, setIsMissing] = useState(false)
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -16,7 +17,8 @@ function TitleProject() {
       setIsMissing(true)
     } else {
       setIsMissing(false)
-      dispatch(setTitle(newTitle));
+      dispatch(setTitle(newTitle.value));
+      dispatch(setCountry(location));
       navigate("/descriptionproject");
     }
   };
@@ -110,6 +112,7 @@ function TitleProject() {
                 </div>
               )}
               getOptionValue={(option) => option.value}
+              onChange={setLocation}
             />
           </div>
           {isMissing ?

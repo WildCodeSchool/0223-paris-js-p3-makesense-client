@@ -1,29 +1,64 @@
 import React, { useState } from "react";
 import { DecisionTiming } from "./decision_timing";
 import { useDispatch, useSelector } from 'react-redux';
-import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from '../../../store/projectSlice';
 import { useNavigate } from "react-router-dom";
+import { createPost } from "../../../services/post"
+import { addUserParticipant } from "../../../services/post"
 
 function SettingsProject() {
-  const [data, setData] = useState({ makeDecisionDate : "", conflitDate : "", deadLineDate : "" })
-  const { title, description, benefits, risks, image, impacted, expert, impactOrganisation } = useSelector((state) => state.project);
+  const [decisiondata, setDecisionData] = useState({ makeDecisionDate : "", conflitDate : "", deadLineDate : "" })
+  const test = useSelector((state) => state.project);
+  console.log(test);
+  const { title, description, benefits, risks, image, expertImpacted, impactOrganisation, country } = useSelector((state) => state.project);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMissing, setIsMissing] = useState(false)
-  const handleClick = () => {
-  //   const decisionDate = new Date( Date.now() + (6.048e+8 * data.makeDecisionDate) )
-  // const confliDate =  new Date( Date.now() + (6.048e+8 * (data.conflitDate + data.makeDecisionDate )))
-  // const deadDate = new Date( Date.now() + (6.048e+8 * (data.conflitDate + data.makeDecisionDate + data.deadLineDate)))
-  // console.log("date1", decisionDate)
-  // console.log("date2", confliDate)
-  // console.log("date", deadDate)
-    if ( data.makeDecisionDate === "" || data.conflictDate === "" || data.deadLineDate === "") {
+  const handleClick = async () => {
+  const decisionDate = new Date( Date.now() + (6.048e+8 * decisiondata.makeDecisionDate) )
+  const confliDate =  new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate )))
+  const deadDate = new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate + decisiondata.deadLineDate)))
+    if ( decisiondata.makeDecisionDate === "" || decisiondata.conflitDate === "" || decisiondata.deadLineDate === "") {
       setIsMissing(true)
     } else {
-      dispatch(setDecisionDelay(data.makeDecisionDate));
-      dispatch(setConflictDelay(data.conflitDate));
-      dispatch(setDecisionEndDelay(data.deadLineDate));
-      navigate("/");
+      try {
+        let data = {
+          title: title,
+          description: description,
+          profit: benefits,
+          risk: risks,
+          avatar: image,
+          // impacted: impacted,
+          // expert: expert,
+          impact: impactOrganisation,
+          deadlineDate: deadDate,
+          makeDecisionDate: decisionDate,
+          conflitDate: confliDate,
+          location: country,
+        }
+        const form = new FormData();
+        for (const key in data) {
+          form.append(key, data[key]);
+        }
+        console.log("toyo", expertImpacted)
+        console.log("Data", data)
+        const dataCreatePost = await createPost(form);
+        console.log("totototootototototto", dataCreatePost)
+        // expertImpacted.map(e => {
+        //   return e.post_id =dataCreatePost.data.id;
+        // })
+        // expertImpacted.forEach(obj => {
+        //   obj.toto = "Valeur par défaut";
+        // });
+        const newTab = expertImpacted.map(obj => ({ ...obj, post_id:  dataCreatePost.data.id}));
+
+
+        console.log("expertImpacted edit", newTab)
+        let userdata = { users: newTab,};
+        await addUserParticipant(userdata);
+      } catch (err) {
+        console.log("err", err);
+      }
+      // navigate("/");
     }
   };
   return (
@@ -66,7 +101,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionPrise"
                       value={number.number}
-                      onClick={e => setData({ ...data, makeDecisionDate : (index+1)})}
+                      onClick={e => setDecisionData({ ...decisiondata, makeDecisionDate : (index+1)})}
                     />
                   </div>
                 </li>
@@ -90,7 +125,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionConflit"
                       value={number.number}
-                      onClick={e => setData({ ...data, conflitDate : (index+1)})}
+                      onClick={e => setDecisionData({ ...decisiondata, conflitDate : (index+1)})}
                     />
                   </div>
                 </li>
@@ -114,7 +149,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionDefinitive"
                       value={number.number}
-                      onClick={e => setData({ ...data, deadLineDate : (index+1)})}
+                      onClick={e => setDecisionData({ ...decisiondata, deadLineDate : (index+1)})}
                     />
                   </div>
                 </li>

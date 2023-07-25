@@ -6,12 +6,12 @@ const initialState = {
   benefits: '',
   risks: '',
   image: '',
-  impacted:'',
-  expert:'',
+  expertImpacted:'',
   impactOrganisation:'',
   decisionDelay:'',
   conflictDelay:'',
-  decisionEndDelay:''
+  decisionEndDelay:'',
+  country:''
 
 };
 
@@ -31,14 +31,11 @@ const projectSlice = createSlice({
     setRisks: (state, action) => {
       state.risks = action.payload;
     },
-    setImpacted: (state, action) => {
-      state.impacted = action.payload;
-    },
     setImage: (state, action) => {
       state.image = action.payload;
     },
-    setExpert: (state, action) => {
-        state.expert = action.payload;
+    setExpertImpacted: (state, action) => {
+        state.expertImpacted = action.payload;
       },
     setImpactOrganisation: (state, action) => {
         state.impactOrganisation = action.payload;
@@ -52,6 +49,9 @@ const projectSlice = createSlice({
     setDecisionEndDelay: (state, action) => {
         state.decisionEndDelay = action.payload;
       },
+    setCountry: (state, action) => {
+        state.country = action.payload;
+      },
   },
 });
 
@@ -60,13 +60,13 @@ export const {
       setDescription,
       setBenefits,
       setRisks,
-      setImpacted,
+      setExpertImpacted,
       setImage,
-      setExpert,
       setImpactOrganisation,
       setDecisionDelay,
       setConflictDelay,
       setDecisionEndDelay,
+      setCountry
 } = projectSlice.actions;
 
 export default projectSlice.reducer;

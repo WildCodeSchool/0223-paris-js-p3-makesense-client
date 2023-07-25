@@ -16,6 +16,10 @@ const getExpertFromPost = (id) => api.get(`/api/posts/expert/${id}`);
 
 const addVote = () => api.get(`/api/posts/votes`);
 
+const createPost = (data) => api.post(`/api/posts`, data);
+
+const addUserParticipant = (data) => api.post(`/api/posts/participants`, data);
+
 export {
   getAllPost,
   getCurrentPost,
@@ -25,4 +29,6 @@ export {
   getExpertFromPost,
   getImpactedFromPost,
   addVote,
+  createPost,
+  addUserParticipant,
 };

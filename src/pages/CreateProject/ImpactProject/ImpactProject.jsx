@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { getAllUsers } from "../../../services/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch} from 'react-redux';
-import { setImpacted, setExpert, setImpactOrganisation} from '../../../store/projectSlice';
+import { setExpertImpacted, setImpactOrganisation} from '../../../store/projectSlice';
 
 function ImpactProject() {
   const [data, setdata] = useState([]);
@@ -49,23 +49,24 @@ function ImpactProject() {
         setIsMissing(true);
       } else {
         setIsMissing(false);
-        dispatch(setImpacted(dataImpacted));
-        dispatch(setExpert(dataExpert));
         dispatch(setImpactOrganisation(impact));
         navigate("/settingsproject")
         const tabData = [];
         for (let i = 0; i < dataImpacted.length; i++) {
-          tabData.push({ id : dataImpacted[i].id, expert:0, impacted:1})
+          tabData.push({ post_id : null, user_id : dataImpacted[i].id, expert:false, impacted:true})
         }
         for (let i = 0; i < dataExpert.length; i++) {
-          let hasImpact = tabData.some(obj => obj.id === dataExpert[i].id);
+          let hasImpact = tabData.some(obj => obj.user_id === dataExpert[i].id);
           if(!hasImpact) {
-            tabData.push({ id : dataExpert[i].id, expert:1, impacted:0})
+            tabData.push({ post_id : null, user_id : dataExpert[i].id, expert:true, impacted:false})
           } else {
-            const index = tabData.findIndex(obj => obj.id === dataExpert[i].id);
-            tabData[index].expert = 1;
+            const index = tabData.findIndex(obj => obj.user_id === dataExpert[i].id);
+            tabData[index].expert = true;
+
           }
         }
+        dispatch(setExpertImpacted(tabData));
+        console.log("toto", tabData)
       }
     }
     return(
