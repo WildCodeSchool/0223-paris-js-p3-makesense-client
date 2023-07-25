@@ -4,6 +4,10 @@ const getAllRoles = async () => {
   return api.get("/api/roles");
 };
 
+const getAllCountRole = async () => {
+  return api.get("/api/roles/count");
+};
+
 const createRole = async (data) => {
   return api.post("/api/roles", data)
 }
@@ -20,4 +24,4 @@ const getRole = async (id) => {
   return api.get(`/api/roles/${id}`);
 }
 
-export { getAllRoles, createRole, deleteRole, editRole, getRole};
+export { getAllRoles, createRole, deleteRole, editRole, getRole, getAllCountRole};

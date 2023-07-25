@@ -20,6 +20,8 @@ const deletePost = (id) => {
   return api.delete(`/api/posts/${id}`)
 }
 
+const getAllCountPost = () => api.get("/api/posts/count");
+
 export {
   getAllPost,
   getCurrentPost,
@@ -30,4 +32,5 @@ export {
   getImpactedFromPost,
   addVote,
   deletePost,
+  getAllCountPost
 };

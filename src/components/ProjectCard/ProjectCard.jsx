@@ -39,11 +39,6 @@ export default function ProjectCard({ post, edit }) {
   return edit ? (
     <figure>
       <div className="card_actions_admin_post">
-        <Link to={`/admin/posts/${post.id}`}>
-          <span className="action_edit_admin_post" title="Modifier">
-            &#x270E;
-          </span>
-        </Link>
         <span
           className="action_delete_admin_post"
           title="Supprimer"
