@@ -27,6 +27,10 @@ const deletePost = (id) => {
 
 const getAllCountPost = () => api.get("/api/posts/count");
 
+const createPost = (data) => api.post(`/api/posts`, data);
+
+const addUserParticipant = (data) => api.post(`/api/posts/participants`, data);
+
 export {
   getAllPost,
   getCurrentPost,
@@ -40,4 +44,6 @@ export {
   getVoteFromUserFromPostId,
   deletePost,
   getAllCountPost,
+  createPost,
+  addUserParticipant,
 };

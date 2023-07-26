@@ -41,15 +41,15 @@ function Login() {
   };
 
   return (
-    <div className="box">
-      <div className="containers">
+    <div className="box_login">
+      <div className="containers_login">
         <p className="title1_login">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
         {error && <p className="p_error_login">{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="input_courriel">
+          <div className="input_courriel_login">
             <input
-              className="courriel_icon"
+              className=" courriel_icon_login"
               type="email"
               name="email"
               id="email"
@@ -59,9 +59,9 @@ function Login() {
             />
           </div>
 
-          <div className="input_password">
+          <div className="input_password_login">
             <input
-              className="password_icon password_eye"
+              className=" password_icon_login password_eye_login"
               type={password ? "text" : "password"}
               name="password"
               id="password"
@@ -71,21 +71,21 @@ function Login() {
             />
             <img
               onClick={showpassword}
-              className="oeil"
+              className="oeil_login"
               src="src/assets/Oeil.png"
             />
           </div>
 
-          <div className="checkbox">
+          <div className="checkbox_login">
             <input type="checkbox" id="scales" name="scales" />
             <label for="scales">Se souvenir de moi</label>
           </div>
 
-          <div className="button_connexion">
-            <button type="submit" className="connexion">
+          <div className="button_connexion_login">
+            <button type="submit" className="connexion_login">
               se connecter
             </button>
-            <p className="forgot_password">
+            <p className="forgot_password_login">
               <Link to="/forgotpassword">Mot de passe oublié</Link>
             </p>
           </div>

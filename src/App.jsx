@@ -17,6 +17,7 @@ import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/Forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
+import SettingsProject from "./pages/CreateProject/SettingsProject/SettingsProject";
 import Register from "./pages/Admin/UserRegister/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
@@ -32,6 +33,7 @@ import RoleManager from "./pages/Admin/RoleManager/RoleManager";
 import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 import PostsManager from "./pages/Admin/PostsManager/PostsManager";
+import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
 
 function App() {
   const dispatch = useDispatch();
@@ -237,6 +239,24 @@ function App() {
               </PrivateRoute>
             }
           />
+           <Route
+            exact
+            path="/settingsproject"
+            element={
+              <PrivateRoute>
+                <SettingsProject />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/impactproject"
+            element={
+              <PrivateRoute>
+                <ImpactProject />
+              </PrivateRoute>
+            }
+          />
           <Route
             exact
             path="/projectview/:id"
@@ -246,6 +266,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          
         </Routes>
       </div>
       <Footer />

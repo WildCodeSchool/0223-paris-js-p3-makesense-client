@@ -5,7 +5,8 @@ import jobs from "./jobs";
 import roles from "./roles";
 import posts from "./posts";
 import avis from "./avis";
+import project from "./projectSlice"
 
 export default configureStore({
-  reducer: { auth, users, jobs, roles, posts, avis },
+  reducer: { auth, users, jobs, roles, posts, avis, project },
 });
