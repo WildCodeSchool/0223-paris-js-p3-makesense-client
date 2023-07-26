@@ -1,13 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getAllCountUser } from "../../../services/users";
+import { getAllCountPost } from "../../../services/post";
+import { getAllCountJob } from "../../../services/jobs";
+import { getAllCountRole } from "../../../services/roles";
 
 function Dashboard() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
 
+  const [countUsers, setCountUsers] = useState(0);
+  const [countPosts, setCountPosts] = useState(0);
+  const [countJobs, setCountJobs] = useState(0);
+  const [countRoles, setCountRoles] = useState(0);
+  const searchData = async () => {
+    try {
+      const countUser = await getAllCountUser();
+      setCountUsers(countUser?.data?.count);
+      const countPost = await getAllCountPost();
+      setCountPosts(countPost?.data?.count);
+      const countJob = await getAllCountJob();
+      setCountJobs(countJob?.data?.count);
+      const countRole = await getAllCountRole();
+      setCountRoles(countRole?.data?.count);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+
   useEffect(() => {
     if (!auth.user) return navigate("/login");
+    searchData();
   }, []);
 
   return (
@@ -20,19 +44,19 @@ function Dashboard() {
           <div className="counters_admin_dashboard">
             <div className="counter_admin_dashboard">
               <h2>Utilisateurs</h2>
-              <p className="count_admin_dashboard">NaN</p>
+              <p className="count_admin_dashboard">{countUsers}</p>
             </div>
             <div className="counter_admin_dashboard">
               <h2>Publications</h2>
-              <p className="count_admin_dashboard">NaN</p>
+              <p className="count_admin_dashboard">{countPosts}</p>
             </div>
             <div className="counter_admin_dashboard">
               <h2>Emplois</h2>
-              <p className="count_admin_dashboard">NaN</p>
+              <p className="count_admin_dashboard">{countJobs}</p>
             </div>
             <div className="counter_admin_dashboard">
               <h2>Rôles</h2>
-              <p className="count_admin_dashboard">NaN</p>
+              <p className="count_admin_dashboard">{countRoles}</p>
             </div>
           </div>
         </header>

@@ -28,7 +28,16 @@ function Footer() {
       window.removeEventListener("pageshow", handlePageChange);
       window.removeEventListener("resize", handleResize);
     };
+<<<<<<< HEAD
   }, [refresh]);
+=======
+  }, [
+    refresh,
+    document.documentElement.scrollHeight,
+    window.innerHeight,
+    window.pageYOffset,
+  ]);
+>>>>>>> ff4aaf0e7bdbf0cb041fe7229805aa94e40d1efe
 
   useEffect(() => {
     const refreshInterval = setInterval(() => {

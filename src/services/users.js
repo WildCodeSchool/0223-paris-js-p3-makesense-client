@@ -2,6 +2,8 @@ import api from "./api";
 
 const getAllUsers = () => api.get("/api/users");
 
+const getAllCountUser = () => api.get("/api/users/count");
+
 const getCurrentUser = () => api.get("/api/users/me");
 
 const editUser = (data) => api.put("/api/users/", data);
@@ -16,6 +18,7 @@ const modifyAccount = (data, id) => api.put(`/api/users/${id}`, data);
 
 export {
   getAllUsers,
+  getAllCountUser,
   getCurrentUser,
   createAccount,
   editUser,
