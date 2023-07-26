@@ -8,7 +8,9 @@ const getPostVote = (id) => api.get(`/api/posts/votes/frompost/${id}`);
 
 const getPostFromUser = () => api.get(`/api/posts/me`);
 
-const getVoteFromUser = () => api.get(`api/posts/votes/fromuser`);
+const getVoteFromUser = (id) => api.get(`api/posts/votes/fromuser/${id}`);
+
+const getVoteFromUserFromPostId = (id, post_id) => api.get(`api/posts/votes/fromvote/fromuser/${id}/${post_id}`);
 
 const getImpactedFromPost = (id) => api.get(`/api/posts/impacted/${id}`);
 
@@ -16,7 +18,7 @@ const getExpertFromPost = (id) => api.get(`/api/posts/expert/${id}`);
 
 const addVote = (data) => api.post(`/api/posts/votes`, data);
 
-const deleteVote = () => api.delete(`/api/posts/votes`);
+const deleteVote = (postId) => api.delete(`/api/posts/votes/${postId}`);
 
 export {
   getAllPost,
@@ -28,4 +30,5 @@ export {
   getImpactedFromPost,
   addVote,
   deleteVote,
+  getVoteFromUserFromPostId,
 };
