@@ -35,13 +35,17 @@ export default function CreateAvis({ post, text, setText }) {
     }
   };
   return (
-    <div>
-      <button type="button" onClick={handleActif} className="createAvis">
-        create
+    <div className="createAvisButtons">
+      <button
+        type="button"
+        onClick={handleActif}
+        className={`${actif ? "annuler" : "sauvegarder"} pointer`}
+      >
+        {actif ? "Annuler" : "Ecrire un avis" }
       </button>
       {actif ? (
         <>
-          <input
+          <textarea
             className="createAvisText"
             type="
           text"
@@ -49,7 +53,11 @@ export default function CreateAvis({ post, text, setText }) {
             onChange={(e) => setText(e.target.value)}
             defaultValue={text}
           />
-          <button type="button" className="createAvis" onClick={sendText}>
+          <button
+            type="button"
+            className="sauvegarder pointer"
+            onClick={sendText}
+          >
             Envoyer
           </button>
         </>

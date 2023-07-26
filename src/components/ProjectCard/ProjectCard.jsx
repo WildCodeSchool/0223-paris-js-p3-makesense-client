@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removePost } from "../../store/posts";
@@ -27,7 +27,7 @@ export default function ProjectCard({ post, edit }) {
     } catch (err) {
       console.log("err", err);
       setErrMessage(
-        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !",
       );
     }
   };
@@ -42,7 +42,7 @@ export default function ProjectCard({ post, edit }) {
         <span
           className="action_delete_admin_post"
           title="Supprimer"
-          onClick={(e) => handleClickDelete()}
+          onClick={() => handleClickDelete()}
         >
           &#x2716;
         </span>
@@ -73,18 +73,18 @@ export default function ProjectCard({ post, edit }) {
             <strong>7</strong>
           </div>
           {visibleModal ? (
-            <div id="modal_delete" class="modal">
-              <div class="modal_content">
+            <div id="modal_delete" className="modal">
+              <div className="modal_content">
                 {errMessage && <p className="p_error_modal">{errMessage}</p>}
                 <h2>Confirmation de suppression</h2>
                 <p>
                   Voulez-vous vraiment supprimer le post : {post?.firstname} ?
                 </p>
-                <div class="modal_buttons">
-                  <button id="btn_cancel" onClick={handleClickCancel}>
+                <div className="modal_buttons">
+                  <button type="button" id="btn_cancel" onClick={handleClickCancel}>
                     Annuler
                   </button>
-                  <button id="btn_confirm" onClick={handleClickFetch}>
+                  <button type="button" id="btn_confirm" onClick={handleClickFetch}>
                     Confirmer
                   </button>
                 </div>

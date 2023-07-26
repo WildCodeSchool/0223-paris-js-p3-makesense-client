@@ -50,45 +50,42 @@
       bottom: -50%;
     }
     .voteButton {
-      padding: 0.60rem 1.05rem;
+      padding: 0.6rem 1.05rem;
       font-weight: bold;
       color: $text-white;
       background-color: $primary-color;
       border-radius: 5px;
-      cursor: pointer;
-      &:hover{
+      &:hover {
         background-color: $color-accent-yellow;
         color: $primary-color;
       }
-
     }
-    .vote{
-      cursor: pointer;
+    .vote {
       padding: 0.25rem 0.5rem;
-      &:hover{
+      &:hover {
         filter: brightness(80%);
       }
-      img{
-        filter:contrast(10);
+      img {
+        filter: contrast(10);
         opacity: 50%;
       }
     }
-    .yes{
+    .yes {
       border-radius: 5px 0 0 5px;
       background-color: $color-accent-green;
     }
-    .no{
+    .no {
       border-radius: 0 5px 5px 0;
       background-color: $color-accent-red;
-      img{
+      img {
         rotate: 180deg;
       }
     }
 
-.selected{
-  padding: 0.25rem 1.75rem;
-  border-radius: 5px;
-}
+    .selected {
+      padding: 0.25rem 1.75rem;
+      border-radius: 5px;
+    }
   }
 }
 .avisContainer {
@@ -107,28 +104,36 @@
   }
 }
 
-.participantsAvatar{
+.participantsAvatar {
   display: flex;
   flex-direction: row;
-  img{
+  img {
     width: 30px;
     margin-right: -8px;
   }
 }
-.createAvis{
-  cursor: pointer;
-background-color: $primary-color;
-padding: 1rem;
+
+.createAvisButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 0.5rem;
 }
-.createAvisText{
-    border: solid 2px $primary-color;
+.editButtonsAvis {
+  button {
+    margin: 5px;
   }
+}
+.createAvisText {
+  height: 5rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  resize: none;
+}
 
 @media screen and (min-width: 926px) {
   #projectResume {
     padding: 0 8rem;
-
-
   }
   .avisContainer {
     padding: 1rem 2rem;

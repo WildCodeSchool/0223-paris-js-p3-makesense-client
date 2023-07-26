@@ -53,35 +53,17 @@ export default function ProjectAvis({ avis, post }) {
     } catch (err) {
       console.error("err", err);
       setErrMessage(
-        "Nous rencontrons un problème. Veuillez réessayer plus tard.",
+        "Nous rencontrons un problème. Veuillez réessayer plus tard."
       );
     }
   };
 
   return (
     <div id="container">
-      <CreateAvis post={post} text={text} setText={setText} />
       <div className="avisContainer">
+        <CreateAvis post={post} text={text} setText={setText} />
         {avis.map((data) => (
           <div className="avisByUser" key={data.date}>
-            {auth.user.admin === 1 || auth.user.id === data.user_id ? (
-              <>
-                <span
-                  className="action_edit_admin_user"
-                  title="Modifier"
-                  onClick={() => changeEDit(data.text)}
-                >
-                  &#x270E;
-                </span>
-                <span
-                  className="action_delete_admin_user"
-                  title="Supprimer"
-                  onClick={() => handleClickDelete(data.id)}
-                >
-                  &#x2716;
-                </span>
-              </>
-            ) : null}
             <div className="userInfos">
               <div className="userProjectInfos">
                 <img
@@ -96,10 +78,28 @@ export default function ProjectAvis({ avis, post }) {
                   - le {data.date.slice(0, 10)}
                 </p>
               </div>
+              {auth.user.admin === 1 || auth.user.id === data.user_id ? (
+                <div>
+                  <span
+                    className="action_edit_admin_user"
+                    title="Modifier"
+                    onClick={() => changeEDit(data.text)}
+                  >
+                    &#x270E;
+                  </span>
+                  <span
+                    className="action_delete_admin_user"
+                    title="Supprimer"
+                    onClick={() => handleClickDelete(data.id)}
+                  >
+                    &#x2716;
+                  </span>
+                </div>
+              ) : null}
             </div>
-            {(edit && auth.user.id === data.user_id)
-            || auth.user.admin === 1 ? (
-              <>
+            {(edit && auth.user.id === data.user_id) ||
+            auth.user.admin === 1 ? (
+              <div className="editButtonsAvis">
                 <input
                   type="text"
                   onChange={(e) => setText(e.target.value)}
@@ -108,22 +108,22 @@ export default function ProjectAvis({ avis, post }) {
                 />
                 <button
                   type="button"
-                  className="createAvis"
+                  className="annuler pointer"
                   onClick={() => cancelEdit(data.text)}
                 >
                   Annuler
                 </button>
                 <button
                   type="button"
-                  className="createAvis"
+                  className="sauvegarder pointer"
                   onClick={() => validEdit(data.id)}
                 >
                   Confirmer
                 </button>
-              </>
-              ) : (
-                <p className="c-blue avisByUserText">{data.text}</p>
-              )}
+              </div>
+            ) : (
+              <p className="c-blue avisByUserText">{data.text}</p>
+            )}
           </div>
         ))}
       </div>
