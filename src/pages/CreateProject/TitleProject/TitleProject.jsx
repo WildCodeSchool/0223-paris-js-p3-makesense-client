@@ -74,9 +74,6 @@ function TitleProject() {
     }),
   };
 
-  //   function handleClicktitleproject() {
-  //     navigate("/titleproject");
-  //   }
   return (
     <>
       <div className="background_title_project">

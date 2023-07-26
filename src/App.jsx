@@ -173,9 +173,9 @@ function App() {
             exact
             path="/settingsproject"
             element={
-              <PrivateRoute>
+              <PrivateRouteAdmin>
                 <SettingsProject />
-              </PrivateRoute>
+              </PrivateRouteAdmin>
             }
           />
           <Route
@@ -187,6 +187,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             exact
             path="/projectview/:id"

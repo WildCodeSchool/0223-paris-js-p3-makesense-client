@@ -1,47 +1,43 @@
-import React, { useEffect, useRef } from "react";
-import Timeimg from "../../assets/Timeline.png"
+import React, { useEffect, useState } from 'react';
 
-const Timeline = ({ percentage }) => {
-  const canvasRef = useRef(null);
+const Timeline = ({ steps }) => {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const currentDate = new Date();
+    const totalSteps = steps.length;
 
-    // Charger l'image
-    const img = new Image();
-    img.src = {Timeimg}
-
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      // Dessiner l'image du sablier gris sur le canvas
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-
-      // Déterminer la hauteur de remplissage en fonction du pourcentage donné
-      const fillHeight = (img.height * percentage) / 100;
-
-      // Remplacer les pixels du sablier par des pixels verts jusqu'à la hauteur de remplissage
-      const imageData = ctx.getImageData(0, 0, img.width, img.height);
-      const data = imageData.data;
-
-      for (let y = 0; y < fillHeight; y++) {
-        for (let x = 0; x < img.width; x++) {
-          const index = (y * img.width + x) * 4;
-          // Remplacer les pixels gris par des pixels verts
-          data[index] = 0; // Rouge
-          data[index + 1] = 255; // Vert
-          data[index + 2] = 0; // Bleu
-        }
+    for (let i = 0; i < totalSteps; i++) {
+      const stepDate = new Date(steps[i].date);
+      if (currentDate < stepDate) {
+        setProgress((i / totalSteps) * 100);
+        break;
+      } else if (i === totalSteps - 1) {
+        setProgress(100);
       }
+    }
+  }, [steps]);
 
-      // Mettre à jour les données des pixels sur le canvas
-      ctx.putImageData(imageData, 0, 0);
-    };
-  }, [percentage]);
-
-  return <canvas ref={canvasRef} />;
+  return (
+    <div className="timelineContainer">
+    <div className="timeline">
+      <div
+        className="progress"
+        style={{ height: `${progress}%` }}
+      ></div>
+          </div>
+      <div className="stepContainer">
+      {steps && steps.map((step, index) => (
+        <div
+          key={index}
+          className={`step ${progress > (index / steps.length) * 100 ? 'completed' : ''}`}
+        >
+          {step.name}
+        </div>
+      ))}
+      </div>
+    </div>
+  );
 };
 
 export default Timeline;
