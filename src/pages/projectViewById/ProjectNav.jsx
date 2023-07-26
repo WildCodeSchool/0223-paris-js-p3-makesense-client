@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {sendAvisData} from "../../store/avis"
+import { sendAvisData } from "../../store/avis";
 import ProjectDescription from "./ProjectDescription";
 import ProjectInfluences from "./ProjectInfluences";
 import ProjectAvis from "./ProjectAvis";
@@ -11,7 +11,7 @@ import { getAllAvis } from "../../services/avis";
 export default function ProjectNav({ post }) {
   const [actif, setActif] = useState("description");
   const { id } = useParams();
-  
+
   const dispatch = useDispatch();
   const avis = useSelector((state) => state.avis);
 
@@ -23,7 +23,7 @@ export default function ProjectNav({ post }) {
   const dataUser = async () => {
     try {
       const getpostAvis = await getAllAvis(id);
-      dispatch(sendAvisData(getpostAvis?.data))
+      dispatch(sendAvisData(getpostAvis?.data));
     } catch (err) {
       console.error("err", err);
     }

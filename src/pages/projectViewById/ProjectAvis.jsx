@@ -22,7 +22,6 @@ export default function ProjectAvis({ avis, post }) {
   };
 
   const changeEDit = (text) => {
-    console.log("text", text);
     setEdit(!edit);
     setText(text);
   };
@@ -54,7 +53,7 @@ export default function ProjectAvis({ avis, post }) {
     } catch (err) {
       console.error("err", err);
       setErrMessage(
-        "Nous rencontrons un problème. Veuillez réessayer plus tard."
+        "Nous rencontrons un problème. Veuillez réessayer plus tard.",
       );
     }
   };
@@ -98,8 +97,8 @@ export default function ProjectAvis({ avis, post }) {
                 </p>
               </div>
             </div>
-            {(edit && auth.user.id === data.user_id) ||
-            auth.user.admin === 1 ? (
+            {(edit && auth.user.id === data.user_id)
+            || auth.user.admin === 1 ? (
               <>
                 <input
                   type="text"
@@ -122,23 +121,23 @@ export default function ProjectAvis({ avis, post }) {
                   Confirmer
                 </button>
               </>
-            ) : (
-              <p className="c-blue avisByUserText">{data.text}</p>
-            )}
+              ) : (
+                <p className="c-blue avisByUserText">{data.text}</p>
+              )}
           </div>
         ))}
       </div>
       {visibleModal ? (
-        <div id="modal_delete" class="modal">
-          <div class="modal_content">
+        <div id="modal_delete" className="modal">
+          <div className="modal_content">
             {errMessage && <p className="p_error_modal">{errMessage}</p>}
             <h2>Confirmation de suppression</h2>
             <p>Voulez-vous vraiment cette avis ?</p>
-            <div class="modal_buttons">
-              <button id="btn_cancel" onClick={handleClickCancel}>
+            <div className="modal_buttons">
+              <button type="button" id="btn_cancel" onClick={handleClickCancel}>
                 Annuler
               </button>
-              <button id="btn_confirm" onClick={handleClickFetch}>
+              <button type="button" id="btn_confirm" onClick={handleClickFetch}>
                 Confirmer
               </button>
             </div>
