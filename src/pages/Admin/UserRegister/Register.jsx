@@ -46,7 +46,6 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("register --->", register);
     const { email, firstname, lastname, role_id, job_id, admin } = register;
     if (
       email === "" ||
@@ -78,9 +77,26 @@ function Register() {
           const validationErrors = err.response.data.validationErrors;
           let errorMessage = "Vérifiez les champs suivants : ";
           const fieldTranslations = {
-            email: "Adresse e-mail",
             firstname: "Prénom",
             lastname: "Nom de famille",
+            "firstname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le prénom.",
+            "lastname - FORMAT INCORRECT":
+              "Le format du nom de famille est invalide.",
+            "lastname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom de famille.",
+            "firstname - FORMAT INCORRECT": "Le format du prénom est invalide.",
+            email: "Adresse e-mail",
+            "email - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir l'email",
+            "affiliated_site - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir la location.",
+            "affiliated_siteRegex - FORMAT INCORRECT":
+              "Le format de la location est invalide.",
+            "tel - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le numéreau de téléphone.",
+            "tel - FORMAT INCORRECT":
+              "Le format du numéreau de téléphone est invalide.",
           };
           validationErrors.forEach((error) => {
             console.log("error", error);

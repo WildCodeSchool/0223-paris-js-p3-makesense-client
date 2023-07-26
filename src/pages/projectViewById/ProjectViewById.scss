@@ -50,12 +50,12 @@
       bottom: -50%;
     }
     .voteButton {
-      padding: 0.5rem 0.75rem;
+      padding: 0.60rem 1.05rem;
       font-weight: bold;
       color: $text-white;
       background-color: $primary-color;
       border-radius: 5px;
-cursor: pointer;
+      cursor: pointer;
       &:hover{
         background-color: $color-accent-yellow;
         color: $primary-color;
@@ -64,7 +64,7 @@ cursor: pointer;
     }
     .vote{
       cursor: pointer;
-      padding: 0.5rem 0.75rem;
+      padding: 0.25rem 0.5rem;
       &:hover{
         filter: brightness(80%);
       }
@@ -74,12 +74,21 @@ cursor: pointer;
       }
     }
     .yes{
+      border-radius: 5px 0 0 5px;
       background-color: $color-accent-green;
     }
     .no{
+      border-radius: 0 5px 5px 0;
       background-color: $color-accent-red;
+      img{
+        rotate: 180deg;
+      }
     }
 
+.selected{
+  padding: 0.25rem 1.75rem;
+  border-radius: 5px;
+}
   }
 }
 .avisContainer {
@@ -106,6 +115,15 @@ cursor: pointer;
     margin-right: -8px;
   }
 }
+.createAvis{
+  cursor: pointer;
+background-color: $primary-color;
+padding: 1rem;
+}
+.createAvisText{
+    border: solid 2px $primary-color;
+  }
+
 @media screen and (min-width: 926px) {
   #projectResume {
     padding: 0 8rem;
@@ -119,48 +137,3 @@ cursor: pointer;
     }
   }
 }
-
-// .globalContainer {
-//   display: grid;
-//   grid-template-columns: repeat(4, 1fr);
-//   grid-template-rows: repeat(5, 1fr);
-
-//   grid-template-areas:
-//     "a a a ."
-//     "b b b c"
-//     "b b b d"
-//     "b b b e"
-//     "b b b f";
-// }
-
-// h3 {
-//   grid-area: a;
-//   // grid-area: 1 / 1 / 2 / 4;
-// }
-
-// .projectPhoto {
-//   grid-area: b;
-//   // grid-area: 2 / 1 / 6 / 4;
-//   width: 30rem;
-// }
-
-// .userProjectInfos {
-//   grid-area: c;
-//   // grid-area: 2 / 4 / 3 / 5;
-// }
-
-// .calendar {
-//   grid-area: d;
-//   // grid-area: 3 / 4 / 4 / 5;
-// }
-
-// .tagsProject {
-//   grid-area: e;
-//   // grid-area: 4 / 4 / 5 / 5;
-//   justify-content: space-between;
-// }
-
-// .voteInfos {
-//   grid-area: f;
-//   // grid-area: 5 / 4 / 6 / 5;
-// }

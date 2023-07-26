@@ -50,13 +50,13 @@ function Navbar() {
       <div className="nav-linksDesktop">
         <ul>
           <li>
-            <a href="#">Découvrir les projets</a>
+            <a href="/">Découvrir les projets</a>
           </li>
           <li>
-            <a href="#">Lancer mon projet</a>
+            <a href="/titleproject">Lancer mon projet</a>
           </li>
           <li>
-            <a href="#">Comment se lancer</a>
+            <a href="/guide">Comment se lancer</a>
           </li>
         </ul>
       </div>
@@ -81,19 +81,19 @@ function Navbar() {
           <h3>Mon profil</h3>
           <ul>
             <li>
-              <a href="#">Modifier mon profil</a>
+              <a href="/monprofil">Modifier mon profil</a>
             </li>
             <li>
               <a href="#">Mes notifications</a>
             </li>
             <li>
-              <a href="#">Aide</a>
+              <a href="/guide">Aide</a>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
             </li>
             <li>
-              <a href="#" onClick={handleSubmit}>
+              <a href="/login" onClick={handleSubmit}>
                 Déconnexion
               </a>
             </li>
@@ -116,19 +116,19 @@ function Navbar() {
         />
         <ul>
           <li>
-            <a href="#">Mon profil</a>
+            <a href="/monprofil">Mon profil</a>
           </li>
           <li>
-            <a href="#">Suivi de Projets</a>
+            <a href="/suiviprojet">Suivi de Projets</a>
           </li>
           <li>
-            <a href="#">Gérer les projets</a>
+            <a href="/">Gérer les projets</a>
           </li>
           <li>
             <Link to="/admin">Adminstration</Link>
           </li>
           <li>
-            <a href="#" onClick={handleSubmit}>
+            <a href="/login" onClick={handleSubmit}>
               Déconnexion
             </a>
           </li>

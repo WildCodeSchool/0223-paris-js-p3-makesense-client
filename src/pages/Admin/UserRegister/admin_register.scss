@@ -1,5 +1,19 @@
 @use "../../../sass//global" as *;
 
+.box {
+    height: 100vh;  
+}
+
+.containers {
+    height: 100vh;  
+}
+
+.oeil{
+    position: absolute;
+    top:14.5rem;
+    left:20rem;
+}
+
 .title1_register {
 font-size: $p-mobile;
 color: $primary-color;
@@ -132,12 +146,14 @@ input[type=checkbox] {
         align-items: center;
         flex-wrap: wrap;
         flex-direction: column;
-        padding: 1.5rem;      
+        padding: 1.5rem;    
+        height: 50%;  
     }
 
     .box{
         background-image: url(./src/assets/pills/Pills_desktop_login.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 50%;
     }
 }

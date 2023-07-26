@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import { DecisionTiming } from "./decision_timing";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../../services/post"
 import { addUserParticipant } from "../../../services/post";
 import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from "../../../store/projectSlice";
 
 function SettingsProject() {
-  const [decisiondata, setDecisionData] = useState({ makeDecisionDate : "", conflitDate : "", deadLineDate : "" })
-  const test = useSelector((state) => state.project);
-  console.log(test);
-  const { title, description, benefits, risks, image, expertImpacted, impactOrganisation, country } = useSelector((state) => state.project);
+  const [decisiondata, setDecisionData] = useState({
+    makeDecisionDate: "",
+    conflitDate: "",
+    deadLineDate: "",
+  });
+
+  const {
+    title,
+    description,
+    benefits,
+    risks,
+    image,
+    expertImpacted,
+    impactOrganisation,
+    country,
+  } = useSelector((state) => state.project);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isMissing, setIsMissing] = useState(false)
+  const [isMissing, setIsMissing] = useState(false);
   const handleClick = async () => {
   dispatch(setDecisionDelay(decisiondata.makeDecisionDate))
   dispatch(setConflictDelay(decisiondata.conflitDate))
@@ -31,38 +43,29 @@ function SettingsProject() {
           profit: benefits,
           risk: risks,
           avatar: image,
-          // impacted: impacted,
-          // expert: expert,
           impact: impactOrganisation,
           deadlineDate: deadDate,
           makeDecisionDate: decisionDate,
           conflitDate: confliDate,
           location: country,
-        }
+        };
         const form = new FormData();
         for (const key in data) {
           form.append(key, data[key]);
         }
-        console.log("toyo", expertImpacted)
-        console.log("Data", data)
+
         const dataCreatePost = await createPost(form);
-        console.log("totototootototototto", dataCreatePost)
-        // expertImpacted.map(e => {
-        //   return e.post_id =dataCreatePost.data.id;
-        // })
-        // expertImpacted.forEach(obj => {
-        //   obj.toto = "Valeur par défaut";
-        // });
-        const newTab = expertImpacted.map(obj => ({ ...obj, post_id:  dataCreatePost.data.id}));
+        const newTab = expertImpacted.map((obj) => ({
+          ...obj,
+          post_id: dataCreatePost.data.id,
+        }));
 
-
-        console.log("expertImpacted edit", newTab)
-        let userdata = { users: newTab,};
+        let userdata = { users: newTab };
         await addUserParticipant(userdata);
       } catch (err) {
         console.log("err", err);
       }
-      // navigate("/");
+      navigate("/");
     }
   };
   return (
@@ -89,7 +92,7 @@ function SettingsProject() {
       </article>
       <h1 className="require">Les champs avec * sont obligatoire</h1>
       <div className="checkbox">
-      <h2 className="title_section">Combien de semaine pour :</h2>
+        <h2 className="title_section">Combien de semaine pour :</h2>
         <div className="column">
           <h2 className="decision_timing_title">La prise de décisions *</h2>
           <ul className="decision">
@@ -105,7 +108,12 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionPrise"
                       value={number.number}
-                      onClick={e => setDecisionData({ ...decisiondata, makeDecisionDate : (index+1)})}
+                      onClick={(e) =>
+                        setDecisionData({
+                          ...decisiondata,
+                          makeDecisionDate: index + 1,
+                        })
+                      }
                     />
                   </div>
                 </li>
@@ -129,7 +137,12 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionConflit"
                       value={number.number}
-                      onClick={e => setDecisionData({ ...decisiondata, conflitDate : (index+1)})}
+                      onClick={(e) =>
+                        setDecisionData({
+                          ...decisiondata,
+                          conflitDate: index + 1,
+                        })
+                      }
                     />
                   </div>
                 </li>
@@ -153,7 +166,12 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionDefinitive"
                       value={number.number}
-                      onClick={e => setDecisionData({ ...decisiondata, deadLineDate : (index+1)})}
+                      onClick={(e) =>
+                        setDecisionData({
+                          ...decisiondata,
+                          deadLineDate: index + 1,
+                        })
+                      }
                     />
                   </div>
                 </li>
@@ -161,18 +179,25 @@ function SettingsProject() {
             })}
           </ul>
         </div>
-        {isMissing ?
-      <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
-      <div></div>
-    }
+        {isMissing ? (
+          <p class="missingFields">
+            * Veuillez remplir tous les champs pour continuer
+          </p>
+        ) : (
+          <div></div>
+        )}
         <div className="button_settings_project">
-              <button type="button" className="launch_button next_button" >
-                PRECEDENT
-              </button>
-              <button type="button"  onClick={handleClick} className="launch_button back_button">
-                ENVOYER
-              </button>
-            </div>
+          <button type="button" className="launch_button next_button">
+            PRECEDENT
+          </button>
+          <button
+            type="button"
+            onClick={handleClick}
+            className="launch_button back_button"
+          >
+            ENVOYER
+          </button>
+        </div>
       </div>
     </>
   );

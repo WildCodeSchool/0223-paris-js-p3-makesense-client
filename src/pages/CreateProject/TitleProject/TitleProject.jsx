@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import CreationGuide from "../../CreationGuide/CreationGuide";
-import { useDispatch, useSelector } from 'react-redux';
-import { setTitle, setCountry } from '../../../store/projectSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { setTitle, setCountry } from "../../../store/projectSlice";
 
 function TitleProject() {
   const dispatch = useDispatch();
-  const [newTitle, setNewTitle]= useState("")
-  const [location, setLocation] = useState("")
-  const [isMissing, setIsMissing] = useState(false)
+  const [newTitle, setNewTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [isMissing, setIsMissing] = useState(false);
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const clickMe = () => {
     if (newTitle === "") {
-      setIsMissing(true)
+      setIsMissing(true);
     } else {
-      setIsMissing(false)
-      dispatch(setTitle(newTitle.value));
+      setIsMissing(false);
+      dispatch(setTitle(newTitle));
       dispatch(setCountry(location));
       navigate("/descriptionproject");
     }
@@ -112,10 +112,13 @@ function TitleProject() {
               onChange={setLocation}
             />
           </div>
-          {isMissing ?
-      <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
-      <div></div>
-    }
+          {isMissing ? (
+            <p class="missingFields">
+              * Veuillez remplir tous les champs pour continuer
+            </p>
+          ) : (
+            <div></div>
+          )}
           <div className="button_launch_project">
             <button type="button" onClick={clickMe} className="launch_button">
               DEMARRER
