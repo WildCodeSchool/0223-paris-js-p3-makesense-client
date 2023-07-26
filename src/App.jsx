@@ -25,7 +25,6 @@ import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
-import MonProfil from "./pages/monprofil/monprofil";
 import JobManager from "./pages/Admin/JobManager/JobManger";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
 import JobModify from "./pages/Admin/JobModify/JobModify";
@@ -34,6 +33,7 @@ import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 import PostsManager from "./pages/Admin/PostsManager/PostsManager";
 import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
+import MonProfil from "./pages/MonProfil/MonProfil";
 
 function App() {
   const dispatch = useDispatch();
@@ -239,7 +239,7 @@ function App() {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             exact
             path="/settingsproject"
             element={
@@ -266,7 +266,6 @@ function App() {
               </PrivateRoute>
             }
           />
-          
         </Routes>
       </div>
       <Footer />

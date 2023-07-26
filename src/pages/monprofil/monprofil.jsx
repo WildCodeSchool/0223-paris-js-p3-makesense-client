@@ -21,6 +21,7 @@ const MonProfil = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("France");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     console.log(auth);
@@ -76,6 +77,18 @@ const MonProfil = () => {
     setIsEditMode(false);
   };
 
+  const handleFirstNameChange = (e) => {
+    const inputValue = e.target.value;
+    const lettersOnlyRegex = /^[A-Za-z]+$/;
+  
+    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
+      setFirstName(inputValue);
+      setError(""); // Réinitialiser l'erreur si la saisie est valide
+    } else {
+      setError("Le prénom ne doit contenir que des lettres.");
+    }
+  };
+
   return (
     <>
       <h1 className="titreprofil">Mon Profil</h1>
@@ -101,22 +114,28 @@ const MonProfil = () => {
           <div className="label-input">
             <label htmlFor="">Prénom</label>
             {isEditMode ? (
-              <input
-                className="profile-input"
-                placeholder="Marc"
-                type="text"
-                value={firstname}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            ) : (
-              <input
-                className="profile-input"
-                type="text"
-                value={firstname}
-                readOnly
-              />
-            )}
+  <div>
+    <input
+      className="profile-input"
+      placeholder="Marc"
+      type="text"
+      value={firstname}
+      onChange={(e) => {
+        setFirstName(e.target.value);
+        handleFirstNameChange(e); // Appeler la validation existante
+      }}
+      required
+    />
+    {error && <div className="error-message">{error}</div>}
+  </div>
+) : (
+  <input
+    className="profile-input"
+    type="text"
+    value={firstname}
+    readOnly
+  />
+)}
           </div>
           <div className="label-input">
             <label htmlFor="">Nom</label>
