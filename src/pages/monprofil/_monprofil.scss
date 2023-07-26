@@ -15,7 +15,7 @@ body {
 .titreprofil {
     text-align: center;
     width: 100%;
-    padding-top: 60px;
+    padding-top: 20px;
     size: $h1-mobile;
     color: $primary-color;
     font-family: $titles-font;
@@ -29,7 +29,7 @@ body {
     margin-top: 20px;
     border: 6px solid $color-accent-cian;
     border-radius: 50%;
-    position: relative;
+    margin-bottom: 10px;
 }
 .crayonimg {
     background-color: $color-accent-cian ;
@@ -39,7 +39,7 @@ body {
     padding: 5px;
     position: absolute;
     left: 55%;
-    top: 25%;
+    top: 70%;
     cursor: pointer;
 }
 label {
@@ -48,8 +48,11 @@ label {
 .formProfile {
     text-align: left;
     width: 60%;
-    margin: 50px auto 0;
+    margin: 20px auto 0;
     color: $primary-color;
+}
+.profile-file {
+    position: relative;
 }
 .profile-input {
     border: 1px solid grey;
@@ -66,8 +69,11 @@ label {
 }
 .error-message {
     color: red; 
-    font-size: 14px;
-    margin-top: 5px;
+}
+.inputerror {
+    height: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 button {
@@ -108,6 +114,9 @@ button {
     margin: 25px auto 0;
     color: $primary-color;
     font-size: 1.1rem;
+}
+.notifs {
+    margin-bottom: 30px;
 }
 .toggle-container {
     position: relative;
@@ -164,6 +173,7 @@ button {
 .toggle-checkbox:checked + .toggle-label .toggle-switch {
     left: calc(100% - 5px);
 }
+
   
 
 @media screen and (min-width: 926px) {
@@ -183,14 +193,16 @@ button {
     }
     .profile-form {
         display: flex;
+        height: 350px;
     }
     .profile-input {
         text-align: left;
         width: 100%;
     }
-    form {
+    .formProfile {
         display: flex;
         flex-wrap: wrap ;
+        margin-top: 80px;
     }
     .label-input {
         padding: 5px;
@@ -205,8 +217,8 @@ button {
         height: 200px;
     }
     .crayonimg {
-        left: 23%;
-        top: 47%;
+        left: 58%;
+        top: 67%;
     }
     .editer {
         display: flex;
@@ -218,8 +230,11 @@ button {
         align-items: center;
     }
     .notifs {
-        margin-right: 400px;  
+        margin-right: 400px;
+        margin-bottom: 20px;  
     }
-    
-
+    .inputerror {
+        height: 20px;
+        margin-bottom: 40px;
+    }
 }

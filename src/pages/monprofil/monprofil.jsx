@@ -21,7 +21,13 @@ const MonProfil = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("France");
-  const [error, setError] = useState("");
+  const [error, setError] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    tel: "",
+    country: "",
+  });
 
   useEffect(() => {
     console.log(auth);
@@ -80,12 +86,75 @@ const MonProfil = () => {
   const handleFirstNameChange = (e) => {
     const inputValue = e.target.value;
     const lettersOnlyRegex = /^[A-Za-z]+$/;
-  
+
     if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
       setFirstName(inputValue);
-      setError(""); // Réinitialiser l'erreur si la saisie est valide
+      setError("");
     } else {
-      setError("Le prénom ne doit contenir que des lettres.");
+      setError({
+        ...error,
+        firstname: "Le prénom ne doit contenir que des lettres.",
+      });
+    }
+  };
+
+  const handleLastNameChange = (e) => {
+    const inputValue = e.target.value;
+    const lettersOnlyRegex = /^[A-Za-z]+$/;
+
+    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
+      setName(inputValue);
+      setError("");
+    } else {
+      setError({
+        ...error,
+        lastname: "Le nom ne doit contenir que des lettres.",
+      });
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const emailValue = e.target.value;
+    const emailRegex = /@makesense\.org$/;
+
+    if (emailValue.match(emailRegex) || emailValue === "") {
+      setEmail(emailValue);
+      setEmailError("");
+    } else {
+      setError({
+        ...error,
+        email: "L'email doit être au format '@makesense.org'",
+      });
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    const phoneValue = e.target.value;
+    const phoneRegex = /^\d{10}$/;
+
+    if (phoneValue.match(phoneRegex) || phoneValue === "") {
+      setPhone(phoneValue);
+      setError("");
+    } else {
+      setError({
+        ...error,
+        tel: "Le pays ne doit contenir que des lettres.", // changer
+      });
+    }
+  };
+
+  const handleCountryChange = (e) => {
+    const inputValue = e.target.value;
+    const lettersOnlyRegex = /^[A-Za-z]+$/;
+
+    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
+      setCountry(inputValue);
+      setError("");
+    } else {
+      setError({
+        ...error,
+        country: "Le pays ne doit contenir que des lettres.",
+      });
     }
   };
 
@@ -96,7 +165,7 @@ const MonProfil = () => {
         <div className="profile-file">
           <img src={profileImage} alt="userprofile" className="profile-image" />
           <img
-          className="crayonimg"
+            className="crayonimg"
             src="../../src/assets/crayon.png"
             alt="editprofile"
             onClick={handleEditProfile}
@@ -109,44 +178,70 @@ const MonProfil = () => {
             onChange={handleFileChange}
           />
         </div>
-
+        <div className="inputerror">
+          {error.firstname && (
+            <div className="error-message">{error.firstname}</div>
+          )}
+          {error.lastname && (
+            <div className="error-message">
+              <p>{error.lastname}</p>
+            </div>
+          )}
+          {error.email && (
+            <div className="error-message">
+              <p>{error.email}</p>
+            </div>
+          )}
+          {error.tel && (
+            <div className="error-message">
+              <p>{error.tel}</p>
+            </div>
+          )}
+          {error.country && (
+            <div className="error-message">{error.country}</div>
+          )}
+          </div>
         <form className="formProfile">
+        
           <div className="label-input">
             <label htmlFor="">Prénom</label>
             {isEditMode ? (
-  <div>
-    <input
-      className="profile-input"
-      placeholder="Marc"
-      type="text"
-      value={firstname}
-      onChange={(e) => {
-        setFirstName(e.target.value);
-        handleFirstNameChange(e); // Appeler la validation existante
-      }}
-      required
-    />
-    {error && <div className="error-message">{error}</div>}
-  </div>
-) : (
-  <input
-    className="profile-input"
-    type="text"
-    value={firstname}
-    readOnly
-  />
-)}
+              <div>
+                <input
+                  className="profile-input"
+                  type="text"
+                  value={firstname}
+                  onChange={(e) => {
+                    setFirstName(e.target.value);
+                    handleFirstNameChange(e);
+                  }}
+                  required
+                />
+              </div>
+            ) : (
+              <input
+                className="profile-input"
+                type="text"
+                value={firstname}
+                readOnly
+              />
+            )}
           </div>
           <div className="label-input">
             <label htmlFor="">Nom</label>
             {isEditMode ? (
-              <input
-                className="profile-input"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
+              <div>
+                <input
+                  className="profile-input"
+                  type="text"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    handleLastNameChange(e);
+                  }}
+                  required
+                />
+              </div>
             ) : (
               <input
                 className="profile-input"
@@ -157,15 +252,20 @@ const MonProfil = () => {
             )}
           </div>
           <div className="label-input">
-            <label htmlFor="">Courriel</label>
+            <label htmlFor="">Email</label>
             {isEditMode ? (
-              <input
-                className="profile-input"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <div>
+                <input
+                  className="profile-input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    handleEmailChange(e);
+                  }}
+                  required
+                />
+              </div>
             ) : (
               <input
                 className="profile-input"
@@ -178,13 +278,18 @@ const MonProfil = () => {
           <div className="label-input">
             <label htmlFor="">Téléphone</label>
             {isEditMode ? (
-              <input
-                className="profile-input"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
+              <div>
+                <input
+                  className="profile-input"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    handlePhoneChange(e);
+                  }}
+                  required
+                />
+              </div>
             ) : (
               <input
                 className="profile-input"
@@ -197,13 +302,18 @@ const MonProfil = () => {
           <div className="label-input">
             <label htmlFor="">Pays</label>
             {isEditMode ? (
-              <input
-                className="profile-input"
-                type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-              />
+              <div>
+                <input
+                  className="profile-input"
+                  type="text"
+                  value={country}
+                  onChange={(e) => {
+                    setCountry(e.target.value);
+                    handleCountryChange(e);
+                  }}
+                  required
+                />
+              </div>
             ) : (
               <input
                 className="profile-input"
