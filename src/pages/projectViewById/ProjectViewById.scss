@@ -115,6 +115,15 @@
     margin-right: -8px;
   }
 }
+.createAvis{
+  cursor: pointer;
+background-color: $primary-color;
+padding: 1rem;
+}
+.createAvisText{
+    border: solid 2px $primary-color;
+  }
+
 @media screen and (min-width: 926px) {
   #projectResume {
     padding: 0 8rem;

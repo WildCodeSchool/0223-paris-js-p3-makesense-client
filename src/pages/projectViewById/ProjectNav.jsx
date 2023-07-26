@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {sendAvisData} from "../../store/avis"
 import ProjectDescription from "./ProjectDescription";
 import ProjectInfluences from "./ProjectInfluences";
 import ProjectAvis from "./ProjectAvis";
@@ -8,8 +10,10 @@ import { getAllAvis } from "../../services/avis";
 
 export default function ProjectNav({ post }) {
   const [actif, setActif] = useState("description");
-  const [postAvis, setPostAvis] = useState([]);
   const { id } = useParams();
+  
+  const dispatch = useDispatch();
+  const avis = useSelector((state) => state.avis);
 
   const toggleActif = (onglet) => {
     if (onglet !== actif) {
@@ -19,7 +23,7 @@ export default function ProjectNav({ post }) {
   const dataUser = async () => {
     try {
       const getpostAvis = await getAllAvis(id);
-      setPostAvis(getpostAvis?.data);
+      dispatch(sendAvisData(getpostAvis?.data))
     } catch (err) {
       console.error("err", err);
     }
@@ -48,7 +52,7 @@ export default function ProjectNav({ post }) {
           className={`onglet ${actif === "avis" ? "actif" : ""}`}
           onClick={() => toggleActif("avis")}
         >
-          Avis({postAvis?.length})
+          Avis({avis?.length})
         </li>
       </ul>
       <div
@@ -67,7 +71,7 @@ export default function ProjectNav({ post }) {
         className={`contenu ${actif === "avis" ? "actif" : ""}`}
         onClick={() => toggleActif("avis")}
       >
-        <ProjectAvis avis={postAvis} />
+        <ProjectAvis avis={avis} post={post} />
       </div>
     </div>
   );
