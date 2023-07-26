@@ -187,6 +187,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            exact
+            path="/projectview/:id"
+            element={
+              <PrivateRoute>
+                <ProjectViewById />
+              </PrivateRoute>
+            }
+          />
           
         </Routes>
       </div>
