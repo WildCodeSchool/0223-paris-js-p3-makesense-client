@@ -1,23 +1,105 @@
 @use "../../sass/global" as *;
 
-.sablier-container {
-    width: 100px;
-    height: 200px;
-    border: 1px solid #999;
-    position: relative;
-    overflow: hidden;
-    border-radius: 5px;
-  }
+.timelineContainer{
+  height: 4%;
+}
+
+
+.timeline {
+  margin-top:20%;
+  width: 2%;
+  height: 70vw;
+  border-radius: 5px;
+  background-color: grey;
+  overflow: hidden;
+  position: relative;
+  margin-left:15px;
+}
+
+.progress {
+  height: 0;
+  width:100%;
+  background-color: green;
+  transition: width 0.3s ease;
+}
+
+.step {
+  transform: translateX(-50%); /* Centrage horizontal */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  margin-left:1.2rem;
+  margin-bottom:1rem;
+}
+
+.step.completed {
+  background-color: green;
+}
+
+
+.stepContainer{
   
-  .sablier-content {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 100px solid #0066ff; /* Vert */
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
+  position:absolute;
+  top:30%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:100%;
+  height:75%;
+}
+
+
+// .timeline {
+//   margin-top: 20%;
+//   margin-left: 30%;
+//   width: 20px; 
+//   height: 80%; 
+//   border-radius: 5px;
+//   // background-color: grey;
+//   overflow: hidden;
+//   position: relative;
+//   display: flex; 
+//   flex-direction: column; 
+//   align-items: center; 
+//   justify-content: space-between;
+// }
+
+// .progress {
+//   width: 100%;
+//   background-color: greenyellow;
+//   transition: height 0.3s ease;
+// }
+
+// // .step {
+// //   margin-bottom: 20%;
+// //   position: absolute;
+// //   top: 50%;
+// //   transform: translateY(-50%);
+// //   width: 30px;
+// //   height: 30px;
+// //   border-radius: 50%;
+// //   // background-color:;
+// //   display: flex;
+// //   align-items: center;
+// //   justify-content: center;
+// //   font-size: 12px;
+// //   color: #fff;
+// // }
+
+// .step.completed {
+//   background-color: blue;
+// }
+
+// .step:first-child {
+//   left: 0;
+// }
+
+// .step:last-child {
+//   right: 0;
+// }
