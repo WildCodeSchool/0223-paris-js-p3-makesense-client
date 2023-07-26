@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getVoteFromUser, getPostFromUser } from "../../services/post";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
+import ProjectViewById from "../projectViewById/projectViewById";
 
 function SuiviProjet() {
   const [actif, setActif] = useState("projets");
@@ -28,6 +29,11 @@ function SuiviProjet() {
   }, []);
 
   return (
+    <>
+    <section id="headersuiviprojet">
+        <h1>Suivi de Projet</h1>
+        <img className="imgheader" src="../../assets/pills/Pills_desktop_project_guide.png" alt="" />
+    </section>
     <div id="container">
       <div className="onglets">
         <div
@@ -76,6 +82,7 @@ function SuiviProjet() {
         </ul> 
       </div>
     </div>
+    </>
   );
 }
 
