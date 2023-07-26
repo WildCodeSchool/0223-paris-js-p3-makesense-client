@@ -54,3 +54,39 @@
 .bloc-image p{
     padding:0.5rem;
 }
+
+.editor-container{
+    text-align: center;
+}
+
+.editor-container  p{
+    padding:0.5rem;
+}
+
+.quill{
+    padding-bottom:20%;
+}
+
+.blueButton{
+    width: 8rem;
+    padding: 0.3rem 0.1rem;
+    border-radius: 5px;
+    color: white;
+    background-color:$primary-color;
+    font-size: $p-mobile;
+    transition: 300ms;
+    cursor: pointer;
+    margin: 10% auto 10% auto;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    &:hover {
+      background-color: $color-accent-yellow;
+      color: $text-white;
+    }
+}
+
+    .missingFields{
+        color:$color-accent-red;
+        margin:5%;
+    }

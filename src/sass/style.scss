@@ -1,6 +1,6 @@
 @forward "./global/";
 @forward "../components/Navbar/index";
-@forward "../pages/MonProfil/MonProfil";
+@forward "../pages/MonProfil/index";
 @forward "../components/Footer/index";
 @forward "../components/ProjectCard/index";
 @forward "../components/Footer/index";
@@ -16,6 +16,8 @@
 @forward "../pages/CreateProject/TitleProject/index";
 @forward "../pages/SuiviProjet/index";
 @forward "../pages/CreateProject/DescriptionProject/index";
+@forward "../pages/CreateProject/SettingsProject/index";
+@forward "../pages/CreateProject/ImpactProject/index";
 @forward "../components/ImageUpload/index";
 @forward "../components/FormPost/index";
 @forward "../pages/Admin/Dashboard/index";
@@ -28,3 +30,5 @@
 @forward "../components/JobsRolesCard/index";
 @forward "../pages/Admin/RoleManager/index";
 @forward "../pages/Admin/PostsManager/index";
+@forward "../components/Timeline/index"
+

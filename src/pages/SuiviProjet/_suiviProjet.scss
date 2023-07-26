@@ -1,5 +1,24 @@
 @use "../../sass//global" as *;
 
+#headersuiviprojet{
+    background-color: $color-accent-carmin;
+    height: 10rem;
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
+    position: relative;
+
+    h1{
+        text-align: center;
+        color: $color-accent-yellow;
+        margin-top: 20px;
+    }
+    .imgheader {
+        position: absolute;
+        top: 0;
+        color: black;
+    }
+
+}
+
 #container {
     display: flex;
     flex-direction: column;
