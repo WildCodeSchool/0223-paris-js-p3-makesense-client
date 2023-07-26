@@ -33,20 +33,12 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-      <img
-        className="nav_logo"
-        src={logoWhite}
-        alt="makesense logo"
-      />
+      <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
-      <img
-        className="nav_logo"
-        src={logoBlue}
-        alt="makesense logo"
-      />
+      <img className="nav_logo" src={logoBlue} alt="makesense logo" />
       <div className="nav-linksDesktop">
         <ul>
           <li>
@@ -125,7 +117,7 @@ function Navbar() {
             <a href="/">Gérer les projets</a>
           </li>
           <li>
-            <Link to="/admin">Adminstration</Link>
+            <a href="/admin">Adminstration</a>
           </li>
           <li>
             <a href="/login" onClick={handleSubmit}>
