@@ -8,7 +8,7 @@ const getPostVote = (id) => api.get(`/api/posts/votes/frompost/${id}`);
 
 const getPostFromUser = () => api.get(`/api/posts/me`);
 
-const getVoteFromUser = (id) => api.get(`api/posts/votes/fromuser/${id}`);
+const getVoteFromUser = () => api.get(`api/posts/votes/fromuser/`);
 
 const getVoteFromUserFromPostId = (id, post_id) =>
   api.get(`api/posts/votes/fromvote/fromuser/${id}/${post_id}`);

@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { addAvis } from "../../services/avis";
 import { createAvis } from "../../store/avis";
 
-export default function CreateAvis({ post, text, setText }) {
+export default function CreateAvis({ post }) {
   const [actif, setActif] = useState(false);
-
+  const [text, setText] = useState("");
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const avis = useSelector((state) => state.avis);
