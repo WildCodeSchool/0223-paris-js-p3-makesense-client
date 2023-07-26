@@ -37,14 +37,13 @@ export default function ProjectAvis({ avis, post }) {
     setText(text);
   };
 
-  const validEdit = async(id) => {
+  const validEdit = async (id) => {
     try {
-      await editAvis(id)
+      await editAvis(id);
       setEdit(false);
     } catch (err) {
       console.error("err", err);
     }
-
   };
 
   const handleClickFetch = async () => {
@@ -108,8 +107,20 @@ export default function ProjectAvis({ avis, post }) {
                   value={text}
                   className="c-blue avisByUserText"
                 />
-                <button type="button" className="createAvis" onClick={() => cancelEdit(data.text)}>Annuler</button>
-                <button type="button" className="createAvis" onClick={() => validEdit(data.id)} >Confirmer</button>
+                <button
+                  type="button"
+                  className="createAvis"
+                  onClick={() => cancelEdit(data.text)}
+                >
+                  Annuler
+                </button>
+                <button
+                  type="button"
+                  className="createAvis"
+                  onClick={() => validEdit(data.id)}
+                >
+                  Confirmer
+                </button>
               </>
             ) : (
               <p className="c-blue avisByUserText">{data.text}</p>

@@ -1,0 +1,68 @@
+@use "../../sass/global/" as *;
+
+.card_container_admin_job {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+.card_admin_job {
+  width: 20rem;
+  background-color: $bg-grey;
+  padding: 1.25rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow : 1px 5px 10px -1px rgba(0, 0, 0, 0.25);
+}
+  
+  
+  .card_admin_job h3 {
+    font-size: $h3-mobile;
+    background-color: $color-accent-orange;
+    color: $bg-white;
+    padding: 0.5rem;
+    font-weight: bold;
+    border-top-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.9rem;
+    margin-top: 0.8rem;
+  }
+  
+  .card_actions_admin_job {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.1rem;
+  }
+  
+  .action_edit_admin_job,
+  .action_delete_admin_job {
+    font-size: 1.2rem;
+    color: $primary-color;
+    margin-right: 0.3rem;
+    cursor: pointer;
+  }
+  
+  .action_edit_admin_job:hover {
+    color: $color-accent-green;
+  }
+  
+  .action_edit_admin_job:hover {
+    color: $color-accent-red;
+  }
+  
+  @media screen and (min-width: 926px) {
+    .card_admin_job {
+        width: 25rem;
+      }
+  
+    .card_admin_job h3 {
+        font-size: $h3-desktop;
+    }
+  }

@@ -1,13 +1,13 @@
 @use "../../sass/global" as *;
 
-
 .search_bar_admin {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   margin-bottom: 1rem;
-  width: 50%;
+  width: 100%;
+  margin-top: 5%;
 }
 
 .search_input_admin {
@@ -34,6 +34,12 @@
   font-size : $p-mobile;
 }
 
+
+@media screen and (min-width: 600px) {
+  .search_bar_admin {
+    width: 70%;
+  }
+}
 
 @media screen and (min-width: 926px) {
 

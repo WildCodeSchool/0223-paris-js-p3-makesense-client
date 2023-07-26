@@ -48,18 +48,20 @@ export default function ProjectResume() {
     searchData();
   }, []);
 
-const deleteMyVote = async () => {
-  try {
-    const reponse = await deleteVote(post.id)
-    const filterDate = votes.filter((vote) => reponse.data.selectDataIdVote[0]?.id != vote.id)
-    setVote(reponse.data)
-    setActif(null);
-    setVotes(filterDate);
-    console.log(reponse.data, "DALPDALPDLA")
-  } catch (err) {
-    console.error("err", err);
-  }
-}
+  const deleteMyVote = async () => {
+    try {
+      const reponse = await deleteVote(post.id);
+      const filterDate = votes.filter(
+        (vote) => reponse.data.selectDataIdVote[0]?.id != vote.id
+      );
+      setVote(reponse.data);
+      setActif(null);
+      setVotes(filterDate);
+      console.log(reponse.data, "DALPDALPDLA");
+    } catch (err) {
+      console.error("err", err);
+    }
+  };
   const handleIsVoted = () => {
     setIsVoted(true);
   };

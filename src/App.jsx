@@ -10,7 +10,6 @@ import { getCurrentUser } from "./services/users";
 import { signin } from "./store/auth";
 import "./sass/style.scss";
 import Navbar from "./components/Navbar/Navbar";
-
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import CreationGuide from "./pages/CreationGuide/CreationGuide";
@@ -21,11 +20,18 @@ import TitleProject from "./pages/CreateProject/TitleProject/TitleProject";
 import Register from "./pages/Admin/UserRegister/Register";
 import DescriptionProject from "./pages/CreateProject/DescriptionProject/DescriptionProject";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
-import UserManage from "./pages/Admin/UserManage/UserManage";
+import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
 import MonProfil from "./pages/monprofil/monprofil";
+import JobManager from "./pages/Admin/JobManager/JobManger";
+import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
+import JobModify from "./pages/Admin/JobModify/JobModify";
+import RoleManager from "./pages/Admin/RoleManager/RoleManager";
+import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
+import RoleModify from "./pages/Admin/RoleModify/RoleModify";
+import PostsManager from "./pages/Admin/PostsManager/PostsManager";
 
 function App() {
   const dispatch = useDispatch();
@@ -104,6 +110,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             exact
             path="/monprofil"
@@ -136,7 +143,34 @@ function App() {
             path="/admin/users"
             element={
               <PrivateRouteAdmin>
-                <UserManage />
+                <UserManager />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/jobs"
+            element={
+              <PrivateRouteAdmin>
+                <JobManager />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/roles"
+            element={
+              <PrivateRouteAdmin>
+                <RoleManager />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/posts"
+            element={
+              <PrivateRouteAdmin>
+                <PostsManager />
               </PrivateRouteAdmin>
             }
           />
@@ -151,10 +185,46 @@ function App() {
           />
           <Route
             exact
+            path="/admin/jobs/:id"
+            element={
+              <PrivateRouteAdmin>
+                <JobModify />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/roles/:id"
+            element={
+              <PrivateRouteAdmin>
+                <RoleModify />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
             path="/admin/users/register"
             element={
               <PrivateRouteAdmin>
                 <Register />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/jobs/register"
+            element={
+              <PrivateRouteAdmin>
+                <JobRegister />
+              </PrivateRouteAdmin>
+            }
+          />
+          <Route
+            exact
+            path="/admin/roles/register"
+            element={
+              <PrivateRouteAdmin>
+                <RoleRegister />
               </PrivateRouteAdmin>
             }
           />

@@ -20,7 +20,11 @@
 @forward "../components/FormPost/index";
 @forward "../pages/Admin/Dashboard/index";
 @forward "../pages/Admin/UserRegister/index";
-@forward "../pages/Admin/UserManage/index";
+@forward "../pages/Admin/UserManager/index";
 @forward "../pages/Admin/UserModify/index";
 @forward "../components/UserCard/index";
 @forward "../components/SearchBarAdmin/index";
+@forward "../pages/Admin/JobManager/index";
+@forward "../components/JobsRolesCard/index";
+@forward "../pages/Admin/RoleManager/index";
+@forward "../pages/Admin/PostsManager/index";

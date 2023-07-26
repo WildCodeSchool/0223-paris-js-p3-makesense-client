@@ -50,7 +50,7 @@ PaginatedItems.propTypes = {
       lastname: PropTypes.string.isRequired,
       location: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
-    }),
+    })
   ).isRequired,
   setCurrentItems: PropTypes.func.isRequired,
 };
