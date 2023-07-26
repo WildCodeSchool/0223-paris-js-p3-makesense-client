@@ -87,10 +87,6 @@ top:5rem;
     width: 100%;
 }
 
-.form_login{
-    width: 75%;
-}
-
 .checkbox_login {
     display: flex;
     align-items: center;
@@ -132,35 +128,45 @@ input[type=checkbox] {
     margin-top: 0.5rem;
 }
 
+
 @media screen and (min-width: 926px) {
 
-<<<<<<< HEAD
 
     .containers_login{
-=======
-    .containers{
->>>>>>> ff4aaf0e7bdbf0cb041fe7229805aa94e40d1efe
+
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         position: relative;
-        top:10rem;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        flex-direction: column;
-        padding: 1.5rem;      
+        margin-bottom: 20rem;
     }
 
     .box_login{
         background-image: url(./src/assets/pills/Pills_desktop_login.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        
     }
-<<<<<<< HEAD
-=======
 
     .oeil{
         margin-left: 4%;
     }
 
->>>>>>> ff4aaf0e7bdbf0cb041fe7229805aa94e40d1efe
+    .containers_login{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 40%;
+        padding: 1.5rem;
+        position: relative;
+        top:5rem;
+        }
+
 }
