@@ -5,7 +5,7 @@ export default function ProjectViewById() {
   return (
     <section id="projectViewById">
       {/* <ProjectResume /> */}
-      <Timeline/>
+      <Timeline percentage="90"/>
     </section>
   );
 }

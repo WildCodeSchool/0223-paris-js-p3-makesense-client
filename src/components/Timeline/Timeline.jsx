@@ -1,44 +1,47 @@
-// src/components/Sablier.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from "react";
+import Timeimg from "../../assets/Timeline.png"
 
-const Timeline = ({ startDate, endDate }) => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-  
-    // Calcule la proportion de remplissage en vert en fonction des dates
-    const calculateFillPercentage = () => {
-      const totalDuration = endDate.getTime() - startDate.getTime();
-      const passedDuration = currentDate.getTime() - startDate.getTime();
-      const fillPercentage = (passedDuration / totalDuration) * 100;
-      return Math.min(100, Math.max(0, fillPercentage)); // Limit the percentage between 0 and 100
+const Timeline = ({ percentage }) => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    // Charger l'image
+    const img = new Image();
+    img.src = {Timeimg}
+
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Dessiner l'image du sablier gris sur le canvas
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+
+      // Déterminer la hauteur de remplissage en fonction du pourcentage donné
+      const fillHeight = (img.height * percentage) / 100;
+
+      // Remplacer les pixels du sablier par des pixels verts jusqu'à la hauteur de remplissage
+      const imageData = ctx.getImageData(0, 0, img.width, img.height);
+      const data = imageData.data;
+
+      for (let y = 0; y < fillHeight; y++) {
+        for (let x = 0; x < img.width; x++) {
+          const index = (y * img.width + x) * 4;
+          // Remplacer les pixels gris par des pixels verts
+          data[index] = 0; // Rouge
+          data[index + 1] = 255; // Vert
+          data[index + 2] = 0; // Bleu
+        }
+      }
+
+      // Mettre à jour les données des pixels sur le canvas
+      ctx.putImageData(imageData, 0, 0);
     };
-  
-    // Met à jour l'heure actuelle toutes les secondes
-    useEffect(() => {
-      const timerId = setInterval(() => {
-        setCurrentDate(new Date());
-      }, 1000);
-  
-      return () => {
-        clearInterval(timerId);
-      };
-    }, []);
-  
-    const fillPercentage = calculateFillPercentage();
-  
-    return (
-      <div style={{ width: '100px', height: '200px', background: 'gray', position: 'relative' }}>
-        <div
-          style={{
-            width: '100%',
-            height: `${fillPercentage}%`,
-            background: 'green',
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-          }}
-        ></div>
-      </div>
-    );
-  };
-  
-  export default Timeline;
+  }, [percentage]);
+
+  return <canvas ref={canvasRef} />;
+};
+
+export default Timeline;
