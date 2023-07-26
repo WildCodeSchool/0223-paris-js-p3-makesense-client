@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Timeline = ({ steps }) => {
-  const [progress, setProgress] = useState(0);
-
+    const { decisionDelay, conflictDelay, decisionEndDelay } = useSelector((state) => state.project);
+    console.log("decision", decisionDelay)
+    const [progress, setProgress] = useState(0);
   useEffect(() => {
     const currentDate = new Date();
     const totalSteps = steps.length;
-
     for (let i = 0; i < totalSteps; i++) {
       const stepDate = new Date(steps[i].date);
       if (currentDate < stepDate) {
@@ -17,7 +18,6 @@ const Timeline = ({ steps }) => {
       }
     }
   }, [steps]);
-
   return (
     <div className="timelineContainer">
     <div className="timeline">
@@ -39,5 +39,4 @@ const Timeline = ({ steps }) => {
     </div>
   );
 };
-
 export default Timeline;

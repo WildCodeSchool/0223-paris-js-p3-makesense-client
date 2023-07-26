@@ -16,7 +16,7 @@ function SettingsProject() {
   const [isMissing, setIsMissing] = useState(false)
   const handleClick = async () => {
   dispatch(setDecisionDelay(decisiondata.makeDecisionDate))
-  dispatch(setConflictDelay(decisiondata.conflictDate))
+  dispatch(setConflictDelay(decisiondata.conflitDate))
   dispatch(setDecisionEndDelay(decisiondata.deadLineDate))
   const decisionDate = new Date( Date.now() + (6.048e+8 * decisiondata.makeDecisionDate) )
   const confliDate =  new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate )))
