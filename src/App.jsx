@@ -178,6 +178,15 @@ function App() {
               </PrivateRouteAdmin>
             }
           />
+          <Route
+            exact
+            path="/impactproject"
+            element={
+              <PrivateRoute>
+                <ImpactProject />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
       <Footer />

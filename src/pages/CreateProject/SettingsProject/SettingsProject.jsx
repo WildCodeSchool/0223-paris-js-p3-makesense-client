@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import { DecisionTiming } from "./decision_timing";
+import { useDispatch, useSelector } from 'react-redux';
+import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from '../../../store/projectSlice';
+import { useNavigate } from "react-router-dom";
 
 function SettingsProject() {
+  const [data, setData] = useState({ makeDecisionDate : "", conflitDate : "", deadLineDate : "" })
+  const { title, description, benefits, risks, image, impacted, expert, impactOrganisation } = useSelector((state) => state.project);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isMissing, setIsMissing] = useState(false)
+  const handleClick = () => {
+  //   const decisionDate = new Date( Date.now() + (6.048e+8 * data.makeDecisionDate) )
+  // const confliDate =  new Date( Date.now() + (6.048e+8 * (data.conflitDate + data.makeDecisionDate )))
+  // const deadDate = new Date( Date.now() + (6.048e+8 * (data.conflitDate + data.makeDecisionDate + data.deadLineDate)))
+  // console.log("date1", decisionDate)
+  // console.log("date2", confliDate)
+  // console.log("date", deadDate)
+    if ( data.makeDecisionDate === "" || data.conflictDate === "" || data.deadLineDate === "") {
+      setIsMissing(true)
+    } else {
+      dispatch(setDecisionDelay(data.makeDecisionDate));
+      dispatch(setConflictDelay(data.conflitDate));
+      dispatch(setDecisionEndDelay(data.deadLineDate));
+      navigate("/");
+    }
+  };
   return (
     <>
       <div className="header">
@@ -42,6 +66,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionPrise"
                       value={number.number}
+                      onClick={e => setData({ ...data, makeDecisionDate : (index+1)})}
                     />
                   </div>
                 </li>
@@ -65,6 +90,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionConflit"
                       value={number.number}
+                      onClick={e => setData({ ...data, conflitDate : (index+1)})}
                     />
                   </div>
                 </li>
@@ -88,6 +114,7 @@ function SettingsProject() {
                       id={`custom-checkbox-${index}`}
                       name="decisionDefinitive"
                       value={number.number}
+                      onClick={e => setData({ ...data, deadLineDate : (index+1)})}
                     />
                   </div>
                 </li>
@@ -95,11 +122,15 @@ function SettingsProject() {
             })}
           </ul>
         </div>
+        {isMissing ?
+      <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
+      <div></div>
+    }
         <div className="button_settings_project">
               <button type="button" className="launch_button next_button" >
                 PRECEDENT
               </button>
-              <button type="button" className="launch_button back_button">
+              <button type="button"  onClick={handleClick} className="launch_button back_button">
                 ENVOYER
               </button>
             </div>

@@ -16,6 +16,8 @@ const getExpertFromPost = (id) => api.get(`/api/posts/expert/${id}`);
 
 const addVote = () => api.get(`/api/posts/votes`);
 
+const createPost =(data) => api.post("/api/posts/register", data);
+
 export {
   getAllPost,
   getCurrentPost,
