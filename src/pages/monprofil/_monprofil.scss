@@ -1,17 +1,5 @@
 @use "../../sass//global" as *;
 
-body {
-    background-color: $bg-grey;
-    h1 {
-        size: $h1-mobile;
-    }
-    p {
-        size: $p-mobile;
-    }
-    a {
-        size: $a-mobile;
-    }
-}
 .titreprofil {
     text-align: center;
     width: 100%;
@@ -78,7 +66,6 @@ label {
 button {
     color: white;
     border-radius: 5px;
-    margin-top: 10px;
 }
 .boutonAS {
     display: flex;
@@ -87,20 +74,25 @@ button {
     margin: 0 auto;
 }
 .annuler {
-    padding: 10px;
-    background-color: $bg-grey;
+    padding: 8px 10px;
+    background-color: $bg-lightGrey;
     color: $color-accent-lightOrange;
     border: 1px solid $color-accent-lightOrange;
-    font-family: $titles-font;
+    &:hover{
+        filter: brightness(90%);
+      }
     
 }
 .sauvegarder {
-    padding: 10px;
+    padding: 8px 10px;
     background-color: $color-accent-lightOrange;
     font-family: $titles-font;
+    &:hover{
+        filter: brightness(90%);
+      }
 }
 .editer {
-    padding: 10px;
+    padding: 8px 10px;
     margin-left: 250px;
     border: 1px solid transparent;
     background-color: $color-accent-lightOrange;

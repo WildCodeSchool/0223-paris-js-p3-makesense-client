@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -57,7 +58,6 @@ export default function ProjectResume() {
       setVote(reponse.data);
       setActif(null);
       setVotes(filterDate);
-      console.log(reponse.data, "DALPDALPDLA");
     } catch (err) {
       console.error("err", err);
     }
@@ -139,14 +139,14 @@ export default function ProjectResume() {
                   <div className="thumbsUpButtons">
                     <button
                       type="button"
-                      className="vote yes"
+                      className="vote yes pointer"
                       onClick={handlePositiveVote}
                     >
                       <img src={thumbUp} alt="pouce en l'air" />
                     </button>
                     <button
                       type="button"
-                      className="vote no"
+                      className="vote no pointer"
                       onClick={handleNegativeVote}
                     >
                       <img src={thumbUp} alt="pouce en bas" />
@@ -156,7 +156,7 @@ export default function ProjectResume() {
                   <div className="thumbsUpButtons">
                     <button
                       type="button"
-                      className="vote yes selected"
+                      className="vote yes selected pointer"
                       onClick={deleteMyVote}
                     >
                       <img src={thumbUp} alt="pouce en l'air" />
@@ -166,7 +166,7 @@ export default function ProjectResume() {
                   <div className="thumbsUpButtons">
                     <button
                       type="button"
-                      className="vote no selected"
+                      className="vote no selected pointer"
                       onClick={deleteMyVote}
                     >
                       <img src={thumbUp} alt="pouce en l'air" />
@@ -177,7 +177,7 @@ export default function ProjectResume() {
                 <div className="voteInfos">
                   <button
                     type="button"
-                    className="voteButton"
+                    className="voteButton pointer"
                     onClick={handleIsVoted}
                   >
                     VOTER

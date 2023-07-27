@@ -13,6 +13,7 @@ nav{
     z-index:2;
 }
 
+
 .nav-links{
     background-color: $bg-white;
     position:fixed;
@@ -55,6 +56,7 @@ nav{
 .nav_avatar_default{
     height: 1.5rem;
     width: 1.5rem;
+    border-radius: 50%;
 
 }
 
@@ -136,25 +138,25 @@ padding-left:30%;
 
 .dropdown{
     position:fixed;
+    padding: 0.5rem;
     top:3.5rem;
     right:2rem;
     border-radius: 15px;
     border: 2px solid $primary-color;
     transition:0.5s;
     background-color: white;
-    height:9rem;
-    width:9%;
+    height:12rem;
+    width:10rem;
     text-align: center;
     visibility: hidden;
+    li{
+        font-weight: bold;
+        margin-top: 1.15rem;
+    }
 }
 
 .dropdown ul li a {
     color:$primary-color;
-}
-
-.dropdown h3{
-    color:$primary-color;
-    margin-top:2%;
 }
 
 .dropdown ul li:hover a{
@@ -191,6 +193,9 @@ padding-left:30%;
         color:$primary-color;
         font-family: $titles-font;
         font-weight:700;
+        &:hover{
+            color: $color-accent-cian;
+        }
     }
 
     .burgerAvatar{
@@ -204,10 +209,8 @@ padding-left:30%;
     }
 
     .nav_logo{
-        height:9%;
-        width:9%;
-        margin-top:0.1%;
-        margin-left:0.6%;
+        height:2rem;
+        width:7rem;
     }
 
 

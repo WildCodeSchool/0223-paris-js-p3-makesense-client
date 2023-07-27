@@ -21,3 +21,43 @@
     width:1.2rem;
     margin-right:0.3rem;
 }
+
+.blueButtonMulti{
+    width: 8rem;
+    padding: 0.3rem 0.1rem;
+    border-radius: 5px;
+    color: white;
+    background-color:$primary-color;
+    font-size: $p-mobile;
+    transition: 300ms;
+    cursor: pointer;
+    margin: 2rem auto 2rem auto;
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    font-weight:bold;
+    &:hover {
+      background-color: $color-accent-yellow;
+      color: $primary-color;
+    }
+}
+
+@media screen and (min-width: 926px) {
+    .selector{
+        width:30vw
+    }
+
+    .css-b62m3t-container{
+        margin-top:1rem;
+    }
+
+
+.nextPreviousButtons{
+    justify-content: center;
+}
+
+.blueButtonMulti{
+    margin: 2rem;
+}
+
+}

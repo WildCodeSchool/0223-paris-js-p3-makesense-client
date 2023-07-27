@@ -18,6 +18,10 @@ export default function Home() {
     navigate("/Guide");
   }
 
+function handleClickTitleproject() {
+  navigate("/titleproject");
+}
+
   return (
     <>
       <section id="home">
@@ -33,7 +37,7 @@ export default function Home() {
           <a href="#projectView" onClick={clickMe} className="button-bg-orange">
             décourvrir les projets
           </a>
-          <button type="button" onClick={clickMe} className="button-bg-a0">
+          <button type="button" onClick={handleClickTitleproject} className="button-bg-a0">
             lancer mon projet
           </button>
           <button

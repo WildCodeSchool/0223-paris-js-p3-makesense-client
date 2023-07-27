@@ -74,9 +74,6 @@ function TitleProject() {
     }),
   };
 
-  //   function handleClicktitleproject() {
-  //     navigate("/titleproject");
-  //   }
   return (
     <>
       <div className="background_title_project">
@@ -116,14 +113,14 @@ function TitleProject() {
             />
           </div>
           {isMissing ? (
-            <p class="missingFields">
+            <p class="missingFieldsFirstPage">
               * Veuillez remplir tous les champs pour continuer
             </p>
           ) : (
             <div></div>
           )}
           <div className="button_launch_project">
-            <button type="button" onClick={clickMe} className="launch_button">
+            <button type="button" onClick={clickMe} className="launch_button ">
               DEMARRER
             </button>
           </div>

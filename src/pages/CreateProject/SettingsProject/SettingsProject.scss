@@ -45,3 +45,34 @@ display: flex;
     width: 8rem;
   }
   
+  @media screen and (min-width: 926px) {
+    .checkbox .button_checkbox {
+      margin-right:70px;
+    }
+    .require{
+      font-size: $h4-desktop;
+      text-align: center;
+      margin-top: 2rem;
+  }
+  .title_section{
+    font-size: $h4-desktop;
+    text-align: left;
+    margin-top: 3rem;
+    margin-right: 13%;
+}
+
+.decision_timing_title{
+  font-size: $h4-mobile;
+  text-align: left;
+  margin-top: 10%;
+  margin-left:-1% ;
+  margin-bottom: 2%;
+}
+.missingFields_settings{
+  color:$color-accent-red;
+  margin:2rem;
+
+}
+
+}
+

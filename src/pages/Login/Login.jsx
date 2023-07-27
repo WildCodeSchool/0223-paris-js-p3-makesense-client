@@ -46,7 +46,7 @@ function Login() {
         <p className="title1_login">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
         {error && <p className="p_error_login">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form className="form_login" onSubmit={handleSubmit}>
           <div className="input_courriel_login">
             <input
               className=" courriel_icon_login"

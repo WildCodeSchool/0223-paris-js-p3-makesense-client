@@ -22,9 +22,9 @@
 #container {
     display: flex;
     flex-direction: column;
-    // align-items: center;
+    // align-items: center; 
     background-color: $bg-lightGrey;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 .onglets {
     display: flex;
@@ -37,7 +37,7 @@
 }
 .onglet {
     flex: 1;
-    padding: 10px 30px;
+    padding:  0px 30px 10px 30px;
     text-align: center;
     cursor: pointer;
 }
@@ -58,12 +58,9 @@
 }
 
 @media screen and (min-width: 926px) {
-    .containprojet {
-        width: 70%;
-        margin: 20px auto;
-    }
+
     .contenu {
-        padding: 2rem 6rem;
+        padding: 2rem 7rem;
     
     }
 }

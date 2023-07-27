@@ -33,20 +33,14 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-      <img
-        className="nav_logo"
-        src={logoWhite}
-        alt="makesense logo"
-      />
+        <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
-      <img
-        className="nav_logo"
-        src={logoBlue}
-        alt="makesense logo"
-      />
+      <a href="/">
+      <img className="nav_logo" src={logoBlue} alt="makesense logo" />
+      </a>
       <div className="nav-linksDesktop">
         <ul>
           <li>
@@ -71,23 +65,19 @@ function Navbar() {
         />
         <img
           className="nav_avatar_default"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="default avatar"
           onClick={handleShowDropdown}
         />
       </div>
       {showDropdown ? (
         <div className="dropdown">
-          <h3>Mon profil</h3>
           <ul>
             <li>
-              <a href="/monprofil">Modifier mon profil</a>
+              <a href="/monprofil">Mon profil</a>
             </li>
             <li>
-              <a href="#">Mes notifications</a>
-            </li>
-            <li>
-              <a href="/guide">Aide</a>
+              <a href="/suiviprojet">Suivi de Projets</a>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
@@ -111,7 +101,7 @@ function Navbar() {
       <div className="nav-links">
         <img
           className="nav_avatar_big"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="big avatar"
         />
         <ul>
@@ -122,10 +112,7 @@ function Navbar() {
             <a href="/suiviprojet">Suivi de Projets</a>
           </li>
           <li>
-            <a href="/">Gérer les projets</a>
-          </li>
-          <li>
-            <Link to="/admin">Adminstration</Link>
+            <a href="/admin">Adminstration</a>
           </li>
           <li>
             <a href="/login" onClick={handleSubmit}>

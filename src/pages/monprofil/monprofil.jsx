@@ -37,6 +37,7 @@ const MonProfil = () => {
     setName(auth?.user?.lastname);
     setEmail(auth?.user?.email);
     setPhone(auth?.user?.tel);
+    setProfileImage(auth?.user?.avatar);
   }, []);
 
   const handleEditProfile = () => {
@@ -203,7 +204,6 @@ const MonProfil = () => {
             onChange={handleFileChange}
           />
         </div>
-
         <form className="formProfile">
           <div className="label-input">
             <label htmlFor="">Prénom</label>

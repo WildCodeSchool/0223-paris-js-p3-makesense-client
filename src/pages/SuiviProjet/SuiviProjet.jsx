@@ -17,6 +17,8 @@ function SuiviProjet() {
     try {
       const userPost = await getPostFromUser();
       const userVote = await getVoteFromUser();
+      console.log("userPost", userPost);
+      console.log("userVote", userVote);
       setUserPosts(userPost.data);
       setUserVotes(userVote?.data);
     } catch (err) {
@@ -30,26 +32,30 @@ function SuiviProjet() {
 
   return (
     <>
-    <section id="headersuiviprojet">
+      <section id="headersuiviprojet">
         <h1>Suivi de Projet</h1>
-        <img className="imgheader" src="../../assets/pills/Pills_desktop_project_guide.png" alt="" />
-    </section>
-    <div id="container">
-      <div className="onglets">
-        <div
-          className={`onglet ${actif === "projets" ? "actif" : ""}`}
-          onClick={() => toggleActif("projets")}
-        >
-          Mes projets
+        <img
+          className="imgheader"
+          src="../../assets/pills/Pills_desktop_project_guide.png"
+          alt=""
+        />
+      </section>
+      <div id="container">
+        <div className="onglets">
+          <div
+            className={`onglet ${actif === "projets" ? "actif" : ""}`}
+            onClick={() => toggleActif("projets")}
+          >
+            Mes projets
+          </div>
+          <div
+            className={`onglet ${actif === "votes" ? "actif" : ""}`}
+            onClick={() => toggleActif("votes")}
+          >
+            Mes votes
+          </div>
         </div>
         <div
-          className={`onglet ${actif === "votes" ? "actif" : ""}`}
-          onClick={() => toggleActif("votes")}
-        >
-          Mes votes
-        </div>
-      </div>
-      <div
         className={`contenu ${actif === "projets" ? "actif" : ""}`}
         onClick={() => toggleActif("projets")}
       >
@@ -71,7 +77,7 @@ function SuiviProjet() {
           ))}
         </ul> 
       </div>
-    </div>
+      </div>
     </>
   );
 }
