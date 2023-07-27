@@ -120,7 +120,7 @@ function TitleProject() {
             <div></div>
           )}
           <div className="button_launch_project">
-            <button type="button" onClick={clickMe} className="launch_button">
+            <button type="button" onClick={clickMe} className="launch_button ">
               DEMARRER
             </button>
           </div>

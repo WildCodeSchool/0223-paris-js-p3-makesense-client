@@ -17,18 +17,8 @@ const stepsData = [
 
 export default function ProjectViewById() {
   return (
-<<<<<<< HEAD
-    // <section id="projectViewById">
-    //   {/* <ProjectResume /> */}
-    <div>
-      <Timeline steps={stepsData} />
-      </div>
-    // </section>
-=======
     <section id="projectViewById">
       <ProjectResume />
-      {/* <Timeline/> */}
     </section>
->>>>>>> 2e895dd69e8e4595b07336f5ccf83a5027147abd
   );
 }

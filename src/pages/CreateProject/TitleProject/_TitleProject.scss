@@ -93,8 +93,25 @@ margin-bottom: 1rem;
     }
 
     .title_project{
-        margin-top:-7rem;    
+        margin-top:-7rem; 
+        font-size: $h1-desktop ;  
+    }
+    .title_css{
+        font-size: $h4-desktop;
     
-}
+    }
+    .input_title_project{
+        background-color:rgba(217, 217, 217, 0.2);
+        border-bottom: 2px solid rgba(255, 243, 13, 1);
+        color: white;
+        position:relative;
+        margin-top:3rem;
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        width: 18rem;
+        text-align: center;
+    }
 
 }

@@ -1,4 +1,5 @@
 @use "../../sass/global" as *;
+@use "../../sass/global" as *;
 
 
 .oeil_login{
@@ -133,6 +134,7 @@ input[type=checkbox] {
 
 
     .containers_login{
+
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         position: relative;
         display: flex;
@@ -156,5 +158,16 @@ input[type=checkbox] {
     .oeil{
         margin-left: 4%;
     }
+
+    .containers_login{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 40%;
+        padding: 1.5rem;
+        position: relative;
+        top:5rem;
+        }
 
 }
