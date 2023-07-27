@@ -106,8 +106,8 @@ export default function ProjectAvis({ avis, post }) {
               ) : null}
             </div>
             {editingIndex === index ? (
-              <>
-                <input
+              <div className="editButtons">
+                <textarea
                   type="text"
                   onChange={handleInputChange}
                   value={editedText}
@@ -115,19 +115,19 @@ export default function ProjectAvis({ avis, post }) {
                 />
                 <button
                   type="button"
-                  className="createAvis"
+                  className=" annuler pointer"
                   onClick={cancelEdit}
                 >
                   Annuler
                 </button>
                 <button
                   type="button"
-                  className="createAvis"
+                  className=" sauvegarder pointer"
                   onClick={() => validEdit(data.id)}
                 >
                   Confirmer
                 </button>
-              </>
+              </div>
             ) : (
               <p
                 className="c-blue avisByUserText"

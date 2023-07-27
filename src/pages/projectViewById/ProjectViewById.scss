@@ -103,6 +103,15 @@
   .avisByUserText {
     margin: 1rem 0;
   }
+  textarea{
+    width: 100%;
+    height: 6rem;
+    resize: none;
+    background-color: $bg-lightGrey;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
 }
 
 .participantsAvatar {
@@ -132,7 +141,11 @@
   padding: 0.5rem;
   resize: none;
 }
-
+.editButtons{
+  .sauvegarder{
+    margin-left: 0.75rem;
+  }
+}
 .CountImpactedExpert {
     width: 30px;
     height: 30px;
