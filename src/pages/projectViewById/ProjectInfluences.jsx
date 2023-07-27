@@ -74,7 +74,10 @@ export default function ProjectInfluences({ post }) {
         )}
       </div>
       <h3 className="c-blue">Impact sur l'organisation</h3>
-      <p className="c-blue containprojet ">{post.impact}</p>
+      <p
+        className="c-blue containprojet "
+        dangerouslySetInnerHTML={{ __html: post.impact }}
+      ></p>
     </div>
   );
 }

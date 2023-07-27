@@ -31,7 +31,7 @@ function TitleProject() {
 
   const options = [
     {
-      value: "FRANCE",
+      value: "France",
       label: "FRANCE",
       icon: (
         <img
@@ -42,7 +42,7 @@ function TitleProject() {
       ),
     },
     {
-      value: "ESPAGNE",
+      value: "Espagne",
       label: "ESPAGNE",
       icon: (
         <img

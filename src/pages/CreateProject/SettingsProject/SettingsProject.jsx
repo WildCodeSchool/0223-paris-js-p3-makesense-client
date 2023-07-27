@@ -66,7 +66,7 @@ function SettingsProject() {
           deadlineDate: deadDate,
           makeDecisionDate: decisionDate,
           conflitDate: confliDate,
-          location: country,
+          location: country.value,
         };
         const form = new FormData();
         for (const key in data) {
@@ -84,7 +84,7 @@ function SettingsProject() {
       } catch (err) {
         console.log("err", err);
       }
-      navigate("/");
+      // navigate("/");
     }
   };
   return (
