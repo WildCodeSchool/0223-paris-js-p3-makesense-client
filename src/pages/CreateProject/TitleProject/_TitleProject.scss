@@ -62,6 +62,10 @@
     height: 34px; 
     border-radius:5px;
     margin-bottom: 3rem;
+    &:hover {
+        background-color: $color-accent-yellow;
+        color: $text-white;
+      }
 }
 
 .selector_country{
