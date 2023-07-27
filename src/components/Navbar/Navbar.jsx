@@ -33,12 +33,14 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-      <img className="nav_logo" src={logoWhite} alt="makesense logo" />
+        <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
+      <a href="/">
       <img className="nav_logo" src={logoBlue} alt="makesense logo" />
+      </a>
       <div className="nav-linksDesktop">
         <ul>
           <li>
@@ -70,13 +72,9 @@ function Navbar() {
       </div>
       {showDropdown ? (
         <div className="dropdown">
-          <h3>Mon profil</h3>
           <ul>
             <li>
-              <a href="/monprofil">Modifier mon profil</a>
-            </li>
-            <li>
-              <a href="#">Mes notifications</a>
+              <a href="/monprofil">Mon profil</a>
             </li>
             <li>
               <a href="/suiviprojet">Suivi de Projets</a>
@@ -112,9 +110,6 @@ function Navbar() {
           </li>
           <li>
             <a href="/suiviprojet">Suivi de Projets</a>
-          </li>
-          <li>
-            <a href="/">Gérer les projets</a>
           </li>
           <li>
             <a href="/admin">Adminstration</a>
