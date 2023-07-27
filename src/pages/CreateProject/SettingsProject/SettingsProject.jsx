@@ -113,9 +113,8 @@ function SettingsProject() {
         </div>
         <hr />
       </article>
-      <h1 className="require">Les champs avec * sont obligatoire</h1>
+      <h1 className="require">Combien de semaine pour :</h1>
       <div className="checkbox">
-        <h2 className="title_section">Combien de semaine pour :</h2>
         <div className="column">
           <h2 className="decision_timing_title">La prise de décisions *</h2>
           <ul className="decision">
@@ -203,7 +202,7 @@ function SettingsProject() {
           </ul>
         </div>
         {isMissing ? (
-          <p class="missingFields">
+          <p class="missingFields_settings">
             * Veuillez remplir tous les champs pour continuer
           </p>
         ) : (

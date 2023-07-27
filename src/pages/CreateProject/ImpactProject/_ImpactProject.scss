@@ -35,9 +35,10 @@
     display:flex;
     justify-content: center;
     text-align: center;
+    font-weight:bold;
     &:hover {
       background-color: $color-accent-yellow;
-      color: $text-white;
+      color: $primary-color;
     }
 }
 
