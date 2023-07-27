@@ -126,6 +126,16 @@ padding: 1rem;
     border: solid 2px $primary-color;
   }
 
+.CountImpactedExpert {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: $color-accent-yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media screen and (min-width: 926px) {
   #projectResume {
     padding: 0 8rem;

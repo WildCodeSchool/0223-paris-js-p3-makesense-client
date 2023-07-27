@@ -63,7 +63,7 @@ function Navbar() {
         />
         <img
           className="nav_avatar_default"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="default avatar"
           onClick={handleShowDropdown}
         />
@@ -103,7 +103,7 @@ function Navbar() {
       <div className="nav-links">
         <img
           className="nav_avatar_big"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="big avatar"
         />
         <ul>

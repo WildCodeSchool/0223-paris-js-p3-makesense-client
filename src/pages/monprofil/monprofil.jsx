@@ -35,6 +35,7 @@ const MonProfil = () => {
     setName(auth?.user?.lastname);
     setEmail(auth?.user?.email);
     setPhone(auth?.user?.tel);
+    setProfileImage(auth?.user?.avatar);
   }, []);
 
   const handleEditProfile = () => {
@@ -200,9 +201,8 @@ const MonProfil = () => {
           {error.country && (
             <div className="error-message">{error.country}</div>
           )}
-          </div>
+        </div>
         <form className="formProfile">
-        
           <div className="label-input">
             <label htmlFor="">Prénom</label>
             {isEditMode ? (
