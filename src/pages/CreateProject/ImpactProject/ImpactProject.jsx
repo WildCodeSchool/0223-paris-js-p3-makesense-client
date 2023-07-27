@@ -17,6 +17,11 @@ function ImpactProject() {
   const [isMissing, setIsMissing] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleclickPrecedent = () => {
+    navigate("/descriptionproject");
+  };
+
   const handleInputChange = (e) => {
     setImpact(e);
   };
@@ -135,7 +140,9 @@ function ImpactProject() {
         <div></div>
       )}
       <div className="nextPreviousButtons">
-        <button className="blueButtonMulti">PRECEDENT</button>
+        <button className="blueButtonMulti" onClick={handleclickPrecedent}>
+          PRECEDENT
+        </button>
         <button className="blueButtonMulti" onClick={handleclick}>
           SUIVANT
         </button>
