@@ -35,6 +35,7 @@ export default function ProjectCard({ post, edit }) {
   const handleClickShow = () => {
     navigate(`/projectview/${post.id}`);
   };
+
   const cutTitle = () => {
     const maxLength = 22;
     if (post.title.length <= maxLength) {
@@ -116,7 +117,9 @@ export default function ProjectCard({ post, edit }) {
     <figure onClick={handleClickShow}>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">{cutTitle()}</h3>
+        <h3 className="c-blue ">
+          {cutTitle()}
+        </h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
