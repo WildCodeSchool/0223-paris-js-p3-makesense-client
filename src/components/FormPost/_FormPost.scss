@@ -1,12 +1,22 @@
 @use "../../sass/global" as *;
 
 .formpost{
-    width:270px;
-    height:270px;
+    width:17rem;
 margin-left:auto;
 margin-right:auto;
 }
 
 .quill{
-    height:270px;
+    height:17rem;
+}
+
+@media screen and (min-width: 926px) {
+    .formpost{
+        width:50rem;
+        margin-top:1rem;
+    }
+
+    .quill{
+        height:30rem;
+    }
 }

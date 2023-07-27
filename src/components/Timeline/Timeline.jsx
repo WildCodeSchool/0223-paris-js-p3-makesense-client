@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 const Timeline = ({ steps }) => {
     const { decisionDelay, conflictDelay, decisionEndDelay } = useSelector((state) => state.project);
-    console.log("decision", decisionDelay)
     const [progress, setProgress] = useState(0);
   useEffect(() => {
     const currentDate = new Date();
@@ -18,6 +17,7 @@ const Timeline = ({ steps }) => {
       }
     }
   }, [steps]);
+
   return (
     <div className="timelineContainer">
     <div className="timeline">
