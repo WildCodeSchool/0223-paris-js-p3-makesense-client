@@ -4,7 +4,7 @@ const addAvis = (data) => api.post("/api/avis", data);
 
 const deleteAvis = (id) => api.delete(`/api/avis/${id}`);
 
-const editAvis = (id) => api.put(`/api/avis/${id}`);
+const editAvis = (id, data) => api.put(`/api/avis/${id}`, data);
 
 const getAllAvis = (id) => api.get(`/api/avis/avisfrompost/${id}`);
 

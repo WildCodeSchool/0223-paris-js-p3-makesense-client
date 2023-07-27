@@ -1,6 +1,6 @@
 @forward "./global/";
 @forward "../components/Navbar/index";
-@forward "../pages/MonProfil/MonProfil";
+@forward "../pages/MonProfil/index";
 @forward "../components/Footer/index";
 @forward "../components/ProjectCard/index";
 @forward "../components/Footer/index";
@@ -26,9 +26,16 @@
 @forward "../pages/Admin/UserModify/index";
 @forward "../components/UserCard/index";
 @forward "../components/SearchBarAdmin/index";
+<<<<<<< HEAD
 @forward "../components/Timeline/index";
+=======
+>>>>>>> 2e895dd69e8e4595b07336f5ccf83a5027147abd
 @forward "../pages/Admin/JobManager/index";
 @forward "../components/JobsRolesCard/index";
 @forward "../pages/Admin/RoleManager/index";
 @forward "../pages/Admin/PostsManager/index";
+<<<<<<< HEAD
+=======
+@forward "../components/Timeline/index"
+>>>>>>> 2e895dd69e8e4595b07336f5ccf83a5027147abd
 

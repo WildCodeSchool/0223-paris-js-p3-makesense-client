@@ -33,30 +33,22 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-      <img
-        className="nav_logo"
-        src={logoWhite}
-        alt="makesense logo"
-      />
+      <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
-      <img
-        className="nav_logo"
-        src={logoBlue}
-        alt="makesense logo"
-      />
+      <img className="nav_logo" src={logoBlue} alt="makesense logo" />
       <div className="nav-linksDesktop">
         <ul>
           <li>
-            <a href="#">Découvrir les projets</a>
+            <a href="/">Découvrir les projets</a>
           </li>
           <li>
-            <a href="#">Lancer mon projet</a>
+            <a href="/titleproject">Lancer mon projet</a>
           </li>
           <li>
-            <a href="#">Comment se lancer</a>
+            <a href="/guide">Comment se lancer</a>
           </li>
         </ul>
       </div>
@@ -71,7 +63,7 @@ function Navbar() {
         />
         <img
           className="nav_avatar_default"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="default avatar"
           onClick={handleShowDropdown}
         />
@@ -81,19 +73,19 @@ function Navbar() {
           <h3>Mon profil</h3>
           <ul>
             <li>
-              <a href="#">Modifier mon profil</a>
+              <a href="/monprofil">Modifier mon profil</a>
             </li>
             <li>
               <a href="#">Mes notifications</a>
             </li>
             <li>
-              <a href="#">Aide</a>
+              <a href="/guide">Aide</a>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
             </li>
             <li>
-              <a href="#" onClick={handleSubmit}>
+              <a href="/login" onClick={handleSubmit}>
                 Déconnexion
               </a>
             </li>
@@ -111,24 +103,24 @@ function Navbar() {
       <div className="nav-links">
         <img
           className="nav_avatar_big"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="big avatar"
         />
         <ul>
           <li>
-            <a href="#">Mon profil</a>
+            <a href="/monprofil">Mon profil</a>
           </li>
           <li>
-            <a href="#">Suivi de Projets</a>
+            <a href="/suiviprojet">Suivi de Projets</a>
           </li>
           <li>
-            <a href="#">Gérer les projets</a>
+            <a href="/">Gérer les projets</a>
           </li>
           <li>
-            <Link to="/admin">Adminstration</Link>
+            <a href="/admin">Adminstration</a>
           </li>
           <li>
-            <a href="#" onClick={handleSubmit}>
+            <a href="/login" onClick={handleSubmit}>
               Déconnexion
             </a>
           </li>

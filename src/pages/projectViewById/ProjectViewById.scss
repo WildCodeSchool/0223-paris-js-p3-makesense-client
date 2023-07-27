@@ -4,11 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 #projectViewById {
   background-color: $primary-color;
-  padding: 0;
+  padding: 0; 
 }
 #projectResume {
   padding: 0;
@@ -113,6 +114,7 @@
   img{
     width: 30px;
     margin-right: -8px;
+    border-radius: 50%;
   }
 }
 .createAvis{
@@ -123,6 +125,16 @@ padding: 1rem;
 .createAvisText{
     border: solid 2px $primary-color;
   }
+
+.CountImpactedExpert {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: $color-accent-yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media screen and (min-width: 926px) {
   #projectResume {

@@ -1,5 +1,5 @@
 import ProjectResume from "./ProjectResume";
-import Timeline from "../../components/Timeline/Timeline"
+import Timeline from "../../components/Timeline/Timeline";
 
 const stepsData = [
   { date: "2023-05-25" },
@@ -17,11 +17,18 @@ const stepsData = [
 
 export default function ProjectViewById() {
   return (
+<<<<<<< HEAD
     // <section id="projectViewById">
     //   {/* <ProjectResume /> */}
     <div>
       <Timeline steps={stepsData} />
       </div>
     // </section>
+=======
+    <section id="projectViewById">
+      <ProjectResume />
+      {/* <Timeline/> */}
+    </section>
+>>>>>>> 2e895dd69e8e4595b07336f5ccf83a5027147abd
   );
 }
