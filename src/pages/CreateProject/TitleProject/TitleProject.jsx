@@ -52,6 +52,39 @@ function TitleProject() {
         />
       ),
     },
+    {
+      value: "États-Unis",
+      label: "ÉTATS-UNIS",
+      icon: (
+        <img
+          src="../../src/assets/Etats-Unis.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
+    {
+      value: "Liban",
+      label: "LIBAN",
+      icon: (
+        <img
+          src="../../src/assets/liban.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
+    {
+      value: "Philippines",
+      label: "PHILIPPINES",
+      icon: (
+        <img
+          src="../../src/assets/philippines.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
   ];
 
   const customStyles = {
