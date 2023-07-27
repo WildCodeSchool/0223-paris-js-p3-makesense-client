@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import authService from "../../services/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../../store/auth";
@@ -38,19 +38,19 @@ function Navbar() {
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
-      <a href="/">
+      <Link to="/">
       <img className="nav_logo" src={logoBlue} alt="makesense logo" />
-      </a>
+      </Link>
       <div className="nav-linksDesktop">
         <ul>
           <li>
-            <a href="/">Découvrir les projets</a>
+            <Link to="/">Découvrir les projets</Link>
           </li>
           <li>
-            <a href="/titleproject">Lancer mon projet</a>
+            <Link to="/titleproject">Lancer mon projet</Link>
           </li>
           <li>
-            <a href="/guide">Comment se lancer</a>
+            <Link to="/guide">Comment se lancer</Link>
           </li>
         </ul>
       </div>
@@ -73,19 +73,19 @@ function Navbar() {
       {showDropdown ? (
         <div className="dropdown">
           <ul>
-            <li>
-              <a href="/monprofil">Mon profil</a>
+            <li onClick={handleShowDropdown}>
+              <Link to="/monprofil">Mon profil</Link>
             </li>
-            <li>
-              <a href="/suiviprojet">Suivi de Projets</a>
+            <li onClick={handleShowDropdown}>
+              <Link to="/suiviprojet">Suivi de Projets</Link>
             </li>
-            <li>
+            <li onClick={handleShowDropdown}>
               <Link to="/admin">Adminstration</Link>
             </li>
-            <li>
-              <a href="/login" onClick={handleSubmit}>
+            <li >
+              <Link to="/login" onClick={handleSubmit}>
                 Déconnexion
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -106,18 +106,18 @@ function Navbar() {
         />
         <ul>
           <li>
-            <a href="/monprofil">Mon profil</a>
+            <Link to="/monprofil">Mon profil</Link>
           </li>
           <li>
-            <a href="/suiviprojet">Suivi de Projets</a>
+            <Link to="/suiviprojet">Suivi de Projets</Link>
           </li>
           <li>
-            <a href="/admin">Adminstration</a>
+            <Link to="/admin">Adminstration</Link>
           </li>
           <li>
-            <a href="/login" onClick={handleSubmit}>
+            <Link to="/login" onClick={handleSubmit}>
               Déconnexion
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
