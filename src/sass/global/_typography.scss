@@ -40,26 +40,26 @@ body{
       }
 }
 
-// @media screen and (min-width: 926px) {
-//     body {
-//       h1 {
-//         font-size: $h1-desktop;
-//       }
-//       h2 {
-//         font-size: $h2-desktop;
-//       }
-//       h3 {
-//         font-size: $h3-desktop;
-//       }
-//       h4 {
-//         font-size: $h4-desktop;
-//       }
-//       p {
-//         font-size: $p-desktop;
-//       }
-//       a {
-//         font-size: $a-desktop;
-//       }
-//     }
-//   }
+@media screen and (min-width: 926px) {
+    body {
+      h1 {
+        font-size: $h1-desktop;
+      }
+      h2 {
+        font-size: $h2-desktop;
+      }
+      h3 {
+        font-size: $h3-desktop;
+      }
+      h4 {
+        font-size: $h4-desktop;
+      }
+      p {
+        font-size: $p-desktop;
+      }
+      a {
+        font-size: $a-desktop;
+      }
+    }
+  }
   

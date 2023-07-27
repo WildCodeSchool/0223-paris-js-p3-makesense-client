@@ -27,13 +27,21 @@ export default function ProjectCard({ post, edit }) {
     } catch (err) {
       console.error("err", err);
       setErrMessage(
-        "Nous rencontrons un problème. Veuillez réessayer plus tard.",
+        "Nous rencontrons un problème. Veuillez réessayer plus tard."
       );
     }
   };
 
   const handleClickShow = () => {
     navigate(`/projectview/${post.id}`);
+  };
+  const cutTitle = () => {
+    const maxLength = 22;
+    if (post.title.length <= maxLength) {
+      return post.title;
+    } else {
+      return post.title.substring(0, maxLength - 3) + "...";
+    }
   };
 
   return edit ? (
@@ -49,7 +57,7 @@ export default function ProjectCard({ post, edit }) {
       </div>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">{post.title}</h3>
+        <h3 className="c-blue ">{cutTitle()}</h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
@@ -81,10 +89,18 @@ export default function ProjectCard({ post, edit }) {
                   Voulez-vous vraiment supprimer le post : {post?.firstname} ?
                 </p>
                 <div className="modal_buttons">
-                  <button type="button" id="btn_cancel" onClick={handleClickCancel}>
+                  <button
+                    type="button"
+                    id="btn_cancel"
+                    onClick={handleClickCancel}
+                  >
                     Annuler
                   </button>
-                  <button type="button" id="btn_confirm" onClick={handleClickFetch}>
+                  <button
+                    type="button"
+                    id="btn_confirm"
+                    onClick={handleClickFetch}
+                  >
                     Confirmer
                   </button>
                 </div>
@@ -100,7 +116,7 @@ export default function ProjectCard({ post, edit }) {
     <figure onClick={handleClickShow}>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">{post.title}</h3>
+        <h3 className="c-blue ">{cutTitle()}</h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
