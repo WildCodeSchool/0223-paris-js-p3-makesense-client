@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removePost } from "../../store/posts";
@@ -25,9 +25,9 @@ export default function ProjectCard({ post, edit }) {
       dispatch(removePost(post.id));
       setvisibleModal(!visibleModal);
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
       setErrMessage(
-        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        "Nous rencontrons un problème. Veuillez réessayer plus tard."
       );
     }
   };
@@ -36,20 +36,29 @@ export default function ProjectCard({ post, edit }) {
     navigate(`/projectview/${post.id}`);
   };
 
+  const cutTitle = () => {
+    const maxLength = 22;
+    if (post.title.length <= maxLength) {
+      return post.title;
+    } else {
+      return post.title.substring(0, maxLength - 3) + "...";
+    }
+  };
+
   return edit ? (
     <figure>
       <div className="card_actions_admin_post">
         <span
           className="action_delete_admin_post"
           title="Supprimer"
-          onClick={(e) => handleClickDelete()}
+          onClick={() => handleClickDelete()}
         >
           &#x2716;
         </span>
       </div>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">{post.title}</h3>
+        <h3 className="c-blue ">{cutTitle()}</h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>
@@ -73,18 +82,26 @@ export default function ProjectCard({ post, edit }) {
             <strong>7</strong>
           </div>
           {visibleModal ? (
-            <div id="modal_delete" class="modal">
-              <div class="modal_content">
+            <div id="modal_delete" className="modal">
+              <div className="modal_content">
                 {errMessage && <p className="p_error_modal">{errMessage}</p>}
                 <h2>Confirmation de suppression</h2>
                 <p>
                   Voulez-vous vraiment supprimer le post : {post?.firstname} ?
                 </p>
-                <div class="modal_buttons">
-                  <button id="btn_cancel" onClick={handleClickCancel}>
+                <div className="modal_buttons">
+                  <button
+                    type="button"
+                    id="btn_cancel"
+                    onClick={handleClickCancel}
+                  >
                     Annuler
                   </button>
-                  <button id="btn_confirm" onClick={handleClickFetch}>
+                  <button
+                    type="button"
+                    id="btn_confirm"
+                    onClick={handleClickFetch}
+                  >
                     Confirmer
                   </button>
                 </div>
@@ -100,7 +117,9 @@ export default function ProjectCard({ post, edit }) {
     <figure onClick={handleClickShow}>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">{post.title}</h3>
+        <h3 className="c-blue ">
+          {cutTitle()}
+        </h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>

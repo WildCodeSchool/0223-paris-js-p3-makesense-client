@@ -56,7 +56,6 @@ export default function ProjectAvis({ avis, post }) {
   };
 
   const validEdit = async (id) => {
-    console.log("id", id);
     try {
       await editAvis(id, { text: editedText });
       dispatch(editAvisData({ id, newText: editedText }));
@@ -73,24 +72,6 @@ export default function ProjectAvis({ avis, post }) {
       <div className="avisContainer">
         {avis.map((data, index) => (
           <div className="avisByUser" key={data.date}>
-            {auth.user.admin === 1 || auth.user.id === data.user_id ? (
-              <>
-                <span
-                  className="action_edit_admin_user"
-                  title="Modifier"
-                  onClick={() => changeEdit(index, data.text)}
-                >
-                  &#x270E;
-                </span>
-                <span
-                  className="action_delete_admin_user"
-                  title="Supprimer"
-                  onClick={() => handleModalDelter(data.id)}
-                >
-                  &#x2716;
-                </span>
-              </>
-            ) : null}
             <div className="userInfos">
               <div className="userProjectInfos">
                 <img
@@ -105,6 +86,24 @@ export default function ProjectAvis({ avis, post }) {
                   - le {data.date.slice(0, 10)}
                 </p>
               </div>
+              {auth.user.admin === 1 || auth.user.id === data.user_id ? (
+                <div className="editButtons">
+                  <span
+                    className="action_edit_admin_user"
+                    title="Modifier"
+                    onClick={() => changeEdit(index, data.text)}
+                  >
+                    &#x270E;
+                  </span>
+                  <span
+                    className="action_delete_admin_user"
+                    title="Supprimer"
+                    onClick={() => handleModalDelter(data.id)}
+                  >
+                    &#x2716;
+                  </span>
+                </div>
+              ) : null}
             </div>
             {editingIndex === index ? (
               <>

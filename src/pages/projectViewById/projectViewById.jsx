@@ -1,5 +1,5 @@
 import ProjectResume from "./ProjectResume";
-import Timeline from "../../components/Timeline/Timeline";
+// import Timeline from "../../components/Timeline/Timeline"
 
 const stepsData = [
   { date: "2023-05-25" },

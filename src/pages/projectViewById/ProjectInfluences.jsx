@@ -48,7 +48,7 @@ export default function ProjectInfluences({ post }) {
         )}
         {countImpacted != 0 ? (
           <div className="CountImpactedExpert">
-            <p>{countImpacted}</p>
+            <h4 className="c-blue">+{countImpacted}</h4>
           </div>
         ) : (
           ""
@@ -67,7 +67,7 @@ export default function ProjectInfluences({ post }) {
         )}
         {countExpert != 0 ? (
           <div className="CountImpactedExpert">
-            <p>{countExpert}</p>
+            <h4 className="c-blue">+{countExpert}</h4>
           </div>
         ) : (
           ""
