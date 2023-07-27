@@ -81,11 +81,11 @@ top:5rem;
     color: black;
     margin-right: 4%;
 }
-
 .forgot_password_login{
     padding-top: 0.5rem;
-    text-align: right;
-    width: 100%;
+    text-align: left;
+    width: 90%;
+    margin-left:2rem;
 }
 
 .checkbox_login {
@@ -131,6 +131,22 @@ input[type=checkbox] {
 
 
 @media screen and (min-width: 926px) {
+    .password_icon_login{
+        background-image: url(./src/assets/Lock.png);
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-position-x: 0.2rem;
+        width: 90%;
+        margin-right: 0.9rem;
+        padding: 0.75rem 1.25rem;
+        color: black;
+        border-color: black;
+        border-radius: 5px;
+        font-size: $p-mobile;
+        transition: 300ms;
+        border:2px solid #C6C6C6;
+        position: relative;
+    }
 
 
     .containers_login{
@@ -155,8 +171,8 @@ input[type=checkbox] {
         
     }
 
-    .oeil{
-        margin-left: 4%;
+    .oeil_login{
+        margin-left: 2%;
     }
 
     .containers_login{
@@ -169,5 +185,6 @@ input[type=checkbox] {
         position: relative;
         top:5rem;
         }
+    
 
 }
