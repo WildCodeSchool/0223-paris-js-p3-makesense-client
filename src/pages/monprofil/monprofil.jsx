@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { editUser, getCurrentUser } from "../../services/users";
 import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MonProfil = () => {
   const [profileImage, setProfileImage] = useState(
@@ -85,75 +87,97 @@ const MonProfil = () => {
 
   const handleFirstNameChange = (e) => {
     const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
+    const lettersAndSpacesOnlyRegex = /^[A-Za-z\s]*$/;
 
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
+    if (inputValue.match(lettersAndSpacesOnlyRegex) || inputValue === "") {
       setFirstName(inputValue);
       setError("");
     } else {
-      setError({
-        ...error,
-        firstname: "Le prénom ne doit contenir que des lettres.",
+      toast.error("Le prénom ne doit contenir que des lettres !", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     }
   };
 
   const handleLastNameChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
+    const phoneValue = e.target.value;
+    const cleanedPhoneValue = phoneValue.replace(/\s/g, "");
+    const phoneRegex = /^\d{10}$/;
 
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
-      setName(inputValue);
+    if (cleanedPhoneValue.match(phoneRegex) || cleanedPhoneValue === "") {
+      const formattedPhoneValue = cleanedPhoneValue.replace(
+        /(\d{2})(?=\d)/g,
+        "$1 "
+      );
+      setPhone(formattedPhoneValue);
       setError("");
     } else {
-      setError({
-        ...error,
-        lastname: "Le nom ne doit contenir que des lettres.",
-      });
-    }
-  };
-
-  const handleEmailChange = (e) => {
-    const emailValue = e.target.value;
-    const emailRegex = /@makesense\.org$/;
-
-    if (emailValue.match(emailRegex) || emailValue === "") {
-      setEmail(emailValue);
-      setEmailError("");
-    } else {
-      setError({
-        ...error,
-        email: "L'email doit être au format '@makesense.org'",
+      toast.error("Le nom ne doit contenir que des lettres !", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     }
   };
 
   const handlePhoneChange = (e) => {
     const phoneValue = e.target.value;
+    const cleanedPhoneValue = phoneValue.replace(/\s/g, "");
     const phoneRegex = /^\d{10}$/;
 
-    if (phoneValue.match(phoneRegex) || phoneValue === "") {
-      setPhone(phoneValue);
+    if (cleanedPhoneValue.match(phoneRegex) || cleanedPhoneValue === "") {
+      const formattedPhoneValue = cleanedPhoneValue.replace(
+        /(\d{2})(?=\d)/g,
+        "$1 "
+      );
+      setPhone(formattedPhoneValue);
       setError("");
     } else {
-      setError({
-        ...error,
-        tel: "Le pays ne doit contenir que des lettres.", // changer
-      });
+      toast.error(
+        "Le numéro de téléphone ne doit comporter que des chiffres !",
+        {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
     }
   };
 
   const handleCountryChange = (e) => {
     const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
+    const lettersAndSpacesOnlyRegex = /^[A-Za-z\s]*$/;
 
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
+    if (inputValue.match(lettersAndSpacesOnlyRegex) || inputValue === "") {
       setCountry(inputValue);
       setError("");
     } else {
-      setError({
-        ...error,
-        country: "Le pays ne doit contenir que des lettres.",
+      toast.error("Le pays ne doit contenir que des lettres !", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
       });
     }
   };
@@ -161,6 +185,7 @@ const MonProfil = () => {
   return (
     <>
       <h1 className="titreprofil">Mon Profil</h1>
+      <ToastContainer />
       <div className="profile-form">
         <div className="profile-file">
           <img src={profileImage} alt="userprofile" className="profile-image" />
@@ -178,31 +203,8 @@ const MonProfil = () => {
             onChange={handleFileChange}
           />
         </div>
-        <div className="inputerror">
-          {error.firstname && (
-            <div className="error-message">{error.firstname}</div>
-          )}
-          {error.lastname && (
-            <div className="error-message">
-              <p>{error.lastname}</p>
-            </div>
-          )}
-          {error.email && (
-            <div className="error-message">
-              <p>{error.email}</p>
-            </div>
-          )}
-          {error.tel && (
-            <div className="error-message">
-              <p>{error.tel}</p>
-            </div>
-          )}
-          {error.country && (
-            <div className="error-message">{error.country}</div>
-          )}
-          </div>
+
         <form className="formProfile">
-        
           <div className="label-input">
             <label htmlFor="">Prénom</label>
             {isEditMode ? (
@@ -259,11 +261,7 @@ const MonProfil = () => {
                   className="profile-input"
                   type="email"
                   value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    handleEmailChange(e);
-                  }}
-                  required
+                  readOnly
                 />
               </div>
             ) : (
