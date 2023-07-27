@@ -76,7 +76,7 @@
     font-size: $p-mobile;
     transition: 300ms;
     cursor: pointer;
-    margin: 10% auto 10% auto;
+    margin: 2rem auto 2rem auto;
     display:flex;
     justify-content: center;
     text-align: center;
@@ -88,5 +88,21 @@
 
     .missingFields{
         color:$color-accent-red;
-        margin:5%;
+        margin:2rem;
+    }
+
+    @media screen and (min-width: 926px) {
+        .header ul {
+            justify-content: center;
+            gap:1rem;
+        }
+
+        .blueButton{
+            margin:1rem auto 3rem auto;
+        }
+
+        .missingFields{
+            margin: 0 35rem 3rem 35rem;
+        }
+
     }

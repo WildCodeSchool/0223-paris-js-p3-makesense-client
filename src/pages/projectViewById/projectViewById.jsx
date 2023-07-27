@@ -13,8 +13,6 @@ const stepsData = [
   // { name: "4", date: "2023-07-26" },
   // { name: "5", date: "2023-07-28" },
 ];
-
-
 export default function ProjectViewById() {
   return (
     <section id="projectViewById">

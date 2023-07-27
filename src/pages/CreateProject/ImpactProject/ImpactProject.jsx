@@ -66,7 +66,6 @@ function ImpactProject() {
           }
         }
         dispatch(setExpertImpacted(tabData));
-        console.log("toto", tabData)
       }
     }
     return(
@@ -112,13 +111,13 @@ function ImpactProject() {
       <p className="c-blue">Impact sur l'organisation</p>
       <FormPost value={impact} onChange={e => handleInputChange(e)}/>
       </div>
-      <div className="nextPreviousButtons">
-      <button className="blueButton" >PRECEDENT</button>
-      <button className="blueButton" onClick={handleclick} >SUIVANT</button>
       {isMissing ?
       <p class="missingFields">* Veuillez remplir tous les champs pour continuer</p> :
       <div></div>
     }
+      <div className="nextPreviousButtons">
+      <button className="blueButtonMulti" >PRECEDENT</button>
+      <button className="blueButtonMulti" onClick={handleclick} >SUIVANT</button>
       </div>
         </>
     );

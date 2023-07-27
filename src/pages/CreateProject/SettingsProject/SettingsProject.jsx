@@ -6,7 +6,6 @@ import { createPost } from "../../../services/post"
 import { addUserParticipant } from "../../../services/post";
 import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from "../../../store/projectSlice";
 
-
 function SettingsProject() {
   const [decisiondata, setDecisionData] = useState({
     makeDecisionDate: "",
@@ -34,6 +33,9 @@ function SettingsProject() {
   const decisionDate = new Date( Date.now() + (6.048e+8 * decisiondata.makeDecisionDate) )
   const confliDate =  new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate )))
   const deadDate = new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate + decisiondata.deadLineDate)))
+  dispatch(setDecisionDelay(decisionDate))
+  dispatch(setConflictDelay(confliDate))
+  dispatch(setDecisionEndDelay(deadDate))
     if ( decisiondata.makeDecisionDate === "" || decisiondata.conflitDate === "" || decisiondata.deadLineDate === "") {
       setIsMissing(true)
     const decisionDate = new Date(
@@ -207,14 +209,14 @@ function SettingsProject() {
         ) : (
           <div></div>
         )}
-        <div className="button_settings_project">
-          <button type="button" className="launch_button next_button">
+        <div className="nextPreviousButtons">
+          <button type="button" className="blueButtonMulti">
             PRECEDENT
           </button>
           <button
             type="button"
             onClick={handleClick}
-            className="launch_button back_button"
+            className="blueButtonMulti"
           >
             ENVOYER
           </button>
