@@ -79,7 +79,7 @@ function Navbar() {
               <a href="#">Mes notifications</a>
             </li>
             <li>
-              <a href="/guide">Aide</a>
+              <a href="/suiviprojet">Suivi de Projets</a>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
