@@ -72,13 +72,14 @@ function Login() {
             <img
               onClick={showpassword}
               className="oeil_login pointer"
-              src="src/assets/Oeil.png"
+              src="src/assets/Oeil.svg"
             />
           </div>
 
           <div className="checkbox_login">
-            <input type="checkbox" id="scales" name="scales" />
-            <label for="scales" className="c-blue">Se souvenir de moi</label>
+          <input type="checkbox" id="cbtest" />
+          <label for="cbtest" class="check-box"/>
+          <p className="c-blue">Se souvenir de moi</p>
           </div>
             <button type="submit" className="connexion_login pointer">
               se connecter
