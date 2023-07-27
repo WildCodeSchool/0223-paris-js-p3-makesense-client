@@ -22,22 +22,22 @@
 #container {
     display: flex;
     flex-direction: column;
-    // align-items: center; 
     background-color: $bg-lightGrey;
     gap: 1rem;
 }
 .onglets {
+    z-index: 3;
     display: flex;
     width: 100%;
     border-bottom: 1px solid $primary-color;
     background-color: $bg-lightGrey;
-    margin-top: 2rem;
+    margin-top: 3rem;
     position: sticky;
     top: 2.8rem;
 }
 .onglet {
     flex: 1;
-    padding:  0px 30px 10px 30px;
+    padding: 10px 30px;
     text-align: center;
     cursor: pointer;
 }
