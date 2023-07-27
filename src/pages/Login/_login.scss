@@ -1,5 +1,4 @@
 @use "../../sass/global" as *;
-@use "../../sass/global" as *;
 
 .oeil_login {
   position: absolute;
@@ -35,29 +34,14 @@
   border: 2px solid #c6c6c6;
 }
 .courriel {
-  background-image: url(./src/assets/Letter.png);
+  background-image: url(./src/assets/Letter.svg);
   background-repeat: no-repeat;
   background-position: left;
 }
 .password {
-  background-image: url(./src/assets/Lock.png);
+  background-image: url(./src/assets/Lock.svg);
   background-repeat: no-repeat;
   background-position: left;
-}
-.password_icon_login {
-  background-image: url(./src/assets/Lock.png);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-position-x: 0.2rem;
-  width: 90%;
-  padding: 0.75rem 1.25rem;
-  color: black;
-  border-color: black;
-  border-radius: 5px;
-  font-size: $p-mobile;
-  transition: 300ms;
-  border: 2px solid #c6c6c6;
-  position: relative;
 }
 
 .connexion_login {
@@ -65,7 +49,7 @@
   text-align: center;
   width: 100%;
   padding: 0.75rem 1.25rem;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   background-color: $color-accent-lightOrange;
   border-radius: 5px;
   font-size: $p-mobile;
@@ -85,10 +69,11 @@
 .checkbox_login {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .input_courriel_login {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .forgotPassword{
     display: flex;
