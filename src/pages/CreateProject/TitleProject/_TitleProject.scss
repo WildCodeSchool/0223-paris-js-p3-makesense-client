@@ -57,10 +57,15 @@ rgba(155, 8, 79, 1);
     font-family: $titles-font;
     color: white;
     font-size: $h4-mobile;
+    font-weight: bold;
     width: 155px;
     height: 34px; 
     border-radius:5px;
     margin-bottom: 3rem;
+    &:hover {
+        background-color: $color-accent-yellow;
+        color: $primary-color
+    }
 }
 
 .selector_country{
@@ -82,6 +87,10 @@ margin-bottom: 1rem;
     margin-right: 0.5rem;
 }
 
+.missingFieldsFirstPage{
+    color:$color-accent-red;
+    margin-top: 3rem;
+}
 
 @media screen and (min-width: 926px) {
     .launch_project_containers{
