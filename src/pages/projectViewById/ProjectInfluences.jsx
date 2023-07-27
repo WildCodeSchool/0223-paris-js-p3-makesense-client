@@ -48,14 +48,14 @@ export default function ProjectInfluences({ post }) {
         )}
         {countImpacted != 0 ? (
           <div className="CountImpactedExpert">
-            <h4 className="c-blue">+{countImpacted}</h4>
+            <p className="c-blue">+{countImpacted}</p>
           </div>
         ) : (
           ""
         )}
       </div>
       <h4 className="c-blue">Personnes expertes</h4>
-      <div className="participantsAvatar">
+      <div className="participantsAvatar ">
         {expert?.length > 0 ? (
           expert.map((data, index) => {
             if (index < 5) {
@@ -67,14 +67,14 @@ export default function ProjectInfluences({ post }) {
         )}
         {countExpert != 0 ? (
           <div className="CountImpactedExpert">
-            <h4 className="c-blue">+{countExpert}</h4>
+            <p className="c-blue">+{countExpert}</p>
           </div>
         ) : (
           ""
         )}
       </div>
       <h3 className="c-blue">Impact sur l'organisation</h3>
-      <p>{post.impact}</p>
+      <p className="c-blue containprojet ">{post.impact}</p>
     </div>
   );
 }
