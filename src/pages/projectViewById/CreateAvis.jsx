@@ -48,10 +48,11 @@ export default function CreateAvis({ post }) {
         <>
           <textarea
             className="createAvisText"
-            type="text"
+            type="
+          text"
             placeholder="Rédigez votre avis ici."
             onChange={(e) => setText(e.target.value)}
-            value={text}
+            defaultValue={text}
           />
           <button
             type="button"

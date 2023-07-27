@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../store/auth";
+import { useEffect, useState } from "react";
 import authService from "../../services/auth";
+import { useNavigate, Link } from "react-router-dom";
+import { logout } from "../../store/auth";
+import { useSelector, useDispatch } from "react-redux";
 import logoWhite from "../../assets/makesense_logo_white.svg";
 import logoBlue from "../../assets/makesense_logo_blue.svg";
 
@@ -14,13 +14,13 @@ function Navbar() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     try {
       await authService.logout();
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.error("error", error);
+      console.log("error", error);
     }
   };
 
@@ -37,7 +37,7 @@ function Navbar() {
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
-      <div className="transparent" />
+      <div className="transparent"></div>
       <img className="nav_logo" src={logoBlue} alt="makesense logo" />
       <div className="nav-linksDesktop">
         <ul>
@@ -52,6 +52,7 @@ function Navbar() {
           </li>
         </ul>
       </div>
+      <div></div>
       <img className="nav_bell" src="../src/assets/bell.svg" alt="bell" />
       <div className="burgerAvatar">
         <img
@@ -69,20 +70,24 @@ function Navbar() {
       </div>
       {showDropdown ? (
         <div className="dropdown">
+          <h3>Mon profil</h3>
           <ul>
             <li>
-              <Link href="/monprofil">Mon profil</Link>
+              <a href="/monprofil">Modifier mon profil</a>
             </li>
             <li>
-              <Link href="/suiviprojet">Suivi de Projets</Link>
+              <a href="#">Mes notifications</a>
+            </li>
+            <li>
+              <a href="/suiviprojet">Suivi de Projets</a>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
             </li>
             <li>
-              <Link href="/login" onClick={handleSubmit}>
+              <a href="/login" onClick={handleSubmit}>
                 Déconnexion
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -103,18 +108,21 @@ function Navbar() {
         />
         <ul>
           <li>
-            <Link href="/monprofil">Mon profil</Link>
+            <a href="/monprofil">Mon profil</a>
           </li>
           <li>
-            <Link href="/suiviprojet">Suivi de Projets</Link>
+            <a href="/suiviprojet">Suivi de Projets</a>
+          </li>
+          <li>
+            <a href="/">Gérer les projets</a>
           </li>
           <li>
             <a href="/admin">Adminstration</a>
           </li>
           <li>
-            <Link href="/login" onClick={handleSubmit}>
+            <a href="/login" onClick={handleSubmit}>
               Déconnexion
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

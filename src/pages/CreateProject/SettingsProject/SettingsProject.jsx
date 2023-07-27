@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { DecisionTiming } from "./decision_timing";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../../../services/post";
+import { createPost } from "../../../services/post"
 import { addUserParticipant } from "../../../services/post";
+import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from "../../../store/projectSlice";
 
 function SettingsProject() {
   const [decisiondata, setDecisionData] = useState({
@@ -26,6 +27,17 @@ function SettingsProject() {
   const navigate = useNavigate();
   const [isMissing, setIsMissing] = useState(false);
   const handleClick = async () => {
+  dispatch(setDecisionDelay(decisiondata.makeDecisionDate))
+  dispatch(setConflictDelay(decisiondata.conflictDate))
+  dispatch(setDecisionEndDelay(decisiondata.deadLineDate))
+  const decisionDate = new Date( Date.now() + (6.048e+8 * decisiondata.makeDecisionDate) )
+  const confliDate =  new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate )))
+  const deadDate = new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate + decisiondata.deadLineDate)))
+  dispatch(setDecisionDelay(decisionDate))
+  dispatch(setConflictDelay(confliDate))
+  dispatch(setDecisionEndDelay(deadDate))
+    if ( decisiondata.makeDecisionDate === "" || decisiondata.conflitDate === "" || decisiondata.deadLineDate === "") {
+      setIsMissing(true)
     const decisionDate = new Date(
       Date.now() + 6.048e8 * decisiondata.makeDecisionDate
     );
@@ -197,14 +209,14 @@ function SettingsProject() {
         ) : (
           <div></div>
         )}
-        <div className="button_settings_project">
-          <button type="button" className="launch_button next_button">
+        <div className="nextPreviousButtons">
+          <button type="button" className="blueButtonMulti">
             PRECEDENT
           </button>
           <button
             type="button"
             onClick={handleClick}
-            className="launch_button back_button"
+            className="blueButtonMulti"
           >
             ENVOYER
           </button>
@@ -212,6 +224,7 @@ function SettingsProject() {
       </div>
     </>
   );
+}
 }
 
 export default SettingsProject;

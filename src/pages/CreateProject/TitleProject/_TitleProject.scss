@@ -17,9 +17,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-image: url(./src/assets/pills/Pills_mobile_project_creation.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+background-color: 
+rgba(155, 8, 79, 1);
 
 
 }
@@ -84,4 +83,35 @@ margin-bottom: 1rem;
 }
 
 
+@media screen and (min-width: 926px) {
+    .launch_project_containers{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: 
+        rgba(155, 8, 79, 1);
+    }
 
+    .title_project{
+        margin-top:-7rem; 
+        font-size: $h1-desktop ;  
+    }
+    .title_css{
+        font-size: $h4-desktop;
+    
+    }
+    .input_title_project{
+        background-color:rgba(217, 217, 217, 0.2);
+        border-bottom: 2px solid rgba(255, 243, 13, 1);
+        color: white;
+        position:relative;
+        margin-top:3rem;
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        width: 18rem;
+        text-align: center;
+    }
+
+}

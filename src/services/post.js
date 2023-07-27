@@ -40,10 +40,10 @@ export {
   getExpertFromPost,
   getImpactedFromPost,
   addVote,
+  createPost,
+  addUserParticipant,
   deleteVote,
   getVoteFromUserFromPostId,
   deletePost,
   getAllCountPost,
-  createPost,
-  addUserParticipant,
 };

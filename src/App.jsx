@@ -25,6 +25,8 @@ import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
+import MonProfil from "./pages/monprofil/monprofil";
+import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
 import JobManager from "./pages/Admin/JobManager/JobManger";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
 import JobModify from "./pages/Admin/JobModify/JobModify";
@@ -32,8 +34,6 @@ import RoleManager from "./pages/Admin/RoleManager/RoleManager";
 import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 import PostsManager from "./pages/Admin/PostsManager/PostsManager";
-import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
-import MonProfil from "./pages/MonProfil/MonProfil";
 
 function App() {
   const dispatch = useDispatch();
@@ -243,9 +243,9 @@ function App() {
             exact
             path="/settingsproject"
             element={
-              <PrivateRoute>
+              <PrivateRouteAdmin>
                 <SettingsProject />
-              </PrivateRoute>
+              </PrivateRouteAdmin>
             }
           />
           <Route
@@ -257,6 +257,7 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route
             exact
             path="/projectview/:id"
