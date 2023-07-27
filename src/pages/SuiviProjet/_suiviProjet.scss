@@ -26,14 +26,14 @@
     gap: 1rem;
 }
 .onglets {
-    z-index: 3;
     display: flex;
     width: 100%;
     border-bottom: 1px solid $primary-color;
     background-color: $bg-lightGrey;
     margin-top: 3rem;
     position: sticky;
-    top: 2.8rem;
+    top: 3.25rem;
+    z-index: 1;
 }
 .onglet {
     flex: 1;

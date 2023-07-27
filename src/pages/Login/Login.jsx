@@ -43,13 +43,13 @@ function Login() {
   return (
     <div className="box_login">
       <div className="containers_login">
-        <p className="title1_login">Pour acceder au site</p>
+        <p className="title1_login c-blue">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
         {error && <p className="p_error_login">{error}</p>}
         <form className="form_login" onSubmit={handleSubmit}>
           <div className="input_courriel_login">
             <input
-              className=" courriel_icon_login"
+              className="icon_login courriel"
               type="email"
               name="email"
               id="email"
@@ -61,7 +61,7 @@ function Login() {
 
           <div className="input_password_login">
             <input
-              className=" password_icon_login password_eye_login"
+              className=" icon_login  password password_eye_login"
               type={password ? "text" : "password"}
               name="password"
               id="password"
@@ -71,24 +71,19 @@ function Login() {
             />
             <img
               onClick={showpassword}
-              className="oeil_login"
+              className="oeil_login pointer"
               src="src/assets/Oeil.png"
             />
           </div>
 
           <div className="checkbox_login">
             <input type="checkbox" id="scales" name="scales" />
-            <label for="scales">Se souvenir de moi</label>
+            <label for="scales" className="c-blue">Se souvenir de moi</label>
           </div>
-
-          <div className="button_connexion_login">
-            <button type="submit" className="connexion_login">
+            <button type="submit" className="connexion_login pointer">
               se connecter
             </button>
-            <p className="forgot_password_login">
-              <Link to="/forgotpassword">Mot de passe oublié</Link>
-            </p>
-          </div>
+              <Link to="/forgotpassword" className="c-blue forgotPassword">Mot de passe oublié</Link>
         </form>
       </div>
     </div>
