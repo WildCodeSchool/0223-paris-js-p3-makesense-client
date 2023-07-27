@@ -16,9 +16,9 @@ const avis = createSlice({
     },
     editAvisData: (state, action) => {
       const { id, newText } = action.payload;
-      const avisToEdit = state.avis.find((avis) => avis.id === id);
-      if (avisToEdit) {
-        avisToEdit.text = newText;
+      const index = state.findIndex((avis) => avis.id === id);
+      if (index !== -1) {
+        state[index].text = newText;
       }
     },
   },

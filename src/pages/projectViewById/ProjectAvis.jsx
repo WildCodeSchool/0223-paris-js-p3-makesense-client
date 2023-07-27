@@ -2,54 +2,33 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CreateAvis from "./CreateAvis";
-import { removeAvis } from "../../store/avis";
+import { removeAvis, editAvisData } from "../../store/avis";
 import { deleteAvis, editAvis } from "../../services/avis";
 
 export default function ProjectAvis({ avis, post }) {
   const [visibleModal, setvisibleModal] = useState(false);
   const [errMessage, setErrMessage] = useState("");
-  const [avisId, setAvisId] = useState(0);
-  const [edit, setEdit] = useState(false);
-  const [text, setText] = useState("");
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedText, setEditedText] = useState("");
+  const [avisIdDelete, setAvisIdDelete] = useState(0);
 
   const dispatch = useDispatch();
-  const avisRedux = useSelector((state) => state.avis);
   const auth = useSelector((state) => state.auth);
 
-  const handleClickDelete = (avis_id) => {
+  const handleModalDelter = async (avis_id) => {
+    setAvisIdDelete(avis_id);
     setvisibleModal(!visibleModal);
-    setAvisId(avis_id);
   };
 
-  const changeEDit = (text) => {
-    setEdit(!edit);
-    setText(text);
-  };
-
-  const handleClickCancel = () => {
-    setvisibleModal(!visibleModal);
-    setAvisId(0);
-  };
-
-  const cancelEdit = (text) => {
-    setEdit(false);
-    setText(text);
-  };
-
-  const validEdit = async (id) => {
+  const handleClickDelete = async () => {
     try {
-      await editAvis(id);
-      setEdit(false);
-    } catch (err) {
-      console.error("err", err);
-    }
-  };
-
-  const handleClickFetch = async () => {
-    try {
-      await deleteAvis(avisId);
-      dispatch(removeAvis(avisId));
-      setvisibleModal(!visibleModal);
+      const avisToDelete = avis.find((avis) => avis.id === avisIdDelete);
+      if (avisToDelete) {
+        await deleteAvis(avisIdDelete);
+        dispatch(removeAvis(avisIdDelete));
+        setvisibleModal(!visibleModal);
+        setErrMessage("");
+      }
     } catch (err) {
       console.error("err", err);
       setErrMessage(
@@ -58,11 +37,40 @@ export default function ProjectAvis({ avis, post }) {
     }
   };
 
+  const handleInputChange = (e) => {
+    setEditedText(e.target.value);
+  };
+
+  const changeEdit = (index, text) => {
+    setEditingIndex(index);
+    setEditedText(text);
+  };
+
+  const handleClickCancel = () => {
+    setvisibleModal(!visibleModal);
+  };
+
+  const cancelEdit = () => {
+    setEditingIndex(null);
+    setEditedText("");
+  };
+
+  const validEdit = async (id) => {
+    try {
+      await editAvis(id, { text: editedText });
+      dispatch(editAvisData({ id, newText: editedText }));
+      setEditedText("");
+      setEditingIndex(null);
+    } catch (err) {
+      console.error("err", err);
+    }
+  };
+
   return (
     <div id="container">
+      <CreateAvis post={post} />
       <div className="avisContainer">
-        <CreateAvis post={post} text={text} setText={setText} />
-        {avis.map((data) => (
+        {avis.map((data, index) => (
           <div className="avisByUser" key={data.date}>
             <div className="userInfos">
               <div className="userProjectInfos">
@@ -79,50 +87,54 @@ export default function ProjectAvis({ avis, post }) {
                 </p>
               </div>
               {auth.user.admin === 1 || auth.user.id === data.user_id ? (
-                <div>
+                <div className="editButtons">
                   <span
                     className="action_edit_admin_user"
                     title="Modifier"
-                    onClick={() => changeEDit(data.text)}
+                    onClick={() => changeEdit(index, data.text)}
                   >
                     &#x270E;
                   </span>
                   <span
                     className="action_delete_admin_user"
                     title="Supprimer"
-                    onClick={() => handleClickDelete(data.id)}
+                    onClick={() => handleModalDelter(data.id)}
                   >
                     &#x2716;
                   </span>
                 </div>
               ) : null}
             </div>
-            {(edit && auth.user.id === data.user_id) ||
-            auth.user.admin === 1 ? (
-              <div className="editButtonsAvis">
+            {editingIndex === index ? (
+              <>
                 <input
                   type="text"
-                  onChange={(e) => setText(e.target.value)}
-                  value={text}
+                  onChange={handleInputChange}
+                  value={editedText}
                   className="c-blue avisByUserText"
                 />
                 <button
                   type="button"
-                  className="annuler pointer"
-                  onClick={() => cancelEdit(data.text)}
+                  className="createAvis"
+                  onClick={cancelEdit}
                 >
                   Annuler
                 </button>
                 <button
                   type="button"
-                  className="sauvegarder pointer"
+                  className="createAvis"
                   onClick={() => validEdit(data.id)}
                 >
                   Confirmer
                 </button>
-              </div>
+              </>
             ) : (
-              <p className="c-blue avisByUserText">{data.text}</p>
+              <p
+                className="c-blue avisByUserText"
+                onClick={() => changeEdit(index, data.text)}
+              >
+                {data.text}
+              </p>
             )}
           </div>
         ))}
@@ -132,30 +144,39 @@ export default function ProjectAvis({ avis, post }) {
           <div className="modal_content">
             {errMessage && <p className="p_error_modal">{errMessage}</p>}
             <h2>Confirmation de suppression</h2>
-            <p>Voulez-vous vraiment cette avis ?</p>
+            <p>Voulez-vous vraiment supprimer cet avis ?</p>
             <div className="modal_buttons">
               <button type="button" id="btn_cancel" onClick={handleClickCancel}>
                 Annuler
               </button>
-              <button type="button" id="btn_confirm" onClick={handleClickFetch}>
+              <button
+                type="button"
+                id="btn_confirm"
+                onClick={handleClickDelete}
+              >
                 Confirmer
               </button>
             </div>
           </div>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 }
 
 ProjectAvis.propTypes = {
-  avis: PropTypes.shape({
-    firstname: PropTypes.string,
-    lastname: PropTypes.string,
-    photo: PropTypes.string,
-    text: PropTypes.string,
-    map: PropTypes.func,
+  avis: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      photo: PropTypes.string,
+      text: PropTypes.string,
+      user_id: PropTypes.number,
+      id: PropTypes.number,
+      date: PropTypes.string,
+    })
+  ).isRequired,
+  post: PropTypes.shape({
+    id: PropTypes.number,
   }).isRequired,
 };

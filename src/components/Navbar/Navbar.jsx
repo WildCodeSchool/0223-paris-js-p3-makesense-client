@@ -62,8 +62,8 @@ function Navbar() {
         />
         <img
           className="nav_avatar_default"
-          src="../src/assets/default_user.png"
-          alt="user avatar"
+          src={auth?.user?.avatar}
+          alt="default avatar"
           onClick={handleShowDropdown}
         />
       </div>
@@ -98,7 +98,7 @@ function Navbar() {
       <div className="nav-links">
         <img
           className="nav_avatar_big"
-          src="../src/assets/default_user.png"
+          src={auth?.user?.avatar}
           alt="big avatar"
         />
         <ul>
@@ -109,7 +109,7 @@ function Navbar() {
             <Link href="/suiviprojet">Suivi de Projets</Link>
           </li>
           <li>
-            <Link to="/admin">Adminstration</Link>
+            <a href="/admin">Adminstration</a>
           </li>
           <li>
             <Link href="/login" onClick={handleSubmit}>

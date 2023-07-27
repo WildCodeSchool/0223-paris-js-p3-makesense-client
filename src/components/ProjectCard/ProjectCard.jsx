@@ -27,7 +27,7 @@ export default function ProjectCard({ post, edit }) {
     } catch (err) {
       console.error("err", err);
       setErrMessage(
-        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !",
+        "Nous rencontrons un problème. Veuillez réessayer plus tard.",
       );
     }
   };
