@@ -17,6 +17,8 @@ function SuiviProjet() {
     try {
       const userPost = await getPostFromUser();
       const userVote = await getVoteFromUser();
+      console.log("userPost", userPost);
+      console.log("userVote", userVote);
       setUserPosts(userPost.data);
       setUserVotes(userVote?.data);
     } catch (err) {
