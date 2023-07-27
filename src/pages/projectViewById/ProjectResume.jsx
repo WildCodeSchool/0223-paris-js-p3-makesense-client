@@ -58,7 +58,6 @@ export default function ProjectResume() {
       setVote(reponse.data);
       setActif(null);
       setVotes(filterDate);
-      console.log(reponse.data, "DALPDALPDLA");
     } catch (err) {
       console.error("err", err);
     }

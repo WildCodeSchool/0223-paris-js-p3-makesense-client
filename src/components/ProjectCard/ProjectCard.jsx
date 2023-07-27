@@ -25,7 +25,7 @@ export default function ProjectCard({ post, edit }) {
       dispatch(removePost(post.id));
       setvisibleModal(!visibleModal);
     } catch (err) {
-      console.log("err", err);
+      console.error("err", err);
       setErrMessage(
         "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !",
       );

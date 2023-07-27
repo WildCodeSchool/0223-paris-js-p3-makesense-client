@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import authService from "../../services/auth";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../store/auth";
+import authService from "../../services/auth";
 import logoWhite from "../../assets/makesense_logo_white.svg";
 import logoBlue from "../../assets/makesense_logo_blue.svg";
 
@@ -14,13 +14,13 @@ function Navbar() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     try {
       await authService.logout();
       dispatch(logout());
       navigate("/login");
     } catch (error) {
-      console.log("error", error);
+      console.error("error", error);
     }
   };
 
@@ -33,20 +33,12 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-      <img
-        className="nav_logo"
-        src={logoWhite}
-        alt="makesense logo"
-      />
+      <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
-      <div className="transparent"></div>
-      <img
-        className="nav_logo"
-        src={logoBlue}
-        alt="makesense logo"
-      />
+      <div className="transparent" />
+      <img className="nav_logo" src={logoBlue} alt="makesense logo" />
       <div className="nav-linksDesktop">
         <ul>
           <li>
@@ -60,7 +52,6 @@ function Navbar() {
           </li>
         </ul>
       </div>
-      <div></div>
       <img className="nav_bell" src="../src/assets/bell.svg" alt="bell" />
       <div className="burgerAvatar">
         <img
@@ -72,30 +63,26 @@ function Navbar() {
         <img
           className="nav_avatar_default"
           src="../src/assets/default_user.png"
-          alt="default avatar"
+          alt="user avatar"
           onClick={handleShowDropdown}
         />
       </div>
       {showDropdown ? (
         <div className="dropdown">
-          <h3>Mon profil</h3>
           <ul>
             <li>
-              <a href="/monprofil">Modifier mon profil</a>
+              <Link href="/monprofil">Mon profil</Link>
             </li>
             <li>
-              <a href="#">Mes notifications</a>
-            </li>
-            <li>
-              <a href="/guide">Aide</a>
+              <Link href="/suiviprojet">Suivi de Projets</Link>
             </li>
             <li>
               <Link to="/admin">Adminstration</Link>
             </li>
             <li>
-              <a href="/login" onClick={handleSubmit}>
+              <Link href="/login" onClick={handleSubmit}>
                 Déconnexion
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -116,21 +103,18 @@ function Navbar() {
         />
         <ul>
           <li>
-            <a href="/monprofil">Mon profil</a>
+            <Link href="/monprofil">Mon profil</Link>
           </li>
           <li>
-            <a href="/suiviprojet">Suivi de Projets</a>
-          </li>
-          <li>
-            <a href="/">Gérer les projets</a>
+            <Link href="/suiviprojet">Suivi de Projets</Link>
           </li>
           <li>
             <Link to="/admin">Adminstration</Link>
           </li>
           <li>
-            <a href="/login" onClick={handleSubmit}>
+            <Link href="/login" onClick={handleSubmit}>
               Déconnexion
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
