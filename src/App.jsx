@@ -25,7 +25,7 @@ import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
-import MonProfil from "./pages/monprofil/monprofil";
+import MonProfil from "./pages/MonProfil/MonProfil";
 import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
 import JobManager from "./pages/Admin/JobManager/JobManger";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
