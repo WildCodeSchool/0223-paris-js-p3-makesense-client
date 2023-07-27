@@ -1,51 +1,113 @@
 @use "../../sass/global" as *;
 @use "../../sass/global" as *;
 
-
-.oeil_login{
-    margin-left: 2%;
+.oeil_login {
+  position: absolute;
+  right: 5%;
+  bottom: 30%;
 }
 
-.title1_login {
-font-size: $p-mobile;
-color: $primary-color;
-width: 80%;
+.title2_login {
+  color: $color-accent-lightOrange;
+  margin-top: 4%;
 }
 
-.title2_login{
-    font-size : $h1-mobile;
-    color: $color-accent-lightOrange;
-    width: 80%;
-    margin-top: 4%;
+.containers_login {
+  background-color: $bg-white;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem;
+  position: relative;
+  top: 5rem;
 }
 
-.containers_login{
-display: flex;
-align-items: center;
-flex-wrap: wrap;
-flex-direction: column;
-width: 100%;
-padding: 1.5rem;
-position: relative;
-top:5rem;
+.icon_login {
+  background-position-x: 0.2rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border-color: black;
+  border-radius: 5px;
+  font-size: $p-mobile;
+  transition: 300ms;
+  border: 2px solid #c6c6c6;
+}
+.courriel {
+  background-image: url(./src/assets/Letter.png);
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.password {
+  background-image: url(./src/assets/Lock.png);
+  background-repeat: no-repeat;
+  background-position: left;
+}
+.password_icon_login {
+  background-image: url(./src/assets/Lock.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-position-x: 0.2rem;
+  width: 90%;
+  padding: 0.75rem 1.25rem;
+  color: black;
+  border-color: black;
+  border-radius: 5px;
+  font-size: $p-mobile;
+  transition: 300ms;
+  border: 2px solid #c6c6c6;
+  position: relative;
 }
 
-.courriel_icon_login{
-    background-image: url(./src/assets/Letter.png);
-    background-repeat: no-repeat;
-    background-position: left center;
-    color :black;
-    background-position-x: 0.2rem;
-    width: 90%;
-    padding: 0.75rem 1.25rem;
-    border-color: black;
-    border-radius: 5px;
-    font-size: $p-mobile;
-    transition: 300ms;
-    border:2px solid #C6C6C6;
+.connexion_login {
+  color: $text-white;
+  text-align: center;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background-color: $color-accent-lightOrange;
+  border-radius: 5px;
+  font-size: $p-mobile;
+  transition: 300ms;
+  &:hover {
+    background-color: $color-accent-orange;
+  }
 }
 
-.password_icon_login{
+.forgot_password_login {
+  padding-top: 0.5rem;
+  text-align: left;
+  width: 90%;
+  margin-left: 2rem;
+}
+
+.checkbox_login {
+  display: flex;
+  align-items: center;
+}
+
+.input_courriel_login {
+  margin-top: 2rem;
+}
+.forgotPassword{
+    display: flex;
+}
+.input_password_login {
+  position: relative;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.p_error_login {
+  color: red;
+  font-size: $p-mobile;
+  width: 73%;
+  margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 926px) {
+  .password_icon_login {
     background-image: url(./src/assets/Lock.png);
     background-repeat: no-repeat;
     background-position: left center;
@@ -57,134 +119,36 @@ top:5rem;
     border-radius: 5px;
     font-size: $p-mobile;
     transition: 300ms;
-    border:2px solid #C6C6C6;
+    border: 2px solid #c6c6c6;
     position: relative;
-}
-
-.connexion_login{
-    text-align: center;
-    width: 90%;
-    padding: 0.75rem 1.25rem;
-    color: black;
-    background-color: $color-accent-lightOrange;
-    border-radius: 5px;
-    font-size: $p-mobile;
-    transition: 300ms;
-  &:hover {
-    background-color: $color-accent-orange;
   }
 
-}
-
-.button_connexion_login{
-    text-align: center;
-    color: black;
-    margin-right: 4%;
-}
-.forgot_password_login{
-    padding-top: 0.5rem;
-    text-align: left;
-    width: 90%;
-    margin-left:2rem;
-}
-
-.checkbox_login {
+  .containers_login {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
     display: flex;
     align-items: center;
-    margin-left: 4%;
-}
+    flex-wrap: wrap;
+  }
 
-.input_courriel_login{
-text-align: center;
-margin-top: 2rem;
-margin-right: 4%;
-}
+  .box_login {
+    background-image: url(./src/assets/pills/Pills_desktop_login.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 42rem;
+    display: flex;
+    justify-content: center;
+  }
 
-.input_password_login{
-text-align: center;
-margin-top: 0.7rem;
-margin-bottom: 1rem;
-margin-left: 4%;
-}
-
-.button_connexion_login{
-    text-align: center;
-    margin-top:2rem;
-}
-
-input[type=checkbox] {
-    -border-radius: 4px;
-    height: 15px;
-    width: 15px;
-    background: #fff;
-    border: 1px solid #ccc;
-    margin-right: 0.7rem;
-    margin-left: 0.2rem;
-}
-
-.p_error_login {
-    color: red;
-    font-size : $p-mobile;
-    width: 73%;
-    margin-top: 0.5rem;
-}
-
-
-@media screen and (min-width: 926px) {
-    .password_icon_login{
-        background-image: url(./src/assets/Lock.png);
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-position-x: 0.2rem;
-        width: 90%;
-        margin-right: 0.9rem;
-        padding: 0.75rem 1.25rem;
-        color: black;
-        border-color: black;
-        border-radius: 5px;
-        font-size: $p-mobile;
-        transition: 300ms;
-        border:2px solid #C6C6C6;
-        position: relative;
-    }
-
-
-    .containers_login{
-
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        position: relative;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-bottom: 20rem;
-    }
-
-    .box_login{
-        background-image: url(./src/assets/pills/Pills_desktop_login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        
-    }
-
-    .oeil_login{
-        margin-left: 2%;
-    }
-
-    .containers_login{
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        flex-direction: column;
-        width: 40%;
-        padding: 1.5rem;
-        position: relative;
-        top:5rem;
-        }
-    
-
+  .containers_login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
+    height: 32rem;
+    padding: 1.5rem;
+    position: relative;
+    top: 5rem;
+  }
 }
