@@ -113,7 +113,7 @@ function TitleProject() {
             />
           </div>
           {isMissing ? (
-            <p class="missingFields">
+            <p class="missingFieldsFirstPage">
               * Veuillez remplir tous les champs pour continuer
             </p>
           ) : (
