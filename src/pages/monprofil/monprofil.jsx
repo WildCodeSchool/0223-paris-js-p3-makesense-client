@@ -79,7 +79,9 @@ const MonProfil = () => {
       formData.append("email", email);
       formData.append("tel", phone);
       formData.append("affiliated_site", country);
-      formData.append("avatar", fileInputRef.current.files[0]);
+      if (fileInputRef?.current?.files[0]) {
+        formData.append("avatar", fileInputRef.current.files[0]);
+      }
 
       const result = await editUser(formData);
       dispatch(signin(result.data));
