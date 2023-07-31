@@ -11,6 +11,7 @@ function TitleProject() {
   const [location, setLocation] = useState("");
   const [isMissing, setIsMissing] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const projectRedux = useSelector((state) => state.project);
   const navigate = useNavigate();
   const clickMe = () => {
     if (newTitle === "") {

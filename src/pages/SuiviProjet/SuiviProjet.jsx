@@ -56,27 +56,25 @@ function SuiviProjet() {
           </div>
         </div>
         <div
-        className={`contenu ${actif === "projets" ? "actif" : ""}`}
-        onClick={() => toggleActif("projets")}
-      >
-       
-        <ul className="fetchPosts">
-          {userPosts.map((data) => (
-            <ProjectCard post={data} key={data.id} />
-          ))}
-        </ul>
-      </div>
-      <div
-        className={`contenu ${actif === "votes" ? "actif" : ""}`}
-        onClick={() => toggleActif("votes")}
-      >
-        
-        <ul className="fetchPosts">
-          {userVotes.map((post) => (
-            <ProjectCard post={post} key={post.id} />
-          ))}
-        </ul> 
-      </div>
+          className={`contenu ${actif === "projets" ? "actif" : ""}`}
+          onClick={() => toggleActif("projets")}
+        >
+          <ul className="fetchPosts">
+            {userPosts.map((data) => (
+              <ProjectCard post={data} key={data.id} />
+            ))}
+          </ul>
+        </div>
+        <div
+          className={`contenu ${actif === "votes" ? "actif" : ""}`}
+          onClick={() => toggleActif("votes")}
+        >
+          <ul className="fetchPosts">
+            {userVotes.map((post) => (
+              <ProjectCard post={post} key={post.id} />
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );

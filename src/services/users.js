@@ -16,6 +16,8 @@ const getUser = (id) => api.get(`/api/users/${id}`);
 
 const modifyAccount = (data, id) => api.put(`/api/users/${id}`, data);
 
+const modifyAccountAdmin = (data, id) => api.put(`/api/users/admin/${id}`, data);
+
 export {
   getAllUsers,
   getAllCountUser,
@@ -25,4 +27,5 @@ export {
   deleteUtilisateur,
   getUser,
   modifyAccount,
+  modifyAccountAdmin,
 };

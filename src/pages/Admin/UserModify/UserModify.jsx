@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllJobs } from "../../../services/jobs";
 import { getAllRoles } from "../../../services/roles";
-import { modifyAccount, getUser } from "../../../services/users";
+import { modifyAccountAdmin, getUser } from "../../../services/users";
 
 function UserModify() {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ function UserModify() {
       return setError("Veuillez remplir tous les champs !");
     } else {
       try {
-        await modifyAccount(modify, id);
+        await modifyAccountAdmin(modify, id);
         navigate("/admin/users");
       } catch (err) {
         if (err.response.status === 400) {

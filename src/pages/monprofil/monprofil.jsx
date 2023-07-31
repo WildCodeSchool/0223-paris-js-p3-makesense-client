@@ -73,12 +73,15 @@ const MonProfil = () => {
 
   const handleSaveClick = async () => {
     try {
-      const result = await editUser({
-        firstname,
-        lastname: name,
-        email,
-        tel: phone,
-      });
+      const formData = new FormData();
+      formData.append("firstname", firstname);
+      formData.append("lastname", name);
+      formData.append("email", email);
+      formData.append("tel", phone);
+      formData.append("affiliated_site", country);
+      formData.append("avatar", fileInputRef.current.files[0]);
+
+      const result = await editUser(formData);
       dispatch(signin(result.data));
     } catch (error) {
       console.error(error);
@@ -88,7 +91,7 @@ const MonProfil = () => {
 
   const handleFirstNameChange = (e) => {
     const inputValue = e.target.value;
-    const lettersAndSpacesOnlyRegex = /^[A-Za-z\s]*$/;
+    const lettersAndSpacesOnlyRegex = /^[-,a-zA-ZÀ-ÿ ']*$/;
 
     if (inputValue.match(lettersAndSpacesOnlyRegex) || inputValue === "") {
       setFirstName(inputValue);
