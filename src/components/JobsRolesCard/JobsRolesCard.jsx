@@ -5,11 +5,13 @@ import { deleteJob } from "../../services/jobs";
 import { removeRole } from "../../store/roles";
 import { deleteRole } from "../../services/roles";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import CustomToast from "../CustomToast/CustomToast";
 
-function JobsRolesCard({ JobRole, edit, role }) {
+function JobsRolesCard({ JobRole, edit, role, onSuccessDeleteRole }) {
   const dispatch = useDispatch();
   const [visibleModal, setvisibleModal] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
+  const { showAlert } = CustomToast();
 
   const handleClickDelete = () => {
     setvisibleModal(!visibleModal);
@@ -24,13 +26,16 @@ function JobsRolesCard({ JobRole, edit, role }) {
       await deleteRole(JobRole.id);
       dispatch(removeRole(JobRole.id));
       setvisibleModal(!visibleModal);
+      onSuccessDeleteRole();
     } catch (err) {
       if (err.response.status === 401) {
-        setErrMessage(
+        showAlert(
+          "error",
           "Impossible de supprimer ce rôle. Des utilisateurs sont encore liés à ce rôle."
         );
       } else {
-        setErrMessage(
+        showAlert(
+          "error",
           "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
         );
       }
@@ -44,11 +49,13 @@ function JobsRolesCard({ JobRole, edit, role }) {
       setvisibleModal(!visibleModal);
     } catch (err) {
       if (err.response.status === 401) {
-        setErrMessage(
+        showAlert(
+          "error",
           "Impossible de supprimer ce poste. Des utilisateurs sont encore liés à ce poste."
         );
       } else {
-        setErrMessage(
+        showAlert(
+          "error",
           "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
         );
       }
@@ -86,8 +93,8 @@ function JobsRolesCard({ JobRole, edit, role }) {
       )}
       {visibleModal ? (
         <div id="modal_delete" class="modal">
+          <ToastContainer />
           <div class="modal_content">
-            {errMessage && <p className="p_error_modal">{errMessage}</p>}
             <h2>Confirmation de suppression</h2>
             <p>Voulez-vous vraiment supprimer le poste : {JobRole?.name}?</p>
             <div class="modal_buttons">

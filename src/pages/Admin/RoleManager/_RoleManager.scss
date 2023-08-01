@@ -15,10 +15,22 @@
   width: 100%;
   border-color : red;
   color: red;
+  margin-top: 20rem;
+}
+
+@media screen and (min-width: 600px) {
+  .container_admin_role {
+    margin-bottom: 2.5rem;
+    margin-top : -2rem;
+  }
 }
 
 @media screen and (min-width: 926px) {
   .pagination_admin_role {
     margin-top: 0.5%;
+  }
+  .container_admin_role {
+    margin-bottom: 5rem;
+    margin-top : -4rem;
   }
 }
