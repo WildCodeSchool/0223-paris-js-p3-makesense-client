@@ -17,7 +17,7 @@ const CustomToast = () => {
       typeof toast[type] === "function"
         ? toast[type](message, options)
         : toast.error(
-            `ERROR: Le type d'alerte "${type}" n'existe pas!`,
+            `ERROR: Le type d'alerte "${type}" n'existe pas !`,
             options
           );
       setAlerts((prevAlerts) => prevAlerts.slice(1));
@@ -31,7 +31,7 @@ const CustomToast = () => {
   const getToastOptions = (type, message) => {
     const commonOptions = {
       position: "top-right",
-      autoClose: 3500,
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -65,7 +65,7 @@ const CustomToast = () => {
           className: "custom_toast_alert_warn",
         };
       default:
-        console.error(`ERROR: Le type d'alerte "${type}" n'existe pas!`);
+        console.error(`ERROR: Le type d'alerte "${type}" n'existe pas !`);
         return {
           ...commonOptions,
           theme: "custom_toast_alert_error",
