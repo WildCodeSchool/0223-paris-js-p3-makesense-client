@@ -8,7 +8,7 @@ import { getAllUsers } from "../../../services/users";
 import SearchBarAdmin from "../../../components/SearchBarAdmin/SearchBarAdmin";
 import CustomToast from "../../../components/CustomToast/CustomToast";
 
-function UserManage() {
+function UserManager() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -217,4 +217,4 @@ function UserManage() {
   );
 }
 
-export default UserManage;
+export default UserManager;
