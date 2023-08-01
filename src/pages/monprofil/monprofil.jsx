@@ -99,7 +99,12 @@ const MonProfil = () => {
         showAlert("success", "Votre profil a été sauvegardé avec succès !");
       } catch (err) {
         console.error(err);
-        if (err.response.status === 403) {
+        if (err.response.status === 400) {
+          showAlert(
+            "error",
+            "L'adresse e-mail est déjà utilisée par un autre utilisateur."
+          );
+        } else if (err.response.status === 403) {
           showAlert(
             "error",
             "Impossible d'upload cette image sur notre serveur ! "
@@ -226,7 +231,10 @@ const MonProfil = () => {
                   className="profile-input"
                   type="email"
                   value={email}
-                  readOnly
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                  required
                 />
               </div>
             ) : (

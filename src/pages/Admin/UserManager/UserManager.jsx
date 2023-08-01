@@ -176,27 +176,24 @@ function UserManage() {
           redirection="/admin/users/register"
           textButton="Ajouter un utilisateur"
         />
-        <div className="filter_options">
-          <label htmlFor="adminFilterCheckbox">
-            <input
-              type="checkbox"
-              id="adminFilterCheckbox"
-              className="filter_admin_user"
-              checked={adminFilter}
-              onChange={handleAdminFilter}
-            />
-            Afficher les administrateurs
-          </label>
-          <label htmlFor="nonAdminFilterCheckbox">
-            <input
-              type="checkbox"
-              id="nonAdminFilterCheckbox"
-              className="filter_admin_user"
-              checked={nonAdminFilter}
-              onChange={handleNonAdminFilter}
-            />
-            Afficher les utilisateurs
-          </label>
+        <div className="checkbox_login">
+          <input
+            type="checkbox"
+            id="listAdmin"
+            checked={adminFilter}
+            onChange={handleAdminFilter}
+          />
+          <label for="listAdmin" class="check-box" />
+          <p className="c-blue">Afficher les administrateurs</p>
+
+          <input
+            type="checkbox"
+            id="listUsers"
+            checked={nonAdminFilter}
+            onChange={handleNonAdminFilter}
+          />
+          <label for="listUsers" class="check-box" />
+          <p className="c-blue">Afficher les utilisateurs</p>
         </div>
         <div className="card_container_admin_user">
           {currentPageUsers.map((user) => (

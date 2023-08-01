@@ -75,7 +75,6 @@ function Login() {
               src="src/assets/Oeil.svg"
             />
           </div>
-
           <div className="checkbox_login">
           <input type="checkbox" id="cbtest" />
           <label for="cbtest" class="check-box"/>

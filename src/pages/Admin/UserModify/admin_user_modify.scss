@@ -13,6 +13,33 @@ width: 73%;
     width: 73%;
 }
 
+.profile-file-admin {
+    position: relative;
+}
+
+.profile-image-admin {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 6px solid $color-accent-cian;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.crayonimg-admin {
+    background-color: $color-accent-cian ;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    position: absolute;
+    left: 55%;
+    top: 70%;
+    cursor: pointer;
+}
+
+
 .containers{
 display: flex;
 align-items: center;
@@ -106,7 +133,7 @@ margin-bottom: 1rem;
 }
 
 input[type=checkbox] {
-    -border-radius: 4px;
+    border-radius: 4px;
     height: 15px;
     width: 15px;
     background: #fff;
@@ -124,21 +151,40 @@ input[type=checkbox] {
 
 @media screen and (min-width: 926px) {
 
+    .profile-file-admin {
+        position: relative;
+    }
+
+    .profile-image-admin {
+        width: 130px;
+        height: 130px;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 20px;
+        border: 6px solid $color-accent-cian;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .crayonimg-admin {
+        background-color: $color-accent-cian ;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+        position: absolute;
+        left: 55%;
+        top: 70%;
+        cursor: pointer;
+    }
 
     .containers{
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         position: relative;
-        top:10rem;
+        top:5rem;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         flex-direction: column;
         padding: 1.5rem;      
-    }
-
-    .box{
-        background-image: url(./src/assets/pills/Pills_desktop_login.png);
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }

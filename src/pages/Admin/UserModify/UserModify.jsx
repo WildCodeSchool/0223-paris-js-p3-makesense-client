@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllJobs } from "../../../services/jobs";
@@ -11,6 +11,7 @@ function UserModify() {
   const auth = useSelector((state) => state.auth);
   const { id } = useParams();
   const { showAlert } = CustomToast();
+  const fileInputRef = useRef(null);
 
   const [modify, setModify] = useState({
     email: "",
@@ -19,6 +20,7 @@ function UserModify() {
     role_id: "",
     job_id: "",
     admin: "",
+    avatar: "",
   });
 
   const [roles, setRoles] = useState([]);
@@ -36,6 +38,7 @@ function UserModify() {
         role_id: userData?.data[0].role_id,
         job_id: userData?.data[0].job_id,
         admin: userData?.data[0].admin,
+        avatar: userData?.data[0].avatar,
       });
       setRoles(rolesData.data);
       setJobs(jobsData.data);
@@ -64,6 +67,24 @@ function UserModify() {
     searchData();
   }, []);
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const newProfileImage = reader.result;
+      setModify({ ...modify, avatar: newProfileImage });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditProfile = () => {
+    fileInputRef.current.click();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, firstname, lastname, role_id, job_id, admin } = modify;
@@ -81,7 +102,18 @@ function UserModify() {
       showAlert("error", "Veuillez remplir tous les champs !");
     } else {
       try {
-        await modifyAccountAdmin(modify, id);
+        const formData = new FormData();
+        formData.append("email", email);
+        formData.append("firstname", firstname);
+        formData.append("lastname", lastname);
+        formData.append("role_id", role_id);
+        formData.append("job_id", job_id);
+        formData.append("admin", admin);
+        if (fileInputRef?.current?.files[0]) {
+          formData.append("avatar", fileInputRef.current.files[0]);
+        }
+
+        await modifyAccountAdmin(formData, id);
         navigate("/admin/users", { state: { userModified: true } });
       } catch (err) {
         console.error("err", err);
@@ -141,6 +173,27 @@ function UserModify() {
       <div className="containers">
         <h1 className="title2_register">Modifier l'utilisateur !</h1>
         <form onSubmit={handleSubmit}>
+          <div className="profile-file-admin">
+            <img
+              src={modify.avatar}
+              alt="userprofile"
+              className="profile-image-admin"
+              onClick={handleEditProfile}
+            />
+            <img
+              className="crayonimg-admin"
+              src="../../src/assets/crayon.png"
+              alt="editprofile"
+              onClick={handleEditProfile}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              ref={fileInputRef}
+              onChange={handleFileChange}
+            />
+          </div>
           <div className="button_admin">
             <input
               className="input_admin"
