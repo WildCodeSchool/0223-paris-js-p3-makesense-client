@@ -24,18 +24,18 @@ function RoleRegister() {
     } else {
       try {
         await createRole({ name });
-        showAlert("success", "Création du poste réussi !");
+        showAlert("success", "Création du rôle réussi !");
       } catch (err) {
         if (err.response.status === 403) {
           showAlert(
             "error",
-            "Ce poste est déjà utiliser dans la base de donnée !"
+            "Ce rôle est déjà utiliser dans la base de donnée !"
           );
         } else if (err.response.status === 422) {
           const validationErrors = err.response.data.validationErrors;
 
           const fieldTranslations = {
-            "name - FORMAT INCORECT": "Le format du nom du poste est invalide.",
+            "name - FORMAT INCORECT": "Le format du nom du rôle est invalide.",
             "name - FORMAT LIMIT":
               "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom.",
           };

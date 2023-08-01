@@ -8,7 +8,13 @@ import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import CustomToast from "../CustomToast/CustomToast";
 
-function JobsRolesCard({ JobRole, edit, role, onSuccessDeleteRole }) {
+function JobsRolesCard({
+  JobRole,
+  edit,
+  role,
+  onSuccessDeleteRole,
+  onSuccessDeleteJob,
+}) {
   const dispatch = useDispatch();
   const [visibleModal, setvisibleModal] = useState(false);
   const { showAlert } = CustomToast();
@@ -47,6 +53,7 @@ function JobsRolesCard({ JobRole, edit, role, onSuccessDeleteRole }) {
       await deleteJob(JobRole.id);
       dispatch(removeJob(JobRole.id));
       setvisibleModal(!visibleModal);
+      onSuccessDeleteJob();
     } catch (err) {
       if (err.response.status === 401) {
         showAlert(

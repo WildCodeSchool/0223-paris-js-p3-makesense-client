@@ -1,21 +1,35 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../../../components/Pagination/Pagination";
 import { sendJobData } from "../../../store/jobs";
 import { getAllJobs } from "../../../services/jobs";
 import SearchBarAdmin from "../../../components/SearchBarAdmin/SearchBarAdmin";
 import JobsRolesCard from "../../../components/JobsRolesCard/JobsRolesCard";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function JobManager() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
+  const location = useLocation();
 
   const jobs = useSelector((state) => state.jobs);
   const [currentPageJobs, setCurrentPageJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (location.state && location.state.jobModified) {
+      showAlert("success", "Le poste a été modifié avec succès !");
+      navigate("/admin/jobs", { replace: true, state: undefined });
+    }
+  }, [location.state, showAlert]);
+
+  const showSuccessAlertDelete = () => {
+    showAlert("success", "Le poste a été supprimé avec succès !");
+  };
 
   const searchData = async () => {
     try {
@@ -76,7 +90,14 @@ function JobManager() {
         />
         <div className="card_container_admin_job">
           {currentPageJobs.map((job) => {
-            return <JobsRolesCard key={job.id} JobRole={job} edit />;
+            return (
+              <JobsRolesCard
+                key={job.id}
+                JobRole={job}
+                edit
+                onSuccessDeleteJob={showSuccessAlertDelete}
+              />
+            );
           })}
         </div>
         {jobs && (
