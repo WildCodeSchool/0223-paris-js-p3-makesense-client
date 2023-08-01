@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import UserCard from "../../../components/UserCard/UserCard";
 import Pagination from "../../../components/Pagination/Pagination";
@@ -14,12 +14,21 @@ function UserManage() {
   const dispatch = useDispatch();
   const { showAlert } = CustomToast();
 
+  const location = useLocation();
+
   const users = useSelector((state) => state.users);
   const [currentPageUsers, setCurrentPageUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [adminFilter, setAdminFilter] = useState(false);
   const [nonAdminFilter, setNonAdminFilter] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (location.state && location.state.userModified) {
+      showAlert("success", "L'utilisateur a été modifié avec succès !");
+      navigate("/admin/users", { replace: true, state: undefined });
+    }
+  }, [location.state, showAlert]);
 
   const showSuccessAlertDelete = () => {
     showAlert("success", "L'utilisateur a été supprimé avec succès !");
@@ -191,7 +200,12 @@ function UserManage() {
         </div>
         <div className="card_container_admin_user">
           {currentPageUsers.map((user) => (
-            <UserCard user={user} key={user.id} edit onSuccessDelete={showSuccessAlertDelete}/>
+            <UserCard
+              user={user}
+              key={user.id}
+              edit
+              onSuccessDelete={showSuccessAlertDelete}
+            />
           ))}
         </div>
         {users && (

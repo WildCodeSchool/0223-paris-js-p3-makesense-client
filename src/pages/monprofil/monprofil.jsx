@@ -100,7 +100,6 @@ const MonProfil = () => {
       } catch (err) {
         console.error(err);
         if (err.response.status === 403) {
-          setMessage(null);
           showAlert(
             "error",
             "Impossible d'upload cette image sur notre serveur ! "

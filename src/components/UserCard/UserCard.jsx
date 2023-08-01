@@ -22,7 +22,7 @@ function UserCard({ user, edit, onSuccessDelete }) {
 
   const handleClickFetch = async () => {
     try {
-      const deleteuser = await deleteUtilisateur(user.id);
+      await deleteUtilisateur(user.id);
       dispatch(removeUser(user.id));
       setvisibleModal(!visibleModal);
       onSuccessDelete();

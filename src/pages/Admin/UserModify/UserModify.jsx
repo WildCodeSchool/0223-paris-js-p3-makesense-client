@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { getAllJobs } from "../../../services/jobs";
 import { getAllRoles } from "../../../services/roles";
 import { modifyAccountAdmin, getUser } from "../../../services/users";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function UserModify() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const { id } = useParams();
+  const { showAlert } = CustomToast();
 
   const [modify, setModify] = useState({
     email: "",
@@ -19,7 +21,6 @@ function UserModify() {
     admin: "",
   });
 
-  const [error, setError] = useState(null);
   const [roles, setRoles] = useState([]);
   const [jobs, setJobs] = useState([]);
 
@@ -28,7 +29,14 @@ function UserModify() {
       const userData = await getUser(id);
       const rolesData = await getAllRoles();
       const jobsData = await getAllJobs();
-      setModify(userData?.data[0]);
+      setModify({
+        email: userData?.data[0].email,
+        firstname: userData?.data[0].firstname,
+        lastname: userData?.data[0].lastname,
+        role_id: userData?.data[0].role_id,
+        job_id: userData?.data[0].job_id,
+        admin: userData?.data[0].admin,
+      });
       setRoles(rolesData.data);
       setJobs(jobsData.data);
     } catch (err) {
@@ -43,7 +51,8 @@ function UserModify() {
       ) {
         navigate("/admin/users");
       } else {
-        setError(
+        showAlert(
+          "error",
           "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
         );
       }
@@ -69,35 +78,57 @@ function UserModify() {
       job_id === "null" ||
       admin === "null"
     ) {
-      return setError("Veuillez remplir tous les champs !");
+      showAlert("error", "Veuillez remplir tous les champs !");
     } else {
       try {
         await modifyAccountAdmin(modify, id);
-        navigate("/admin/users");
+        navigate("/admin/users", { state: { userModified: true } });
       } catch (err) {
+        console.error("err", err);
         if (err.response.status === 400) {
-          setError(
+          showAlert(
+            "error",
             "L'adresse e-mail est déjà utilisée par un autre utilisateur."
           );
         } else if (err.response.status === 403) {
-          setError("Impossible d'upload cette image sur notre serveur ! ");
+          showAlert(
+            "error",
+            "Impossible d'upload cette image sur notre serveur ! "
+          );
         } else if (err.response.status === 422) {
           const validationErrors = err.response.data.validationErrors;
-          let errorMessage = "Vérifiez les champs suivants : ";
+
           const fieldTranslations = {
-            email: "Adresse e-mail",
             firstname: "Prénom",
             lastname: "Nom de famille",
+            "firstname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le prénom.",
+            "lastname - FORMAT INCORRECT":
+              "Le format du nom de famille est invalide.",
+            "lastname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom de famille.",
+            "firstname - FORMAT INCORRECT": "Le format du prénom est invalide.",
+            email: "Adresse e-mail",
+            "email - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir l'email",
+            "affiliated_site - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir la location.",
+            "affiliated_siteRegex - FORMAT INCORRECT":
+              "Le format de la location est invalide.",
+            "tel - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le numéreau de téléphone.",
+            "tel - FORMAT INCORRECT":
+              "Le format du numéreau de téléphone est invalide.",
           };
+
           validationErrors.forEach((error) => {
             const translatedField =
               fieldTranslations[error.field] || error.field;
-            errorMessage += `${translatedField}, `;
+            showAlert("error", translatedField);
           });
-          errorMessage = errorMessage.slice(0, -2);
-          setError(errorMessage);
         } else {
-          setError(
+          showAlert(
+            "error",
             "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
           );
         }
@@ -109,7 +140,6 @@ function UserModify() {
     <div className="box">
       <div className="containers">
         <h1 className="title2_register">Modifier l'utilisateur !</h1>
-        {error && <p className="p_error_register">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="button_admin">
             <input
