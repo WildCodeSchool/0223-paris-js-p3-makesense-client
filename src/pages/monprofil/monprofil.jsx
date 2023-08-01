@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useRef } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import { useEffect } from "react";
 import { editUser, getCurrentUser } from "../../services/users";
 import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 const MonProfil = () => {
   const [profileImage, setProfileImage] = useState(
@@ -17,27 +15,30 @@ const MonProfil = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
+  const { showAlert } = CustomToast();
+
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstname, setFirstName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("France");
-  const [error, setError] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    tel: "",
-    country: "",
-  });
+
+  const searchData = async () => {
+    try {
+      const userData = await getCurrentUser();
+      setFirstName(userData?.data?.firstname);
+      setName(userData?.data?.lastname);
+      setEmail(userData?.data?.email);
+      setPhone(userData?.data?.tel);
+      setProfileImage(userData?.data?.avatar);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
 
   useEffect(() => {
-    console.log(auth);
-    setFirstName(auth?.user?.firstname);
-    setName(auth?.user?.lastname);
-    setEmail(auth?.user?.email);
-    setPhone(auth?.user?.tel);
-    setProfileImage(auth?.user?.avatar);
+    searchData();
   }, []);
 
   const handleEditProfile = () => {
@@ -72,142 +73,105 @@ const MonProfil = () => {
   };
 
   const handleSaveClick = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("firstname", firstname);
-      formData.append("lastname", name);
-      formData.append("email", email);
-      formData.append("tel", phone);
-      formData.append("affiliated_site", country);
-      if (fileInputRef?.current?.files[0]) {
-        formData.append("avatar", fileInputRef.current.files[0]);
-      }
-
-      const result = await editUser(formData);
-      dispatch(signin(result.data));
-    } catch (error) {
-      console.error(error);
-    }
-    setIsEditMode(false);
-  };
-
-  const handleFirstNameChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersAndSpacesOnlyRegex = /^[-,a-zA-ZÀ-ÿ ']*$/;
-
-    if (inputValue.match(lettersAndSpacesOnlyRegex) || inputValue === "") {
-      setFirstName(inputValue);
-      setError("");
+    if (
+      firstname === "" ||
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      country === ""
+    ) {
+      showAlert("error", "Veuillez remplir tous les champs !");
     } else {
-      toast.error("Le prénom ne doit contenir que des lettres !", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
-
-  const handleLastNameChange = (e) => {
-    const phoneValue = e.target.value;
-    const cleanedPhoneValue = phoneValue.replace(/\s/g, "");
-    const phoneRegex = /^\d{10}$/;
-
-    if (cleanedPhoneValue.match(phoneRegex) || cleanedPhoneValue === "") {
-      const formattedPhoneValue = cleanedPhoneValue.replace(
-        /(\d{2})(?=\d)/g,
-        "$1 "
-      );
-      setPhone(formattedPhoneValue);
-      setError("");
-    } else {
-      toast.error("Le nom ne doit contenir que des lettres !", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
-
-  const handlePhoneChange = (e) => {
-    const phoneValue = e.target.value;
-    const cleanedPhoneValue = phoneValue.replace(/\s/g, "");
-    const phoneRegex = /^\d{10}$/;
-
-    if (cleanedPhoneValue.match(phoneRegex) || cleanedPhoneValue === "") {
-      const formattedPhoneValue = cleanedPhoneValue.replace(
-        /(\d{2})(?=\d)/g,
-        "$1 "
-      );
-      setPhone(formattedPhoneValue);
-      setError("");
-    } else {
-      toast.error(
-        "Le numéro de téléphone ne doit comporter que des chiffres !",
-        {
-          position: "top-right",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+      try {
+        const formData = new FormData();
+        formData.append("firstname", firstname);
+        formData.append("lastname", name);
+        formData.append("email", email);
+        formData.append("tel", phone);
+        formData.append("affiliated_site", country);
+        if (fileInputRef?.current?.files[0]) {
+          formData.append("avatar", fileInputRef.current.files[0]);
         }
-      );
-    }
-  };
 
-  const handleCountryChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersAndSpacesOnlyRegex = /^[A-Za-z\s]*$/;
+        const result = await editUser(formData);
+        console.log("result", result);
+        dispatch(signin(result.data));
+        setIsEditMode(false);
+        showAlert("success", "Votre profil a été sauvegardé avec succès !");
+      } catch (err) {
+        console.error(err);
+        if (err.response.status === 403) {
+          setMessage(null);
+          showAlert(
+            "error",
+            "Impossible d'upload cette image sur notre serveur ! "
+          );
+        } else if (err.response.status === 422) {
+          const validationErrors = err.response.data.validationErrors;
 
-    if (inputValue.match(lettersAndSpacesOnlyRegex) || inputValue === "") {
-      setCountry(inputValue);
-      setError("");
-    } else {
-      toast.error("Le pays ne doit contenir que des lettres !", {
-        position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+          const fieldTranslations = {
+            firstname: "Prénom",
+            lastname: "Nom de famille",
+            "firstname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le prénom.",
+            "lastname - FORMAT INCORRECT":
+              "Le format du nom de famille est invalide.",
+            "lastname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom de famille.",
+            "firstname - FORMAT INCORRECT": "Le format du prénom est invalide.",
+            email: "Adresse e-mail",
+            "email - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir l'email",
+            "affiliated_site - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir la location.",
+            "affiliated_siteRegex - FORMAT INCORRECT":
+              "Le format de la location est invalide.",
+            "tel - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le numéreau de téléphone.",
+            "tel - FORMAT INCORRECT":
+              "Le format du numéreau de téléphone est invalide.",
+          };
+
+          validationErrors.forEach((error) => {
+            const translatedField =
+              fieldTranslations[error.field] || error.field;
+            showAlert("error", translatedField);
+          });
+        } else {
+          showAlert(
+            "error",
+            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+          );
+        }
+      }
     }
   };
 
   return (
     <>
       <h1 className="titreprofil">Mon Profil</h1>
-      <ToastContainer />
       <div className="profile-form">
         <div className="profile-file">
           <img src={profileImage} alt="userprofile" className="profile-image" />
-          <img
-            className="crayonimg"
-            src="../../src/assets/crayon.png"
-            alt="editprofile"
-            onClick={handleEditProfile}
-          />
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            ref={fileInputRef}
-            onChange={handleFileChange}
-          />
+          {isEditMode ? (
+            <>
+              <img
+                className="crayonimg"
+                src="../../src/assets/crayon.png"
+                alt="editprofile"
+                onClick={handleEditProfile}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+            </>
+          ) : (
+            ""
+          )}
         </div>
         <form className="formProfile">
           <div className="label-input">
@@ -220,7 +184,6 @@ const MonProfil = () => {
                   value={firstname}
                   onChange={(e) => {
                     setFirstName(e.target.value);
-                    handleFirstNameChange(e);
                   }}
                   required
                 />
@@ -244,7 +207,6 @@ const MonProfil = () => {
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
-                    handleLastNameChange(e);
                   }}
                   required
                 />
@@ -288,7 +250,6 @@ const MonProfil = () => {
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
-                    handlePhoneChange(e);
                   }}
                   required
                 />
@@ -312,7 +273,6 @@ const MonProfil = () => {
                   value={country}
                   onChange={(e) => {
                     setCountry(e.target.value);
-                    handleCountryChange(e);
                   }}
                   required
                 />

@@ -25,7 +25,7 @@ function UserCard({ user, edit }) {
     } catch (err) {
       console.log("err", err);
       setErrMessage(
-        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !",
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
       );
     }
   };
@@ -45,9 +45,9 @@ function UserCard({ user, edit }) {
         />
       </div>
       <div className="info_admin_user">
-        <h2 className="name_admin_user">
+        <h3 className="name_admin_user">
           {user?.firstname} {user?.lastname}
-        </h2>
+        </h3>
         <div>
           <p className="email_admin_user">Email: {user?.email}</p>
           <p className="phone_admin_user">
