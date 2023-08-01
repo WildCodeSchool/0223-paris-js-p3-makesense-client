@@ -6,11 +6,13 @@ import Pagination from "../../../components/Pagination/Pagination";
 import { sendUserData } from "../../../store/users";
 import { getAllUsers } from "../../../services/users";
 import SearchBarAdmin from "../../../components/SearchBarAdmin/SearchBarAdmin";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function UserManage() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
 
   const users = useSelector((state) => state.users);
   const [currentPageUsers, setCurrentPageUsers] = useState([]);
@@ -18,6 +20,10 @@ function UserManage() {
   const [adminFilter, setAdminFilter] = useState(false);
   const [nonAdminFilter, setNonAdminFilter] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const showSuccessAlertDelete = () => {
+    showAlert("success", "L'utilisateur a été supprimé avec succès !");
+  };
 
   const searchData = async () => {
     try {
@@ -185,7 +191,7 @@ function UserManage() {
         </div>
         <div className="card_container_admin_user">
           {currentPageUsers.map((user) => (
-            <UserCard user={user} key={user.id} edit />
+            <UserCard user={user} key={user.id} edit onSuccessDelete={showSuccessAlertDelete}/>
           ))}
         </div>
         {users && (

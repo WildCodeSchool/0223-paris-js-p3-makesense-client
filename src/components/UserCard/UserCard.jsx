@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 import { removeUser } from "../../store/users";
 import { deleteUtilisateur } from "../../services/users";
 import { Link } from "react-router-dom";
+import CustomToast from "../CustomToast/CustomToast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function UserCard({ user, edit }) {
+function UserCard({ user, edit, onSuccessDelete }) {
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
   const [visibleModal, setvisibleModal] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
 
   const handleClickDelete = () => {
     setvisibleModal(!visibleModal);
@@ -19,12 +22,14 @@ function UserCard({ user, edit }) {
 
   const handleClickFetch = async () => {
     try {
-      await deleteUtilisateur(user.id);
+      const deleteuser = await deleteUtilisateur(user.id);
       dispatch(removeUser(user.id));
       setvisibleModal(!visibleModal);
+      onSuccessDelete();
     } catch (err) {
       console.log("err", err);
-      setErrMessage(
+      showAlert(
+        "error",
         "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
       );
     }
@@ -89,8 +94,8 @@ function UserCard({ user, edit }) {
       )}
       {visibleModal ? (
         <div id="modal_delete" class="modal">
+          <ToastContainer />
           <div class="modal_content">
-            {errMessage && <p className="p_error_modal">{errMessage}</p>}
             <h2>Confirmation de suppression</h2>
             <p>
               Voulez-vous vraiment supprimer l'utilisateur : {user?.firstname}{" "}
