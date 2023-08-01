@@ -94,7 +94,6 @@ const MonProfil = () => {
         }
 
         const result = await editUser(formData);
-        console.log("result", result);
         dispatch(signin(result.data));
         setIsEditMode(false);
         showAlert("success", "Votre profil a été sauvegardé avec succès !");
