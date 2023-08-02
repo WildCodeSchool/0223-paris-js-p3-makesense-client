@@ -18,6 +18,10 @@ const modifyAccount = (data, id) => api.put(`/api/users/${id}`, data);
 
 const modifyAccountAdmin = (data, id) => api.put(`/api/users/admin/${id}`, data);
 
+const verifyToken = (data) => {
+  return api.post("/api/users/token", data);
+}
+
 export {
   getAllUsers,
   getAllCountUser,
@@ -28,4 +32,5 @@ export {
   getUser,
   modifyAccount,
   modifyAccountAdmin,
+  verifyToken,
 };

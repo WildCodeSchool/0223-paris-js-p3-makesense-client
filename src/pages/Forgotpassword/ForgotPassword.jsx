@@ -1,30 +1,25 @@
 import { useState } from "react";
 import { sendResetPassword } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-
+  const { showAlert } = CustomToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await sendResetPassword(email);
-      setMessage(
-        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 secondes."
-      );
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000);
-    } catch (error) {
-      setMessage(
-        "Une demande à étai envoyée à votre adresse mail, vous serez redirigé sur la page de connexion dans 5 secondes."
-      );
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000);
+    if (email === "") {
+      showAlert("error", "Veuillez remplir le champ e-mail !");
+    } else {
+      try {
+        await sendResetPassword(email);
+        navigate("/login", { state: { userForgotPassword: true } });
+      } catch (error) {
+        navigate("/login", { state: { userForgotPassword: true } });
+      }
     }
   };
 

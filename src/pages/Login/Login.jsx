@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 import authService from "../../services/auth";
@@ -21,7 +21,7 @@ function Login() {
   };
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,6 +32,28 @@ function Login() {
       setSave(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.userForgotPassword) {
+      showAlert(
+        "success",
+        "Si l'adresse e-mail est enregistrée dans notre base de données, vous recevrez bientôt un e-mail contenant les instructions pour réinitialiser votre mot de passe."
+      );
+      navigate("/login", { replace: true, state: undefined });
+    } else if (location.state && location.state.userResetPassword) {
+      showAlert(
+        "success",
+        "Votre mot de passe a été modifié avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe."
+      );
+      navigate("/login", { replace: true, state: undefined });
+    } else if (location.state && location.state.usertokenInvalid) {
+      showAlert(
+        "error",
+        "Le lien de réinitialisation du mot de passe n'est plus valide. Veuillez demander une nouvelle réinitialisation de mot de passe."
+      );
+      navigate("/login", { replace: true, state: undefined });
+    }
+  }, [location.state, showAlert]);
 
   useEffect(() => {
     const userlogin = localStorage.getItem("userlogin");
