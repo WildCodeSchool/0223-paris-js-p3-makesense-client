@@ -13,6 +13,7 @@ function Login() {
   });
 
   const [password, setPassword] = useState(false);
+  const [save, setSave] = useState(false);
   const { showAlert } = CustomToast();
 
   const showpassword = () => {
@@ -24,12 +25,25 @@ function Login() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const dataJSON = localStorage.getItem("userloginSave");
+    if (dataJSON) {
+      const objectData = JSON.parse(dataJSON);
+      setLogin(objectData);
+      setSave(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const userlogin = localStorage.getItem("userlogin");
     if (userlogin === "false") {
       showAlert("success", "Vous êtes maintenant déconnecté !");
       localStorage.removeItem("userlogin");
     }
   }, [showAlert]);
+
+  const handleClickSave = async () => {
+    setSave(!save);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +54,12 @@ function Login() {
       try {
         const result = await authService.login(email, password);
         dispatch(signin(result.data));
+        if (save) {
+          const dataSatve = JSON.stringify(login);
+          localStorage.setItem("userloginSave", dataSatve);
+        } else {
+          localStorage.removeItem("userloginSave");
+        }
         localStorage.setItem("userlogin", "true");
         navigate("/");
       } catch (err) {
@@ -90,7 +110,12 @@ function Login() {
             />
           </div>
           <div className="checkbox_login">
-            <input type="checkbox" id="cbtest" />
+            <input
+              type="checkbox"
+              id="cbtest"
+              onClick={handleClickSave}
+              checked={save ? true : false}
+            />
             <label for="cbtest" class="check-box" />
             <p className="c-blue">Se souvenir de moi</p>
           </div>
