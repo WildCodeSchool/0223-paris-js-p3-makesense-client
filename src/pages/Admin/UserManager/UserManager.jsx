@@ -202,6 +202,7 @@ function UserManager() {
               key={user.id}
               edit
               onSuccessDelete={showSuccessAlertDelete}
+              searchTerm={searchTerm}
             />
           ))}
         </div>
