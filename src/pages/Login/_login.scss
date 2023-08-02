@@ -18,6 +18,7 @@
   padding: 1.5rem;
   position: relative;
   top: 5rem;
+  margin-top: -2rem;
 }
 .icon_login {
   background-position-x: 0.2rem;
@@ -30,12 +31,12 @@
   border: 2px solid #C6C6C6;
 }
 .courriel {
-  background-image: url(./src/assets/Letter.svg);
+  background-image: url(../../src/assets/Letter.svg);
   background-repeat: no-repeat;
   background-position: left;
 }
 .password {
-  background-image: url(./src/assets/Lock.svg);
+  background-image: url(../../src/assets/Lock.svg);
   background-repeat: no-repeat;
   background-position: left;
 }
@@ -83,7 +84,7 @@
 }
 @media screen and (min-width: 926px) {
   .password_icon_login {
-    background-image: url(./src/assets/Lock.png);
+    background-image: url(../../src/assets/Lock.png);
     background-repeat: no-repeat;
     background-position: left center;
     background-position-x: 0.2rem;
@@ -105,7 +106,7 @@
     flex-wrap: wrap;
   }
   .box_login {
-    background-image: url(./src/assets/pills/Pills_desktop_login.png);
+    background-image: url(../../src/assets/pills/Pills_desktop_login.png);
     background-repeat: no-repeat;
     background-size: cover;
     height: 42rem;

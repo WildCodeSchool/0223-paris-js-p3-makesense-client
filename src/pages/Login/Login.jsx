@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
 import authService from "../../services/auth";
 import { Link } from "react-router-dom";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 function Login() {
   const [login, setLogin] = useState({
@@ -12,7 +13,7 @@ function Login() {
   });
 
   const [password, setPassword] = useState(false);
-  const [error, setError] = useState(null);
+  const { showAlert } = CustomToast();
 
   const showpassword = () => {
     setPassword(!password);
@@ -22,20 +23,34 @@ function Login() {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const userlogin = localStorage.getItem("userlogin");
+    if (userlogin === "false") {
+      showAlert("success", "Vous êtes maintenant déconnecté !");
+      localStorage.removeItem("userlogin");
+    }
+  }, [showAlert]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const result = await authService.login(login.email, login.password);
-      dispatch(signin(result.data));
-
-      navigate("/");
-    } catch (err) {
-      if (err.response?.status === 400) {
-        setError("email ou mot de passe incorrect");
-      } else {
-        setError(
-          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
-        );
+    const { email, password } = login;
+    if (email === "" || password === "") {
+      showAlert("error", "Veuillez remplir tous les champs !");
+    } else {
+      try {
+        const result = await authService.login(email, password);
+        dispatch(signin(result.data));
+        localStorage.setItem("userlogin", "true");
+        navigate("/");
+      } catch (err) {
+        if (err.response?.status === 400) {
+          showAlert("error", "Email ou mot de passe incorrect !");
+        } else {
+          showAlert(
+            "error",
+            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+          );
+        }
       }
     }
   };
@@ -45,7 +60,6 @@ function Login() {
       <div className="containers_login">
         <p className="title1_login c-blue">Pour acceder au site</p>
         <h1 className="title2_login">Connectez-vous</h1>
-        {error && <p className="p_error_login">{error}</p>}
         <form className="form_login" onSubmit={handleSubmit}>
           <div className="input_courriel_login">
             <input
@@ -76,14 +90,16 @@ function Login() {
             />
           </div>
           <div className="checkbox_login">
-          <input type="checkbox" id="cbtest" />
-          <label for="cbtest" class="check-box"/>
-          <p className="c-blue">Se souvenir de moi</p>
+            <input type="checkbox" id="cbtest" />
+            <label for="cbtest" class="check-box" />
+            <p className="c-blue">Se souvenir de moi</p>
           </div>
-            <button type="submit" className="connexion_login pointer">
-              se connecter
-            </button>
-              <Link to="/forgotpassword" className="c-blue forgotPassword">Mot de passe oublié</Link>
+          <button type="submit" className="connexion_login pointer">
+            se connecter
+          </button>
+          <Link to="/forgotpassword" className="c-blue forgotPassword">
+            Mot de passe oublié
+          </Link>
         </form>
       </div>
     </div>
