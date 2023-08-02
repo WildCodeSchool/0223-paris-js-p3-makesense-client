@@ -2,37 +2,50 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addAvis } from "../../services/avis";
 import { createAvis } from "../../store/avis";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 export default function CreateAvis({ post }) {
   const [actif, setActif] = useState(false);
   const [text, setText] = useState("");
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const avis = useSelector((state) => state.avis);
+  const { showAlert } = CustomToast();
 
   const handleActif = () => {
     setActif(!actif);
   };
   const sendText = async () => {
-    try {
-      const avisData = { user_id: auth.user.id, post_id: post.id, text: text };
-      const addNewAvis = await addAvis(avisData);
-      console.log("addNewAvis", addNewAvis);
-      const newDataAvis = {
-        date: addNewAvis.data.date,
-        firstname: addNewAvis.data.user[0].firstname,
-        lastname: addNewAvis.data.user[0].lastname,
-        photo: addNewAvis.data.user[0].avatar,
-        user_id: auth.user.id,
-        id: addNewAvis.data.addAvisByUser.id,
-        post_id: post.id,
-        text: text,
-      };
-      dispatch(createAvis(newDataAvis));
-      setActif(false);
-      setText("");
-    } catch (err) {
-      console.error("err", err);
+    if (text === "") {
+      showAlert("error", "Veuillez remplir tous les champs !");
+    } else {
+      try {
+        const avisData = {
+          user_id: auth.user.id,
+          post_id: post.id,
+          text: text,
+        };
+        const addNewAvis = await addAvis(avisData);
+        const newDataAvis = {
+          date: addNewAvis.data.date,
+          firstname: addNewAvis.data.user[0].firstname,
+          lastname: addNewAvis.data.user[0].lastname,
+          photo: addNewAvis.data.user[0].avatar,
+          user_id: auth.user.id,
+          id: addNewAvis.data.addAvisByUser.id,
+          post_id: post.id,
+          text: text,
+        };
+        dispatch(createAvis(newDataAvis));
+        setActif(false);
+        setText("");
+        showAlert("success", "Merci ! Votre avis a été ajouté avec succès !");
+      } catch (err) {
+        console.error("err", err);
+        showAlert(
+          "error",
+          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        );
+      }
     }
   };
   return (
@@ -42,7 +55,7 @@ export default function CreateAvis({ post }) {
         onClick={handleActif}
         className={`${actif ? "annuler" : "sauvegarder"} pointer`}
       >
-        {actif ? "Annuler" : "Ecrire un avis" }
+        {actif ? "Annuler" : "Ecrire un avis"}
       </button>
       {actif ? (
         <>
