@@ -160,7 +160,10 @@ function TitleProject() {
           </div>
         </div>
       </div>
-      <CreationGuide />
+      {/* <CreationGuide /> */}
+      <div>
+        <CreationGuide />
+      </div>
     </>
   );
 }
