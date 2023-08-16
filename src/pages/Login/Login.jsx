@@ -19,16 +19,16 @@ function Login() {
   };
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
+      
       const result = await authService.login(login.email, login.password);
       dispatch(signin(result.data));
-
       navigate("/");
+
     } catch (err) {
       if (err.response?.status === 400) {
         setError("email ou mot de passe incorrect");
