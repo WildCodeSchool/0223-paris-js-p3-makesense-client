@@ -1,21 +1,32 @@
 import { useState, useEffect } from "react";
 import { resetPassword } from "../../services/auth";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import CustomToast from "../../components/CustomToast/CustomToast";
+import { verifyToken } from "../../services/users";
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-  const [error, setError] = useState(null);
   const [params, setParams] = useSearchParams();
   const [visiblePassword, setVisiblePassword] = useState(false);
   const token = params.get("token");
 
   const navigate = useNavigate();
+  const { showAlert } = CustomToast();
+
+  const checkTokenValidity = async () => {
+    try {
+      await verifyToken({ token: `${token}` });
+    } catch (err) {
+      navigate("/login", { state: { usertokenInvalid: true } });
+    }
+  };
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
+      navigate("/login", { state: { usertokenInvalid: true } });
     }
+    checkTokenValidity();
   }, []);
 
   const showpassword = () => {
@@ -28,20 +39,29 @@ function ResetPassword() {
       if (checkPassword === password) {
         try {
           await resetPassword(password, token);
-          navigate("/login");
-        } catch (error) {
-          console.error(error);
-          setError(
-            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
-          );
+          navigate("/login", { state: { userResetPassword: true } });
+        } catch (err) {
+          console.error(err);
+          if (err.response?.status === 400) {
+            showAlert(
+              "error",
+              "Impossible de changer le mot de passe. Le nouveau mot de passe ne peut pas être identique à l'ancien. Veuillez choisir un mot de passe différent et réessayer."
+            );
+          } else {
+            showAlert(
+              "error",
+              "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+            );
+          }
         }
       } else {
-        setError(
+        showAlert(
+          "error",
           "Oups ! Quelque chose s'est mal passé. Le mot de passe et sa confirmation ne concordent pas. Veuillez vérifier et réessayer."
         );
       }
     } else {
-      setError("Veuillez remplir tous les champs !");
+      showAlert("error", "Veuillez remplir tous les champs !");
     }
   };
 
@@ -49,7 +69,6 @@ function ResetPassword() {
     <div className="box">
       <div className="containers">
         <h3 className="title_new_password">Votre nouveau mot de passe</h3>
-        {error && <p className="p_error_resetpassword">{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
             className="new_password password_icon"
@@ -69,14 +88,21 @@ function ResetPassword() {
             value={checkPassword}
             onChange={(e) => setCheckPassword(e.target.value)}
           />
-          <img
-            onClick={showpassword}
-            className="oeil_resetpassword"
-            src="src/assets/Oeil.png"
-          />
-          <p className="p_visiblePassword_resetpassword" onClick={showpassword}>
-            {visiblePassword ? "Cacher le mot de passe" : "Voir le mot de passe."}
-          </p>
+          <div>
+            <img
+              onClick={showpassword}
+              className="oeil_resetpassword"
+              src="../../src/assets/Oeil.svg"
+            />
+            <p
+              className="p_visiblePassword_resetpassword"
+              onClick={showpassword}
+            >
+              {visiblePassword
+                ? "Cacher le mot de passe"
+                : "Voir le mot de passe"}
+            </p>
+          </div>
           <button type="submit" className="button_forgot_password">
             Je valide
           </button>

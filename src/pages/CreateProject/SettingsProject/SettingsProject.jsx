@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { DecisionTiming } from "./decision_timing";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createPost } from "../../../services/post"
+import { createPost } from "../../../services/post";
 import { addUserParticipant } from "../../../services/post";
-import { setDecisionDelay, setConflictDelay, setDecisionEndDelay } from "../../../store/projectSlice";
+import {
+  setDecisionDelay,
+  setConflictDelay,
+  setDecisionEndDelay,
+} from "../../../store/projectSlice";
 
 function SettingsProject() {
   const [decisiondata, setDecisionData] = useState({
@@ -26,18 +30,10 @@ function SettingsProject() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMissing, setIsMissing] = useState(false);
+  const handleclickPrecedent = () => {
+    navigate("/impactproject");
+  };
   const handleClick = async () => {
-  dispatch(setDecisionDelay(decisiondata.makeDecisionDate))
-  dispatch(setConflictDelay(decisiondata.conflictDate))
-  dispatch(setDecisionEndDelay(decisiondata.deadLineDate))
-  const decisionDate = new Date( Date.now() + (6.048e+8 * decisiondata.makeDecisionDate) )
-  const confliDate =  new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate )))
-  const deadDate = new Date( Date.now() + (6.048e+8 * (decisiondata.conflitDate + decisiondata.makeDecisionDate + decisiondata.deadLineDate)))
-  dispatch(setDecisionDelay(decisionDate))
-  dispatch(setConflictDelay(confliDate))
-  dispatch(setDecisionEndDelay(deadDate))
-    if ( decisiondata.makeDecisionDate === "" || decisiondata.conflitDate === "" || decisiondata.deadLineDate === "") {
-      setIsMissing(true)
     const decisionDate = new Date(
       Date.now() + 6.048e8 * decisiondata.makeDecisionDate
     );
@@ -52,6 +48,9 @@ function SettingsProject() {
             decisiondata.makeDecisionDate +
             decisiondata.deadLineDate)
     );
+    dispatch(setDecisionDelay(decisionDate));
+    dispatch(setConflictDelay(confliDate));
+    dispatch(setDecisionEndDelay(deadDate));
     if (
       decisiondata.makeDecisionDate === "" ||
       decisiondata.conflitDate === "" ||
@@ -70,7 +69,7 @@ function SettingsProject() {
           deadlineDate: deadDate,
           makeDecisionDate: decisionDate,
           conflitDate: confliDate,
-          location: country,
+          location: country.value,
         };
         const form = new FormData();
         for (const key in data) {
@@ -85,10 +84,10 @@ function SettingsProject() {
 
         let userdata = { users: newTab };
         await addUserParticipant(userdata);
+        navigate("/");
       } catch (err) {
         console.log("err", err);
       }
-      navigate("/");
     }
   };
   return (
@@ -113,8 +112,9 @@ function SettingsProject() {
         </div>
         <hr />
       </article>
-      <h1 className="require">Combien de semaine pour :</h1>
+      <h1 className="require">Les champs avec * sont obligatoire</h1>
       <div className="checkbox">
+        <h2 className="title_section">Combien de semaine pour :</h2>
         <div className="column">
           <h2 className="decision_timing_title">La prise de décisions *</h2>
           <ul className="decision">
@@ -202,14 +202,18 @@ function SettingsProject() {
           </ul>
         </div>
         {isMissing ? (
-          <p class="missingFields_settings">
+          <p class="missingFields">
             * Veuillez remplir tous les champs pour continuer
           </p>
         ) : (
           <div></div>
         )}
         <div className="nextPreviousButtons">
-          <button type="button" className="blueButtonMulti">
+          <button
+            type="button"
+            className="blueButtonMulti"
+            onClick={handleclickPrecedent}
+          >
             PRECEDENT
           </button>
           <button
@@ -223,7 +227,6 @@ function SettingsProject() {
       </div>
     </>
   );
-}
 }
 
 export default SettingsProject;

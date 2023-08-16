@@ -2,11 +2,22 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProjectViewHome from "../../components/ProjectViewHome";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 export default function Home() {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { showAlert } = CustomToast();
+
   const clickMe = () => {};
+
+  useEffect(() => {
+    const userlogin = localStorage.getItem("userlogin");
+    if (userlogin === "true") {
+      showAlert("success", "Vous êtes maintenant connecté !");
+      localStorage.removeItem("userlogin");
+    }
+  }, [showAlert]);
 
   useEffect(() => {
     if (!auth.user) {
@@ -18,9 +29,9 @@ export default function Home() {
     navigate("/Guide");
   }
 
-function handleClickTitleproject() {
-  navigate("/titleproject");
-}
+  function handleClickTitleproject() {
+    navigate("/titleproject");
+  }
 
   return (
     <>
@@ -37,7 +48,11 @@ function handleClickTitleproject() {
           <a href="#projectView" onClick={clickMe} className="button-bg-orange">
             décourvrir les projets
           </a>
-          <button type="button" onClick={handleClickTitleproject} className="button-bg-a0">
+          <button
+            type="button"
+            onClick={handleClickTitleproject}
+            className="button-bg-a0"
+          >
             lancer mon projet
           </button>
           <button

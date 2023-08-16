@@ -63,7 +63,6 @@ label {
     margin-bottom: 20px;
     text-align: center;
 }
-
 button {
     color: white;
     border-radius: 5px;
@@ -73,6 +72,7 @@ button {
     justify-content: space-between;
     width: 60%;
     margin: 0 auto;
+
 }
 .annuler {
     padding: 8px 10px;
@@ -92,7 +92,6 @@ button {
         filter: brightness(90%);
       }
 }
-
 .editer {
     padding: 8px 10px;
     margin-left: 250px;
@@ -100,7 +99,6 @@ button {
     background-color: $color-accent-lightOrange;
     font-family: $titles-font;
 }
-
 .notifcourriel {
     width: 60%;
     margin: 25px auto 0;
@@ -127,8 +125,7 @@ button {
     background-color: #ccc;
     border-radius: 30px;
     position: relative;
-    transition: background-color 0.3s ease;
-  
+    transition: background-color 0.3s ease; 
 }  
 .toggle-inner {
     display: block;
@@ -141,8 +138,6 @@ button {
     left: 0;
     transition: left 0.3s ease;
 }
-
-
 .toggle-switch {
     display: block;
     background-color: #fff;
@@ -166,7 +161,9 @@ button {
     left: calc(100% - 5px);
 }
 
-  
+.error-border {
+    border: 1px solid red; 
+}
 
 @media screen and (min-width: 926px) {
     body {
@@ -182,26 +179,27 @@ button {
     }
     .titreprofil {
         padding-right: 30px;
+        padding-bottom: 10px;
     }
     .profile-form {
         display: flex;
-        height: 350px;
+        align-items: center;
+        height: fit-content;
     }
     .profile-input {
         text-align: left;
         width: 100%;
+        padding-top: 0;
     }
     .formProfile {
         display: flex;
         flex-wrap: wrap ;
-        margin-top: 80px;
     }
     .label-input {
         padding: 5px;
         width: 35%;
     }
     .profile-file {
-        padding-top: 50px;
         width: 40%;  
     }
     .profile-image {
@@ -210,7 +208,7 @@ button {
     }
     .crayonimg {
         left: 58%;
-        top: 67%;
+        top: 74%;
     }
     .editer {
         display: flex;
@@ -223,10 +221,9 @@ button {
     }
     .notifs {
         margin-right: 400px;
-        margin-bottom: 20px;  
+        margin-bottom: 30px;  
     }
     .inputerror {
-        height: 20px;
-        margin-bottom: 40px;
+        margin-left: 50px;
     }
 }

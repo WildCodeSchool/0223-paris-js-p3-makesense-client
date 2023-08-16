@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { editJob, getJob } from "../../../services/jobs";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function JobModify() {
   const navigate = useNavigate();
@@ -9,8 +10,7 @@ function JobModify() {
   const { id } = useParams();
 
   const [name, setName] = useState("");
-
-  const [error, setError] = useState(null);
+  const { showAlert } = CustomToast();
 
   const searchData = async () => {
     try {
@@ -20,26 +20,9 @@ function JobModify() {
       console.log("err", err);
       if (name === "") {
         navigate("/admin/jobs");
-      } else if (err.response.status === 403) {
-        setMessage(null);
-        setError("Ce poste est déjà utiliser dans la base de donnée !");
-      } else if (err.response.status === 422) {
-        const validationErrors = err.response.data.validationErrors;
-        let errorMessage = "Vérifiez les champs suivants : ";
-        const fieldTranslations = {
-          "name - FORMAT INCORECT": "Le format du nom du poste est invalide.",
-          "name - FORMAT LIMIT":
-            "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom.",
-        };
-        validationErrors.forEach((error) => {
-          const translatedField = fieldTranslations[error.field] || error.field;
-          errorMessage += `${translatedField}, `;
-        });
-        errorMessage = errorMessage.slice(0, -2);
-        setMessage(null);
-        setError(errorMessage);
       } else {
-        setError(
+        showAlert(
+          "error",
           "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
         );
       }
@@ -58,17 +41,16 @@ function JobModify() {
     } else {
       try {
         await editJob(id, { name });
-        navigate("/admin/jobs");
+        navigate("/admin/jobs", { state: { jobModified: true } });
       } catch (err) {
         console.log("err", err);
-        setError("error interne");
-        setMessage(null);
         if (err.response.status === 403) {
-          setMessage(null);
-          setError("Ce poste est déjà utiliser dans la base de donnée !");
+          showAlert(
+            "error",
+            "Ce poste est déjà utiliser dans la base de donnée !"
+          );
         } else if (err.response.status === 422) {
           const validationErrors = err.response.data.validationErrors;
-          let errorMessage = "Vérifiez les champs suivants : ";
           const fieldTranslations = {
             "name - FORMAT INCORECT": "Le format du nom du poste est invalide.",
             "name - FORMAT LIMIT":
@@ -77,14 +59,11 @@ function JobModify() {
           validationErrors.forEach((error) => {
             const translatedField =
               fieldTranslations[error.field] || error.field;
-            errorMessage += `${translatedField}, `;
+            showAlert("error", translatedField);
           });
-          errorMessage = errorMessage.slice(0, -2);
-          setMessage(null);
-          setError(errorMessage);
         } else {
-          setMessage(null);
-          setError(
+          showAlert(
+            "error",
             "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
           );
         }
@@ -96,7 +75,6 @@ function JobModify() {
     <div className="box">
       <div className="containers">
         <h1 className="title2_register">Modifier le poste !</h1>
-        {error && <p className="p_error_register">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="button_admin">
             <input

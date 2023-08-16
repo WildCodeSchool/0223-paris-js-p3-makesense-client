@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { createRole } from "../../../services/roles";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function RoleRegister() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
 
   const [name, setName] = useState("");
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     if (!auth.user) return navigate("/login");
@@ -20,35 +20,33 @@ function RoleRegister() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (name === "") {
-      return setError("Veuillez remplir tous les champs !"), setMessage(null);
+      return showAlert("error", "Veuillez remplir tous les champs !");
     } else {
       try {
         await createRole({ name });
-        setError(null);
-        setMessage("Création du poste réussi !");
+        showAlert("success", "Création du rôle réussi !");
       } catch (err) {
         if (err.response.status === 403) {
-          setMessage(null);
-          setError("Ce poste est déjà utiliser dans la base de donnée !");
+          showAlert(
+            "error",
+            "Ce rôle est déjà utiliser dans la base de donnée !"
+          );
         } else if (err.response.status === 422) {
           const validationErrors = err.response.data.validationErrors;
-          let errorMessage = "Vérifiez les champs suivants : ";
+
           const fieldTranslations = {
-            "name - FORMAT INCORECT": "Le format du nom du poste est invalide.",
+            "name - FORMAT INCORECT": "Le format du nom du rôle est invalide.",
             "name - FORMAT LIMIT":
               "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom.",
           };
           validationErrors.forEach((error) => {
             const translatedField =
               fieldTranslations[error.field] || error.field;
-            errorMessage += `${translatedField}, `;
+            showAlert("error", translatedField);
           });
-          errorMessage = errorMessage.slice(0, -2);
-          setMessage(null);
-          setError(errorMessage);
         } else {
-          setMessage(null);
-          setError(
+          showAlert(
+            "error",
             "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
           );
         }
@@ -60,8 +58,6 @@ function RoleRegister() {
     <div className="box">
       <div className="containers">
         <h1 className="title2_register">Enregistrez un nouveau rôle !</h1>
-        {error && <p className="p_error_register">{error}</p>}
-        {message && <p>{message}</p>}
         <form onSubmit={handleSubmit}>
           <div className="button_admin">
             <input

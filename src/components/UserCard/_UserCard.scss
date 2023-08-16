@@ -3,8 +3,8 @@
 .card_admin_user {
   width: 20rem;
   background-color: $bg-grey;
-  padding: 5rem;
-  margin: 1rem;
+  padding: 3rem;
+  margin: 2rem;
   border-radius: 0.2rem;
   box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
   display: flex;
@@ -12,7 +12,7 @@
   align-items: center;
   position: relative;
   box-shadow : 1px 5px 10px -1px rgba(0, 0, 0, 0.25);
-  right: 1rem;
+  right: 0.2rem;
 }
 
 .admin_badge_admin_user {
@@ -65,7 +65,7 @@
 }
 
 .name_admin_user {
-  font-size: $h2-mobile;
+  font-size: $h3-mobile;
   margin: 0;
   color : $color-accent-cian;
 }
@@ -175,7 +175,9 @@
 @media screen and (min-width: 926px) {
 
   .card_admin_user {
-    width: 25rem;
+    width: 20rem;
+    padding: 2rem;
+    margin: 1rem;
   }
 
   .admin_badge_admin_user {
@@ -187,7 +189,7 @@
   }
 
   .name_admin_user {
-    font-size: $h2-desktop;
+    font-size: $h3-desktop;
     margin: 0;
     color : $color-accent-cian;
   }

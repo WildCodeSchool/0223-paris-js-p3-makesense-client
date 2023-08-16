@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removePost } from "../../store/posts";
 import { deletePost } from "../../services/post";
+import CustomToast from "../CustomToast/CustomToast";
+import { ToastContainer } from "react-toastify";
 
-export default function ProjectCard({ post, edit }) {
+export default function ProjectCard({ post, edit, onSuccessDelete }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
   const [visibleModal, setvisibleModal] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
 
   const handleClickDelete = () => {
     setvisibleModal(!visibleModal);
@@ -24,10 +26,12 @@ export default function ProjectCard({ post, edit }) {
       await deletePost(post.id);
       dispatch(removePost(post.id));
       setvisibleModal(!visibleModal);
+      onSuccessDelete();
     } catch (err) {
       console.error("err", err);
-      setErrMessage(
-        "Nous rencontrons un problème. Veuillez réessayer plus tard."
+      showAlert(
+        "error",
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
       );
     }
   };
@@ -83,8 +87,8 @@ export default function ProjectCard({ post, edit }) {
           </div>
           {visibleModal ? (
             <div id="modal_delete" className="modal">
+              <ToastContainer />
               <div className="modal_content">
-                {errMessage && <p className="p_error_modal">{errMessage}</p>}
                 <h2>Confirmation de suppression</h2>
                 <p>
                   Voulez-vous vraiment supprimer le post : {post?.firstname} ?
@@ -117,9 +121,7 @@ export default function ProjectCard({ post, edit }) {
     <figure onClick={handleClickShow}>
       <img src={post.avatar} className="backgroundProject" alt="projet" />
       <figcaption>
-        <h3 className="c-blue ">
-          {cutTitle()}
-        </h3>
+        <h3 className="c-blue ">{cutTitle()}</h3>
         <div className="tagsProject">
           <p className="tag-blue">{post.status}</p>
           <p className="tag-red">{post.location}</p>

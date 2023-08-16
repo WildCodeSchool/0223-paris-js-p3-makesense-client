@@ -1,0 +1,52 @@
+
+@use "../../sass/global" as *;
+
+.custom_toast_alert_error {
+    background-color: $color-accent-red;
+    color: $text-white;
+}
+  
+.custom_toast_alert_error svg {
+    fill: $text-white;
+}
+
+.custom_toast_alert_error .Toastify__progress-bar {
+    background-color: $text-white;
+}
+
+.custom_toast_alert_success {
+    background-color: $color-accent-green;
+    color: $text-white;
+}
+  
+.custom_toast_alert_success svg {
+    fill: $text-white;
+}
+
+.custom_toast_alert_success .Toastify__progress-bar {
+    background-color: $text-white;
+}
+
+.custom_toast_alert_info {
+    background-color: $color-accent-cian;
+}
+  
+.custom_toast_alert_info svg {
+    fill: $text-white;
+}
+
+.custom_toast_alert_info .Toastify__progress-bar {
+    background-color: $text-white;
+}
+
+.custom_toast_alert_warn {
+    background-color: $color-accent-orange;
+}
+  
+.custom_toast_alert_warn svg {
+    fill: $text-white;
+}
+
+.custom_toast_alert_warn .Toastify__progress-bar {
+    background-color: $text-white;
+}

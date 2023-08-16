@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import CreateAvis from "./CreateAvis";
 import { removeAvis, editAvisData } from "../../store/avis";
 import { deleteAvis, editAvis } from "../../services/avis";
+import CustomToast from "../../components/CustomToast/CustomToast";
+import { ToastContainer } from "react-toastify";
 
 export default function ProjectAvis({ avis, post }) {
   const [visibleModal, setvisibleModal] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
   const [editedText, setEditedText] = useState("");
   const [avisIdDelete, setAvisIdDelete] = useState(0);
 
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
   const auth = useSelector((state) => state.auth);
 
   const handleModalDelter = async (avis_id) => {
@@ -27,12 +29,13 @@ export default function ProjectAvis({ avis, post }) {
         await deleteAvis(avisIdDelete);
         dispatch(removeAvis(avisIdDelete));
         setvisibleModal(!visibleModal);
-        setErrMessage("");
+        showAlert("success", "L'avis a été supprimé avec succès !");
       }
     } catch (err) {
       console.error("err", err);
-      setErrMessage(
-        "Nous rencontrons un problème. Veuillez réessayer plus tard."
+      showAlert(
+        "error",
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
       );
     }
   };
@@ -56,13 +59,22 @@ export default function ProjectAvis({ avis, post }) {
   };
 
   const validEdit = async (id) => {
-    try {
-      await editAvis(id, { text: editedText });
-      dispatch(editAvisData({ id, newText: editedText }));
-      setEditedText("");
-      setEditingIndex(null);
-    } catch (err) {
-      console.error("err", err);
+    if (editedText === "") {
+      showAlert("error", "Veuillez remplir tous les champs !");
+    } else {
+      try {
+        await editAvis(id, { text: editedText });
+        dispatch(editAvisData({ id, newText: editedText }));
+        setEditedText("");
+        setEditingIndex(null);
+        showAlert("success", "L'avis a été modifié avec succès !");
+      } catch (err) {
+        console.error("err", err);
+        showAlert(
+          "error",
+          "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+        );
+      }
     }
   };
 
@@ -106,8 +118,8 @@ export default function ProjectAvis({ avis, post }) {
               ) : null}
             </div>
             {editingIndex === index ? (
-              <>
-                <input
+              <div className="editButtons">
+                <textarea
                   type="text"
                   onChange={handleInputChange}
                   value={editedText}
@@ -115,19 +127,19 @@ export default function ProjectAvis({ avis, post }) {
                 />
                 <button
                   type="button"
-                  className="createAvis"
+                  className=" annuler pointer"
                   onClick={cancelEdit}
                 >
                   Annuler
                 </button>
                 <button
                   type="button"
-                  className="createAvis"
+                  className=" sauvegarder pointer"
                   onClick={() => validEdit(data.id)}
                 >
                   Confirmer
                 </button>
-              </>
+              </div>
             ) : (
               <p
                 className="c-blue avisByUserText"
@@ -141,8 +153,8 @@ export default function ProjectAvis({ avis, post }) {
       </div>
       {visibleModal ? (
         <div id="modal_delete" className="modal">
+          <ToastContainer />
           <div className="modal_content">
-            {errMessage && <p className="p_error_modal">{errMessage}</p>}
             <h2>Confirmation de suppression</h2>
             <p>Voulez-vous vraiment supprimer cet avis ?</p>
             <div className="modal_buttons">

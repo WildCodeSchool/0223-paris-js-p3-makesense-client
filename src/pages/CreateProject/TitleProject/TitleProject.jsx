@@ -11,6 +11,7 @@ function TitleProject() {
   const [location, setLocation] = useState("");
   const [isMissing, setIsMissing] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const projectRedux = useSelector((state) => state.project);
   const navigate = useNavigate();
   const clickMe = () => {
     if (newTitle === "") {
@@ -31,7 +32,7 @@ function TitleProject() {
 
   const options = [
     {
-      value: "FRANCE",
+      value: "France",
       label: "FRANCE",
       icon: (
         <img
@@ -42,11 +43,44 @@ function TitleProject() {
       ),
     },
     {
-      value: "ESPAGNE",
+      value: "Espagne",
       label: "ESPAGNE",
       icon: (
         <img
           src="../../src/assets/espagne.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
+    {
+      value: "États-Unis",
+      label: "ÉTATS-UNIS",
+      icon: (
+        <img
+          src="../../src/assets/Etats-Unis.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
+    {
+      value: "Liban",
+      label: "LIBAN",
+      icon: (
+        <img
+          src="../../src/assets/liban.png"
+          alt="Espagne"
+          className="custom_flag"
+        />
+      ),
+    },
+    {
+      value: "Philippines",
+      label: "PHILIPPINES",
+      icon: (
+        <img
+          src="../../src/assets/philippines.png"
           alt="Espagne"
           className="custom_flag"
         />

@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useRef } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import { useEffect } from "react";
 import { editUser, getCurrentUser } from "../../services/users";
 import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../../store/auth";
+import CustomToast from "../../components/CustomToast/CustomToast";
 
 const MonProfil = () => {
   const [profileImage, setProfileImage] = useState(
@@ -15,27 +15,30 @@ const MonProfil = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
+  const { showAlert } = CustomToast();
+
   const [isEditMode, setIsEditMode] = useState(false);
   const [firstname, setFirstName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("France");
-  const [error, setError] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    tel: "",
-    country: "",
-  });
+
+  const searchData = async () => {
+    try {
+      const userData = await getCurrentUser();
+      setFirstName(userData?.data?.firstname);
+      setName(userData?.data?.lastname);
+      setEmail(userData?.data?.email);
+      setPhone(userData?.data?.tel);
+      setProfileImage(userData?.data?.avatar);
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
 
   useEffect(() => {
-    console.log(auth);
-    setFirstName(auth?.user?.firstname);
-    setName(auth?.user?.lastname);
-    setEmail(auth?.user?.email);
-    setPhone(auth?.user?.tel);
-    setProfileImage(auth?.user?.avatar);
+    searchData();
   }, []);
 
   const handleEditProfile = () => {
@@ -70,92 +73,80 @@ const MonProfil = () => {
   };
 
   const handleSaveClick = async () => {
-    try {
-      const result = await editUser({
-        firstname,
-        lastname: name,
-        email,
-        tel: phone,
-      });
-      dispatch(signin(result.data));
-    } catch (error) {
-      console.error(error);
-    }
-    setIsEditMode(false);
-  };
-
-  const handleFirstNameChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
-
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
-      setFirstName(inputValue);
-      setError("");
+    if (
+      firstname === "" ||
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      country === ""
+    ) {
+      showAlert("error", "Veuillez remplir tous les champs !");
     } else {
-      setError({
-        ...error,
-        firstname: "Le prénom ne doit contenir que des lettres.",
-      });
-    }
-  };
+      try {
+        const formData = new FormData();
+        formData.append("firstname", firstname);
+        formData.append("lastname", name);
+        formData.append("email", email);
+        formData.append("tel", phone);
+        formData.append("affiliated_site", country);
+        if (fileInputRef?.current?.files[0]) {
+          formData.append("avatar", fileInputRef.current.files[0]);
+        }
 
-  const handleLastNameChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
+        const result = await editUser(formData);
+        dispatch(signin(result.data));
+        setIsEditMode(false);
+        showAlert("success", "Votre profil a été sauvegardé avec succès !");
+      } catch (err) {
+        console.error(err);
+        if (err.response.status === 400) {
+          showAlert(
+            "error",
+            "L'adresse e-mail est déjà utilisée par un autre utilisateur."
+          );
+        } else if (err.response.status === 403) {
+          showAlert(
+            "error",
+            "Impossible d'upload cette image sur notre serveur ! "
+          );
+        } else if (err.response.status === 422) {
+          const validationErrors = err.response.data.validationErrors;
 
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
-      setName(inputValue);
-      setError("");
-    } else {
-      setError({
-        ...error,
-        lastname: "Le nom ne doit contenir que des lettres.",
-      });
-    }
-  };
+          const fieldTranslations = {
+            firstname: "Prénom",
+            lastname: "Nom de famille",
+            "firstname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le prénom.",
+            "lastname - FORMAT INCORRECT":
+              "Le format du nom de famille est invalide.",
+            "lastname - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le nom de famille.",
+            "firstname - FORMAT INCORRECT": "Le format du prénom est invalide.",
+            email: "Adresse e-mail",
+            "email - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir l'email",
+            "affiliated_site - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir la location.",
+            "affiliated_siteRegex - FORMAT INCORRECT":
+              "Le format de la location est invalide.",
+            "tel - FORMAT LIMIT":
+              "Le format du nom dépasse la limite de caractères (45) autorisée. Veuillez raccourcir le numéreau de téléphone.",
+            "tel - FORMAT INCORRECT":
+              "Le format du numéreau de téléphone est invalide.",
+          };
 
-  const handleEmailChange = (e) => {
-    const emailValue = e.target.value;
-    const emailRegex = /@makesense\.org$/;
-
-    if (emailValue.match(emailRegex) || emailValue === "") {
-      setEmail(emailValue);
-      setEmailError("");
-    } else {
-      setError({
-        ...error,
-        email: "L'email doit être au format '@makesense.org'",
-      });
-    }
-  };
-
-  const handlePhoneChange = (e) => {
-    const phoneValue = e.target.value;
-    const phoneRegex = /^\d{10}$/;
-
-    if (phoneValue.match(phoneRegex) || phoneValue === "") {
-      setPhone(phoneValue);
-      setError("");
-    } else {
-      setError({
-        ...error,
-        tel: "Le pays ne doit contenir que des lettres.", // changer
-      });
-    }
-  };
-
-  const handleCountryChange = (e) => {
-    const inputValue = e.target.value;
-    const lettersOnlyRegex = /^[A-Za-z]+$/;
-
-    if (inputValue.match(lettersOnlyRegex) || inputValue === "") {
-      setCountry(inputValue);
-      setError("");
-    } else {
-      setError({
-        ...error,
-        country: "Le pays ne doit contenir que des lettres.",
-      });
+          validationErrors.forEach((error) => {
+            const translatedField =
+              fieldTranslations[error.field] || error.field;
+            showAlert("error", translatedField);
+          });
+        } else {
+          showAlert(
+            "error",
+            "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+          );
+        }
+      }
     }
   };
 
@@ -165,41 +156,24 @@ const MonProfil = () => {
       <div className="profile-form">
         <div className="profile-file">
           <img src={profileImage} alt="userprofile" className="profile-image" />
-          <img
-            className="crayonimg"
-            src="../../src/assets/crayon.png"
-            alt="editprofile"
-            onClick={handleEditProfile}
-          />
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            ref={fileInputRef}
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="inputerror">
-          {error.firstname && (
-            <div className="error-message">{error.firstname}</div>
-          )}
-          {error.lastname && (
-            <div className="error-message">
-              <p>{error.lastname}</p>
-            </div>
-          )}
-          {error.email && (
-            <div className="error-message">
-              <p>{error.email}</p>
-            </div>
-          )}
-          {error.tel && (
-            <div className="error-message">
-              <p>{error.tel}</p>
-            </div>
-          )}
-          {error.country && (
-            <div className="error-message">{error.country}</div>
+          {isEditMode ? (
+            <>
+              <img
+                className="crayonimg"
+                src="../../src/assets/crayon.png"
+                alt="editprofile"
+                onClick={handleEditProfile}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+            </>
+          ) : (
+            ""
           )}
         </div>
         <form className="formProfile">
@@ -213,7 +187,6 @@ const MonProfil = () => {
                   value={firstname}
                   onChange={(e) => {
                     setFirstName(e.target.value);
-                    handleFirstNameChange(e);
                   }}
                   required
                 />
@@ -237,7 +210,6 @@ const MonProfil = () => {
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
-                    handleLastNameChange(e);
                   }}
                   required
                 />
@@ -261,7 +233,6 @@ const MonProfil = () => {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    handleEmailChange(e);
                   }}
                   required
                 />
@@ -285,7 +256,6 @@ const MonProfil = () => {
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
-                    handlePhoneChange(e);
                   }}
                   required
                 />
@@ -309,7 +279,6 @@ const MonProfil = () => {
                   value={country}
                   onChange={(e) => {
                     setCountry(e.target.value);
-                    handleCountryChange(e);
                   }}
                   required
                 />

@@ -59,12 +59,6 @@ function SuiviProjet() {
           className={`contenu ${actif === "projets" ? "actif" : ""}`}
           onClick={() => toggleActif("projets")}
         >
-          <p className="containprojet">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
-            aliquam enim asperiores, eum sequi nemo placeat, est distinctio,
-            dignissimos recusandae molestias delectus saepe exercitationem
-            similique minima eius repudiandae nulla modi?
-          </p>
           <ul className="fetchPosts">
             {userPosts.map((data) => (
               <ProjectCard post={data} key={data.id} />
@@ -75,12 +69,6 @@ function SuiviProjet() {
           className={`contenu ${actif === "votes" ? "actif" : ""}`}
           onClick={() => toggleActif("votes")}
         >
-          <p className="containprojet">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum
-            ratione numquam distinctio temporibus molestias eius! Sed error
-            distinctio provident? Natus beatae libero dolores assumenda aliquam
-            dignissimos animi similique, incidunt corporis.
-          </p>
           <ul className="fetchPosts">
             {userVotes.map((post) => (
               <ProjectCard post={post} key={post.id} />

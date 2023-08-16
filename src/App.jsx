@@ -25,7 +25,7 @@ import UserManager from "./pages/Admin/UserManager/UserManager";
 import UserModify from "./pages/Admin/UserModify/UserModify";
 import ProjectViewById from "./pages/projectViewById/projectViewById";
 import SuiviProjet from "./pages/SuiviProjet/SuiviProjet";
-import MonProfil from "./pages/monprofil/monprofil";
+import MonProfil from "./pages/MonProfil/MonProfil";
 import ImpactProject from "./pages/CreateProject/ImpactProject/ImpactProject";
 import JobManager from "./pages/Admin/JobManager/JobManger";
 import JobRegister from "./pages/Admin/JobsRegister/JobsRegister";
@@ -34,6 +34,8 @@ import RoleManager from "./pages/Admin/RoleManager/RoleManager";
 import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 import PostsManager from "./pages/Admin/PostsManager/PostsManager";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +59,7 @@ function App() {
     <Router>
       <div>
         <Navbar />
+        <ToastContainer />
         <Routes>
           <Route
             exact
