@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-function FormPost({value, onChange}) {
-  console.log("value", value)
+function FormPost({ value, onChange }) {
   const handleChange = (e) => {
-    onChange(e)
-  }
+    onChange(e);
+  };
   var toolbarOptions = [
     ["bold", "italic", "underline"],
     ["image"],
@@ -20,7 +19,7 @@ function FormPost({value, onChange}) {
         modules={module}
         theme="snow"
         value={value}
-        onChange={e => handleChange(e)}
+        onChange={(e) => handleChange(e)}
       />
     </div>
   );

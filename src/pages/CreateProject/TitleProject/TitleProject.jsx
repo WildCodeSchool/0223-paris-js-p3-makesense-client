@@ -13,6 +13,7 @@ function TitleProject() {
   const auth = useSelector((state) => state.auth);
   const projectRedux = useSelector((state) => state.project);
   const navigate = useNavigate();
+
   const clickMe = () => {
     if (newTitle === "") {
       setIsMissing(true);
@@ -21,6 +22,8 @@ function TitleProject() {
       dispatch(setTitle(newTitle));
       dispatch(setCountry(location));
       navigate("/descriptionproject");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -28,6 +31,8 @@ function TitleProject() {
     if (!auth.user) {
       navigate("/login");
     }
+    setNewTitle(projectRedux.title);
+    setLocation(projectRedux.country);
   }, []);
 
   const options = [
@@ -123,6 +128,7 @@ function TitleProject() {
             required
             minlength="4"
             maxlength="128"
+            value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           />
 
@@ -143,6 +149,7 @@ function TitleProject() {
                 </div>
               )}
               getOptionValue={(option) => option.value}
+              value={location}
               onChange={setLocation}
             />
           </div>
@@ -160,10 +167,7 @@ function TitleProject() {
           </div>
         </div>
       </div>
-      {/* <CreationGuide /> */}
-      <div>
-        <CreationGuide />
-      </div>
+      <CreationGuide />
     </>
   );
 }
