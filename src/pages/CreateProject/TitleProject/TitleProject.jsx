@@ -28,6 +28,7 @@ function TitleProject() {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (!auth.user) {
       navigate("/login");
     }
