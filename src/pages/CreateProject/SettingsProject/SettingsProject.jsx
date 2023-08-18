@@ -17,6 +17,7 @@ import {
   setConflictDelay,
   setDecisionEndDelay,
 } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function SettingsProject() {
   const [decisiondata, setDecisionData] = useState({
@@ -38,7 +39,7 @@ function SettingsProject() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isMissing, setIsMissing] = useState(false);
+  const { showAlert } = CustomToast();
 
   const handleclickPrecedent = () => {
     navigate("/impactproject");
@@ -68,7 +69,7 @@ function SettingsProject() {
       decisiondata.conflitDate === "" ||
       decisiondata.deadLineDate === ""
     ) {
-      setIsMissing(true);
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
     } else {
       try {
         let data = {
@@ -101,6 +102,7 @@ function SettingsProject() {
           post_id: dataCreatePost.data.id,
         }));
 
+        console.log("data", data);
         let userdata = { users: newTab };
         await addUserParticipant(userdata);
         dispatch(setTitle(""));
@@ -114,6 +116,7 @@ function SettingsProject() {
         dispatch(setDecisionDelay(""));
         dispatch(setConflictDelay(""));
         dispatch(setDecisionEndDelay(""));
+        localStorage.setItem("createPost", "true");
         navigate("/");
       } catch (err) {
         console.log("err", err);
@@ -231,13 +234,6 @@ function SettingsProject() {
             })}
           </ul>
         </div>
-        {isMissing ? (
-          <p class="missingFields">
-            * Veuillez remplir tous les champs pour continuer
-          </p>
-        ) : (
-          <div></div>
-        )}
         <div className="nextPreviousButtons">
           <button
             type="button"

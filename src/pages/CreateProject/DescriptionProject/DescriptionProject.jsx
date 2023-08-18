@@ -9,6 +9,7 @@ import {
   setBenefits,
   setRisks,
 } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function DescriptionProject() {
   const [data, setData] = useState({
@@ -21,6 +22,7 @@ function DescriptionProject() {
 
   const auth = useSelector((state) => state.auth);
   const projectRedux = useSelector((state) => state.project);
+  const { showAlert } = CustomToast();
 
   const handleclickPrecedent = () => {
     navigate("/titleproject");
@@ -43,7 +45,6 @@ function DescriptionProject() {
   };
 
   const dispatch = useDispatch();
-  const [isMissing, setIsMissing] = useState(false);
   const navigate = useNavigate();
 
   const handleNextClick = () => {
@@ -53,7 +54,7 @@ function DescriptionProject() {
       data.risk === "" ||
       data.avatar === ""
     ) {
-      setIsMissing(true);
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
     } else {
       dispatch(setDescription(data.description));
       dispatch(setImage(data.avatar));
@@ -126,13 +127,6 @@ function DescriptionProject() {
           onChange={(value) => handleInputChange("risk", value)}
         />
       </div>
-      {isMissing ? (
-        <p class="missingFields">
-          * Veuillez remplir tous les champs pour continuer
-        </p>
-      ) : (
-        <div></div>
-      )}
       <div className="nextPreviousButtons">
         <button
           className="blueButtonMultiDescription"

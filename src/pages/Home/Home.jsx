@@ -13,9 +13,16 @@ export default function Home() {
 
   useEffect(() => {
     const userlogin = localStorage.getItem("userlogin");
+    const createPost = localStorage.getItem("createPost");
     if (userlogin === "true") {
       showAlert("success", "Vous êtes maintenant connecté !");
       localStorage.removeItem("userlogin");
+    } else if (createPost === "true") {
+      showAlert(
+        "success",
+        "Votre proposition de création de projet a été ajoutée avec succès."
+      );
+      localStorage.removeItem("createPost");
     }
   }, [showAlert]);
 

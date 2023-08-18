@@ -8,21 +8,22 @@ import {
   setExpertImpacted,
   setImpactOrganisation,
 } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function ImpactProject() {
   const [data, setdata] = useState([]);
   const [dataImpacted, setDataImpacted] = useState([]);
   const [dataExpert, setDataExpert] = useState([]);
   const [impact, setImpact] = useState("");
-  const [isMissing, setIsMissing] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const projectRedux = useSelector((state) => state.project);
+  const { showAlert } = CustomToast();
 
   const handleclickPrecedent = () => {
-    navigate("/descriptionproject");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate("/descriptionproject");
   };
 
   const handleInputChange = (e) => {
@@ -92,9 +93,8 @@ function ImpactProject() {
   };
   const handleclick = () => {
     if (dataImpacted.length === 0 || dataExpert.length === 0 || impact === "") {
-      setIsMissing(true);
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
     } else {
-      setIsMissing(false);
       dispatch(setImpactOrganisation(impact));
       navigate("/settingsproject");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -170,13 +170,6 @@ function ImpactProject() {
         <p className="c-blue">Impact sur l'organisation</p>
         <FormPost value={impact} onChange={(e) => handleInputChange(e)} />
       </div>
-      {isMissing ? (
-        <p class="missingFields">
-          * Veuillez remplir tous les champs pour continuer
-        </p>
-      ) : (
-        <div></div>
-      )}
       <div className="nextPreviousButtons">
         <button className="blueButtonMulti" onClick={handleclickPrecedent}>
           PRECEDENT
