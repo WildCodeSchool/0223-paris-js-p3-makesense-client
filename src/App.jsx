@@ -243,9 +243,9 @@ function App() {
             exact
             path="/settingsproject"
             element={
-              <PrivateRouteAdmin>
+              <PrivateRoute>
                 <SettingsProject />
-              </PrivateRouteAdmin>
+              </PrivateRoute>
             }
           />
           <Route

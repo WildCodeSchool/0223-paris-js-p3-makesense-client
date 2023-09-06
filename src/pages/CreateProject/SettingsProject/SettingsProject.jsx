@@ -30,6 +30,9 @@ function SettingsProject() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMissing, setIsMissing] = useState(false);
+  const handleclickPrecedent = () => {
+    navigate("/impactproject");
+  };
   const handleClick = async () => {
     const decisionDate = new Date(
       Date.now() + 6.048e8 * decisiondata.makeDecisionDate
@@ -66,7 +69,7 @@ function SettingsProject() {
           deadlineDate: deadDate,
           makeDecisionDate: decisionDate,
           conflitDate: confliDate,
-          location: country,
+          location: country.value,
         };
         const form = new FormData();
         for (const key in data) {
@@ -81,10 +84,10 @@ function SettingsProject() {
 
         let userdata = { users: newTab };
         await addUserParticipant(userdata);
+        navigate("/");
       } catch (err) {
         console.log("err", err);
       }
-      navigate("/");
     }
   };
   return (
@@ -206,7 +209,11 @@ function SettingsProject() {
           <div></div>
         )}
         <div className="nextPreviousButtons">
-          <button type="button" className="blueButtonMulti">
+          <button
+            type="button"
+            className="blueButtonMulti"
+            onClick={handleclickPrecedent}
+          >
             PRECEDENT
           </button>
           <button

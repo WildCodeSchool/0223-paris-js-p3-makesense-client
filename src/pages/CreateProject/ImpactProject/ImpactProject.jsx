@@ -17,6 +17,11 @@ function ImpactProject() {
   const [isMissing, setIsMissing] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleclickPrecedent = () => {
+    navigate("/descriptionproject");
+  };
+
   const handleInputChange = (e) => {
     setImpact(e);
   };
@@ -61,9 +66,7 @@ function ImpactProject() {
       setIsMissing(true);
     } else {
       setIsMissing(false);
-      console.log("impact", impact);
       dispatch(setImpactOrganisation(impact));
-      navigate("/settingsproject");
       const tabData = [];
       for (let i = 0; i < dataImpacted.length; i++) {
         tabData.push({
@@ -91,6 +94,7 @@ function ImpactProject() {
         }
       }
       dispatch(setExpertImpacted(tabData));
+      navigate("/settingsproject");
     }
   };
   return (
@@ -135,7 +139,9 @@ function ImpactProject() {
         <div></div>
       )}
       <div className="nextPreviousButtons">
-        <button className="blueButtonMulti">PRECEDENT</button>
+        <button className="blueButtonMulti" onClick={handleclickPrecedent}>
+          PRECEDENT
+        </button>
         <button className="blueButtonMulti" onClick={handleclick}>
           SUIVANT
         </button>

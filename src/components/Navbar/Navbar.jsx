@@ -33,13 +33,13 @@ function Navbar() {
 
   return !auth.user ? (
     <nav className="nav2">
-        <img className="nav_logo" src={logoWhite} alt="makesense logo" />
+      <img className="nav_logo" src={logoWhite} alt="makesense logo" />
     </nav>
   ) : (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"} `}>
       <div className="transparent"></div>
       <Link to="/">
-      <img className="nav_logo" src={logoBlue} alt="makesense logo" />
+        <img className="nav_logo" src={logoBlue} alt="makesense logo" />
       </Link>
       <div className="nav-linksDesktop">
         <ul>
@@ -79,10 +79,14 @@ function Navbar() {
             <li onClick={handleShowDropdown}>
               <Link to="/suiviprojet">Suivi de Projets</Link>
             </li>
-            <li onClick={handleShowDropdown}>
-              <Link to="/admin">Adminstration</Link>
-            </li>
-            <li >
+            {auth?.user.admin === 1 ? (
+              <li onClick={handleShowDropdown}>
+                <Link to="/admin">Adminstration</Link>
+              </li>
+            ) : (
+              ""
+            )}
+            <li>
               <Link to="/login" onClick={handleSubmit}>
                 Déconnexion
               </Link>
@@ -111,9 +115,13 @@ function Navbar() {
           <li>
             <Link to="/suiviprojet">Suivi de Projets</Link>
           </li>
-          <li>
-            <Link to="/admin">Adminstration</Link>
-          </li>
+          {auth?.user.admin === 1 ? (
+            <li>
+              <Link to="/admin">Adminstration</Link>
+            </li>
+          ) : (
+            ""
+          )}
           <li>
             <Link to="/login" onClick={handleSubmit}>
               Déconnexion
