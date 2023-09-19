@@ -6,18 +6,22 @@ import { sendPostData } from "../../../store/posts";
 import { getAllPost } from "../../../services/post";
 import SearchBarAdmin from "../../../components/SearchBarAdmin/SearchBarAdmin";
 import ProjectCard from "../../../components/ProjectCard/ProjectCard";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function PostsManager() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
 
   const posts = useSelector((state) => state.posts);
   const [currentPagePosts, setCurrentPagePosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [adminFilter, setAdminFilter] = useState(false);
-  const [nonAdminFilter, setNonAdminFilter] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const showSuccessAlertDelete = () => {
+    showAlert("success", "Le post a été supprimé avec succès !");
+  };
 
   const searchData = async () => {
     try {
@@ -36,14 +40,6 @@ function PostsManager() {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-  };
-
-  const handleAdminFilter = (e) => {
-    setAdminFilter(e.target.checked);
-  };
-
-  const handleNonAdminFilter = (e) => {
-    setNonAdminFilter(e.target.checked);
   };
 
   const filteredPosts = useMemo(() => {
@@ -112,7 +108,13 @@ function PostsManager() {
         <SearchBarAdmin searchTerm={searchTerm} handleSearch={handleSearch} />
         <div className="card_container_admin_post">
           {currentPagePosts.map((post) => {
-            return <ProjectCard post={post} edit />;
+            return (
+              <ProjectCard
+                post={post}
+                edit
+                onSuccessDelete={showSuccessAlertDelete}
+              />
+            );
           })}
         </div>
         {posts && (

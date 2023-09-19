@@ -34,6 +34,8 @@ import RoleManager from "./pages/Admin/RoleManager/RoleManager";
 import RoleRegister from "./pages/Admin/RoleRegister/RoleRegister";
 import RoleModify from "./pages/Admin/RoleModify/RoleModify";
 import PostsManager from "./pages/Admin/PostsManager/PostsManager";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +59,7 @@ function App() {
     <Router>
       <div>
         <Navbar />
+        <ToastContainer />
         <Routes>
           <Route
             exact

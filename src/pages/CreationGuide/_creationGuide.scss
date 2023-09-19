@@ -1,16 +1,16 @@
 @use "../../sass/global" as *;
 
 article {
-  width: 100vw;
+  width: 100%;
   text-align: center;
   hr {
     margin-top: 2rem;
-    width: 100vw;
+    width: 100%;
     color: $primary-color;
     border-bottom: 2px solid $primary-color;
   }
   .articleText {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

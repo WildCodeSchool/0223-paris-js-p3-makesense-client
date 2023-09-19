@@ -30,6 +30,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (!auth.user) return navigate("/login");
     searchData();
   }, []);

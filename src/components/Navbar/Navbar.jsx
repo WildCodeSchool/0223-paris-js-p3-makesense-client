@@ -5,6 +5,7 @@ import { logout } from "../../store/auth";
 import { useSelector, useDispatch } from "react-redux";
 import logoWhite from "../../assets/makesense_logo_white.svg";
 import logoBlue from "../../assets/makesense_logo_blue.svg";
+import CustomToast from "../CustomToast/CustomToast";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -13,14 +14,20 @@ function Navbar() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { showAlert } = CustomToast();
 
   const handleSubmit = async (event) => {
     try {
       await authService.logout();
       dispatch(logout());
+      localStorage.setItem("userlogin", "false");
       navigate("/login");
-    } catch (error) {
-      console.log("error", error);
+    } catch (err) {
+      console.log("err", err);
+      showAlert(
+        "error",
+        "Nous rencontrons un problème, en espérant très vite(.js) chez MAKESENSE !"
+      );
     }
   };
 
@@ -79,13 +86,9 @@ function Navbar() {
             <li onClick={handleShowDropdown}>
               <Link to="/suiviprojet">Suivi de Projets</Link>
             </li>
-            {auth?.user.admin === 1 ? (
-              <li onClick={handleShowDropdown}>
-                <Link to="/admin">Adminstration</Link>
-              </li>
-            ) : (
-              ""
-            )}
+            <li onClick={handleShowDropdown}>
+              <Link to="/admin">Adminstration</Link>
+            </li>
             <li>
               <Link to="/login" onClick={handleSubmit}>
                 Déconnexion

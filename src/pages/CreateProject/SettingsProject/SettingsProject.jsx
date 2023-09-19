@@ -5,10 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { createPost } from "../../../services/post";
 import { addUserParticipant } from "../../../services/post";
 import {
+  setTitle,
+  setCountry,
+  setDescription,
+  setImage,
+  setBenefits,
+  setRisks,
+  setExpertImpacted,
+  setImpactOrganisation,
   setDecisionDelay,
   setConflictDelay,
   setDecisionEndDelay,
 } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function SettingsProject() {
   const [decisiondata, setDecisionData] = useState({
@@ -27,12 +36,16 @@ function SettingsProject() {
     impactOrganisation,
     country,
   } = useSelector((state) => state.project);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isMissing, setIsMissing] = useState(false);
+  const { showAlert } = CustomToast();
+
   const handleclickPrecedent = () => {
     navigate("/impactproject");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   const handleClick = async () => {
     const decisionDate = new Date(
       Date.now() + 6.048e8 * decisiondata.makeDecisionDate
@@ -56,7 +69,7 @@ function SettingsProject() {
       decisiondata.conflitDate === "" ||
       decisiondata.deadLineDate === ""
     ) {
-      setIsMissing(true);
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
     } else {
       try {
         let data = {
@@ -71,6 +84,13 @@ function SettingsProject() {
           conflitDate: confliDate,
           location: country.value,
         };
+
+        if (typeof image === "string" && image.startsWith("data:image")) {
+          const blob = await (await fetch(image)).blob();
+          const file = new File([blob], "avatar.png", { type: blob.type });
+          data.avatar = file;
+        }
+
         const form = new FormData();
         for (const key in data) {
           form.append(key, data[key]);
@@ -82,8 +102,21 @@ function SettingsProject() {
           post_id: dataCreatePost.data.id,
         }));
 
+        console.log("data", data);
         let userdata = { users: newTab };
         await addUserParticipant(userdata);
+        dispatch(setTitle(""));
+        dispatch(setCountry(""));
+        dispatch(setDescription(""));
+        dispatch(setImage(""));
+        dispatch(setBenefits(""));
+        dispatch(setRisks(""));
+        dispatch(setImpactOrganisation(""));
+        dispatch(setExpertImpacted(""));
+        dispatch(setDecisionDelay(""));
+        dispatch(setConflictDelay(""));
+        dispatch(setDecisionEndDelay(""));
+        localStorage.setItem("createPost", "true");
         navigate("/");
       } catch (err) {
         console.log("err", err);
@@ -201,13 +234,6 @@ function SettingsProject() {
             })}
           </ul>
         </div>
-        {isMissing ? (
-          <p class="missingFields">
-            * Veuillez remplir tous les champs pour continuer
-          </p>
-        ) : (
-          <div></div>
-        )}
         <div className="nextPreviousButtons">
           <button
             type="button"

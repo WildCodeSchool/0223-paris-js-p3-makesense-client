@@ -4,29 +4,41 @@ import Select from "react-select";
 import CreationGuide from "../../CreationGuide/CreationGuide";
 import { useDispatch, useSelector } from "react-redux";
 import { setTitle, setCountry } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function TitleProject() {
   const dispatch = useDispatch();
   const [newTitle, setNewTitle] = useState("");
   const [location, setLocation] = useState("");
-  const [isMissing, setIsMissing] = useState(false);
   const auth = useSelector((state) => state.auth);
+  const projectRedux = useSelector((state) => state.project);
   const navigate = useNavigate();
+  const { showAlert } = CustomToast();
+
   const clickMe = () => {
-    if (newTitle === "") {
-      setIsMissing(true);
+    if (newTitle === "" || location === "") {
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
+    } else if (newTitle.length > 100) {
+      showAlert(
+        "error",
+        "Le format du titre dépasse la limite de caractères (100) autorisée. Veuillez raccourcir le titre."
+      );
     } else {
-      setIsMissing(false);
       dispatch(setTitle(newTitle));
       dispatch(setCountry(location));
       navigate("/descriptionproject");
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (!auth.user) {
       navigate("/login");
     }
+    setNewTitle(projectRedux.title);
+    setLocation(projectRedux.country);
   }, []);
 
   const options = [
@@ -122,6 +134,7 @@ function TitleProject() {
             required
             minlength="4"
             maxlength="128"
+            value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           />
 
@@ -142,16 +155,10 @@ function TitleProject() {
                 </div>
               )}
               getOptionValue={(option) => option.value}
+              value={location}
               onChange={setLocation}
             />
           </div>
-          {isMissing ? (
-            <p class="missingFieldsFirstPage">
-              * Veuillez remplir tous les champs pour continuer
-            </p>
-          ) : (
-            <div></div>
-          )}
           <div className="button_launch_project">
             <button type="button" onClick={clickMe} className="launch_button ">
               DEMARRER

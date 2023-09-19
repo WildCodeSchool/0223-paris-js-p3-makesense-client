@@ -1,16 +1,13 @@
 @use "../../sass/global" as *;
-
 .oeil_login {
   position: absolute;
   right: 5%;
   bottom: 30%;
 }
-
 .title2_login {
   color: $color-accent-lightOrange;
   margin-top: 4%;
 }
-
 .containers_login {
   background-color: $bg-white;
   display: flex;
@@ -31,19 +28,18 @@
   border-radius: 5px;
   font-size: $p-mobile;
   transition: 300ms;
-  border: 2px solid #c6c6c6;
+  border: 2px solid #C6C6C6;
 }
 .courriel {
-  background-image: url(./src/assets/Letter.svg);
+  background-image: url(../../src/assets/Letter.svg);
   background-repeat: no-repeat;
   background-position: left;
 }
 .password {
-  background-image: url(./src/assets/Lock.svg);
+  background-image: url(../../src/assets/Lock.svg);
   background-repeat: no-repeat;
   background-position: left;
 }
-
 .connexion_login {
   color: $text-white;
   text-align: center;
@@ -58,20 +54,17 @@
     background-color: $color-accent-orange;
   }
 }
-
 .forgot_password_login {
   padding-top: 0.5rem;
   text-align: left;
   width: 90%;
   margin-left: 2rem;
 }
-
 .checkbox_login {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-
 .input_courriel_login {
   margin-top: 1.5rem;
 }
@@ -83,14 +76,12 @@
   margin-top: 0.7rem;
   margin-bottom: 1rem;
 }
-
 .p_error_login {
   color: red;
   font-size: $p-mobile;
   width: 73%;
   margin-top: 0.5rem;
 }
-
 @media screen and (min-width: 926px) {
   .password_icon_login {
     background-image: url(./src/assets/Lock.png);
@@ -124,7 +115,6 @@
     display: flex;
     justify-content: center;
   }
-
   .containers_login {
     display: flex;
     align-items: center;

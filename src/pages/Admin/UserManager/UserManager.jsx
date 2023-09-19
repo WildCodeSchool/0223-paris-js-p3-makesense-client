@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import UserCard from "../../../components/UserCard/UserCard";
 import Pagination from "../../../components/Pagination/Pagination";
 import { sendUserData } from "../../../store/users";
 import { getAllUsers } from "../../../services/users";
 import SearchBarAdmin from "../../../components/SearchBarAdmin/SearchBarAdmin";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
-function UserManage() {
+function UserManager() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { showAlert } = CustomToast();
+
+  const location = useLocation();
 
   const users = useSelector((state) => state.users);
   const [currentPageUsers, setCurrentPageUsers] = useState([]);
@@ -18,6 +22,17 @@ function UserManage() {
   const [adminFilter, setAdminFilter] = useState(false);
   const [nonAdminFilter, setNonAdminFilter] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (location.state && location.state.userModified) {
+      showAlert("success", "L'utilisateur a été modifié avec succès !");
+      navigate("/admin/users", { replace: true, state: undefined });
+    }
+  }, [location.state, showAlert]);
+
+  const showSuccessAlertDelete = () => {
+    showAlert("success", "L'utilisateur a été supprimé avec succès !");
+  };
 
   const searchData = async () => {
     try {
@@ -161,31 +176,34 @@ function UserManage() {
           redirection="/admin/users/register"
           textButton="Ajouter un utilisateur"
         />
-        <div className="filter_options">
-          <label htmlFor="adminFilterCheckbox">
-            <input
-              type="checkbox"
-              id="adminFilterCheckbox"
-              className="filter_admin_user"
-              checked={adminFilter}
-              onChange={handleAdminFilter}
-            />
-            Afficher les administrateurs
-          </label>
-          <label htmlFor="nonAdminFilterCheckbox">
-            <input
-              type="checkbox"
-              id="nonAdminFilterCheckbox"
-              className="filter_admin_user"
-              checked={nonAdminFilter}
-              onChange={handleNonAdminFilter}
-            />
-            Afficher les utilisateurs
-          </label>
+        <div className="checkbox_login">
+          <input
+            type="checkbox"
+            id="listAdmin"
+            checked={adminFilter}
+            onChange={handleAdminFilter}
+          />
+          <label for="listAdmin" class="check-box" />
+          <p className="c-blue">Afficher les administrateurs</p>
+
+          <input
+            type="checkbox"
+            id="listUsers"
+            checked={nonAdminFilter}
+            onChange={handleNonAdminFilter}
+          />
+          <label for="listUsers" class="check-box" />
+          <p className="c-blue">Afficher les utilisateurs</p>
         </div>
         <div className="card_container_admin_user">
           {currentPageUsers.map((user) => (
-            <UserCard user={user} key={user.id} edit />
+            <UserCard
+              user={user}
+              key={user.id}
+              edit
+              onSuccessDelete={showSuccessAlertDelete}
+              searchTerm={searchTerm}
+            />
           ))}
         </div>
         {users && (
@@ -200,4 +218,4 @@ function UserManage() {
   );
 }
 
-export default UserManage;
+export default UserManager;

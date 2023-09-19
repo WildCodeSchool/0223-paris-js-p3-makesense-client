@@ -3,22 +3,26 @@ import FormPost from "../../../components/FormPost/FormPost";
 import Select from "react-select";
 import { getAllUsers } from "../../../services/users";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setExpertImpacted,
   setImpactOrganisation,
 } from "../../../store/projectSlice";
+import CustomToast from "../../../components/CustomToast/CustomToast";
 
 function ImpactProject() {
   const [data, setdata] = useState([]);
   const [dataImpacted, setDataImpacted] = useState([]);
   const [dataExpert, setDataExpert] = useState([]);
   const [impact, setImpact] = useState("");
-  const [isMissing, setIsMissing] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const projectRedux = useSelector((state) => state.project);
+  const { showAlert } = CustomToast();
+
   const handleclickPrecedent = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     navigate("/descriptionproject");
   };
 
@@ -37,7 +41,7 @@ function ImpactProject() {
               src={listUser[i].avatar}
               alt="Image 1"
             />
-            <span>
+            <span className="selectorSpan">
               {listUser[i].firstname} {listUser[i].lastname}
             </span>
           </div>
@@ -52,9 +56,35 @@ function ImpactProject() {
       console.log("err", err);
     }
   };
+
   useEffect(() => {
     searchData();
+    setImpact(projectRedux.impactOrganisation);
   }, []);
+
+  useEffect(() => {
+    const newDataExpert = [];
+    const newDataImpacted = [];
+
+    if (projectRedux?.expertImpacted !== "") {
+      for (let i = 0; i < projectRedux.expertImpacted.length; i++) {
+        const element = projectRedux.expertImpacted[i];
+        const targetId = element.user_id;
+        const objDataUser = data.find((item) => item.id === targetId);
+
+        if (element.expert && !newDataExpert.includes(objDataUser)) {
+          newDataExpert.push(objDataUser);
+        }
+        if (element.impacted && !newDataImpacted.includes(objDataUser)) {
+          newDataImpacted.push(objDataUser);
+        }
+      }
+    }
+
+    setDataExpert(newDataExpert);
+    setDataImpacted(newDataImpacted);
+  }, [data]);
+
   const handleUserSelectInpact = (setSelectedOptions) => {
     setDataImpacted(setSelectedOptions);
   };
@@ -63,10 +93,11 @@ function ImpactProject() {
   };
   const handleclick = () => {
     if (dataImpacted.length === 0 || dataExpert.length === 0 || impact === "") {
-      setIsMissing(true);
+      showAlert("error", "Veuillez remplir tous les champs pour continuer ! ");
     } else {
-      setIsMissing(false);
       dispatch(setImpactOrganisation(impact));
+      navigate("/settingsproject");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       const tabData = [];
       for (let i = 0; i < dataImpacted.length; i++) {
         tabData.push({
@@ -79,7 +110,6 @@ function ImpactProject() {
       for (let i = 0; i < dataExpert.length; i++) {
         let hasImpact = tabData.some((obj) => obj.user_id === dataExpert[i].id);
         if (!hasImpact) {
-          console.log("dataExpert[i].id", dataExpert[i].id);
           tabData.push({
             post_id: null,
             user_id: dataExpert[i].id,
@@ -121,23 +151,26 @@ function ImpactProject() {
       </article>
       <div className="selector">
         <p className="c-blue">Personnes impactées</p>
-        <Select options={data} onChange={handleUserSelectInpact} isMulti />
+        <Select
+          options={data}
+          onChange={handleUserSelectInpact}
+          value={dataImpacted}
+          isMulti
+        />
       </div>
       <div className="selector">
         <p className="c-blue">Personnes expertes</p>
-        <Select options={data} isMulti onChange={handleUserSelectExpert} />
+        <Select
+          options={data}
+          onChange={handleUserSelectExpert}
+          value={dataExpert}
+          isMulti
+        />
       </div>
       <div className="editor-container">
         <p className="c-blue">Impact sur l'organisation</p>
         <FormPost value={impact} onChange={(e) => handleInputChange(e)} />
       </div>
-      {isMissing ? (
-        <p class="missingFields">
-          * Veuillez remplir tous les champs pour continuer
-        </p>
-      ) : (
-        <div></div>
-      )}
       <div className="nextPreviousButtons">
         <button className="blueButtonMulti" onClick={handleclickPrecedent}>
           PRECEDENT
