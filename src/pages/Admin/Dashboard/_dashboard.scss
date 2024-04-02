@@ -1,0 +1,148 @@
+@use "../../../sass//global" as *;
+
+.dashboard_admin_dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .dashboard_header_admin_dashboard{
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .title_h1_admin_dashboard {
+    font-size: $h1-mobile;
+    margin-bottom: 0.5rem;
+    color : $text-orange;
+  }
+  
+  .counters_admin_dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 0.5rem;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .counter_admin_dashboard:nth-child(4) {
+    grid-column: span 3;
+    justify-self: center;
+  }
+  
+  .counter_admin_dashboard {
+  flex-basis: 50%;
+  text-align: center;
+  }
+  
+  .counter_badge_admin_dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  font-weight: bold;
+  transition: transform 0.3s;
+  }
+  
+  .counter_admin_dashboard:hover .counter_badge_admin_dashboard {
+  transform: scale(1.1);
+  }
+  
+  .counter_admin_dashboard h2 {
+  font-size: $h2-mobile;
+  color: $color-accent-cian;
+  margin-bottom: 0.3rem;
+  }
+  
+  .counter_admin_dashboard .count {
+     font-weight: bold;
+  }
+  
+  .counter_admin_dashboard p {
+    font-size: $p-mobile;
+    color : $primary-color;
+  }
+  
+  .card_container_admin_dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .card_admin_dashboard {
+    width: 20rem;
+    background-color: #f5f5f5;
+    padding: 1.25rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  }
+  
+  .card_link_admin_dashboard {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .card_admin_dashboard h2 {
+    font-size: 1.2rem;
+    color : $text-white;
+  }
+  
+  .user_card_admin_dashboard {
+    background-color: $color-accent-red;
+  }
+  
+  .post_card_admin_dashboard {
+    background-color: $color-accent-cian;
+  }
+  
+  .job_card_admin_dashboard {
+    background-color: $color-accent-lightOrange;
+  }
+  
+  .role_card_admin_dashboard {
+    background-color: $color-accent-lightGreen;
+  }
+  
+  @media screen and (max-width: 760px) {
+    .counter_admin_dashboard:nth-child(4) {
+      grid-column: span 1;
+      justify-self: center;
+    }
+  }
+
+@media screen and (min-width: 926px) {
+    .containers{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+        top:10rem;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 1.5rem;      
+    }
+
+    .box{
+        background-image: url(../../../src/assets/pills/Pills_desktop_login.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .title_h1_admin_dashboard {
+        font-size: $h1-desktop;
+    }
+
+    .counter_admin_dashboard h2 {
+        font-size: $h2-desktop;
+    }
+
+    .counter_admin_dashboard p {
+        font-size: $p-desktop;
+    }
+}

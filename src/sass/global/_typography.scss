@@ -2,10 +2,64 @@
 $titles-font: "Raleway", sans-serif;
 $text-font: "Inconsolata", sans-serif;
 
-// sizes
-$h1-size: 5.2rem;
-$h2-size: 4.2rem;
-$h3-size: 2.4rem;
-$h4-size: 2.2rem;
-$p-size: 1.6rem;
-$input-size: 1.4rem;
+// mobile sizes
+$h1-mobile: 2.25rem;
+$h2-mobile: 2rem;
+$h3-mobile: 1.5rem;
+$h4-mobile: 1.25rem;
+$h5-mobile: 1rem;
+$p-mobile: 1rem;
+$a-mobile: 0.75rem;
+
+// desktop sizes
+$h1-desktop: 3.25rem;
+$h2-desktop: 2.5rem;
+$h3-desktop: 1.75rem;
+$h4-desktop: 1.5rem;
+$p-desktop: 1.25rem;
+$a-desktop: 1rem;
+
+body{
+    h1 {
+        font-size: $h1-mobile;
+      }
+      h2 {
+        font-size: $h2-mobile;
+      }
+      h3 {
+        font-size: $h3-mobile;
+      }
+      h4 {
+        font-size: $h4-mobile;
+      }
+      p {
+        font-size: $p-mobile;
+      }
+      a {
+        font-size: $a-mobile;
+      }
+}
+
+@media screen and (min-width: 926px) {
+    body {
+      h1 {
+        font-size: $h1-desktop;
+      }
+      h2 {
+        font-size: $h2-desktop;
+      }
+      h3 {
+        font-size: $h3-desktop;
+      }
+      h4 {
+        font-size: $h4-desktop;
+      }
+      p {
+        font-size: $p-desktop;
+      }
+      a {
+        font-size: $a-desktop;
+      }
+    }
+  }
+  

@@ -1,0 +1,66 @@
+@use "../../sass//global" as *;
+
+#headersuiviprojet{
+    background-color: $color-accent-carmin;
+    height: 10rem;
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
+    position: relative;
+
+    h1{
+        text-align: center;
+        color: $color-accent-yellow;
+        margin-top: 20px;
+    }
+    .imgheader {
+        position: absolute;
+        top: 0;
+        color: black;
+    }
+
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-lightGrey;
+    gap: 1rem;
+}
+.onglets {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid $primary-color;
+    background-color: $bg-lightGrey;
+    margin-top: 3rem;
+    position: sticky;
+    top: 3.25rem;
+    z-index: 1;
+}
+.onglet {
+    flex: 1;
+    padding: 10px 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.onglet.actif {
+    border-bottom: 2px solid $primary-color; 
+  }
+.contenu {
+    display: none;
+    padding: 2rem;
+
+}
+.contenu.actif {
+    display: block;
+}
+.containprojet {
+    width: 90%;
+    margin: 10px 0 10px 20px ;
+}
+
+@media screen and (min-width: 926px) {
+
+    .contenu {
+        padding: 2rem 7rem;
+    
+    }
+}

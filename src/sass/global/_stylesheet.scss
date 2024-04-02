@@ -1,0 +1,75 @@
+@use "./colors.scss" as *;
+@use "./typography.scss" as *;
+
+form {
+  overflow-y: auto; 
+}
+
+.c-blue {
+  color: $primary-color;
+}
+.c-yellow {
+  color: $color-accent-yellow;
+}
+.c-white {
+  color: $text-white;
+}
+
+.tag-blue{
+  color: $color-accent-cian;
+  border: 1px solid $color-accent-cian;
+  background-color: #196c8528;
+  border-radius: 30px;
+  padding: 0 0.5rem;
+}
+.tag-red{
+  color: $color-accent-purple;
+  border: 1px solid $color-accent-purple;
+  background-color: #89085e2f;
+  border-radius: 30px;
+  padding: 0 0.5rem;
+}
+.pointer{
+  cursor: pointer;
+}
+.button-bg-orange {
+    width: 12rem;
+    padding: 0.75rem 1rem;
+    font-size: $p-mobile;
+    color: $text-white;
+    background-color: $color-accent-lightOrange;
+    border-radius: 5px;
+    transition: 300ms;
+    cursor: pointer;
+  &:hover {
+    background-color: $color-accent-orange;
+  }
+}
+
+.button-bg-a0 {
+  width: 12rem;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  border: 2px solid $color-accent-lightOrange;
+  background-color: #f3966b00;
+  color: $color-accent-lightOrange;
+  font-size: $p-mobile;
+  transition: 300ms;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-accent-lightOrange;
+    color: $text-white;
+  }
+}
+
+@media screen and (min-width: 926px) {
+
+    .button-bg-orange {
+        font-size: $p-desktop;
+        width: 14.75rem;
+    }
+    .button-bg-a0 {
+        font-size: $p-desktop;
+        width: 14.75rem;
+    }
+}

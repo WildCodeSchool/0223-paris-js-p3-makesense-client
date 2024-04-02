@@ -1,0 +1,78 @@
+@use "../../../sass/global" as *;
+
+.title_section{
+    font-size: $h5-mobile;
+    text-align: left;
+    margin-top: 10%;
+    margin-right: 13%;
+}
+.decision_timing_title{
+    font-size: $h5-mobile;
+    text-align: left;
+    margin-top: 10%;
+    margin-left:1% ;
+}
+.require{
+    font-size: $h4-mobile;
+    text-align: center;
+    margin-top: 7.5%;
+}
+
+.checkbox{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.decision{
+display: flex;
+}
+
+.checkbox_css{
+   margin-left: 25%;
+}
+
+.checkbox .button_checkbox {
+    margin-right: 40px;
+  }
+
+  .next_button {
+    margin-right: 10px;
+    width: 8rem;
+  }
+  .back_button {
+    width: 8rem;
+  }
+  
+  @media screen and (min-width: 926px) {
+    .checkbox .button_checkbox {
+      margin-right:70px;
+    }
+    .require{
+      font-size: $h4-desktop;
+      text-align: center;
+      margin-top: 2rem;
+  }
+  .title_section{
+    font-size: $h4-desktop;
+    text-align: left;
+    margin-top: 3rem;
+    margin-right: 13%;
+}
+
+.decision_timing_title{
+  font-size: $h4-mobile;
+  text-align: left;
+  margin-top: 10%;
+  margin-left:-1% ;
+  margin-bottom: 2%;
+}
+.missingFields_settings{
+  color:$color-accent-red;
+  margin:2rem;
+
+}
+
+}
+

@@ -11,10 +11,16 @@
 }
 
 html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: $titles-font;
-    position: relative;
-  }
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $titles-font;
+  position: relative;
+  background-color: $bg-lightGrey;
+}
+
+section {
+  padding: 2rem;
+}
+

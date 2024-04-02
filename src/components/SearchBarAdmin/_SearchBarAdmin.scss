@@ -1,0 +1,58 @@
+@use "../../sass/global" as *;
+
+.search_bar_admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.search_input_admin {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid $text-white;
+  border-radius: 4px;
+  color : $text-orange;
+  font-size : $p-mobile;
+}
+
+.search_input_admin:focus {
+  border-color: $text-orange;
+  outline: none;
+}
+
+.btn_add_admin {
+  padding: 0.5rem 1rem;
+  background-color: $color-accent-green;
+  color: $text-white;
+  border: none;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  font-size : $p-mobile;
+}
+
+
+@media screen and (min-width: 600px) {
+  .search_bar_admin {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 926px) {
+
+  .search_input_admin {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid $text-white;
+    border-radius: 4px;
+    color : $text-orange;
+    font-size : $p-desktop;
+  }
+
+  .btn_add_admin {
+    font-size : $p-desktop;
+  }
+}

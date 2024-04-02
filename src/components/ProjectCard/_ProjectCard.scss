@@ -1,0 +1,105 @@
+@use "../../sass/global" as *;
+
+figure {
+  cursor: pointer;
+  position: relative;
+  width: 20rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: $bg-white;
+  box-shadow: 1px 5px 10px -1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  box-sizing: content-box;
+  .backgroundProject {
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    height: 12rem;
+  }
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    height: 10rem;
+
+    .tagsProject {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  }
+}
+
+.userInfos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .userProjectInfos {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .avatarProject {
+      width: 35px;
+      border-radius: 50%;
+    }
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+.calendar {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: $bg-white;
+  border-top: 7px solid $color-accent-green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  rotate: 343deg;
+  box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.25);
+  strong {
+    position: absolute;
+    bottom: 17%;
+  }
+}
+
+.card_actions_admin_post {
+  position : absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+}
+
+.action_edit_admin_post,
+.action_delete_admin_post {
+  font-size: 1.2rem;
+  color: $primary-color;
+  margin-right: 0.3rem;
+  cursor: pointer;
+}
+
+.action_edit_admin_post:hover {
+  color: $color-accent-green;
+}
+
+.action_delete_admin_post:hover {
+  color: $color-accent-red;
+}
+
+
+@media screen and (min-width: 926px) {
+  figure {
+    width: 23rem;
+    .avatarProject {
+      width: 40px !important;
+    }
+      strong {
+        font-size: $p-desktop !important;
+      }
+  }
+}

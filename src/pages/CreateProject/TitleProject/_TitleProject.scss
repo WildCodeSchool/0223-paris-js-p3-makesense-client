@@ -1,0 +1,125 @@
+@use "../../../sass/global" as *;
+
+.background_title_project{
+    background-color: $color-accent-carmin;
+    padding-top:10%;
+    border-radius: 5px 5px 0px 0px;
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%, 89% 97%, 74% 100%, 64% 97%, 49% 100%, 40% 97%, 24% 100%, 14% 97%);
+}
+
+.title_project {
+    color:$color-accent-yellow;
+    font-size: 40px ;
+    
+}
+
+
+.launch_project_containers{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: 
+  rgba(155, 8, 79, 1);
+}
+.title_select_country{
+    margin-top :2rem;
+    font-size: $p-mobile;
+}
+
+.input_title_project{
+    background-color:rgba(217, 217, 217, 0.2);
+    border-bottom: 2px solid rgba(255, 243, 13, 1);
+    color: white;
+    position:relative;
+    margin-top:3rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    height: 2.875rem;
+    width: 14.875rem;
+    text-align: center;
+}
+
+.input_title_project::placeholder {
+    color : rgba(198, 198, 198, 1);
+    
+}
+.custom_flag{
+    background-color:rgba(217, 217, 217, 0.2);
+    width: 2rem;
+    height: 1.5rem;
+}
+
+.launch_button{
+    margin-top: 3rem;
+    background-color:rgba(12, 57, 68, 1) ;
+    font-family: $titles-font;
+    color: white;
+    font-size: $h4-mobile;
+    font-weight: bold;
+    width: 155px;
+    height: 34px; 
+    border-radius:5px;
+    margin-bottom: 3rem;
+    &:hover {
+        background-color: $color-accent-yellow;
+        color: $primary-color
+    }
+}
+
+.selector_country{
+    width: 10rem;
+}
+.country_title_choise{
+margin-bottom: 1rem;    
+}
+.title_css{
+    font-size: $h4-mobile;
+    color: white;
+    margin-top: -2rem;
+
+}
+
+.custom-icons{
+    width: 1.5rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.missingFieldsFirstPage{
+    color:$color-accent-red;
+    margin-top: 3rem;
+}
+
+@media screen and (min-width: 926px) {
+    .launch_project_containers{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: 
+        rgba(155, 8, 79, 1);
+    }
+
+    .title_project{
+        margin-top:-7rem; 
+        font-size: $h1-desktop ;  
+    }
+    .title_css{
+        font-size: $h4-desktop;
+    
+    }
+    .input_title_project{
+        background-color:rgba(217, 217, 217, 0.2);
+        border-bottom: 2px solid rgba(255, 243, 13, 1);
+        color: white;
+        position:relative;
+        margin-top:3rem;
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        width: 18rem;
+        text-align: center;
+    }
+    
+}

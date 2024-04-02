@@ -1,0 +1,176 @@
+@use "../../sass/global" as *;
+
+#projectView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#projectViewById {
+  background-color: $primary-color;
+  padding: 0; 
+}
+#projectResume {
+  padding: 0;
+
+  .globalContainer {
+    background-color: $bg-lightGrey;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .projectInfo {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 2rem 0.75rem 1rem;
+      gap: 1rem;
+
+      .tagsProject {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .titleCalendar {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+.userInfos {
+  .voteInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    p {
+      font-size: $a-mobile;
+      position: absolute;
+      bottom: -50%;
+    }
+    .voteButton {
+      padding: 0.6rem 1.05rem;
+      font-weight: bold;
+      color: $text-white;
+      background-color: $primary-color;
+      border-radius: 5px;
+      &:hover {
+        background-color: $color-accent-yellow;
+        color: $primary-color;
+      }
+    }
+    .vote {
+      padding: 0.25rem 0.5rem;
+      &:hover {
+        filter: brightness(80%);
+      }
+      img {
+        filter: contrast(10);
+        opacity: 50%;
+      }
+    }
+    .yes {
+      border-radius: 5px 0 0 5px;
+      background-color: $color-accent-green;
+    }
+    .no {
+      border-radius: 0 5px 5px 0;
+      background-color: $color-accent-red;
+      img {
+        rotate: 180deg;
+      }
+    }
+
+    .selected {
+      padding: 0.25rem 1.75rem;
+      border-radius: 5px;
+    }
+  }
+}
+.avisContainer {
+  background-color: $bg-darkGrey;
+  border-radius: 5px;
+  padding: 0.5rem;
+
+  .avisByUser {
+    background-color: $bg-white;
+    border-radius: 5px;
+    margin: 1.25rem 0.5rem;
+    padding: 0.5rem;
+  }
+  .avisByUserText {
+    margin: 1rem 0;
+  }
+  textarea{
+    width: 100%;
+    height: 6rem;
+    resize: none;
+    background-color: $bg-lightGrey;
+    border: 2px solid $primary-color;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+}
+
+.participantsAvatar {
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 30px;
+    margin-right: -8px;
+    border-radius: 50%;
+  }
+}
+
+.createAvisButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+.editButtonsAvis {
+  button {
+    margin: 5px;
+  }
+}
+.createAvisText {
+  height: 5rem;
+  border-radius: 5px;
+  padding: 0.5rem;
+  resize: none;
+}
+.editButtons{
+  .sauvegarder{
+    margin-left: 0.75rem;
+  }
+}
+.CountImpactedExpert {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    margin-left: 12px;
+    background: #FBBC05;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 926px) {
+  #projectResume {
+    padding: 0 8rem;
+    
+
+  .avatarProject {
+    width: 60px;
+}
+  }
+  .avisContainer {
+    padding: 1rem 2rem;
+    .avisByUser {
+      padding: 1.5rem;
+    }
+  }
+}

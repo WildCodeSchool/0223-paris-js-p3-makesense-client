@@ -1,0 +1,229 @@
+@use "../../sass//global" as *;
+
+.titreprofil {
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    size: $h1-mobile;
+    color: $primary-color;
+    font-family: $titles-font;
+}
+
+.profile-image {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 6px solid $color-accent-cian;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.crayonimg {
+    background-color: $color-accent-cian ;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    position: absolute;
+    left: 55%;
+    top: 70%;
+    cursor: pointer;
+}
+label {
+    font-weight: bold;
+}
+.formProfile {
+    text-align: left;
+    width: 60%;
+    margin: 20px auto 0;
+    color: $primary-color;
+}
+.profile-file {
+    position: relative;
+}
+.profile-input {
+    border: 1px solid grey;
+    border-radius: 5px;
+    display: block;
+    height: 40px;
+    width: 100%;
+    margin: 10px 0;
+    font-family: $titles-font;
+    text-indent: 10px;
+}
+.profile-input[readonly] {
+    cursor: not-allowed;
+}
+.error-message {
+    color: red; 
+}
+.inputerror {
+    height: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+button {
+    color: white;
+    border-radius: 5px;
+}
+.boutonAS {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin: 0 auto;
+
+}
+.annuler {
+    padding: 8px 10px;
+    background-color: $bg-lightGrey;
+    color: $color-accent-lightOrange;
+    border: 1px solid $color-accent-lightOrange;
+    &:hover{
+        filter: brightness(90%);
+      }
+    
+}
+.sauvegarder {
+    padding: 8px 10px;
+    background-color: $color-accent-lightOrange;
+    font-family: $titles-font;
+    &:hover{
+        filter: brightness(90%);
+      }
+}
+.editer {
+    padding: 8px 10px;
+    margin-left: 250px;
+    border: 1px solid transparent;
+    background-color: $color-accent-lightOrange;
+    font-family: $titles-font;
+}
+.notifcourriel {
+    width: 60%;
+    margin: 25px auto 0;
+    color: $primary-color;
+    font-size: 1.1rem;
+}
+.notifs {
+    margin-bottom: 30px;
+}
+.toggle-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 20%;
+    margin-top: 20px;
+}
+.toggle-checkbox {
+    display: none;
+}
+.toggle-label {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 30px;
+    position: relative;
+    transition: background-color 0.3s ease; 
+}  
+.toggle-inner {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.3s ease;
+}
+.toggle-switch {
+    display: block;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 5px;
+    transition: left 0.3s ease;
+}
+  
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #4CAF50;
+}
+  
+.toggle-checkbox:checked + .toggle-label .toggle-inner {
+    left: 50%;
+}
+  
+.toggle-checkbox:checked + .toggle-label .toggle-switch {
+    left: calc(100% - 5px);
+}
+
+.error-border {
+    border: 1px solid red; 
+}
+
+@media screen and (min-width: 926px) {
+    body {
+        h1 {
+            size: $h1-desktop;
+        }
+        p {
+            size: $p-desktop;
+        }
+        a {
+            size: $a-desktop;
+        }
+    }
+    .titreprofil {
+        padding-right: 30px;
+        padding-bottom: 10px;
+    }
+    .profile-form {
+        display: flex;
+        align-items: center;
+        height: fit-content;
+    }
+    .profile-input {
+        text-align: left;
+        width: 100%;
+        padding-top: 0;
+    }
+    .formProfile {
+        display: flex;
+        flex-wrap: wrap ;
+    }
+    .label-input {
+        padding: 5px;
+        width: 35%;
+    }
+    .profile-file {
+        width: 40%;  
+    }
+    .profile-image {
+        width: 200px;
+        height: 200px;
+    }
+    .crayonimg {
+        left: 58%;
+        top: 74%;
+    }
+    .editer {
+        display: flex;
+        margin-left: 820px;
+    }
+    .boutonAS {
+        width: 20%;
+        margin-left: 582px;
+        align-items: center;
+    }
+    .notifs {
+        margin-right: 400px;
+        margin-bottom: 30px;  
+    }
+    .inputerror {
+        margin-left: 50px;
+    }
+}

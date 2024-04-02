@@ -1,0 +1,38 @@
+@use "../../../sass//global" as *;
+
+.container_admin_usermanage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card_container_admin_user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.pagination_admin_username {
+  margin-top: 1rem;
+}
+
+.filter_admin_user {
+  width: 100%;
+  border-color : red;
+  color: red;
+}
+
+@media screen and (min-width: 926px) {
+  .pagination_admin_username {
+    margin-top: 0.5%;
+  }
+  .box{
+    background-image: url(../../../src/assets/pills/Pills_desktop_login.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+}
